@@ -1,0 +1,15 @@
+[remap]
+
+importer="aseprite_wizard.plugin.tileset-texture"
+type="AtlasTexture"
+uid="uid://blicrogwt7iq6"
+valid=false
+
+[deps]
+
+source_file="res://Tile Maps/Sprites/Tilesets.aseprite"
+
+[params]
+
+exclude_layers_pattern=""
+only_visible_layers=false
