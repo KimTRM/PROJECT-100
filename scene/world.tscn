@@ -1,15 +1,15 @@
 [gd_scene load_steps=4 format=3 uid="uid://v44f4qcx5kcp"]
 
-[ext_resource type="PackedScene" uid="uid://bb8k2csafhk6w" path="res://Player/player.tscn" id="1_3x78v"]
-[ext_resource type="PackedScene" uid="uid://5q0hwpdsxi4b" path="res://Tile Maps/Map1.tscn" id="2_1atxl"]
+[ext_resource type="PackedScene" uid="uid://bb8k2csafhk6w" path="res://Entities/Player/player.tscn" id="1_3x78v"]
+[ext_resource type="PackedScene" uid="uid://b8le1pwalfsaw" path="res://Maps/Map01.tscn" id="2_4rf23"]
 [ext_resource type="PackedScene" uid="uid://dtscjhtq01e2l" path="res://Tile Maps/grass01.tscn" id="2_q0w11"]
 
 [node name="World" type="Node2D"]
 
 [node name="Grass01" parent="." instance=ExtResource("2_q0w11")]
 
-[node name="Map 1" parent="." instance=ExtResource("2_1atxl")]
-visible = false
+[node name="Map01" parent="." instance=ExtResource("2_4rf23")]
+position = Vector2(233, 625)
 
 [node name="Player" parent="." instance=ExtResource("1_3x78v")]
-position = Vector2(-54, -95)
+position = Vector2(274, -13)

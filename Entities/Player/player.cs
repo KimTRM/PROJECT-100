@@ -1,6 +1,7 @@
 using Godot;
 using System;
 
+[GlobalClass, Icon("Entities/Player/Sprites/Player.png")]
 public partial class player : CharacterBody2D
 {   
 	public Vector2 AnimationDirection = Vector2.Down;

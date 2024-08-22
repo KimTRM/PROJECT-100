@@ -23,6 +23,10 @@ DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 
 general/uses_dotnet=true
 
+[display]
+
+window/size/always_on_top=true
+
 [dotnet]
 
 project/assembly_name="Project 100"

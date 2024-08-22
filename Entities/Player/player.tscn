@@ -1,10 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://bb8k2csafhk6w"]
+[gd_scene load_steps=15 format=3 uid="uid://bb8k2csafhk6w"]
 
-[ext_resource type="Script" path="res://Player/player.cs" id="1_fn38c"]
-[ext_resource type="Texture2D" uid="uid://b8v544pw40ynf" path="res://Player/Character-Male.png" id="2_s63mq"]
-[ext_resource type="Script" path="res://Player/State Machine/PlayerStateManager.cs" id="3_gg0ol"]
-[ext_resource type="Script" path="res://Player/State Machine/States/IdleState.cs" id="3_kx3uu"]
-[ext_resource type="Script" path="res://Player/State Machine/States/WalkState.cs" id="4_c1uoo"]
+[ext_resource type="Script" path="res://Entities/Player/player.cs" id="1_fn38c"]
+[ext_resource type="Texture2D" uid="uid://b8v544pw40ynf" path="res://Entities/Player/Sprites/Character-Male.png" id="2_s63mq"]
+[ext_resource type="Script" path="res://Entities/Player/State Machine/PlayerStateManager.cs" id="3_gg0ol"]
+[ext_resource type="Script" path="res://Entities/Player/State Machine/States/IdleState.cs" id="3_kx3uu"]
+[ext_resource type="Script" path="res://Entities/Player/State Machine/States/WalkState.cs" id="4_c1uoo"]
+[ext_resource type="PackedScene" uid="uid://d37ct8qy5o2ym" path="res://Entities/D.A.L/D.A.L..tscn" id="6_s8mc5"]
 
 [sub_resource type="Animation" id="Animation_0ub1t"]
 length = 0.98
@@ -220,7 +221,7 @@ metadata/_aseprite_wizard_config_ = {
 "slice": "",
 "source": "res://Player/Character-Male.aseprite"
 }
-metadata/_aseprite_wizard_source_file_hash_ = "eebd3c19361f8fc91910f7445ec2e60e"
+metadata/_aseprite_wizard_source_file_hash_ = "ce117a974f5f951e7c76016bfc7c042b"
 metadata/_aseprite_wizard_interface_config_ = {
 "layer_section": true
 }
@@ -238,3 +239,6 @@ shape = SubResource("CapsuleShape2D_ypl2b")
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -23)
 zoom = Vector2(2, 2)
+
+[node name="D-A-L" parent="." instance=ExtResource("6_s8mc5")]
+position = Vector2(29, -8)

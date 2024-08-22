@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://cy5jfshh3u53h"
+path="res://.godot/imported/D.A.L..aseprite-6efe8f78305650f1313826cc1fcb5951.res"
+
+[deps]
+
+source_file="res://Entities/D.A.L/Sprites/D.A.L..aseprite"
+dest_files=["res://.godot/imported/D.A.L..aseprite-6efe8f78305650f1313826cc1fcb5951.res"]
+
+[params]
+
