@@ -2,7 +2,7 @@ using Godot;
 using System;
 
 [GlobalClass, Icon("Assets/Entities/Player/Player.png")]
-public partial class player : CharacterBody2D
+public partial class Player : CharacterBody2D
 {   
 	public Vector2 AnimationDirection = Vector2.Down;
 	public Vector2 Direction = Vector2.Zero;
@@ -11,7 +11,7 @@ public partial class player : CharacterBody2D
 	private Sprite2D sprite;
 	private Node stateManager;
 
-	public static player playerInstance;
+	public static Player playerInstance;
 
 	public override void _Ready()
 	{

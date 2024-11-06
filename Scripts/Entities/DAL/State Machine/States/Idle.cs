@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class Idle : States
+public partial class Idle : DalState
 {
     public override void Enter()
     {

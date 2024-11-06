@@ -1,10 +1,10 @@
 using Godot;
 using System;
 
-public partial class State : Node
+public partial class PlayerState : Node
 {
     public PlayerStateManager sm;
-    public player player;
+    public Player player;
 
     // Called when entering the state
     public virtual void Enter()

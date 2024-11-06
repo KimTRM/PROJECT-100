@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class States : Node
+public partial class DalState : Node
 {
 	public StateMachine stateMachine;
 	public DAL DAL;

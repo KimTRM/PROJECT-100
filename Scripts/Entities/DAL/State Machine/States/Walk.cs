@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class Walk : States
+public partial class Walk : DalState
 {
 	[Export] public float Speed = 200.0f;
 

@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class WalkState : State
+public partial class WalkPlayerState : PlayerState
 {
 	[Export (PropertyHint.Enum, "Slow: 150, Normal: 200, Fast: 500")] 
 	public int Speed = 200;
@@ -12,12 +12,12 @@ public partial class WalkState : State
 	[Export]
 	public Godot.Collections.Dictionary pointsDict = new Godot.Collections.Dictionary
 	{
-    {"White", 50},
-    {"Yellow", 75},
-    {"Orange", 100},
-	{4, new []{1,2,3}},
-    {7, "Hello"},
-    {"sub_dict", new Godot.Collections.Dictionary{{"sub_key", "Nested value"}}}
+	    {"White", 50},
+	    {"Yellow", 75},
+	    {"Orange", 100},
+		{4, new []{1,2,3}},
+	    {7, "Hello"},
+	    {"sub_dict", new Godot.Collections.Dictionary{{"sub_key", "Nested value"}}}
 	};
 
 Variant foo = 5;
