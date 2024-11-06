@@ -1,10 +1,10 @@
 [gd_scene load_steps=14 format=3 uid="uid://bb8k2csafhk6w"]
 
-[ext_resource type="Script" path="res://Scripts/Entities/Player/player.cs" id="1_fn38c"]
+[ext_resource type="Script" path="res://Scripts/Entities/Player/Player.cs" id="1_v7usy"]
 [ext_resource type="Texture2D" uid="uid://b8v544pw40ynf" path="res://Assets/Entities/Player/Character-Male.png" id="2_s63mq"]
 [ext_resource type="Script" path="res://Scripts/Entities/Player/State Machine/PlayerStateManager.cs" id="3_gg0ol"]
-[ext_resource type="Script" path="res://Scripts/Entities/Player/State Machine/States/IdleState.cs" id="3_kx3uu"]
-[ext_resource type="Script" path="res://Scripts/Entities/Player/State Machine/States/WalkState.cs" id="4_c1uoo"]
+[ext_resource type="Script" path="res://Scripts/Entities/Player/State Machine/States/IdlePlayerState.cs" id="3_kx3uu"]
+[ext_resource type="Script" path="res://Scripts/Entities/Player/State Machine/States/WalkPlayerState.cs" id="4_nqk7w"]
 
 [sub_resource type="Animation" id="Animation_0ub1t"]
 length = 0.98
@@ -194,7 +194,7 @@ collision_layer = 2
 collision_mask = 20
 motion_mode = 1
 platform_floor_layers = 4294967041
-script = ExtResource("1_fn38c")
+script = ExtResource("1_v7usy")
 
 [node name="PlayerStateManager" type="Node" parent="."]
 script = ExtResource("3_gg0ol")
@@ -204,7 +204,7 @@ initialStatePath = NodePath("Idle")
 script = ExtResource("3_kx3uu")
 
 [node name="Walk" type="Node" parent="PlayerStateManager"]
-script = ExtResource("4_c1uoo")
+script = ExtResource("4_nqk7w")
 color = "White"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
