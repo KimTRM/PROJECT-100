@@ -205,7 +205,7 @@ script = ExtResource("3_kx3uu")
 
 [node name="Walk" type="Node" parent="PlayerStateManager"]
 script = ExtResource("4_nqk7w")
-color = "White"
+Speed = 150
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -244,4 +244,4 @@ shape = SubResource("CapsuleShape2D_ypl2b")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -23)
-zoom = Vector2(2, 2)
+zoom = Vector2(2.5, 2.5)

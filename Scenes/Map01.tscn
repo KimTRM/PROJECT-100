@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=4 uid="uid://b8le1pwalfsaw"]
 
-[ext_resource type="PackedScene" uid="uid://5q0hwpdsxi4b" path="res://Assets/Environment/Tile Maps/Basic-Ground.tscn" id="1_iwecj"]
+[ext_resource type="PackedScene" uid="uid://5q0hwpdsxi4b" path="res://Scenes/Basic-Ground.tscn" id="1_iwecj"]
 
 [node name="Map01" type="Node2D"]
 
