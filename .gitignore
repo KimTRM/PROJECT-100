@@ -1,3 +1,7 @@
 # Godot 4+ specific ignores
 .godot/
+<<<<<<< HEAD
+=======
+
+>>>>>>> a73f0cb90dc31c076abae30b0b28c3568bc2ab52
 .idea/
