@@ -33,7 +33,7 @@ public partial class DAL : CharacterBody2D
 	{
 		MoveAndSlide();
 	}
-
+	
 	public bool SetDirection()
 	{
 		Vector2 newDirection = AnimationDirection;
@@ -63,7 +63,7 @@ public partial class DAL : CharacterBody2D
 		
 		return true;
 	}
-
+	
 	private string _AnimationDirection()
 	{
 		if (AnimationDirection == Vector2.Down)
@@ -79,7 +79,7 @@ public partial class DAL : CharacterBody2D
 			return "side";
 		}
 	}
-
+	
 	public void UpdateAnimation(string state)
 	{
 		_animationPlayer?.Play(state + "_" + _AnimationDirection());
