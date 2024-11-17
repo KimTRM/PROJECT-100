@@ -7,14 +7,14 @@ public partial class Player : CharacterBody2D
 	private Vector2 AnimationDirection = Vector2.Down;
 	public Vector2 Direction = Vector2.Zero;
 	
-	private AnimationPlayer animationPlayer;
+	private AnimationPlayer AnimationPlayer;
 	private Sprite2D sprite;
 	private Node stateManager;
 	
 	public override void _Ready()
 	{
 		sprite = GetNode<Sprite2D>("Sprite2D");
-		animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
+		AnimationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
 		stateManager = GetNode<Node>("PlayerStateManager");
 		
 		UpdateAnimation("idle");
@@ -76,6 +76,6 @@ public partial class Player : CharacterBody2D
 
 	public void UpdateAnimation(string state)
 	{ 
-		animationPlayer?.Play(state + "_" + _AnimationDirection());
+		AnimationPlayer?.Play(state + "_" + _AnimationDirection());
 	}
 }

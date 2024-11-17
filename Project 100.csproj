@@ -9,4 +9,7 @@
   <ItemGroup>
     <Folder Include="Scenes\" />
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Firebelley.GodotUtilities" Version="5.0.0" />
+  </ItemGroup>
 </Project>
