@@ -10,9 +10,9 @@ const ResolvedTagData = preload("./resolved_tag_data.gd")
 const DialogueManagerParseResult = preload("./parse_result.gd")
 
 
-var IMPORT_REGEX: RegEx = RegEx.create_from_string("import \"(?<path>[^\"]+)\" as (?<prefix>[^\\!\\@\\#\\$\\%\\^\\&\\*\\(\\)\\-\\=\\+\\{\\}\\[\\]\\;\\:\\\"\\'\\,\\.\\<\\>\\?\\/\\s]+)")
+var IMPORT_REGEX: RegEx = RegEx.create_from_string("import \"(?<path>[^\"]+)\" as (?<prefix>[a-zA-Z_\\p{Emoji_Presentation}\\p{Han}\\p{Katakana}\\p{Hiragana}\\p{Cyrillic}][a-zA-Z_0-9\\p{Emoji_Presentation}\\p{Han}\\p{Katakana}\\p{Hiragana}\\p{Cyrillic}]+)")
 var USING_REGEX: RegEx = RegEx.create_from_string("^using (?<state>.*)$")
-var VALID_TITLE_REGEX: RegEx = RegEx.create_from_string("^[^\\!\\@\\#\\$\\%\\^\\&\\*\\(\\)\\-\\=\\+\\{\\}\\[\\]\\;\\:\\\"\\'\\,\\.\\<\\>\\?\\/\\s]+$")
+var VALID_TITLE_REGEX: RegEx = RegEx.create_from_string("^[a-zA-Z_0-9\\p{Emoji_Presentation}\\p{Han}\\p{Katakana}\\p{Hiragana}\\p{Cyrillic}][a-zA-Z_0-9\\p{Emoji_Presentation}\\p{Han}\\p{Katakana}\\p{Hiragana}\\p{Cyrillic}]+$")
 var BEGINS_WITH_NUMBER_REGEX: RegEx = RegEx.create_from_string("^\\d")
 var TRANSLATION_REGEX: RegEx = RegEx.create_from_string("\\[ID:(?<tr>.*?)\\]")
 var TAGS_REGEX: RegEx = RegEx.create_from_string("\\[#(?<tags>.*?)\\]")
@@ -26,8 +26,8 @@ var INLINE_RANDOM_REGEX: RegEx = RegEx.create_from_string("\\[\\[(?<options>.*?)
 var INLINE_CONDITIONALS_REGEX: RegEx = RegEx.create_from_string("\\[if (?<condition>.+?)\\](?<body>.*?)\\[\\/if\\]")
 
 var TOKEN_DEFINITIONS: Dictionary = {
-	DialogueConstants.TOKEN_FUNCTION: RegEx.create_from_string("^[a-zA-Z_][a-zA-Z_0-9]*\\("),
-	DialogueConstants.TOKEN_DICTIONARY_REFERENCE: RegEx.create_from_string("^[a-zA-Z_][a-zA-Z_0-9]*\\["),
+	DialogueConstants.TOKEN_FUNCTION: RegEx.create_from_string("^[a-zA-Z_\\p{Emoji_Presentation}\\p{Han}\\p{Katakana}\\p{Hiragana}\\p{Cyrillic}][a-zA-Z_0-9\\p{Emoji_Presentation}\\p{Han}\\p{Katakana}\\p{Hiragana}\\p{Cyrillic}]*\\("),
+	DialogueConstants.TOKEN_DICTIONARY_REFERENCE: RegEx.create_from_string("^[a-zA-Z_\\p{Emoji_Presentation}\\p{Han}\\p{Katakana}\\p{Hiragana}\\p{Cyrillic}][a-zA-Z_0-9\\p{Emoji_Presentation}\\p{Han}\\p{Katakana}\\p{Hiragana}\\p{Cyrillic}]*\\["),
 	DialogueConstants.TOKEN_PARENS_OPEN: RegEx.create_from_string("^\\("),
 	DialogueConstants.TOKEN_PARENS_CLOSE: RegEx.create_from_string("^\\)"),
 	DialogueConstants.TOKEN_BRACKET_OPEN: RegEx.create_from_string("^\\["),
@@ -44,13 +44,13 @@ var TOKEN_DEFINITIONS: Dictionary = {
 	DialogueConstants.TOKEN_STRING: RegEx.create_from_string("^&?(\".*?\"|\'.*?\')"),
 	DialogueConstants.TOKEN_NOT: RegEx.create_from_string("^(not( |$)|!)"),
 	DialogueConstants.TOKEN_AND_OR: RegEx.create_from_string("^(and|or|&&|\\|\\|)( |$)"),
-	DialogueConstants.TOKEN_VARIABLE: RegEx.create_from_string("^[a-zA-Z_][a-zA-Z_0-9]*"),
+	DialogueConstants.TOKEN_VARIABLE: RegEx.create_from_string("^[a-zA-Z_\\p{Emoji_Presentation}\\p{Han}\\p{Katakana}\\p{Hiragana}\\p{Cyrillic}][a-zA-Z_0-9\\p{Emoji_Presentation}\\p{Han}\\p{Katakana}\\p{Hiragana}\\p{Cyrillic}]*"),
 	DialogueConstants.TOKEN_COMMENT: RegEx.create_from_string("^#.*"),
 	DialogueConstants.TOKEN_CONDITION: RegEx.create_from_string("^(if|elif|else)"),
 	DialogueConstants.TOKEN_BOOL: RegEx.create_from_string("^(true|false)")
 }
 
-var WEIGHTED_RANDOM_SIBLINGS_REGEX: RegEx = RegEx.create_from_string("^\\%(?<weight>[\\d.]+)? ")
+var WEIGHTED_RANDOM_SIBLINGS_REGEX: RegEx = RegEx.create_from_string("^\\%(?<weight>[\\d.]+)?( \\[if (?<condition>.+?)\\])? ")
 
 var raw_lines: PackedStringArray = []
 var parent_stack: Array[String] = []
@@ -242,17 +242,14 @@ func parse(text: String, path: String) -> Error:
 		# Title
 		elif is_title_line(raw_line):
 			line["type"] = DialogueConstants.TYPE_TITLE
-			if not raw_lines[id].begins_with("~"):
-				add_error(id, indent_size + 2, DialogueConstants.ERR_NESTED_TITLE)
-			else:
-				line["text"] = extract_title(raw_line)
-				# Titles can't have numbers as the first letter (unless they are external titles which get replaced with hashes)
-				if id >= _imported_line_count and BEGINS_WITH_NUMBER_REGEX.search(line.text):
-					add_error(id, 2, DialogueConstants.ERR_TITLE_BEGINS_WITH_NUMBER)
-				# Only import titles are allowed to have "/" in them
-				var valid_title = VALID_TITLE_REGEX.search(raw_line.replace("/", "").substr(2).strip_edges())
-				if not valid_title:
-					add_error(id, 2, DialogueConstants.ERR_TITLE_INVALID_CHARACTERS)
+			line["text"] = extract_title(raw_line)
+			# Titles can't have numbers as the first letter (unless they are external titles which get replaced with hashes)
+			if id >= _imported_line_count and BEGINS_WITH_NUMBER_REGEX.search(line.text):
+				add_error(id, 2, DialogueConstants.ERR_TITLE_BEGINS_WITH_NUMBER)
+			# Only import titles are allowed to have "/" in them
+			var valid_title = VALID_TITLE_REGEX.search(raw_line.replace("/", "").substr(raw_line.find("~ ") + 2).strip_edges())
+			if not valid_title:
+				add_error(id, 2, DialogueConstants.ERR_TITLE_INVALID_CHARACTERS)
 
 		# Condition
 		elif is_condition_line(raw_line, false):
@@ -434,7 +431,6 @@ func parse(text: String, path: String) -> Error:
 				DialogueConstants.TYPE_TITLE,
 				DialogueConstants.TYPE_DIALOGUE,
 				DialogueConstants.TYPE_MUTATION,
-				DialogueConstants.TYPE_GOTO
 			] and is_valid_id(line.next_id):
 			var next_line = raw_lines[line.next_id.to_int()]
 			if next_line != null and get_indent(next_line) > indent_size:
@@ -564,7 +560,7 @@ func prepare(text: String, path: String, include_imported_titles_hashes: bool = 
 
 	# Find all titles first
 	for id in range(0, raw_lines.size()):
-		if raw_lines[id].begins_with("~ "):
+		if raw_lines[id].strip_edges().begins_with("~ "):
 			var title: String = extract_title(raw_lines[id])
 			if title == "":
 				add_error(id, 2, DialogueConstants.ERR_EMPTY_TITLE)
@@ -695,13 +691,12 @@ func is_line_empty(line: String) -> bool:
 func get_line_after_line(id: int, indent_size: int, line: Dictionary) -> String:
 	# Unless the next line is an outdent we can assume it comes next
 	var next_nonempty_line_id = get_next_nonempty_line_id(id)
-	if next_nonempty_line_id != DialogueConstants.ID_NULL \
-		and indent_size <= get_indent(raw_lines[next_nonempty_line_id.to_int()]):
+
+	if next_nonempty_line_id != DialogueConstants.ID_NULL and indent_size <= get_indent(raw_lines[next_nonempty_line_id.to_int()]):
 		return next_nonempty_line_id
 	# Otherwise, we grab the ID from the parents next ID after children
 	elif line.has("parent_id") and parsed_lines.has(line.parent_id):
 		return parsed_lines[line.parent_id].next_id_after
-
 	else:
 		return DialogueConstants.ID_NULL
 
@@ -738,17 +733,23 @@ func find_previous_response_id(line_number: int) -> String:
 			if line.strip_edges().begins_with("- "):
 				last_found_response_id = str(i)
 			else:
-				return last_found_response_id
+				break
+		elif get_indent(line) < indent_size:
+			break
 
-	# Return itself if nothing was found
+	# Return the most relevant ID
 	return last_found_response_id
 
 
 func apply_weighted_random(id: int, raw_line: String, indent_size: int, line: Dictionary) -> void:
 	var weight: float = 1
 	var found = WEIGHTED_RANDOM_SIBLINGS_REGEX.search(raw_line)
-	if found and found.names.has("weight"):
-		weight = found.strings[found.names.weight].to_float()
+	var condition: Dictionary = {}
+	if found:
+		if found.names.has("weight"):
+			weight = found.strings[found.names.weight].to_float()
+		if found.names.has("condition"):
+			condition = extract_condition(raw_line, true, indent_size)
 
 	# Look back up the list to find the first weighted random line in this group
 	var original_random_line: Dictionary = {}
@@ -769,7 +770,7 @@ func apply_weighted_random(id: int, raw_line: String, indent_size: int, line: Di
 
 	# Attach it to the original random line and work out where to go after the line
 	if original_random_line.size() > 0:
-		original_random_line["siblings"] += [{ weight = weight, id = str(id) }]
+		original_random_line["siblings"] += [{ weight = weight, id = str(id), condition = condition }]
 		if original_random_line.type != DialogueConstants.TYPE_GOTO:
 			# Update the next line for all siblings (not goto lines, though, they manage their
 			# own next ID)
@@ -786,7 +787,7 @@ func apply_weighted_random(id: int, raw_line: String, indent_size: int, line: Di
 		line["next_id"] = original_random_line.next_id
 	# Or set up this line as the original
 	else:
-		line["siblings"] = [{ weight = weight, id = str(id) }]
+		line["siblings"] = [{ weight = weight, id = str(id), condition = condition }]
 		line["next_id"] = get_line_after_line(id, indent_size, line)
 
 	if line.next_id == DialogueConstants.ID_NULL:
@@ -834,10 +835,7 @@ func find_next_line_after_conditions(line_number: int) -> String:
 		var line_indent = get_indent(line)
 		line = line.strip_edges()
 
-		if is_title_line(line):
-			return get_next_nonempty_line_id(i)
-
-		elif line_indent > expected_indent:
+		if line_indent > expected_indent:
 			continue
 
 		elif line_indent == expected_indent:
@@ -858,6 +856,7 @@ func find_next_line_after_conditions(line_number: int) -> String:
 					return parsed_lines[str(p)].get("next_id_after", DialogueConstants.ID_NULL)
 
 	return DialogueConstants.ID_END_CONVERSATION
+
 
 func find_last_line_within_conditions(line_number: int) -> String:
 	var line = raw_lines[line_number]
@@ -1041,7 +1040,7 @@ func extract_import_path_and_name(line: String) -> Dictionary:
 
 
 func extract_title(line: String) -> String:
-	return line.substr(2).strip_edges()
+	return line.substr(line.find("~ ") + 2).strip_edges()
 
 
 func extract_translation(line: String) -> String:

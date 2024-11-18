@@ -10,7 +10,7 @@ public partial class Player : CharacterBody2D
 	private AnimationPlayer AnimationPlayer;
 	private Sprite2D sprite;
 	private Node stateManager;
-	
+
 	public override void _Ready()
 	{
 		sprite = GetNode<Sprite2D>("Sprite2D");
@@ -53,7 +53,7 @@ public partial class Player : CharacterBody2D
 		}
 
 		AnimationDirection = newDirection;
-		sprite.FlipH = AnimationDirection == Vector2.Left ? true : false;
+		sprite.FlipH = AnimationDirection == Vector2.Left;
 		
 		return true;
 	}

@@ -111,26 +111,37 @@ func _can_drop_data(at_position: Vector2, data) -> bool:
 	if typeof(data) != TYPE_DICTIONARY: return false
 	if data.type != "files": return false
 
-	var files: PackedStringArray = Array(data.files).filter(func(f): return f.get_extension() == "dialogue")
+	var files: PackedStringArray = Array(data.files)
 	return files.size() > 0
 
 
 func _drop_data(at_position: Vector2, data) -> void:
 	var replace_regex: RegEx = RegEx.create_from_string("[^a-zA-Z_0-9]+")
 
-	var files: PackedStringArray = Array(data.files).filter(func(f): return f.get_extension() == "dialogue")
+	var files: PackedStringArray = Array(data.files)
 	for file in files:
 		# Don't import the file into itself
 		if file == main_view.current_file_path: continue
 
-		var path = file.replace("res://", "").replace(".dialogue", "")
-		# Find the first non-import line in the file to add our import
-		var lines = text.split("\n")
-		for i in range(0, lines.size()):
-			if not lines[i].begins_with("import "):
-				insert_line_at(i, "import \"%s\" as %s\n" % [file, replace_regex.sub(path, "_", true)])
-				set_caret_line(i)
-				break
+		if file.get_extension() == "dialogue":
+			var path = file.replace("res://", "").replace(".dialogue", "")
+			# Find the first non-import line in the file to add our import
+			var lines = text.split("\n")
+			for i in range(0, lines.size()):
+				if not lines[i].begins_with("import "):
+					insert_line_at(i, "import \"%s\" as %s\n" % [file, replace_regex.sub(path, "_", true)])
+					set_caret_line(i)
+					break
+		else:
+			var cursor: Vector2 = get_line_column_at_pos(at_position)
+			if cursor.x > -1 and cursor.y > -1:
+				set_cursor(cursor)
+				remove_secondary_carets()
+				if has_method("insert_text"):
+					call("insert_text", "\"%s\"" % file, cursor.y, cursor.x)
+				else:
+					call("insert_text_at_cursor", "\"%s\"" % file)
+	grab_focus()
 
 
 func _request_code_completion(force: bool) -> void:
@@ -205,8 +216,8 @@ func get_cursor() -> Vector2:
 
 # Set the caret from a Vector2
 func set_cursor(from_cursor: Vector2) -> void:
-	set_caret_line(from_cursor.y)
-	set_caret_column(from_cursor.x)
+	set_caret_line(from_cursor.y, false)
+	set_caret_column(from_cursor.x, false)
 
 
 # Check if a prompt is the start of a string without actually being that string
@@ -395,11 +406,12 @@ func move_line(offset: int) -> void:
 	text = "\n".join(lines)
 
 	cursor.y += offset
+	set_cursor(cursor)
 	from += offset
 	to += offset
 	if reselect:
 		select(from, 0, to, get_line_width(to))
-	set_cursor(cursor)
+
 	text_changed.emit()
 
 
