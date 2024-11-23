@@ -208,7 +208,6 @@ script = ExtResource("4_nqk7w")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(1, -22)
 texture = ExtResource("2_s63mq")
 hframes = 6
 vframes = 5
@@ -237,8 +236,7 @@ libraries = {
 autoplay = "idle_down"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(1, 0)
+position = Vector2(0, 18)
 shape = SubResource("CapsuleShape2D_ypl2b")
 
 [node name="Camera2D" type="Camera2D" parent="."]
