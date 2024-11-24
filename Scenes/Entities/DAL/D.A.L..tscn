@@ -127,12 +127,10 @@ _data = {
 }
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_chly2"]
-radius = 7.0
-height = 16.0
+height = 26.0
 
 [node name="D-A-L" type="CharacterBody2D"]
 y_sort_enabled = true
-position = Vector2(-1, 0)
 collision_layer = 4
 collision_mask = 18
 platform_floor_layers = 4294967040
@@ -151,7 +149,7 @@ Speed = 150.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(-1, 0)
+position = Vector2(-1, -4)
 texture = ExtResource("1_20exx")
 hframes = 5
 vframes = 5
@@ -182,6 +180,5 @@ libraries = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(1, 2)
+position = Vector2(0, 2)
 shape = SubResource("CapsuleShape2D_chly2")
