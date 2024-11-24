@@ -7,9 +7,12 @@
     <RootNamespace>Project100</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Folder Include="Scenes\" />
+    <PackageReference Include="Firebelley.GodotUtilities" Version="5.0.0" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Firebelley.GodotUtilities" Version="5.0.0" />
+    <Compile Remove="Scenes\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Remove="Scenes\**" />
   </ItemGroup>
 </Project>

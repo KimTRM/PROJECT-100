@@ -3,7 +3,8 @@ class_name LevelTileMap extends TileMapLayer
 func _ready() -> void:
 	LevelManager.ChangeTilemapBounds(GetTilemapBounds())
 	pass
-
+	
+#
 func GetTilemapBounds() -> Array[Vector2]:
 	var bounds: Array[Vector2] = []
 	var used_rect = get_used_rect()
