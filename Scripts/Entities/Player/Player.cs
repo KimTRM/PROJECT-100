@@ -11,6 +11,10 @@ public partial class Player : CharacterBody2D
 	private Sprite2D sprite;
 	private Node stateManager;
 	
+	/**
+	 * This function loads all the necessary assets to the RAM
+	 * for faster rendering.
+	 */
 	public override void _Ready()
 	{
 		sprite = GetNode<Sprite2D>("Sprite2D");
@@ -19,7 +23,11 @@ public partial class Player : CharacterBody2D
 		
 		UpdateAnimation("idle");
 	}
-
+	
+	/**
+	 * This function runs the game.
+	 * <para>This also has a built-in FPS computation.</para>
+	 */
 	public override void _Process(double delta)
 	{
 		Direction = new Vector2
@@ -28,12 +36,19 @@ public partial class Player : CharacterBody2D
 			Input.GetAxis("Up", "Down")
 		).Normalized();
 	}
-
+	
+	/**
+	 * This function handles the physics of the game.
+	 */
 	public override void _PhysicsProcess(double delta)
 	{
 		MoveAndSlide();
 	}
-
+	
+	/**
+	 * This function sets your direction.
+	 * <para>? is like if-else statement.</para>
+	 */
 	public bool SetDirection()
 	{
 		Vector2 newDirection = AnimationDirection;

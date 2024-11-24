@@ -3,12 +3,11 @@
 importer="aseprite_wizard.plugin.tileset-texture"
 type="AtlasTexture"
 uid="uid://bwdssq8pamfkh"
-path="res://.godot/imported/Tilesets.aseprite-b5dd6f36552c83ddf790fb2672715dde.res"
+valid=false
 
 [deps]
 
 source_file="res://Assets/Environment/Tile Maps/Sprites/Tilesets.aseprite"
-dest_files=["res://.godot/imported/Tilesets.aseprite-b5dd6f36552c83ddf790fb2672715dde.res"]
 
 [params]
 
