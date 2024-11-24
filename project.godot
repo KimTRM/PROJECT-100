@@ -21,6 +21,7 @@ boot_splash/minimum_display_time=7
 [autoload]
 
 GameManager="*res://Scripts/00 Global/GameManager.cs"
+LevelManager="*res://Scripts/00 Global/GameLevelManager.gd"
 
 [dialogue_manager]
 
