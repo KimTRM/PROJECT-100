@@ -24,6 +24,7 @@ DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 RuntimeDebugTools="*res://addons/runtime_debug_tools/scenes/remote_inspector.tscn"
 EmbedGameAutoload="*res://addons/fabimakesgames.embed_game/embed_game_autoload.gd"
 GameManager="*res://Scripts/00 Global/GameManager.cs"
+LevelManager="*res://Scripts/00 Global/GlobalLevelManager.cs"
 
 [dialogue_manager]
 
