@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://Scripts/Entities/Player/State Machine/PlayerStateManager.cs" id="3_gg0ol"]
 [ext_resource type="Script" path="res://Scripts/Entities/Player/State Machine/States/IdlePlayerState.cs" id="3_kx3uu"]
 [ext_resource type="Script" path="res://Scripts/Entities/Player/State Machine/States/WalkPlayerState.cs" id="4_nqk7w"]
-[ext_resource type="Script" path="res://Scripts/Entities/Player/PlayerCamera.cs" id="6_bxvwh"]
+[ext_resource type="Script" path="res://Scripts/Entities/Player/PlayerCamera.gd" id="6_eaxxk"]
 
 [sub_resource type="Animation" id="Animation_0ub1t"]
 length = 0.98
@@ -246,4 +246,4 @@ shape = SubResource("CapsuleShape2D_ypl2b")
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -23)
 zoom = Vector2(2.5, 2.5)
-script = ExtResource("6_bxvwh")
+script = ExtResource("6_eaxxk")
