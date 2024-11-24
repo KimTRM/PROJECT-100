@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://d37ct8qy5o2ym" path="res://Scenes/Entities/DAL/D.A.L..tscn" id="4_qef5h"]
 
 [node name="World" type="Node2D"]
+y_sort_enabled = true
+position = Vector2(-1, 0)
 
 [node name="Player" parent="." instance=ExtResource("3_v8sym")]
 position = Vector2(0, -3)
@@ -21,5 +23,6 @@ tile_map_data = PackedByteArray("AADn/+3/AAAAAAAAAADn/+7/AAAAAAAAAADn/+//AAAAAAA
 position = Vector2(233, 625)
 
 [node name="D-A-L" parent="." instance=ExtResource("4_qef5h")]
+z_index = 1
 position = Vector2(2.00003, -65)
 scale = Vector2(0.997112, 1.00916)
