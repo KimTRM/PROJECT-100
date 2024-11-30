@@ -3,16 +3,11 @@ class_name LevelTileMap extends TileMapLayer
 func _ready() -> void:
 	LevelManager.ChangeTilemapBounds(GetTilemapBounds())
 	pass
-	
-#
+
 func GetTilemapBounds() -> Array[Vector2]:
 	var bounds: Array[Vector2] = []
-	var used_rect = get_used_rect()
-	
-	var start_position = map_to_local(used_rect.position)
-	var end_position = map_to_local(used_rect.end)
-	
-	bounds.append(start_position)
-	bounds.append(end_position)
-	
+
+	bounds.append(Vector2(get_used_rect().position * rendering_quadrant_size))
+	bounds.append(Vector2(get_used_rect().end * rendering_quadrant_size))
+
 	return bounds
