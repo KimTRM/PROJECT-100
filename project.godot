@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="PROJECT 100 (C#)"
-run/main_scene="res://Scenes/world.tscn"
+run/main_scene="res://Stages/world.tscn"
 config/features=PackedStringArray("4.3", "C#", "Mobile")
 boot_splash/bg_color=Color(0.0470588, 0.0470588, 0.0470588, 1)
 boot_splash/image="res://KLTL.png"
@@ -20,8 +20,8 @@ boot_splash/minimum_display_time=7
 
 [autoload]
 
-LevelManager="*res://Scripts/00 Global/LevelManager.cs"
-GameManager="*res://Scripts/00 Global/GameManager.cs"
+LevelManager="*res://Utilities/00 Global/LevelManager.cs"
+GameManager="*res://Utilities/00 Global/GameManager.cs"
 
 [dialogue_manager]
 
@@ -49,10 +49,12 @@ enabled=PackedStringArray("res://addons/AsepriteWizard/plugin.cfg", "res://addon
 
 folder_colors={
 "res://Assets/": "yellow",
+"res://Common/": "red",
 "res://Dialouge/": "purple",
+"res://Entities/": "orange",
 "res://Resource/": "blue",
-"res://Scenes/": "green",
-"res://Scripts/": "orange",
+"res://Stages/": "green",
+"res://Utilities/": "teal",
 "res://addons/": "blue"
 }
 
