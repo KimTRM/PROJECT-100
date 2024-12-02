@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://snpidhwo38ox"
-path="res://.godot/imported/KLTL.png-98b14dda89c54a31cbf96e069b2fd3c8.ctex"
+uid="uid://5gfy7vyl43fb"
+path="res://.godot/imported/KLTL Logo.png-4da4a50aaf3e89ca801e9eb3e223cf7b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://KLTL.png"
-dest_files=["res://.godot/imported/KLTL.png-98b14dda89c54a31cbf96e069b2fd3c8.ctex"]
+source_file="res://Assets/KLTL Logo.png"
+dest_files=["res://.godot/imported/KLTL Logo.png-4da4a50aaf3e89ca801e9eb3e223cf7b.ctex"]
 
 [params]
 
