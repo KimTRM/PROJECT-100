@@ -15,4 +15,7 @@
   <ItemGroup>
     <EmbeddedResource Remove="Scenes\**" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Common\" />
+  </ItemGroup>
 </Project>
