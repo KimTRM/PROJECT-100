@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://dn0cyynyocplp"]
+
+[ext_resource type="Texture2D" uid="uid://b7xpg2pjrnoth" path="res://Code/Conditionals/ElseBlock/Art/Else.png" id="1_8dwbj"]
+
+[node name="ElseBlock" type="Area2D"]
+
+[node name="Else" type="Sprite2D" parent="."]
+position = Vector2(244, 156)
+scale = Vector2(0.267033, 0.268293)
+texture = ExtResource("1_8dwbj")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+visible = false
+position = Vector2(244, 156)
+scale = Vector2(0.267033, 0.268293)
+polygon = PackedVector2Array(891, -574.7, 861, -579.3, 861, -577.3, 846.7, -571, 844.3, -571, 734, -487, 734, -486.4, 724, -482.4, 713, -480.8, 713, -480, -728, -479, -762.7, -479, -772.7, -482, -775.3, -482, -783.3, -488, -785.2, -488, -826, -530.8, -826, -532.9, -843, -549, -843, -550.2, -851, -554.3, -851, -555.7, -862, -557.8, -862, -559.3, -883.3, -556, -886.7, -556, -904.7, -541, -906.3, -541, -910, -532.7, -910, 593.4, -905, 600.5, -905, 603, -888.4, 615, 888.4, 615, 895.5, 610, 898, 610, 910, 593.3, 910, 326.6, 899, 312.3, 899, 310.7, 878.4, 301, -460, 301, -460, -49, 871.4, -49, 887.3, -56, 889.8, -56, 901.8, -68, 903.2, -68, 910, -80, 910, -553.5, 907, -557.7, 907, -560, 891, -573.1)

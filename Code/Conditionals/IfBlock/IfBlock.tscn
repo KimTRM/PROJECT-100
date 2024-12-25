@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://bbf3rvoybpd"]
+
+[ext_resource type="Texture2D" uid="uid://kh7u3ubw64u3" path="res://Code/Conditionals/IfBlock/Art/If.png" id="1_ar46q"]
+
+[node name="IfBlock" type="Area2D"]
+
+[node name="If" type="Sprite2D" parent="."]
+position = Vector2(245, 162)
+scale = Vector2(0.268132, 0.28777)
+texture = ExtResource("1_ar46q")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+visible = false
+position = Vector2(112.5, 83.5)
+scale = Vector2(0.122527, 0.146583)
+polygon = PackedVector2Array(872, -556, -870.8, -556, -880.3, -552, -882.8, -552, -887.8, -547, -889.9, -547, -901.9, -533, -903.2, -533, -910, -519.5, -910, 408.4, -904, 416.6, -904, 418.8, -827, 504.7, -827, 506.8, -783, 552.7, -783, 554.2, -779.5, 556, 729.1, 556, 895.8, 421, 898.1, 421, 910, 403.1, 910, 245.6, 899, 231.3, 899, 229.7, 878.4, 220, -460, 220, -460, -130, 871.4, -130, 887.3, -137, 889.8, -137, 901.8, -149, 903.2, -149, 910, -161, 910, -518, 901, -533.5, 901, -535.9, 884, -550, 884, -551.4)

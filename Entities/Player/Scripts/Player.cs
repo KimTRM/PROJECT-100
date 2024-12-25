@@ -1,5 +1,4 @@
 using Godot;
-using System;
 
 [GlobalClass, Icon("Entities/Player/Art/Player.png")]
 public partial class Player : CharacterBody2D

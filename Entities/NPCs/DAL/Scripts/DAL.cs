@@ -1,5 +1,4 @@
 using Godot;
-using System;
 
 [GlobalClass, Icon("Entities/NPCs/DAL/Art/DAL.png")]
 public partial class DAL : CharacterBody2D
