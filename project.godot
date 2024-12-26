@@ -12,7 +12,7 @@ config_version=5
 
 config/name="PROJECT 100 (C#)"
 run/main_scene="res://Stages/world.tscn"
-config/features=PackedStringArray("4.3", "C#", "Mobile")
+config/features=PackedStringArray("4.3", "Mobile")
 boot_splash/bg_color=Color(0.0470588, 0.0470588, 0.0470588, 1)
 boot_splash/image="res://Assets/KLTL.png"
 config/icon="res://Assets/KLTL Logo.png"
@@ -20,8 +20,7 @@ boot_splash/minimum_display_time=7
 
 [autoload]
 
-GameManager="*res://Common/00 Global/GameManager.cs"
-LevelManager="*res://Common/00 Global/LevelManager.cs"
+LevelManager="*res://Common/00 Global/LevelManager.gd"
 
 [dialogue_manager]
 
