@@ -1,0 +1,43 @@
+[gd_scene load_steps=8 format=3 uid="uid://d284sa273yh0t"]
+
+[ext_resource type="PackedScene" uid="uid://dn0cyynyocplp" path="res://Code/Conditionals/ElseBlock/ElseBlock.tscn" id="1_fargv"]
+[ext_resource type="PackedScene" uid="uid://bgd1mwohr33cs" path="res://Code/Conditionals/ElseIfBlock/Else-IfBlock.tscn" id="2_hcx4g"]
+[ext_resource type="PackedScene" uid="uid://bbf3rvoybpd" path="res://Code/Conditionals/IfBlock/IfBlock.tscn" id="3_xbixg"]
+[ext_resource type="PackedScene" uid="uid://c4pumpxm1xsoq" path="res://Code/Variables/BooleanBlock/BooleanBlock.tscn" id="4_hcls7"]
+[ext_resource type="PackedScene" uid="uid://cojfo4sy7un6u" path="res://Code/Variables/FloatBlock/FloatBlock.tscn" id="5_gc6uj"]
+[ext_resource type="PackedScene" uid="uid://rkxkm6m8ey64" path="res://Code/Variables/IntBlock/IntBlock.tscn" id="6_w0wfh"]
+[ext_resource type="PackedScene" uid="uid://ghfmwfgjo781" path="res://Code/Variables/StringBlock/StringBlock.tscn" id="7_w6sgs"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchor_right = 1.105
+anchor_bottom = 1.094
+offset_right = -0.400024
+offset_bottom = 0.319946
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ElseBlock" parent="." instance=ExtResource("1_fargv")]
+position = Vector2(269, 319)
+
+[node name="ElseIfBlock" parent="." instance=ExtResource("2_hcx4g")]
+position = Vector2(275, 34)
+
+[node name="IfBlock" parent="." instance=ExtResource("3_xbixg")]
+position = Vector2(270, -263)
+
+[node name="BooleanBlock" parent="." instance=ExtResource("4_hcls7")]
+position = Vector2(869, 72)
+
+[node name="FloatBlock" parent="." instance=ExtResource("5_gc6uj")]
+position = Vector2(1033, 332)
+
+[node name="IntBlock" parent="." instance=ExtResource("6_w0wfh")]
+position = Vector2(1041, 225)
+
+[node name="StringBlock" parent="." instance=ExtResource("7_w6sgs")]
+position = Vector2(1010, 581)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(1017, 603)
+zoom = Vector2(0.35, 0.35)

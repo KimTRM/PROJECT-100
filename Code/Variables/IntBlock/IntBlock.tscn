@@ -1,22 +1,28 @@
-[gd_scene format=3 uid="uid://rkxkm6m8ey64"]
+[gd_scene load_steps=3 format=3 uid="uid://rkxkm6m8ey64"]
 
-[node name="Control" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[ext_resource type="Texture2D" uid="uid://dgj8wk2f15lbc" path="res://Code/Variables/IntBlock/Art/int.png" id="1_hr33o"]
 
-[node name="CodeEdit" type="CodeEdit" parent="."]
-layout_mode = 0
-offset_left = 71.0
-offset_top = 74.0
-offset_right = 1217.0
-offset_bottom = 684.0
-gutters_draw_breakpoints_gutter = true
-gutters_draw_bookmarks = true
-gutters_draw_executing_lines = true
-gutters_draw_line_numbers = true
-gutters_draw_fold_gutter = true
-code_completion_enabled = true
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0q0h3"]
+size = Vector2(134, 44)
+
+[node name="IntBlock" type="Area2D"]
+position = Vector2(-4, 0)
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(63, 25.5)
+scale = Vector2(0.165775, 0.17)
+texture = ExtResource("1_hr33o")
+
+[node name="LineEdit" type="LineEdit" parent="."]
+offset_left = 51.0
+offset_top = 7.0
+offset_right = 118.063
+offset_bottom = 40.0
+flat = true
+caret_blink = true
+caret_blink_interval = 0.38
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(67, 23)
+shape = SubResource("RectangleShape2D_0q0h3")

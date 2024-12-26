@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://c4pumpxm1xsoq"]
+
+[ext_resource type="Texture2D" uid="uid://8nytlpv34igf" path="res://Code/Variables/BooleanBlock/Art/boolean.png" id="1_2cff2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_33wtk"]
+size = Vector2(345, 104)
+
+[node name="BooleanBlock" type="Area2D"]
+
+[node name="Boolean" type="Sprite2D" parent="."]
+position = Vector2(174.5, 54)
+scale = Vector2(0.270505, 0.346667)
+texture = ExtResource("1_2cff2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(172.5, 55)
+shape = SubResource("RectangleShape2D_33wtk")
+
+[node name="LineEdit" type="LineEdit" parent="."]
+offset_left = 188.0
+offset_top = 20.0
+offset_right = 334.0
+offset_bottom = 89.0
+flat = true
