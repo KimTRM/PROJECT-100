@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="PROJECT 100 (C#)"
+config/name="PROJECT 100"
 run/main_scene="res://Stages/world.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
 boot_splash/bg_color=Color(0.0470588, 0.0470588, 0.0470588, 1)
@@ -62,6 +62,11 @@ folder_colors={
 "res://Utilities/": "teal",
 "res://addons/": "blue"
 }
+
+[gui]
+
+theme/custom_font="res://Assets/Jaro-Regular.ttf"
+theme/default_font_multichannel_signed_distance_field=true
 
 [importer_defaults]
 

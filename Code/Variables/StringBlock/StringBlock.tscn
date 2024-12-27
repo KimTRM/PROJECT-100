@@ -1,25 +1,104 @@
-[gd_scene load_steps=3 format=3 uid="uid://ghfmwfgjo781"]
+[gd_scene load_steps=5 format=3 uid="uid://ghfmwfgjo781"]
 
-[ext_resource type="Texture2D" uid="uid://gwfhmya6vs67" path="res://Code/Variables/StringBlock/Art/string.png" id="1_f5kh1"]
+[ext_resource type="Script" path="res://Code/Variables/StringBlock/Script/string_block.gd" id="1_mu6xh"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vkvvy"]
-size = Vector2(315, 84)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ifndb"]
+bg_color = Color(0.686275, 0.2, 0.2, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 2.0
+expand_margin_bottom = 2.0
+shadow_color = Color(0, 0, 0, 0.0941176)
+anti_aliasing = false
 
-[node name="StringBlock" type="Area2D"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mrdtd"]
+bg_color = Color(0.847059, 0.384314, 0.384314, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+anti_aliasing = false
 
-[node name="String" type="Sprite2D" parent="."]
-position = Vector2(158, 46.5)
-scale = Vector2(0.269165, 0.283333)
-texture = ExtResource("1_f5kh1")
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p4t7p"]
+bg_color = Color(0, 0, 0, 0.262745)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+anti_aliasing = false
 
-[node name="LineEdit" type="LineEdit" parent="."]
-offset_left = 155.0
-offset_top = 16.0
-offset_right = 299.0
-offset_bottom = 72.0
+[node name="StringBlock" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+size_flags_horizontal = 0
+script = ExtResource("1_mu6xh")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_left = 2.0
+offset_right = 91.0
+offset_bottom = 39.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ifndb")
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer"]
+custom_minimum_size = Vector2(38, 38)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_mrdtd")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="PanelContainer/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "String"
+horizontal_alignment = 2
+uppercase = true
+
+[node name="PanelContainer2" type="PanelContainer" parent="PanelContainer/PanelContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_p4t7p")
+
+[node name="VarName" type="LineEdit" parent="PanelContainer/PanelContainer/MarginContainer/HBoxContainer/PanelContainer2"]
+layout_mode = 2
+placeholder_text = "variable name"
+alignment = 1
+expand_to_text_length = true
 flat = true
+caret_blink = true
+caret_blink_interval = 0.38
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(157.5, 47)
-shape = SubResource("RectangleShape2D_vkvvy")
+[node name="Label2" type="Label" parent="PanelContainer/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "="
+
+[node name="PanelContainer3" type="PanelContainer" parent="PanelContainer/PanelContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_p4t7p")
+
+[node name="Value" type="LineEdit" parent="PanelContainer/PanelContainer/MarginContainer/HBoxContainer/PanelContainer3"]
+layout_mode = 2
+placeholder_text = "value"
+alignment = 1
+expand_to_text_length = true
+flat = true
+caret_blink = true
+caret_blink_interval = 0.38
