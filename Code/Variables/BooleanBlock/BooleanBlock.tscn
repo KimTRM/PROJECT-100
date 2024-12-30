@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://c4pumpxm1xsoq"]
+[gd_scene load_steps=6 format=3 uid="uid://c4pumpxm1xsoq"]
 
 [ext_resource type="Script" path="res://Code/Variables/BooleanBlock/Scripts/boolean_block.gd" id="1_we8bt"]
+[ext_resource type="Resource" uid="uid://bfsggwy7itdsh" path="res://Code/Variables/BooleanBlock/Scripts/BooleanBlock.tres" id="2_rb8dj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ifndb"]
 bg_color = Color(0.686275, 0.2, 0.2, 1)
@@ -30,10 +31,12 @@ corner_radius_bottom_left = 5
 anti_aliasing = false
 
 [node name="BooleanBlock" type="Control"]
+custom_minimum_size = Vector2(0, 40)
 layout_mode = 3
 anchors_preset = 0
 size_flags_horizontal = 0
 script = ExtResource("1_we8bt")
+code = ExtResource("2_rb8dj")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 0
@@ -94,7 +97,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_l4rld")
 
-[node name="OptionButton" type="OptionButton" parent="PanelContainer/PanelContainer/MarginContainer/HBoxContainer/PanelContainer3"]
+[node name="Value" type="OptionButton" parent="PanelContainer/PanelContainer/MarginContainer/HBoxContainer/PanelContainer3"]
 layout_mode = 2
 flat = true
 selected = 0

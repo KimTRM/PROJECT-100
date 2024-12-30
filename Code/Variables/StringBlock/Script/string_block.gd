@@ -1,12 +1,19 @@
 @icon("res://Code/Variables/StringBlock/Art/string.png")
-extends Control
+class_name StringBlock extends CodeBlock
 
+@export var code: VarCodeInfo
 
-# Called when the node enters the scene tree for the first time.
+# -- NODES --
+@onready var _var_name: LineEdit = $PanelContainer/PanelContainer/MarginContainer/HBoxContainer/PanelContainer2/VarName
+@onready var _value: LineEdit = $PanelContainer/PanelContainer/MarginContainer/HBoxContainer/PanelContainer3/Value
+
 func _ready():
-	pass # Replace with function body.
+	_var_name.text = code.var_name
+	_value.text = str(code.value)
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func SetValue():
+	VarCategory = code.category
+	VarType = code.type
+	VarName = _var_name.text
+	VarValue = _value.text
+	

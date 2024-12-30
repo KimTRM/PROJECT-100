@@ -8,14 +8,8 @@ class_name IntBlock extends CodeBlock
 @onready var _value: LineEdit = $PanelContainer/PanelContainer/MarginContainer/HBoxContainer/PanelContainer3/Value
 
 func _ready():
-	SetValue()
 	_var_name.text = code.var_name
 	_value.text = str(code.value)
-	pass
-
-func _process(_delta):
-	SetValue()
-	pass
 
 func SetValue():
 	VarCategory = code.category

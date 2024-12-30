@@ -25,8 +25,8 @@ position = Vector2(0, -3)
 [node name="D-A-L" parent="." instance=ExtResource("4_qef5h")]
 position = Vector2(-40, -2)
 
-[node name="Control" parent="." instance=ExtResource("5_lojfj")]
-offset_left = -834.0
-offset_top = -177.0
-offset_right = -834.0
-offset_bottom = -176.68
+[node name="Control" parent="D-A-L" instance=ExtResource("5_lojfj")]
+offset_left = -794.0
+offset_top = -175.0
+offset_right = -794.0
+offset_bottom = -174.68

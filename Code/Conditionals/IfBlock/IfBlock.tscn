@@ -1,10 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://bbf3rvoybpd"]
+[gd_scene load_steps=11 format=3 uid="uid://bbf3rvoybpd"]
 
 [ext_resource type="Texture2D" uid="uid://deipopqkpup6c" path="res://Code/Conditionals/IfBlock/Art/Dark.png" id="1_5i5jk"]
 [ext_resource type="Script" path="res://Code/Conditionals/IfBlock/Scripts/if_block.gd" id="1_hgbet"]
 [ext_resource type="Texture2D" uid="uid://cjsc4w3rjtrth" path="res://Code/Conditionals/IfBlock/Art/Bottom.png" id="2_amxhv"]
 [ext_resource type="Script" path="res://Code/Conditionals/IfBlock/Scripts/body_container.gd" id="3_6tsre"]
 [ext_resource type="PackedScene" uid="uid://rkxkm6m8ey64" path="res://Code/Variables/IntBlock/IntBlock.tscn" id="4_h534h"]
+[ext_resource type="PackedScene" uid="uid://cojfo4sy7un6u" path="res://Code/Variables/FloatBlock/FloatBlock.tscn" id="5_ppu25"]
+[ext_resource type="PackedScene" uid="uid://ghfmwfgjo781" path="res://Code/Variables/StringBlock/StringBlock.tscn" id="6_a7fan"]
+[ext_resource type="PackedScene" uid="uid://c4pumpxm1xsoq" path="res://Code/Variables/BooleanBlock/BooleanBlock.tscn" id="7_q14m3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_erd3p"]
 bg_color = Color(0.611765, 0.419608, 1, 1)
@@ -95,10 +98,13 @@ script = ExtResource("3_6tsre")
 [node name="IntBlock" parent="VBoxContainer/Body/MarginContainer/BodyContainer" instance=ExtResource("4_h534h")]
 layout_mode = 2
 
-[node name="IntBlock3" parent="VBoxContainer/Body/MarginContainer/BodyContainer" instance=ExtResource("4_h534h")]
+[node name="FloatBlock" parent="VBoxContainer/Body/MarginContainer/BodyContainer" instance=ExtResource("5_ppu25")]
 layout_mode = 2
 
-[node name="IntBlock4" parent="VBoxContainer/Body/MarginContainer/BodyContainer" instance=ExtResource("4_h534h")]
+[node name="StringBlock" parent="VBoxContainer/Body/MarginContainer/BodyContainer" instance=ExtResource("6_a7fan")]
+layout_mode = 2
+
+[node name="BooleanBlock" parent="VBoxContainer/Body/MarginContainer/BodyContainer" instance=ExtResource("7_q14m3")]
 layout_mode = 2
 
 [node name="Bottom" type="TextureRect" parent="VBoxContainer"]

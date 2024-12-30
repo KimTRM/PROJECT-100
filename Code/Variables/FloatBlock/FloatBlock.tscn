@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cojfo4sy7un6u"]
+[gd_scene load_steps=6 format=3 uid="uid://cojfo4sy7un6u"]
 
 [ext_resource type="Script" path="res://Code/Variables/FloatBlock/Scripts/float_block.gd" id="1_r1nf7"]
+[ext_resource type="Resource" uid="uid://cbt5qv67g5lef" path="res://Code/Variables/FloatBlock/Scripts/FloatBlock.tres" id="2_w3bk6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ifndb"]
 bg_color = Color(0.686275, 0.2, 0.2, 1)
@@ -30,10 +31,12 @@ corner_radius_bottom_left = 5
 anti_aliasing = false
 
 [node name="FloatBlock" type="Control"]
+custom_minimum_size = Vector2(0, 40)
 layout_mode = 3
 anchors_preset = 0
 size_flags_horizontal = 0
 script = ExtResource("1_r1nf7")
+code = ExtResource("2_w3bk6")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 0

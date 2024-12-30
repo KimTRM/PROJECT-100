@@ -7,6 +7,6 @@ script = ExtResource("1_jvm7a")
 category = "DataType"
 type = "int"
 description = "Declares an int variable"
-code = "int variable_name = val"
+code = "int variable_name = value"
 var_name = ""
 value = ""

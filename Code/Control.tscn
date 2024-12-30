@@ -56,5 +56,6 @@ offset_right = 21.0
 offset_bottom = 119.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
+visible = false
 position = Vector2(174, 120)
 zoom = Vector2(2.11, 2.11)

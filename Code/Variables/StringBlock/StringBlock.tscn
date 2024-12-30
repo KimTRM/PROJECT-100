@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://ghfmwfgjo781"]
+[gd_scene load_steps=6 format=3 uid="uid://ghfmwfgjo781"]
 
 [ext_resource type="Script" path="res://Code/Variables/StringBlock/Script/string_block.gd" id="1_mu6xh"]
+[ext_resource type="Resource" uid="uid://bsducodj1co2n" path="res://Code/Variables/StringBlock/Script/StringBlock.tres" id="2_xb8hu"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ifndb"]
 bg_color = Color(0.686275, 0.2, 0.2, 1)
@@ -30,10 +31,12 @@ corner_radius_bottom_left = 5
 anti_aliasing = false
 
 [node name="StringBlock" type="Control"]
+custom_minimum_size = Vector2(0, 40)
 layout_mode = 3
 anchors_preset = 0
 size_flags_horizontal = 0
 script = ExtResource("1_mu6xh")
+code = ExtResource("2_xb8hu")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 0

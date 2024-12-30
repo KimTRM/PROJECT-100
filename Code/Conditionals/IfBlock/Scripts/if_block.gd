@@ -15,6 +15,7 @@ func _input(event):
 func ReadCode():
 	var index = 0
 	for i in body_container.code_blocks:
+		i.SetValue()
 		if i.VarName != "":
 			print(str(index) + ": " + i.VarName + " = " + str(i.VarValue))
 		else:
