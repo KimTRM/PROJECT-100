@@ -1,7 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cojfo4sy7un6u"]
-
-[ext_resource type="Script" path="res://Code/Variables/FloatBlock/Scripts/float_block.gd" id="1_r1nf7"]
-[ext_resource type="Resource" uid="uid://cbt5qv67g5lef" path="res://Code/Variables/FloatBlock/Scripts/FloatBlock.tres" id="2_w3bk6"]
+[gd_scene load_steps=4 format=3 uid="uid://rkxkm6m8ey64"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ifndb"]
 bg_color = Color(0.686275, 0.2, 0.2, 1)
@@ -22,7 +19,7 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 anti_aliasing = false
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p7kf4"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uwb0k"]
 bg_color = Color(0, 0, 0, 0.262745)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
@@ -30,13 +27,11 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 anti_aliasing = false
 
-[node name="FloatBlock" type="Control"]
-custom_minimum_size = Vector2(0, 40)
+[node name="IntBlock" type="Control"]
 layout_mode = 3
 anchors_preset = 0
-size_flags_horizontal = 0
-script = ExtResource("1_r1nf7")
-code = ExtResource("2_w3bk6")
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 0
@@ -54,10 +49,10 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_mrdtd")
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer/PanelContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/PanelContainer/MarginContainer"]
 layout_mode = 2
@@ -65,42 +60,20 @@ alignment = 1
 
 [node name="Label" type="Label" parent="PanelContainer/PanelContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
-text = "Float"
+text = "INT"
 horizontal_alignment = 2
 uppercase = true
 
 [node name="PanelContainer2" type="PanelContainer" parent="PanelContainer/PanelContainer/MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(30, 30)
+custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_styles/panel = SubResource("StyleBoxFlat_p7kf4")
+theme_override_styles/panel = SubResource("StyleBoxFlat_uwb0k")
 
-[node name="VarName" type="LineEdit" parent="PanelContainer/PanelContainer/MarginContainer/HBoxContainer/PanelContainer2"]
-layout_mode = 2
-placeholder_text = "variable name"
-alignment = 1
-expand_to_text_length = true
-flat = true
-caret_blink = true
-caret_blink_interval = 0.38
-
-[node name="Label2" type="Label" parent="PanelContainer/PanelContainer/MarginContainer/HBoxContainer"]
-layout_mode = 2
-text = "="
-
-[node name="PanelContainer3" type="PanelContainer" parent="PanelContainer/PanelContainer/MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(30, 30)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-theme_override_styles/panel = SubResource("StyleBoxFlat_p7kf4")
-
-[node name="Value" type="LineEdit" parent="PanelContainer/PanelContainer/MarginContainer/HBoxContainer/PanelContainer3"]
+[node name="LineEdit" type="LineEdit" parent="PanelContainer/PanelContainer/MarginContainer/HBoxContainer/PanelContainer2"]
 layout_mode = 2
 placeholder_text = "value"
-alignment = 1
 expand_to_text_length = true
 flat = true
 caret_blink = true

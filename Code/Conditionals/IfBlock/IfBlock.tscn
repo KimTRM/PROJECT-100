@@ -1,16 +1,114 @@
-[gd_scene load_steps=2 format=3 uid="uid://bbf3rvoybpd"]
+[gd_scene load_steps=11 format=3 uid="uid://bbf3rvoybpd"]
 
-[ext_resource type="Texture2D" uid="uid://kh7u3ubw64u3" path="res://Code/Conditionals/IfBlock/Art/If.png" id="1_ar46q"]
+[ext_resource type="Texture2D" uid="uid://deipopqkpup6c" path="res://Code/Conditionals/IfBlock/Art/Dark.png" id="1_5i5jk"]
+[ext_resource type="Script" path="res://Code/Conditionals/IfBlock/Scripts/if_block.gd" id="1_hgbet"]
+[ext_resource type="Texture2D" uid="uid://cjsc4w3rjtrth" path="res://Code/Conditionals/IfBlock/Art/Bottom.png" id="2_amxhv"]
+[ext_resource type="Script" path="res://Code/Conditionals/IfBlock/Scripts/body_container.gd" id="3_6tsre"]
+[ext_resource type="PackedScene" uid="uid://rkxkm6m8ey64" path="res://Code/Variables/IntBlock/IntBlock.tscn" id="4_h534h"]
+[ext_resource type="PackedScene" uid="uid://cojfo4sy7un6u" path="res://Code/Variables/FloatBlock/FloatBlock.tscn" id="5_ppu25"]
+[ext_resource type="PackedScene" uid="uid://ghfmwfgjo781" path="res://Code/Variables/StringBlock/StringBlock.tscn" id="6_a7fan"]
+[ext_resource type="PackedScene" uid="uid://c4pumpxm1xsoq" path="res://Code/Variables/BooleanBlock/BooleanBlock.tscn" id="7_q14m3"]
 
-[node name="IfBlock" type="Area2D"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_erd3p"]
+bg_color = Color(0.611765, 0.419608, 1, 1)
+border_width_left = 5
+border_width_bottom = 5
+border_color = Color(0.403922, 0.419608, 0.788235, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+anti_aliasing = false
 
-[node name="If" type="Sprite2D" parent="."]
-position = Vector2(245, 162)
-scale = Vector2(0.268132, 0.28777)
-texture = ExtResource("1_ar46q")
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3vhmo"]
+bg_color = Color(0.611765, 0.419608, 1, 1)
+border_width_left = 5
+border_color = Color(0.403922, 0.419608, 0.788235, 1)
+anti_aliasing = false
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-visible = false
-position = Vector2(112.5, 83.5)
-scale = Vector2(0.122527, 0.146583)
-polygon = PackedVector2Array(872, -556, -870.8, -556, -880.3, -552, -882.8, -552, -887.8, -547, -889.9, -547, -901.9, -533, -903.2, -533, -910, -519.5, -910, 408.4, -904, 416.6, -904, 418.8, -827, 504.7, -827, 506.8, -783, 552.7, -783, 554.2, -779.5, 556, 729.1, 556, 895.8, 421, 898.1, 421, 910, 403.1, 910, 245.6, 899, 231.3, 899, 229.7, 878.4, 220, -460, 220, -460, -130, 871.4, -130, 887.3, -137, 889.8, -137, 901.8, -149, 903.2, -149, 910, -161, 910, -518, 901, -533.5, 901, -535.9, 884, -550, 884, -551.4)
+[node name="IfBlock" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 605.0
+offset_bottom = 341.0
+script = ExtResource("1_hgbet")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/separation = -8
+
+[node name="Top" type="PanelContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_erd3p")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Top"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Top/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Top/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 30
+
+[node name="Label" type="Label" parent="VBoxContainer/Top/MarginContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 56
+text = "if"
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/Top/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(350, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+texture = ExtResource("1_5i5jk")
+expand_mode = 1
+
+[node name="Body" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="BodyFill" type="PanelContainer" parent="VBoxContainer/Body"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_3vhmo")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Body"]
+layout_mode = 2
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 12
+
+[node name="Ditector" type="Control" parent="VBoxContainer/Body/MarginContainer"]
+custom_minimum_size = Vector2(350, 78)
+layout_mode = 2
+
+[node name="BodyContainer" type="VBoxContainer" parent="VBoxContainer/Body/MarginContainer"]
+layout_mode = 2
+script = ExtResource("3_6tsre")
+
+[node name="IntBlock" parent="VBoxContainer/Body/MarginContainer/BodyContainer" instance=ExtResource("4_h534h")]
+layout_mode = 2
+
+[node name="FloatBlock" parent="VBoxContainer/Body/MarginContainer/BodyContainer" instance=ExtResource("5_ppu25")]
+layout_mode = 2
+
+[node name="StringBlock" parent="VBoxContainer/Body/MarginContainer/BodyContainer" instance=ExtResource("6_a7fan")]
+layout_mode = 2
+
+[node name="BooleanBlock" parent="VBoxContainer/Body/MarginContainer/BodyContainer" instance=ExtResource("7_q14m3")]
+layout_mode = 2
+
+[node name="Bottom" type="TextureRect" parent="VBoxContainer"]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+texture = ExtResource("2_amxhv")
+expand_mode = 1

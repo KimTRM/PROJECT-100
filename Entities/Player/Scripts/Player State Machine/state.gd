@@ -10,7 +10,6 @@ func _ready():
 func Enter() -> void:
 	pass
 	
-
 # Exits State
 func Exit() -> void:
 	pass

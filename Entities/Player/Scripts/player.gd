@@ -1,4 +1,4 @@
-@icon("res://Assets/Art/Entities/Player/Player.png") 
+@icon("res://Entities/Player/Art/Player.png")
 class_name Player extends CharacterBody2D
 
 var AniDirction: Vector2 = Vector2.DOWN
