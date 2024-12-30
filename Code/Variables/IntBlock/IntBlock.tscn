@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://rkxkm6m8ey64"]
+[gd_scene load_steps=7 format=3 uid="uid://rkxkm6m8ey64"]
 
 [ext_resource type="Script" path="res://Code/Variables/IntBlock/Scripts/int_block.gd" id="1_cu3lx"]
 [ext_resource type="Resource" uid="uid://bjovrmktfx4ss" path="res://Code/Variables/IntBlock/Scripts/IntBlock.tres" id="2_xospl"]
@@ -23,7 +23,15 @@ corner_radius_bottom_left = 5
 anti_aliasing = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uwb0k"]
-bg_color = Color(0, 0, 0, 0.262745)
+bg_color = Color(0, 0, 0, 0.333333)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g3hwe"]
+bg_color = Color(0, 0, 0, 0.945098)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
@@ -33,6 +41,7 @@ anti_aliasing = false
 [node name="IntBlock" type="Control"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 3
+anchors_preset = 0
 offset_right = 216.0
 offset_bottom = 42.0
 size_flags_horizontal = 0
@@ -96,7 +105,7 @@ custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
-theme_override_styles/panel = SubResource("StyleBoxFlat_uwb0k")
+theme_override_styles/panel = SubResource("StyleBoxFlat_g3hwe")
 
 [node name="Value" type="LineEdit" parent="PanelContainer/PanelContainer/MarginContainer/HBoxContainer/PanelContainer3"]
 layout_mode = 2

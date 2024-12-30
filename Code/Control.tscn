@@ -16,6 +16,7 @@ offset_right = 0.159912
 offset_bottom = 0.119934
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 0
 
 [node name="ElseBlock" parent="." instance=ExtResource("1_fargv")]
 position = Vector2(1127, 630)
@@ -43,7 +44,6 @@ offset_bottom = 72.0
 
 [node name="IntBlock" parent="." instance=ExtResource("6_w0wfh")]
 layout_mode = 1
-anchors_preset = 0
 offset_left = 22.0
 offset_top = 25.0
 offset_right = 230.012

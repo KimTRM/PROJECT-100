@@ -1,22 +1,32 @@
 @icon("res://Code/Variables/IntBlock/Art/int.png")
-class_name IntBlock extends Control
+class_name IntBlock extends CodeBlock
 
 @export var code: VarCodeInfo
 
-@onready var var_name = $PanelContainer/PanelContainer/MarginContainer/HBoxContainer/PanelContainer2/VarName
-@onready var value = $PanelContainer/PanelContainer/MarginContainer/HBoxContainer/PanelContainer3/Value
+# -- NODES --
+@onready var _var_name: LineEdit = $PanelContainer/PanelContainer/MarginContainer/HBoxContainer/PanelContainer2/VarName
+@onready var _value: LineEdit = $PanelContainer/PanelContainer/MarginContainer/HBoxContainer/PanelContainer3/Value
 
 func _ready():
+	SetValue()
+	_var_name.text = code.var_name
+	_value.text = str(code.value)
 	pass
 
-func _input(event):
-	if event.is_action_pressed("ui_cancel"):
-		SetValue()
-		var add = int(code.value)
-		print(add)
+func _process(_delta):
+	SetValue()
 	pass
 
 func SetValue():
-	code.var_name = var_name.text
-	code.value = value.text 
-	pass
+	VarCategory = code.category
+	VarType = code.type
+	VarName = _var_name.text
+	CheckIfInt()
+
+func CheckIfInt():
+	var isInt = _value.text.is_valid_int()
+
+	if isInt:
+		VarValue = int(_value.text)
+
+	_value.modulate = Color.WHITE if isInt  else Color.RED

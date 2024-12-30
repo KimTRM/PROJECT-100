@@ -94,11 +94,11 @@ size_flags_horizontal = 3
 size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_l4rld")
 
-[node name="Value" type="LineEdit" parent="PanelContainer/PanelContainer/MarginContainer/HBoxContainer/PanelContainer3"]
+[node name="OptionButton" type="OptionButton" parent="PanelContainer/PanelContainer/MarginContainer/HBoxContainer/PanelContainer3"]
 layout_mode = 2
-placeholder_text = "value"
-alignment = 1
-expand_to_text_length = true
 flat = true
-caret_blink = true
-caret_blink_interval = 0.38
+selected = 0
+item_count = 2
+popup/item_0/text = "false"
+popup/item_1/text = "true"
+popup/item_1/id = 1
