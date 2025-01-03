@@ -39,12 +39,13 @@ corner_radius_bottom_left = 5
 anti_aliasing = false
 
 [node name="IntBlock" type="Control"]
-custom_minimum_size = Vector2(0, 40)
+custom_minimum_size = Vector2(215, 40)
 layout_mode = 3
 anchors_preset = 0
-offset_right = 216.0
+offset_right = 50.0
 offset_bottom = 42.0
 size_flags_horizontal = 0
+mouse_default_cursor_shape = 6
 script = ExtResource("1_cu3lx")
 code = ExtResource("2_xospl")
 
