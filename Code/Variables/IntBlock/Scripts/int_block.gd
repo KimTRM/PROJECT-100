@@ -14,8 +14,8 @@ func _ready():
 func _physics_process(_delta):
 	drag_animation()
 
-func _input(event):
-	drag(event)
+#func _input(event):
+	#pass
 
 func SetValue():
 	VarCategory = code.category
@@ -30,3 +30,7 @@ func CheckIfInt():
 		VarValue = int(_value.text)
 
 	_value.modulate = Color.WHITE if isInt  else Color.RED
+
+
+func _on_gui_input(event):
+	drag(event)

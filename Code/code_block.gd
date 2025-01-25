@@ -24,7 +24,6 @@ func drag(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and is_draggable:
 		if event.pressed:
 			if get_rect().has_point(event.position):
-				print("dragging")
 				is_dragging = true
 				mouse_offset = get_global_mouse_position() - global_position
 		else:
