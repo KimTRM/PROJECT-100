@@ -11,6 +11,12 @@ func _ready():
 	_var_name.text = code.var_name
 	_value.text = str(code.value)
 
+func _physics_process(_delta):
+	drag_animation()
+
+func _input(event):
+	drag(event)
+
 func SetValue():
 	VarCategory = code.category
 	VarType = code.type
