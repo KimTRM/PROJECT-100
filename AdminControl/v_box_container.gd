@@ -38,7 +38,7 @@ func _on_home_pressed():
 		if _i == 0:
 			username = username.capitalize()
 	score = randi() % 1000
-	
+
 	var data = {"score" : score, "username" : username}
 	HttpManager.queue_request("add_score", data)
 	print("sent")

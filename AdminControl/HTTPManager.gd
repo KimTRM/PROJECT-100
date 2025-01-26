@@ -33,6 +33,7 @@ func send_request(request: Dictionary):
 	var err = http_request.request(SERVER_URL, SERVER_HEADERS, HTTPClient.METHOD_POST, body)
 	
 	if err != OK:
+		printerr("HTTP Request Error: " + str(err))
 		emit_signal("request_error", "HTTP Request Error: " + str(err))
 		is_requesting = false
 
@@ -46,6 +47,7 @@ func _on_request_completed(_result, _response_code, _headers, body):
 	is_requesting = false
 	
 	if _result != HTTPRequest.RESULT_SUCCESS:
+		printerr("Connection Error: " + str(_result))
 		emit_signal("request_error", "Connection Error: " + str(_result))
 		return
 	
