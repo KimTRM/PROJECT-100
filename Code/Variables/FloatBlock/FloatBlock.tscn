@@ -31,7 +31,7 @@ corner_radius_bottom_left = 5
 anti_aliasing = false
 
 [node name="FloatBlock" type="Control"]
-custom_minimum_size = Vector2(235, 40)
+custom_minimum_size = Vector2(0, 40)
 layout_mode = 3
 anchors_preset = 0
 size_flags_horizontal = 0

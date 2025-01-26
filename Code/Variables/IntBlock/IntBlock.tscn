@@ -39,14 +39,12 @@ corner_radius_bottom_left = 5
 anti_aliasing = false
 
 [node name="IntBlock" type="Control"]
-custom_minimum_size = Vector2(215, 40)
+custom_minimum_size = Vector2(0, 40)
 layout_mode = 3
 anchors_preset = 0
-offset_right = 50.0
+offset_right = 216.0
 offset_bottom = 42.0
 size_flags_horizontal = 0
-mouse_filter = 1
-mouse_force_pass_scroll_events = false
 script = ExtResource("1_cu3lx")
 code = ExtResource("2_xospl")
 
@@ -55,8 +53,6 @@ layout_mode = 0
 offset_left = 2.0
 offset_right = 91.0
 offset_bottom = 39.0
-mouse_filter = 1
-mouse_force_pass_scroll_events = false
 theme_override_styles/panel = SubResource("StyleBoxFlat_ifndb")
 
 [node name="PanelContainer" type="PanelContainer" parent="PanelContainer"]
@@ -64,7 +60,6 @@ custom_minimum_size = Vector2(38, 38)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
-mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_mrdtd")
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer/PanelContainer"]
@@ -81,7 +76,6 @@ alignment = 1
 [node name="Label" type="Label" parent="PanelContainer/PanelContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-mouse_filter = 1
 text = "Int"
 horizontal_alignment = 2
 uppercase = true
@@ -91,12 +85,10 @@ custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
-mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_uwb0k")
 
 [node name="VarName" type="LineEdit" parent="PanelContainer/PanelContainer/MarginContainer/HBoxContainer/PanelContainer2"]
 layout_mode = 2
-mouse_filter = 1
 placeholder_text = "variable name"
 alignment = 1
 expand_to_text_length = true
@@ -106,7 +98,6 @@ caret_blink_interval = 0.38
 
 [node name="Label2" type="Label" parent="PanelContainer/PanelContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
-mouse_filter = 1
 text = "="
 
 [node name="PanelContainer3" type="PanelContainer" parent="PanelContainer/PanelContainer/MarginContainer/HBoxContainer"]
@@ -114,17 +105,13 @@ custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
-mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_g3hwe")
 
 [node name="Value" type="LineEdit" parent="PanelContainer/PanelContainer/MarginContainer/HBoxContainer/PanelContainer3"]
 layout_mode = 2
-mouse_filter = 1
 placeholder_text = "value"
 alignment = 1
 expand_to_text_length = true
 flat = true
 caret_blink = true
 caret_blink_interval = 0.38
-
-[connection signal="gui_input" from="." to="." method="_on_gui_input"]

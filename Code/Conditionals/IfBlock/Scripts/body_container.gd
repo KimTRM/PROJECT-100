@@ -12,9 +12,3 @@ func Initialize() -> void:
 	for c in get_children():
 		if c is CodeBlock:
 			code_blocks.append(c)
-
-func _can_drop_data(at_position, data):
-	return true
-
-func _drop_data(at_position, data):
-	pass
