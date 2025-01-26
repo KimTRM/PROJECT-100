@@ -21,7 +21,7 @@ boot_splash/minimum_display_time=7
 [autoload]
 
 LevelManager="*res://Common/00 Global/LevelManager.gd"
-Network="*res://AdminControl/Network.gd"
+HttpManager="*res://AdminControl/HTTPManager.gd"
 
 [dialogue_manager]
 
