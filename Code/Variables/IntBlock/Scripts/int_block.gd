@@ -11,6 +11,12 @@ func _ready():
 	_var_name.text = code.var_name
 	_value.text = str(code.value)
 
+func _physics_process(_delta):
+	drag_animation()
+
+#func _input(event):
+	#pass
+
 func SetValue():
 	VarCategory = code.category
 	VarType = code.type
@@ -24,3 +30,7 @@ func CheckIfInt():
 		VarValue = int(_value.text)
 
 	_value.modulate = Color.WHITE if isInt  else Color.RED
+
+
+func _on_gui_input(event):
+	drag(event)

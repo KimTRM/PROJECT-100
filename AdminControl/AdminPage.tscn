@@ -1,0 +1,199 @@
+[gd_scene load_steps=4 format=3 uid="uid://b6gosw6qc25tx"]
+
+[ext_resource type="Texture2D" uid="uid://bcsntasu7npgo" path="res://Assets/Title.png" id="1_1yqta"]
+[ext_resource type="Script" path="res://AdminControl/v_box_container.gd" id="3_00lqk"]
+[ext_resource type="PackedScene" uid="uid://bvuvdubi3uwau" path="res://AdminControl/QuizEditor.tscn" id="3_2hv1v"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="AdminPage" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+
+[node name="ColorRect" type="ColorRect" parent="AdminPage"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.545098, 0.576471, 0.686275, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="AdminPage"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="AdminPage/MarginContainer"]
+layout_mode = 2
+
+[node name="NavigationBar" type="ColorRect" parent="AdminPage/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 50)
+layout_direction = 1
+layout_mode = 2
+color = Color(0.2, 0.223529, 0.254902, 1)
+
+[node name="Logo" type="MarginContainer" parent="AdminPage/MarginContainer/VBoxContainer/NavigationBar"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 35
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="TextureRect" type="TextureRect" parent="AdminPage/MarginContainer/VBoxContainer/NavigationBar/Logo"]
+texture_filter = 5
+layout_mode = 2
+texture = ExtResource("1_1yqta")
+expand_mode = 3
+
+[node name="NavButtons" type="MarginContainer" parent="AdminPage/MarginContainer/VBoxContainer/NavigationBar"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="AdminPage/MarginContainer/VBoxContainer/NavigationBar/NavButtons"]
+layout_mode = 2
+
+[node name="Home" type="Button" parent="AdminPage/MarginContainer/VBoxContainer/NavigationBar/NavButtons/HBoxContainer"]
+layout_mode = 2
+text = "Home"
+flat = true
+
+[node name="Button3" type="Button" parent="AdminPage/MarginContainer/VBoxContainer/NavigationBar/NavButtons/HBoxContainer"]
+layout_mode = 2
+text = "Student Info"
+flat = true
+
+[node name="Button2" type="Button" parent="AdminPage/MarginContainer/VBoxContainer/NavigationBar/NavButtons/HBoxContainer"]
+layout_mode = 2
+text = "QUESTION EDITOR"
+flat = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="AdminPage/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="SideBar" type="ColorRect" parent="AdminPage/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 650)
+layout_mode = 2
+size_flags_stretch_ratio = 9.28
+color = Color(0.2, 0.223529, 0.254902, 0.847059)
+
+[node name="MarginContainer" type="MarginContainer" parent="AdminPage/MarginContainer/VBoxContainer/HBoxContainer/SideBar"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="AdminPage/MarginContainer/VBoxContainer/HBoxContainer/SideBar/MarginContainer"]
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="AdminPage/MarginContainer/VBoxContainer/HBoxContainer/SideBar/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+color = Color(0.2, 0.223529, 0.254902, 1)
+
+[node name="Label" type="Label" parent="AdminPage/MarginContainer/VBoxContainer/HBoxContainer/SideBar/MarginContainer/VBoxContainer/ColorRect"]
+layout_mode = 0
+offset_left = 39.0
+offset_top = 7.0
+offset_right = 157.0
+offset_bottom = 27.0
+text = "Chapter Overview"
+
+[node name="MarginContainer" type="MarginContainer" parent="AdminPage/MarginContainer/VBoxContainer/HBoxContainer/SideBar/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="AdminPage/MarginContainer/VBoxContainer/HBoxContainer/SideBar/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Button" type="Button" parent="AdminPage/MarginContainer/VBoxContainer/HBoxContainer/SideBar/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Chapter 1"
+
+[node name="Button2" type="Button" parent="AdminPage/MarginContainer/VBoxContainer/HBoxContainer/SideBar/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Chapter 2"
+
+[node name="Button3" type="Button" parent="AdminPage/MarginContainer/VBoxContainer/HBoxContainer/SideBar/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Chapter 3"
+
+[node name="Button4" type="Button" parent="AdminPage/MarginContainer/VBoxContainer/HBoxContainer/SideBar/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Chapter 4"
+
+[node name="Button5" type="Button" parent="AdminPage/MarginContainer/VBoxContainer/HBoxContainer/SideBar/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Chapter 5"
+
+[node name="Content" type="ColorRect" parent="AdminPage/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(1055, 0)
+layout_direction = 1
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0.121569, 0.0901961, 0.121569, 0.54902)
+
+[node name="MarginContainer" type="MarginContainer" parent="AdminPage/MarginContainer/VBoxContainer/HBoxContainer/Content"]
+custom_minimum_size = Vector2(1055, 500)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -527.5
+offset_right = 527.5
+offset_bottom = 650.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+
+[node name="ScrollContainer" type="ScrollContainer" parent="AdminPage/MarginContainer/VBoxContainer/HBoxContainer/Content/MarginContainer"]
+custom_minimum_size = Vector2(900, 0)
+layout_direction = 1
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="AdminPage/MarginContainer/VBoxContainer/HBoxContainer/Content/MarginContainer/ScrollContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+script = ExtResource("3_00lqk")
+
+[node name="Question" parent="AdminPage/MarginContainer/VBoxContainer/HBoxContainer/Content/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_2hv1v")]
+layout_direction = 1
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Button" type="Button" parent="AdminPage/MarginContainer/VBoxContainer/HBoxContainer/Content/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Add Question"
+
+[connection signal="pressed" from="AdminPage/MarginContainer/VBoxContainer/NavigationBar/NavButtons/HBoxContainer/Home" to="AdminPage/MarginContainer/VBoxContainer/HBoxContainer/Content/MarginContainer/ScrollContainer/VBoxContainer" method="_on_home_pressed"]
+[connection signal="pressed" from="AdminPage/MarginContainer/VBoxContainer/HBoxContainer/Content/MarginContainer/ScrollContainer/VBoxContainer/Button" to="AdminPage/MarginContainer/VBoxContainer/HBoxContainer/Content/MarginContainer/ScrollContainer/VBoxContainer" method="_on_button_pressed"]
