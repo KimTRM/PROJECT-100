@@ -1,6 +1,5 @@
-[gd_scene load_steps=9 format=3 uid="uid://d284sa273yh0t"]
+[gd_scene load_steps=8 format=3 uid="uid://d284sa273yh0t"]
 
-[ext_resource type="Script" path="res://Code/Drag Manager/drag_manager.gd" id="1_8840x"]
 [ext_resource type="PackedScene" uid="uid://dn0cyynyocplp" path="res://Code/Conditionals/ElseBlock/ElseBlock.tscn" id="1_fargv"]
 [ext_resource type="PackedScene" uid="uid://bgd1mwohr33cs" path="res://Code/Conditionals/ElseIfBlock/Else-IfBlock.tscn" id="2_hcx4g"]
 [ext_resource type="PackedScene" uid="uid://bbf3rvoybpd" path="res://Code/Conditionals/IfBlock/IfBlock.tscn" id="3_xbixg"]
@@ -9,21 +8,21 @@
 [ext_resource type="PackedScene" uid="uid://rkxkm6m8ey64" path="res://Code/Variables/IntBlock/IntBlock.tscn" id="6_w0wfh"]
 [ext_resource type="PackedScene" uid="uid://ghfmwfgjo781" path="res://Code/Variables/StringBlock/StringBlock.tscn" id="7_w6sgs"]
 
-[node name="DragManager" type="Control"]
+[node name="Control" type="Control"]
 layout_mode = 3
 anchor_right = 1.003
 anchor_bottom = 1.004
-offset_left = 3.0
-offset_top = 3.0
-offset_right = 3.16003
-offset_bottom = 3.12006
+offset_right = 0.159912
+offset_bottom = 0.119934
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 0
-script = ExtResource("1_8840x")
 
 [node name="ElseBlock" parent="." instance=ExtResource("1_fargv")]
 position = Vector2(1127, 630)
+
+[node name="ElseIfBlock" parent="." instance=ExtResource("2_hcx4g")]
+position = Vector2(1133, 345)
 
 [node name="IfBlock" parent="." instance=ExtResource("3_xbixg")]
 offset_left = 5.0
@@ -31,21 +30,24 @@ offset_top = 263.0
 offset_right = 45.0
 offset_bottom = 303.0
 
-[node name="ElseIfBlock" parent="." instance=ExtResource("2_hcx4g")]
-position = Vector2(4, 644)
-
 [node name="BooleanBlock" parent="." instance=ExtResource("4_hcls7")]
-custom_minimum_size = Vector2(260, 40)
-offset_left = 27.0
-offset_top = 171.0
-offset_right = 287.0
-offset_bottom = 211.0
+offset_left = 20.0
+offset_top = 166.0
+offset_right = 20.0
+offset_bottom = 166.0
 
 [node name="FloatBlock" parent="." instance=ExtResource("5_gc6uj")]
 offset_left = 21.0
 offset_top = 72.0
-offset_right = 255.0
-offset_bottom = 112.0
+offset_right = 21.0
+offset_bottom = 72.0
+
+[node name="IntBlock" parent="." instance=ExtResource("6_w0wfh")]
+layout_mode = 1
+offset_left = 22.0
+offset_top = 25.0
+offset_right = 230.012
+offset_bottom = 58.324
 
 [node name="StringBlock" parent="." instance=ExtResource("7_w6sgs")]
 offset_left = 21.0
@@ -53,10 +55,7 @@ offset_top = 119.0
 offset_right = 21.0
 offset_bottom = 119.0
 
-[node name="IntBlock" parent="." instance=ExtResource("6_w0wfh")]
-
-[node name="IntBlock2" parent="." instance=ExtResource("6_w0wfh")]
-offset_left = 312.0
-offset_top = 21.0
-offset_right = 527.0
-offset_bottom = 63.0
+[node name="Camera2D" type="Camera2D" parent="."]
+visible = false
+position = Vector2(174, 120)
+zoom = Vector2(2.11, 2.11)
