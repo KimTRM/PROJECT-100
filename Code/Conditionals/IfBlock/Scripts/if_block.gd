@@ -1,5 +1,5 @@
 @icon("res://Code/Conditionals/IfBlock/Art/If.png")
-class_name IfBlock extends CodeBlock
+class_name IfBlock extends Control
 
 @onready var body_container = $VBoxContainer/Body/MarginContainer/BodyContainer
 
@@ -8,12 +8,7 @@ func _ready():
 	body_container.Initialize()
 	pass
 
-func _physics_process(_delta):
-	drag_animation()
-
 func _input(event):
-	drag(event)
-
 	if event.is_action_pressed("ui_cancel"):
 		ReadCode()
 
