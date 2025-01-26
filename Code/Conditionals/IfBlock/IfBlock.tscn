@@ -26,9 +26,10 @@ border_color = Color(0.403922, 0.419608, 0.788235, 1)
 anti_aliasing = false
 
 [node name="IfBlock" type="Control"]
-custom_minimum_size = Vector2(470, 405)
 layout_mode = 3
 anchors_preset = 0
+offset_right = 605.0
+offset_bottom = 341.0
 script = ExtResource("1_hgbet")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]

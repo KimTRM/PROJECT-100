@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=4 uid="uid://v44f4qcx5kcp"]
+[gd_scene load_steps=5 format=4 uid="uid://v44f4qcx5kcp"]
 
 [ext_resource type="PackedScene" uid="uid://dtscjhtq01e2l" path="res://Stages/TileSets/TileTemplate/grass01.tscn" id="1_t5dos"]
 [ext_resource type="PackedScene" uid="uid://bb8k2csafhk6w" path="res://Entities/Player/player.tscn" id="3_v8sym"]
 [ext_resource type="PackedScene" uid="uid://d37ct8qy5o2ym" path="res://Entities/NPCs/DAL/D.A.L..tscn" id="4_qef5h"]
-[ext_resource type="PackedScene" uid="uid://b6gosw6qc25tx" path="res://AdminControl/AdminPage.tscn" id="5_52dbw"]
-[ext_resource type="PackedScene" uid="uid://d284sa273yh0t" path="res://Code/Drag Manager/DragManager.tscn" id="5_lojfj"]
+[ext_resource type="PackedScene" uid="uid://d284sa273yh0t" path="res://Code/Control.tscn" id="5_lojfj"]
 
 [node name="World" type="Node2D"]
 y_sort_enabled = true
@@ -26,10 +25,8 @@ position = Vector2(0, -3)
 [node name="D-A-L" parent="." instance=ExtResource("4_qef5h")]
 position = Vector2(-40, -2)
 
-[node name="DragManager" parent="." instance=ExtResource("5_lojfj")]
-offset_left = -40.0
-offset_top = -2.0
-offset_right = -39.8401
-offset_bottom = -1.88007
-
-[node name="AdminPage" parent="." instance=ExtResource("5_52dbw")]
+[node name="Control" parent="D-A-L" instance=ExtResource("5_lojfj")]
+offset_left = -794.0
+offset_top = -175.0
+offset_right = -794.0
+offset_bottom = -174.68
