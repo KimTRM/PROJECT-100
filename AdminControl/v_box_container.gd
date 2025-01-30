@@ -11,10 +11,6 @@ func _on_accounts_received(response):
 
 func _on_button_pressed():
 	HttpManager.queue_request(HttpManager.COMMANDS["GET_USER_ACCOUNT"])
-
-	var labelss: Label = Label.new()
-	add_child(labelss)
-	labelss.text = "hi"
 	
 	for i in datas:
 		var labels: Label = Label.new()

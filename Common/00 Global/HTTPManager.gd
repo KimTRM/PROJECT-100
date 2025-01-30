@@ -6,7 +6,7 @@ signal request_error(error_message)
 var http_request: HTTPRequest
 var request_queue: Array = []
 var is_requesting: bool = false
-var check_error: bool = true
+var check_error: bool = false
 
 const SERVER_URL = "https://kltldev.com/project100/dbmediator.php"
 #const SERVER_URL = "http://localhost/project100/dbmediator.php"
@@ -18,6 +18,7 @@ const COMMANDS: Dictionary = {
 	
 	"GET_QUIZ" : "get_quiz",
 	"ADD_QUIZ" : "add_quiz",
+	"DELETE_QUIZ" : "delete_quiz",
 	
 	"GET_PLAYER_DATA" : "get_player_data",
 	"ADD_PLAYER_DATA" : "add_player_data",
@@ -52,7 +53,7 @@ func send_request(request: Dictionary):
 	
 	if err != OK:
 		emit_signal("request_error", "HTTP Request Error: " + str(err))
-		#is_requesting = false
+		is_requesting = false
 
 func queue_request(command: String, data: Dictionary = {}):
 	request_queue.push_back({

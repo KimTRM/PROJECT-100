@@ -1,0 +1,58 @@
+[gd_scene load_steps=2 format=3 uid="uid://cbhclcplspftq"]
+
+[ext_resource type="Script" path="res://AdminControl/QuizEditor/quiz_editor.gd" id="1_irn82"]
+
+[node name="QuizEditor" type="MarginContainer"]
+custom_minimum_size = Vector2(1055, 500)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -527.5
+offset_right = 527.5
+offset_bottom = 650.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+script = ExtResource("1_irn82")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(790, 0)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Total No_ Items_" type="Label" parent="VBoxContainer/HBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "Total No. Items: "
+
+[node name="No_" type="Label" parent="VBoxContainer/HBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="AddQuestion" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_direction = 3
+layout_mode = 2
+text = "Add Question"
+
+[node name="ReloadQuestions" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_direction = 3
+layout_mode = 2
+text = "Reload Questions"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(900, 590)
+layout_mode = 2
+
+[node name="QuestionContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/AddQuestion" to="." method="_on_add_question_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/ReloadQuestions" to="." method="_on_reload_questions_pressed"]

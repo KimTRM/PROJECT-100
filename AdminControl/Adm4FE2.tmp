@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://b6gosw6qc25tx"]
+[gd_scene load_steps=3 format=3 uid="uid://b6gosw6qc25tx"]
 
 [ext_resource type="Texture2D" uid="uid://bcsntasu7npgo" path="res://Assets/Title.png" id="1_1yqta"]
 [ext_resource type="Script" path="res://AdminControl/admin_page.gd" id="1_750hn"]
-[ext_resource type="PackedScene" uid="uid://cbhclcplspftq" path="res://AdminControl/QuizEditor/QuizEditor.tscn" id="3_d2b04"]
 
 [node name="AdminPage" type="Control"]
 layout_mode = 3
@@ -96,6 +95,7 @@ layout_mode = 2
 [node name="SideBar" type="ColorRect" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(200, 650)
 layout_mode = 2
+size_flags_stretch_ratio = 9.28
 color = Color(0.2, 0.223529, 0.254902, 0.847059)
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/SideBar"]
@@ -154,11 +154,38 @@ layout_mode = 2
 text = "Chapter 5"
 
 [node name="Content" type="ColorRect" parent="MarginContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(1055, 650)
+custom_minimum_size = Vector2(1055, 0)
 layout_direction = 1
 layout_mode = 2
 size_flags_horizontal = 3
 color = Color(0.121569, 0.0901961, 0.121569, 0.54902)
 
-[node name="QuizEditor" parent="MarginContainer/VBoxContainer/HBoxContainer/Content" instance=ExtResource("3_d2b04")]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/Content"]
+custom_minimum_size = Vector2(1055, 500)
 layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -527.5
+offset_right = 527.5
+offset_bottom = 650.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/Content/MarginContainer"]
+custom_minimum_size = Vector2(900, 0)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/Content/MarginContainer/ScrollContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/Content/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Add Question"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/NavigationBar/NavButtons/HBoxContainer/Home" to="MarginContainer/VBoxContainer/HBoxContainer/Content/MarginContainer/ScrollContainer/VBoxContainer" method="_on_home_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Content/MarginContainer/ScrollContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Content/MarginContainer/ScrollContainer/VBoxContainer/Button" to="MarginContainer/VBoxContainer/HBoxContainer/Content/MarginContainer/ScrollContainer/VBoxContainer" method="_on_button_pressed"]
