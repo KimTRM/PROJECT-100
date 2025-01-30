@@ -44,7 +44,7 @@ func can_save_data() -> bool:
 	else:
 		choice_d.modulate = Color.RED
 		
-	if question_box.text != "" or choice_a.text != "" and choice_b.text != "" and choice_c.text != "" and choice_d.text != "":
+	if question_box.text != "" and choice_a.text != "" and choice_b.text != "" and choice_c.text != "" and choice_d.text != "":
 		return true
 		
 	return false

@@ -10,7 +10,7 @@ var check_error: bool = false
 
 const SERVER_URL = "https://kltldev.com/project100/dbmediator.php"
 #const SERVER_URL = "http://localhost/project100/dbmediator.php"
-const SERVER_HEADERS = ["Content-Type: application/x-www-form-urlencoded", "Cache-Control: max-age=0"]
+const SERVER_HEADERS = ["Content-Type: application/x-www-form-urlencoded"]
 
 const COMMANDS: Dictionary = {
 	"GET_USER_ACCOUNT" : "get_user_account",

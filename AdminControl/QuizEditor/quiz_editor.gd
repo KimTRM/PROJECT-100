@@ -1,7 +1,7 @@
 class_name QuizEditor extends MarginContainer
 
 @onready var question_container = $VBoxContainer/ScrollContainer/QuestionContainer
-@onready var no_ = $VBoxContainer/HBoxContainer/MarginContainer/HBoxContainer/No_
+@onready var no_ = $VBoxContainer/ColorRect/HBoxContainer/MarginContainer/HBoxContainer/No_
 
 var datas: Array = []
 var quizes: Array[QuestionEditor] = []
@@ -26,25 +26,24 @@ func load_questions():
 	for child in question_container.get_children():
 		if child is QuestionEditor:
 			quizes.append(child)
-			 
-			quizes[index].question_number.text = "0" + str(index + 1) 
-			
-			for i in datas:
-				quizes[index].ID = i["ID"]
-				quizes[index].question_box.text = i["Question"]
-				quizes[index].choice_a.text = i["ChoiceA"]
-				quizes[index].choice_b.text = i["ChoiceB"]
-				quizes[index].choice_c.text = i["ChoiceC"]
-				quizes[index].choice_d.text = i["ChoiceD"]
-			
-			index += 1
+	
+	for i in datas:
+		quizes[index].ID = str(index + 1)
+		quizes[index].question_number.text = str(index + 1)
+		quizes[index].question_box.text = i["Question"]
+		quizes[index].choice_a.text = i["ChoiceA"]
+		quizes[index].choice_b.text = i["ChoiceB"]
+		quizes[index].choice_c.text = i["ChoiceC"]
+		quizes[index].choice_d.text = i["ChoiceD"]
+		index += 1
 
 func _on_add_question_pressed():
 	var Quiz = load("res://AdminControl/QuizEditor/QuestionEditor/QuestionEditor.tscn")
-	var quiz = Quiz.instantiate()
+	var quiz: QuestionEditor = Quiz.instantiate()
 	question_container.add_child(quiz)
 	
-	quiz.question_number.text = "0" + str(index + 1)
+	quiz.question_number.text = str(index + 1)
+	quiz.ID = str(index + 1)
 	
 	index += 1
 	no_.text = str(index)
