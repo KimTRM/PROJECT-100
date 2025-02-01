@@ -76,3 +76,8 @@ func _on_request_completed(_result, _response_code, _headers, body):
 		emit_signal("request_completed", parsed_response)
 	else:
 		emit_signal("request_error", "JSON Parse Error")
+
+func generate_id() -> String:
+	var timestamp = Time.get_unix_time_from_system()
+	var random_part = randi() % 100000  # Random 5-digit number
+	return str(timestamp) + "_" + str(random_part)

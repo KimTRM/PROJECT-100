@@ -43,7 +43,7 @@ func _on_add_question_pressed():
 	question_container.add_child(quiz)
 	
 	quiz.question_number.text = str(index + 1)
-	quiz.ID = str(index + 1)
+	quiz.ID = HttpManager.generate_id()
 	
 	index += 1
 	no_.text = str(index)
