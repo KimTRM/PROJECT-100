@@ -99,6 +99,9 @@ layout_mode = 2
 
 [node name="IntBlock" parent="VBoxContainer/Body/MarginContainer/BodyContainer" instance=ExtResource("4_h534h")]
 layout_mode = 2
+is_draggable = null
+mouse_offset = null
+delay = null
 
 [node name="FloatBlock" parent="VBoxContainer/Body/MarginContainer/BodyContainer" instance=ExtResource("5_ppu25")]
 layout_mode = 2

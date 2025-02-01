@@ -11,8 +11,8 @@ func _ready():
 func _physics_process(_delta):
 	drag_animation()
 
-func _input(event):
-	drag(event)
+func _gui_input(event):
+	drag(event).new()
 
 	if event.is_action_pressed("ui_cancel"):
 		ReadCode()

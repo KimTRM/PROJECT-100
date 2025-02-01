@@ -166,6 +166,10 @@ color = Color(0.121569, 0.0901961, 0.121569, 0.54902)
 
 [node name="QuizEditor" parent="MarginContainer/VBoxContainer/HBoxContainer/Content" instance=ExtResource("3_d2b04")]
 layout_mode = 1
+offset_left = -540.0
+offset_top = -4.0
+offset_right = 515.0
+offset_bottom = 689.0
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/SideBar/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/Accounts" to="." method="_on_accounts_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/SideBar/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/QuizEditor" to="." method="_on_quiz_editor_pressed"]

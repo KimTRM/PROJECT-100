@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="PROJECT 100"
-run/main_scene="res://AdminControl/AdminPage.tscn"
+run/main_scene="res://Code/Drag Manager/DragManager.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
 boot_splash/bg_color=Color(0.0470588, 0.0470588, 0.0470588, 1)
 boot_splash/image="res://Assets/KLTL.png"
@@ -67,7 +67,7 @@ folder_colors={
 [gui]
 
 theme/custom_font="res://Assets/Jaro-Regular.ttf"
-theme/default_font_multichannel_signed_distance_field=true
+theme/default_font_subpixel_positioning=0
 theme/default_font_generate_mipmaps=true
 
 [importer_defaults]
@@ -75,6 +75,28 @@ theme/default_font_generate_mipmaps=true
 aseprite_wizard.plugin.tileset-texture={
 "exclude_layers_pattern": "",
 "only_visible_layers": false
+}
+font_data_dynamic={
+"Compress": null,
+"Fallbacks": null,
+"Rendering": null,
+"allow_system_fallback": true,
+"antialiasing": 1,
+"compress": true,
+"disable_embedded_bitmaps": true,
+"fallbacks": [],
+"force_autohinter": false,
+"generate_mipmaps": false,
+"hinting": 1,
+"language_support": {},
+"msdf_pixel_range": 8,
+"msdf_size": 48,
+"multichannel_signed_distance_field": true,
+"opentype_features": {},
+"oversampling": 0.0,
+"preload": [],
+"script_support": {},
+"subpixel_positioning": 1
 }
 
 [input]

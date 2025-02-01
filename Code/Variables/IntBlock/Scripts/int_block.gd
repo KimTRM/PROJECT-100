@@ -4,33 +4,28 @@ class_name IntBlock extends CodeBlock
 @export var code: VarCodeInfo
 
 # -- NODES --
-@onready var _var_name: LineEdit = $PanelContainer/PanelContainer/MarginContainer/HBoxContainer/PanelContainer2/VarName
-@onready var _value: LineEdit = $PanelContainer/PanelContainer/MarginContainer/HBoxContainer/PanelContainer3/Value
+#@onready var var_name: LineEdit = $PanelContainer/MarginContainer/HBoxContainer/PanelContainer2/VarName
+#@onready var value: LineEdit = $PanelContainer/MarginContainer/HBoxContainer/PanelContainer3/Value
 
 func _ready():
-	_var_name.text = code.var_name
-	_value.text = str(code.value)
+	pass
+	#_var_name.text = code.var_name
+	#_value.text = str(code.value)
 
-func _physics_process(_delta):
-	drag_animation()
+func execute():
+	print("Executing block: ", name)
+	executed.emit()  
 
-#func _input(event):
-	#pass
-
-func SetValue():
-	VarCategory = code.category
-	VarType = code.type
-	VarName = _var_name.text
-	CheckIfInt()
-
-func CheckIfInt():
-	var isInt = _value.text.is_valid_int()
-
-	if isInt:
-		VarValue = int(_value.text)
-
-	_value.modulate = Color.WHITE if isInt  else Color.RED
-
-
-func _on_gui_input(event):
-	drag(event)
+#func SetValue():
+	#VarCategory = code.category
+	#VarType = code.type
+	#VarName = _var_name.text
+	#CheckIfInt()
+#
+#func CheckIfInt():
+	#var isInt = _value.text.is_valid_int()
+#
+	#if isInt:
+		#VarValue = int(_value.text)
+#
+	#_value.modulate = Color.WHITE if isInt  else Color.RED

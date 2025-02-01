@@ -1,13 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://d284sa273yh0t"]
+[gd_scene load_steps=4 format=3 uid="uid://d284sa273yh0t"]
 
 [ext_resource type="Script" path="res://Code/Drag Manager/drag_manager.gd" id="1_8840x"]
-[ext_resource type="PackedScene" uid="uid://dn0cyynyocplp" path="res://Code/Conditionals/ElseBlock/ElseBlock.tscn" id="1_fargv"]
-[ext_resource type="PackedScene" uid="uid://bgd1mwohr33cs" path="res://Code/Conditionals/ElseIfBlock/Else-IfBlock.tscn" id="2_hcx4g"]
-[ext_resource type="PackedScene" uid="uid://bbf3rvoybpd" path="res://Code/Conditionals/IfBlock/IfBlock.tscn" id="3_xbixg"]
-[ext_resource type="PackedScene" uid="uid://c4pumpxm1xsoq" path="res://Code/Variables/BooleanBlock/BooleanBlock.tscn" id="4_hcls7"]
-[ext_resource type="PackedScene" uid="uid://cojfo4sy7un6u" path="res://Code/Variables/FloatBlock/FloatBlock.tscn" id="5_gc6uj"]
 [ext_resource type="PackedScene" uid="uid://rkxkm6m8ey64" path="res://Code/Variables/IntBlock/IntBlock.tscn" id="6_w0wfh"]
-[ext_resource type="PackedScene" uid="uid://ghfmwfgjo781" path="res://Code/Variables/StringBlock/StringBlock.tscn" id="7_w6sgs"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mrdtd"]
+bg_color = Color(0.847059, 0.384314, 0.384314, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+anti_aliasing = false
 
 [node name="DragManager" type="Control"]
 layout_mode = 3
@@ -22,41 +24,23 @@ grow_vertical = 2
 size_flags_horizontal = 0
 script = ExtResource("1_8840x")
 
-[node name="ElseBlock" parent="." instance=ExtResource("1_fargv")]
-position = Vector2(1127, 630)
-
-[node name="IfBlock" parent="." instance=ExtResource("3_xbixg")]
-offset_left = 121.0
-offset_top = 251.0
-offset_right = 591.0
-offset_bottom = 656.0
-
-[node name="ElseIfBlock" parent="." instance=ExtResource("2_hcx4g")]
-position = Vector2(4, 644)
-
-[node name="BooleanBlock" parent="." instance=ExtResource("4_hcls7")]
-custom_minimum_size = Vector2(260, 40)
-offset_left = 27.0
-offset_top = 171.0
-offset_right = 287.0
-offset_bottom = 211.0
-
-[node name="FloatBlock" parent="." instance=ExtResource("5_gc6uj")]
-offset_left = 21.0
-offset_top = 72.0
-offset_right = 255.0
-offset_bottom = 112.0
-
-[node name="StringBlock" parent="." instance=ExtResource("7_w6sgs")]
-offset_left = 21.0
-offset_top = 119.0
-offset_right = 21.0
-offset_bottom = 119.0
-
 [node name="IntBlock" parent="." instance=ExtResource("6_w0wfh")]
+layout_mode = 0
+offset_right = 89.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_mrdtd")
 
 [node name="IntBlock2" parent="." instance=ExtResource("6_w0wfh")]
-offset_left = 312.0
-offset_top = 21.0
-offset_right = 527.0
-offset_bottom = 63.0
+layout_mode = 0
+offset_left = 204.0
+offset_top = 100.0
+offset_right = 418.0
+offset_bottom = 140.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_mrdtd")
+
+[node name="IntBlock3" parent="." instance=ExtResource("6_w0wfh")]
+layout_mode = 0
+offset_left = 86.0
+offset_top = 162.0
+offset_right = 300.0
+offset_bottom = 202.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_mrdtd")
