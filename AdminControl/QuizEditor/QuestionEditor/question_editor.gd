@@ -49,7 +49,7 @@ func can_save_data() -> bool:
 		
 	return false
 
-func _on_save_button_pressed():
+func save_data():
 	if can_save_data():
 		Question = question_box.text
 		ChoiceA = choice_a.text
@@ -67,6 +67,9 @@ func _on_save_button_pressed():
 			"CorrectAnswer" : CorrectAnswer
 		}
 		HttpManager.queue_request(HttpManager.COMMANDS["ADD_QUIZ"], data)
+
+func _on_save_button_pressed():
+	save_data()
 
 func _on_delete_button_pressed():
 	var data:Dictionary = {

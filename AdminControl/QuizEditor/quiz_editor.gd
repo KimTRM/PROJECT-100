@@ -28,7 +28,7 @@ func load_questions():
 			quizes.append(child)
 	
 	for i in datas:
-		quizes[index].ID = str(index + 1)
+		quizes[index].ID = i["ID"]
 		quizes[index].question_number.text = str(index + 1)
 		quizes[index].question_box.text = i["Question"]
 		quizes[index].choice_a.text = i["ChoiceA"]
@@ -49,7 +49,7 @@ func _on_add_question_pressed():
 	no_.text = str(index)
 
 func _on_reload_questions_pressed():
-	for child in question_container.get_children():
+	for child: QuestionEditor in question_container.get_children():
 		child.queue_free()
 	
 	index = 0

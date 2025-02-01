@@ -78,6 +78,7 @@ flat = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_constants/separation = 0
 
 [node name="SideBar" type="ColorRect" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(200, 706.485)

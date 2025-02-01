@@ -1,7 +1,7 @@
 extends Node
 
-signal request_completed(response_data)
-signal request_error(error_message)
+@warning_ignore("unused_signal") signal request_completed(response_data)
+@warning_ignore("unused_signal") signal request_error(error_message)
 
 var http_request: HTTPRequest
 var request_queue: Array = []
@@ -9,7 +9,7 @@ var is_requesting: bool = false
 var check_error: bool = false
 
 const SERVER_URL = "https://kltldev.com/project100/dbmediator.php"
-#const SERVER_URL = "http://localhost/project100/dbmediator.php"
+#const SERVER_URL = "http://127.0.0.1/project100/dbmediator.php"
 const SERVER_HEADERS = ["Content-Type: application/x-www-form-urlencoded"]
 
 const COMMANDS: Dictionary = {
