@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bb8k2csafhk6w"]
+[gd_scene load_steps=17 format=3 uid="uid://bb8k2csafhk6w"]
 
 [ext_resource type="Script" path="res://Entities/Player/Scripts/player.gd" id="1_y1s6u"]
 [ext_resource type="Texture2D" uid="uid://b8v544pw40ynf" path="res://Entities/Player/Art/Character-Male.png" id="2_s63mq"]
@@ -6,6 +6,21 @@
 [ext_resource type="Script" path="res://Entities/Player/Scripts/Player State Machine/player_state_manager.gd" id="4_ikttp"]
 [ext_resource type="Script" path="res://Entities/Player/Scripts/Player State Machine/States/state_idle.gd" id="5_ru3g7"]
 [ext_resource type="Script" path="res://Entities/Player/Scripts/Player State Machine/States/state_walk.gd" id="6_pgp57"]
+
+[sub_resource type="Animation" id="Animation_utl62"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Direction:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_0ub1t"]
 length = 0.98
@@ -33,6 +48,17 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [1, 2, 2, 3, 4, 5, 6]
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Direction:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
 }
 
 [sub_resource type="Animation" id="Animation_emals"]
@@ -89,6 +115,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [11, 12, 12, 13, 13, 14, 14, 15]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Direction:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [3.14159]
 }
 
 [sub_resource type="Animation" id="Animation_qbkwd"]
@@ -176,6 +214,7 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qxu1x"]
 _data = {
+"RESET": SubResource("Animation_utl62"),
 "idle_down": SubResource("Animation_0ub1t"),
 "idle_side": SubResource("Animation_emals"),
 "idle_up": SubResource("Animation_g73vp"),
@@ -187,6 +226,8 @@ _data = {
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ypl2b"]
 radius = 8.0
 height = 26.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_i2wyf"]
 
 [node name="Player" type="CharacterBody2D"]
 z_index = 1
@@ -244,3 +285,14 @@ script = ExtResource("5_ru3g7")
 
 [node name="Walk" type="Node" parent="PlayerStateManager"]
 script = ExtResource("6_pgp57")
+
+[node name="Direction" type="Marker2D" parent="."]
+
+[node name="InteractableFinder" type="Area2D" parent="Direction"]
+position = Vector2(0, 30)
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Direction/InteractableFinder"]
+scale = Vector2(1.3, 1.3)
+shape = SubResource("CircleShape2D_i2wyf")
+debug_color = Color(0.889251, 0.889251, 0.889251, 0.42)

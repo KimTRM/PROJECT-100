@@ -26,10 +26,10 @@ script = ExtResource("1_8840x")
 position = Vector2(1127, 630)
 
 [node name="IfBlock" parent="." instance=ExtResource("3_xbixg")]
-offset_left = 5.0
-offset_top = 263.0
-offset_right = 45.0
-offset_bottom = 303.0
+offset_left = 121.0
+offset_top = 251.0
+offset_right = 591.0
+offset_bottom = 656.0
 
 [node name="ElseIfBlock" parent="." instance=ExtResource("2_hcx4g")]
 position = Vector2(4, 644)

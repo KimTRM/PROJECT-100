@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://hc1hgwcehym"
+path="res://.godot/imported/icon.aseprite-d1e868c71b0238b4f4acec4ea303865b.res"
+
+[deps]
+
+source_file="res://addons/fabimakesgames.embed_game/assets/icon.aseprite"
+dest_files=["res://.godot/imported/icon.aseprite-d1e868c71b0238b4f4acec4ea303865b.res"]
+
+[params]
+

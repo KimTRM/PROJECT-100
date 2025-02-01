@@ -3,23 +3,19 @@ extends VBoxContainer
 var datas: Array
 
 func _ready():
-	HttpManager.connect("request_completed", _on_scores_received)
-	HttpManager.queue_request("get_score")
+	HttpManager.connect("request_completed", _on_accounts_received)
+	HttpManager.queue_request(HttpManager.COMMANDS["GET_USER_ACCOUNT"])
 
-func _on_scores_received(response):
+func _on_accounts_received(response):
 	datas = response
 
 func _on_button_pressed():
-	HttpManager.queue_request("get_score")
-	
-	var index = 0
+	HttpManager.queue_request(HttpManager.COMMANDS["GET_USER_ACCOUNT"])
 	
 	for i in datas:
 		var labels: Label = Label.new()
-
 		add_child(labels)
-		labels.text = str(index) + "      Username: " + str(i["username"]) + "      Score: " + str(i["score"]) 
-		index += 1
+		labels.text = "      UserID: " + str(i["UserID"]) + "      Username: " + str(i["UserName"]) + "      Role: " + str(i["Role"])
 	print("retrived")
 
 func _on_home_pressed():

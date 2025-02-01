@@ -94,6 +94,9 @@ layout_mode = 2
 layout_mode = 2
 script = ExtResource("3_6tsre")
 
+[node name="BooleanBlock" parent="VBoxContainer/Body/MarginContainer/BodyContainer" instance=ExtResource("7_q14m3")]
+layout_mode = 2
+
 [node name="IntBlock" parent="VBoxContainer/Body/MarginContainer/BodyContainer" instance=ExtResource("4_h534h")]
 layout_mode = 2
 
@@ -101,9 +104,6 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="StringBlock" parent="VBoxContainer/Body/MarginContainer/BodyContainer" instance=ExtResource("6_a7fan")]
-layout_mode = 2
-
-[node name="BooleanBlock" parent="VBoxContainer/Body/MarginContainer/BodyContainer" instance=ExtResource("7_q14m3")]
 layout_mode = 2
 
 [node name="Bottom" type="TextureRect" parent="VBoxContainer"]

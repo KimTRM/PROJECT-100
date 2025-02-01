@@ -7,7 +7,7 @@ var direction: Vector2 = Vector2.ZERO
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var player_state_manager = $PlayerStateManager
-# @onready var interact_dir: Marker2D = $Direction
+@onready var interact_dir: Marker2D = $Direction
 
 func _ready():
 	player_state_manager.Initialize(self)
@@ -38,7 +38,7 @@ func SetDirection() -> bool:
 		
 	sprite.scale.x = -1 if AniDirction == Vector2.LEFT else 1
 	
-	# interact_dir.rotation = 90 if AniDirction == Vector2.LEFT else -90
+	interact_dir.rotation = 90 if AniDirction == Vector2.LEFT else -90
 	return true
 
 func UpdateAnimation( state : String) -> void:
