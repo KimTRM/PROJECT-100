@@ -80,4 +80,4 @@ func _on_request_completed(_result, _response_code, _headers, body):
 func generate_id() -> String:
 	var timestamp = Time.get_unix_time_from_system()
 	var random_part = randi() % 100000  # Random 5-digit number
-	return str(timestamp) + "_" + str(random_part)
+	return str(timestamp) + str(random_part)

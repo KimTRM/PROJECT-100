@@ -48,7 +48,7 @@ layout_mode = 2
 layout_mode = 2
 text = "Total No. Items: "
 
-[node name="No_" type="Label" parent="VBoxContainer/ColorRect/HBoxContainer/MarginContainer/HBoxContainer"]
+[node name="QuestionNumber" type="Label" parent="VBoxContainer/ColorRect/HBoxContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
 
 [node name="AddQuestion" type="Button" parent="VBoxContainer/ColorRect/HBoxContainer"]
@@ -62,12 +62,13 @@ layout_mode = 2
 text = "Reload Questions"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
-custom_minimum_size = Vector2(900, 590)
+custom_minimum_size = Vector2(950, 590)
 layout_mode = 2
+horizontal_scroll_mode = 0
 
 [node name="QuestionContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer"]
 layout_mode = 2
-theme_override_constants/separation = 20
+theme_override_constants/separation = 8
 
 [connection signal="pressed" from="VBoxContainer/ColorRect/HBoxContainer/AddQuestion" to="." method="_on_add_question_pressed"]
 [connection signal="pressed" from="VBoxContainer/ColorRect/HBoxContainer/ReloadQuestions" to="." method="_on_reload_questions_pressed"]

@@ -1,7 +1,7 @@
 class_name QuizEditor extends MarginContainer
 
 @onready var question_container = $VBoxContainer/ScrollContainer/QuestionContainer
-@onready var no_ = $VBoxContainer/ColorRect/HBoxContainer/MarginContainer/HBoxContainer/No_
+@onready var question_number: Label = $VBoxContainer/ColorRect/HBoxContainer/MarginContainer/HBoxContainer/QuestionNumber
 
 var datas: Array = []
 var quizes: Array[QuestionEditor] = []
@@ -15,7 +15,7 @@ func _on_accounts_received(response):
 	datas = response
 	
 	load_questions()
-	no_.text = str(index)
+	question_number.text = str(index)
 
 func load_questions():
 	for i in datas:
@@ -35,6 +35,7 @@ func load_questions():
 		quizes[index].choice_b.text = i["ChoiceB"]
 		quizes[index].choice_c.text = i["ChoiceC"]
 		quizes[index].choice_d.text = i["ChoiceD"]
+		quizes[index].toggle_answer(i["CorrectAnswer"])
 		index += 1
 
 func _on_add_question_pressed():
@@ -46,7 +47,7 @@ func _on_add_question_pressed():
 	quiz.ID = HttpManager.generate_id()
 	
 	index += 1
-	no_.text = str(index)
+	question_number.text = str(index)
 
 func _on_reload_questions_pressed():
 	for child: QuestionEditor in question_container.get_children():

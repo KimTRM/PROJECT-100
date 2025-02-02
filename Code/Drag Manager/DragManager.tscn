@@ -28,19 +28,3 @@ script = ExtResource("1_8840x")
 layout_mode = 0
 offset_right = 89.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_mrdtd")
-
-[node name="IntBlock2" parent="." instance=ExtResource("6_w0wfh")]
-layout_mode = 0
-offset_left = 204.0
-offset_top = 100.0
-offset_right = 418.0
-offset_bottom = 140.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_mrdtd")
-
-[node name="IntBlock3" parent="." instance=ExtResource("6_w0wfh")]
-layout_mode = 0
-offset_left = 86.0
-offset_top = 162.0
-offset_right = 300.0
-offset_bottom = 202.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_mrdtd")
