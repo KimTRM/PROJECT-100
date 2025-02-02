@@ -6,7 +6,6 @@ func _ready() -> void:
 	execute_blocks()
 
 func execute_blocks():
-	var block = start_block
-	while block:
-		block.execute()
-		block = block.parent_block  # Move to the next block
+	if start_block:
+		print("Starting execution from:", start_block.name)
+		start_block.execute() # Move to the next block

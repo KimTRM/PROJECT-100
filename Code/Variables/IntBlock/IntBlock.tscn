@@ -19,7 +19,7 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 anti_aliasing = false
 
-[node name="PanelContainer2" type="PanelContainer"]
+[node name="IntBlock" type="PanelContainer"]
 offset_right = 214.0
 offset_bottom = 38.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_mrdtd")
