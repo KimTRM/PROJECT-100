@@ -19,3 +19,22 @@ theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 680)
+layout_mode = 2
+
+[node name="PanelContainer2" type="PanelContainer" parent="PanelContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 680)
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(830, 0)
+layout_mode = 2
+
+[node name="PanelContainer3" type="PanelContainer" parent="PanelContainer/MarginContainer/HBoxContainer/ScrollContainer"]
+custom_minimum_size = Vector2(500, 500)
+layout_mode = 2

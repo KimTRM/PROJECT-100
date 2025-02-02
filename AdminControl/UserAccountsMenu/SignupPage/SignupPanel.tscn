@@ -1,0 +1,182 @@
+[gd_scene load_steps=4 format=3 uid="uid://b7olgo4xh10gm"]
+
+[ext_resource type="Script" path="res://AdminControl/UserAccountsMenu/SignupPage/signup_panel.gd" id="1_k8ew3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jo6mb"]
+bg_color = Color(0.2, 0.223529, 0.254902, 0.847059)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1glk3"]
+bg_color = Color(0.121569, 0.0901961, 0.121569, 0.54902)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="SignupPanel" type="PanelContainer"]
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_jo6mb")
+script = ExtResource("1_k8ew3")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "SIGN UP"
+horizontal_alignment = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="UsernamePanel2" type="PanelContainer" parent="MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_1glk3")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/UsernamePanel2"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/UsernamePanel2/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/UsernamePanel2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "FIRST NAME"
+
+[node name="FirstName" type="LineEdit" parent="MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/UsernamePanel2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="UsernamePanel3" type="PanelContainer" parent="MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_1glk3")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/UsernamePanel3"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/UsernamePanel3/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/UsernamePanel3/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "LAST NAME"
+
+[node name="LastName" type="LineEdit" parent="MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/UsernamePanel3/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="UsernamePanel" type="PanelContainer" parent="MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_1glk3")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/UsernamePanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/UsernamePanel/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/UsernamePanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "USERNAME"
+
+[node name="UserName" type="LineEdit" parent="MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/UsernamePanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="PasswordPanel" type="PanelContainer" parent="MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_1glk3")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/PasswordPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/PasswordPanel/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/PasswordPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "PASSWORD"
+
+[node name="Password" type="LineEdit" parent="MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/PasswordPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="PasswordPanel2" type="PanelContainer" parent="MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_1glk3")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/PasswordPanel2"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/PasswordPanel2/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/PasswordPanel2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "CONFIRM PASSWORD"
+
+[node name="ConfirmPassword" type="LineEdit" parent="MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/PasswordPanel2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ErrorMessage" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.228013, 0.228013, 1)
+text = "Error"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 150
+theme_override_constants/margin_right = 150
+
+[node name="SignupButton" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+text = "SIGN UP"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/VBoxContainer/MarginContainer/SignupButton" to="." method="_on_signup_button_pressed"]
