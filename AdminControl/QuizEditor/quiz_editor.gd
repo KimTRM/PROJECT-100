@@ -8,10 +8,10 @@ var quizes: Array[QuestionEditor] = []
 var index = 0
 
 func _ready():
-	HttpManager.connect("request_completed", _on_accounts_received)
+	HttpManager.connect("request_completed", _on_questions_received)
 	HttpManager.queue_request(HttpManager.COMMANDS["GET_QUIZ"])
 	
-func _on_accounts_received(response):
+func _on_questions_received(response):
 	datas = response
 	
 	load_questions()
@@ -57,6 +57,6 @@ func _on_reload_questions_pressed():
 	datas.clear()
 	quizes.clear()
 	
-	HttpManager.disconnect("request_completed", _on_accounts_received)
-	HttpManager.connect("request_completed", _on_accounts_received)
+	HttpManager.disconnect("request_completed", _on_questions_received)
+	HttpManager.connect("request_completed", _on_questions_received)
 	HttpManager.queue_request(HttpManager.COMMANDS["GET_QUIZ"])

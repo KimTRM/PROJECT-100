@@ -36,6 +36,7 @@ func save_data() -> void:
 			"Role" : "Student"
 		}
 		HttpManager.queue_request(HttpManager.COMMANDS["ADD_USER_ACCOUNT"], data)
+		self.hide()
 
 func _on_signup_button_pressed() -> void:
 	save_data()

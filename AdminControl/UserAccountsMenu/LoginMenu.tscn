@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://f4rd76efnhp5"]
+[gd_scene load_steps=8 format=3 uid="uid://f4rd76efnhp5"]
 
 [ext_resource type="Script" path="res://AdminControl/UserAccountsMenu/login_menu.gd" id="1_tmlyc"]
 [ext_resource type="PackedScene" uid="uid://b7olgo4xh10gm" path="res://AdminControl/UserAccountsMenu/SignupPage/SignupPanel.tscn" id="2_e5ldj"]
+[ext_resource type="Script" path="res://AdminControl/UserAccountsMenu/login_panel.gd" id="2_fdyq0"]
 [ext_resource type="Texture2D" uid="uid://bcsntasu7npgo" path="res://Assets/Title.png" id="3_l6b4q"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l5ogm"]
@@ -44,6 +45,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_jo6mb")
+script = ExtResource("2_fdyq0")
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer/LoginPanel"]
 layout_mode = 2
@@ -91,7 +93,7 @@ layout_mode = 2
 layout_mode = 2
 text = "USERNAME"
 
-[node name="LineEdit" type="LineEdit" parent="PanelContainer/LoginPanel/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Username" type="LineEdit" parent="PanelContainer/LoginPanel/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
 [node name="PanelContainer2" type="PanelContainer" parent="PanelContainer/LoginPanel/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer"]
@@ -112,8 +114,9 @@ layout_mode = 2
 layout_mode = 2
 text = "PASSWORD"
 
-[node name="LineEdit" type="LineEdit" parent="PanelContainer/LoginPanel/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer"]
+[node name="Password" type="LineEdit" parent="PanelContainer/LoginPanel/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer"]
 layout_mode = 2
+secret = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/LoginPanel/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer"]
 layout_mode = 2
@@ -123,7 +126,7 @@ layout_mode = 2
 theme_override_constants/margin_left = 50
 theme_override_constants/margin_right = 50
 
-[node name="Button" type="Button" parent="PanelContainer/LoginPanel/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/VBoxContainer/MarginContainer"]
+[node name="LoginButton" type="Button" parent="PanelContainer/LoginPanel/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/VBoxContainer/MarginContainer"]
 layout_mode = 2
 text = "LOG IN"
 
@@ -153,4 +156,5 @@ position = Vector2(137.688, 56.4375)
 scale = Vector2(1.03648, 1.03484)
 texture = ExtResource("3_l6b4q")
 
+[connection signal="pressed" from="PanelContainer/LoginPanel/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/VBoxContainer/MarginContainer/LoginButton" to="." method="_on_login_button_pressed"]
 [connection signal="pressed" from="PanelContainer/LoginPanel/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/VBoxContainer/HBoxContainer/ToSignupButton" to="." method="_on_to_signup_button_pressed"]

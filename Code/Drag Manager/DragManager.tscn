@@ -38,21 +38,21 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_mrdtd")
 
 [node name="BooleanBlock" parent="." instance=ExtResource("3_vxa88")]
 layout_mode = 0
-offset_left = 4.97256
-offset_top = 161.0
-offset_right = 4.97256
-offset_bottom = 201.0
+offset_left = 20.8847
+offset_top = 174.0
+offset_right = 278.885
+offset_bottom = 214.0
 
 [node name="FloatBlock" parent="." instance=ExtResource("4_jsohs")]
 layout_mode = 0
-offset_left = 4.97256
-offset_top = 105.0
-offset_right = 239.973
-offset_bottom = 145.0
+offset_left = 22.8737
+offset_top = 120.0
+offset_right = 257.874
+offset_bottom = 160.0
 
 [node name="StringBlock" parent="." instance=ExtResource("5_67utt")]
 layout_mode = 0
-offset_left = 3.97805
-offset_top = 57.0
-offset_right = 243.978
-offset_bottom = 97.0
+offset_left = 17.9012
+offset_top = 63.0
+offset_right = 257.901
+offset_bottom = 103.0
