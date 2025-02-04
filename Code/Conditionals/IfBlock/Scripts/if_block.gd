@@ -8,12 +8,7 @@ func _ready():
 	body_container.Initialize()
 	pass
 
-func _physics_process(_delta):
-	drag_animation()
-
-func _input(event):
-	drag(event)
-
+func _gui_input(event):
 	if event.is_action_pressed("ui_cancel"):
 		ReadCode()
 

@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://b6gosw6qc25tx"]
+[gd_scene load_steps=3 format=3 uid="uid://b6gosw6qc25tx"]
 
 [ext_resource type="Texture2D" uid="uid://bcsntasu7npgo" path="res://Assets/Title.png" id="1_1yqta"]
 [ext_resource type="Script" path="res://AdminControl/admin_page.gd" id="1_750hn"]
-[ext_resource type="PackedScene" uid="uid://cbhclcplspftq" path="res://AdminControl/QuizEditor/QuizEditor.tscn" id="3_d2b04"]
 
 [node name="AdminPage" type="Control"]
 layout_mode = 3
@@ -159,13 +158,9 @@ text = "Chapter 5"
 
 [node name="Content" type="ColorRect" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(1055, 650)
-layout_direction = 1
 layout_mode = 2
 size_flags_horizontal = 3
 color = Color(0.121569, 0.0901961, 0.121569, 0.54902)
-
-[node name="QuizEditor" parent="MarginContainer/VBoxContainer/HBoxContainer/Content" instance=ExtResource("3_d2b04")]
-layout_mode = 1
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/SideBar/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/Accounts" to="." method="_on_accounts_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/SideBar/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/QuizEditor" to="." method="_on_quiz_editor_pressed"]

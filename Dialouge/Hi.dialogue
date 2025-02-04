@@ -8,6 +8,13 @@ Nathan: Here are some choices.
 	Nathan: You picked the second one.
 - Start again => this_is_a_node_title
 - End the conversation => END
-Nathan: For more information see the online documentation.
+~ start
+
+???: Hi I am D.A.L.
+DAL: I am a Dynamic Automated Lifeform
+DAL: Who are you?
+
+Kim: My name is Kim
+Kim: What are you doing here?
 
 => END
