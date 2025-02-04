@@ -1,10 +1,12 @@
-[gd_scene load_steps=12 format=3 uid="uid://d37ct8qy5o2ym"]
+[gd_scene load_steps=15 format=3 uid="uid://d37ct8qy5o2ym"]
 
 [ext_resource type="Texture2D" uid="uid://bcbt0kycumkfp" path="res://Entities/NPCs/DAL/Art/D.A.L..png" id="1_20exx"]
 [ext_resource type="Script" path="res://Entities/NPCs/DAL/Scripts/dal.gd" id="1_xdmxv"]
 [ext_resource type="Script" path="res://Entities/NPCs/DAL/Scripts/State Machine/state_machine.gd" id="3_lgt54"]
 [ext_resource type="Script" path="res://Entities/NPCs/DAL/Scripts/State Machine/States/idle.gd" id="4_c73x2"]
 [ext_resource type="Script" path="res://Entities/NPCs/DAL/Scripts/State Machine/States/walk.gd" id="5_ohkiw"]
+[ext_resource type="PackedScene" uid="uid://cb2boj8kymtpp" path="res://Entities/Interactable.tscn" id="6_a3w74"]
+[ext_resource type="Resource" uid="uid://b32emc6hkhtth" path="res://Dialouge/Hi.dialogue" id="7_5pd0b"]
 
 [sub_resource type="Animation" id="Animation_isrq6"]
 length = 0.72
@@ -129,6 +131,8 @@ _data = {
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_chly2"]
 height = 26.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_n2jko"]
+
 [node name="D-A-L" type="CharacterBody2D"]
 z_index = 1
 y_sort_enabled = true
@@ -181,3 +185,11 @@ script = ExtResource("4_c73x2")
 
 [node name="Walk" type="Node" parent="State Machine"]
 script = ExtResource("5_ohkiw")
+
+[node name="Interactable" parent="." instance=ExtResource("6_a3w74")]
+dialogue_resource = ExtResource("7_5pd0b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable"]
+position = Vector2(0, 6)
+shape = SubResource("CircleShape2D_n2jko")
+debug_color = Color(0.0711944, 0.993485, 0.155312, 0.42)

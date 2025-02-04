@@ -95,6 +95,9 @@ func get_next_dialogue_line(resource: DialogueResource, key: String = "", extra_
 		else:
 			extra_game_states = [autoload] + extra_game_states
 
+	# Inject "self" into the extra game states.
+	extra_game_states = [{ "self": resource }] + extra_game_states
+
 	# Get the line data
 	var dialogue: DialogueLine = await get_line(resource, key, extra_game_states)
 
@@ -190,9 +193,9 @@ func get_line(resource: DialogueResource, key: String, extra_game_states: Array)
 				next_id = data.next_id_after
 		return await get_line(resource, next_id + id_trail, extra_game_states)
 
-	# Check for weighted random lines
+	# Check for weighted random lines.
 	if data.has(&"siblings"):
-		# Only count siblings that pass their condition (if they have one)
+		# Only count siblings that pass their condition (if they have one).
 		var successful_siblings: Array = data.siblings.filter(func(sibling): return not sibling.has("condition") or await _check_condition(sibling, extra_game_states))
 		var target_weight: float = randf_range(0, successful_siblings.reduce(func(total, sibling): return total + sibling.weight, 0))
 		var cummulative_weight: float = 0
@@ -203,20 +206,36 @@ func get_line(resource: DialogueResource, key: String, extra_game_states: Array)
 			else:
 				cummulative_weight += sibling.weight
 
-	# If this line is blank and it's the last line then check for returning snippets.
-	if data.type in [DMConstants.TYPE_COMMENT, DMConstants.TYPE_UNKNOWN] and data.next_id in [DMConstants.ID_END, DMConstants.ID_NULL, null]:
-		if stack.size() > 0:
-			return await get_line(resource, "|".join(stack), extra_game_states)
+	# Find any simultaneously said lines.
+	if data.has(&"concurrent_lines"):
+		# If the list includes this line then it isn't the origin line so ignore it.
+		if data.concurrent_lines.has(data.id):
+			data.concurrent_lines = [] as Array[DialogueLine]
 		else:
-			return null
+			var concurrent_lines: Array[DialogueLine] = []
+			for concurrent_id: String in data.concurrent_lines:
+				var concurrent_line: DialogueLine = await get_line(resource, concurrent_id, extra_game_states)
+				if concurrent_line:
+					concurrent_lines.append(concurrent_line)
+			data.concurrent_lines = concurrent_lines
+
+	# If this line is blank and it's the last line then check for returning snippets.
+	if data.type in [DMConstants.TYPE_COMMENT, DMConstants.TYPE_UNKNOWN]:
+		if data.next_id in [DMConstants.ID_END, DMConstants.ID_NULL, null]:
+			if stack.size() > 0:
+				return await get_line(resource, "|".join(stack), extra_game_states)
+			else:
+				return null
+		else:
+			return await get_line(resource, data.next_id + id_trail, extra_game_states)
 
 	# If the line is a random block then go to the start of the block.
 	elif data.type == DMConstants.TYPE_RANDOM:
 		data = resource.lines.get(data.next_id)
 
-	# Check condtiions
+	# Check conditions.
 	elif data.type in [DMConstants.TYPE_CONDITION, DMConstants.TYPE_WHILE]:
-		# "else" will have no actual condition
+		# "else" will have no actual condition.
 		if await _check_condition(data, extra_game_states):
 			return await get_line(resource, data.next_id + id_trail, extra_game_states)
 		elif data.has("next_sibling_id") and not data.next_sibling_id.is_empty():
@@ -224,7 +243,7 @@ func get_line(resource: DialogueResource, key: String, extra_game_states: Array)
 		else:
 			return await get_line(resource, data.next_id_after + id_trail, extra_game_states)
 
-	# Evaluate jumps
+	# Evaluate jumps.
 	elif data.type == DMConstants.TYPE_GOTO:
 		if data.is_snippet and not id_trail.begins_with("|" + data.next_id_after):
 			id_trail = "|" + data.next_id_after + id_trail
@@ -234,20 +253,20 @@ func get_line(resource: DialogueResource, key: String, extra_game_states: Array)
 		if not data.has(&"id"):
 			data.id = key
 
-	# Set up a line object
+	# Set up a line object.
 	var line: DialogueLine = await create_dialogue_line(data, extra_game_states)
 
-	# If the jump point somehow has no content then just end
+	# If the jump point somehow has no content then just end.
 	if not line: return null
 
-	# If we are the first of a list of responses then get the other ones
+	# If we are the first of a list of responses then get the other ones.
 	if data.type == DMConstants.TYPE_RESPONSE:
 		# Note: For some reason C# has occasional issues with using the responses property directly
 		# so instead we use set and get here.
 		line.set(&"responses", await _get_responses(data.get(&"responses", []), resource, id_trail, extra_game_states))
 		return line
 
-	# Inject the next node's responses if they have any
+	# Inject the next node's responses if they have any.
 	if resource.lines.has(line.next_id):
 		var next_line: Dictionary = resource.lines.get(line.next_id)
 
@@ -255,7 +274,7 @@ func get_line(resource: DialogueResource, key: String, extra_game_states: Array)
 		if line.next_id in resource.titles.values():
 			passed_title.emit(resource.titles.find_key(line.next_id))
 
-		# If the responses come from a snippet then we need to come back here afterwards
+		# If the responses come from a snippet then we need to come back here afterwards.
 		if next_line.type == DMConstants.TYPE_GOTO and next_line.is_snippet and not id_trail.begins_with("|" + next_line.next_id_after):
 			id_trail = "|" + next_line.next_id_after + id_trail
 
@@ -453,7 +472,9 @@ func _get_dotnet_dialogue_manager() -> Node:
 
 
 func _bridge_get_new_instance() -> Node:
-	return new()
+	var instance = new()
+	instance.get_current_scene = get_current_scene
+	return instance
 
 
 func _bridge_get_next_dialogue_line(resource: DialogueResource, key: String, extra_game_states: Array = []) -> void:
@@ -537,6 +558,7 @@ func create_dialogue_line(data: Dictionary, extra_game_states: Array) -> Dialogu
 				inline_mutations = resolved_data.mutations,
 				time = resolved_data.time,
 				tags = data.get(&"tags", []),
+				concurrent_lines = data.get(&"concurrent_lines", [] as Array[DialogueLine]),
 				extra_game_states = extra_game_states
 			})
 
@@ -721,6 +743,9 @@ func _get_state_value(property: String, extra_game_states: Array):
 	if expression.parse(property) != OK:
 		assert(false, DMConstants.translate(&"runtime.invalid_expression").format({ expression = property, error = expression.get_error_text() }))
 
+	# Warn about possible name collisions
+	_warn_about_state_name_collisions(property, extra_game_states)
+
 	for state in _get_game_states(extra_game_states):
 		if typeof(state) == TYPE_DICTIONARY:
 			if state.has(property):
@@ -739,6 +764,50 @@ func _get_state_value(property: String, extra_game_states: Array):
 				return load(class_data.path).new()
 
 	show_error_for_missing_state_value(DMConstants.translate(&"runtime.property_not_found").format({ property = property, states = _get_state_shortcut_names(extra_game_states) }))
+
+
+# Print warnings for top-level state name collisions.
+func _warn_about_state_name_collisions(target_key: String, extra_game_states: Array) -> void:
+	# Don't run the check if this is a release build
+	if not OS.is_debug_build(): return
+	# Also don't run if the setting is off
+	if not DMSettings.get_setting(DMSettings.WARN_ABOUT_METHOD_PROPERTY_OR_SIGNAL_NAME_CONFLICTS, false): return
+
+	# Get the list of state shortcuts.
+	var state_shortcuts: Array = []
+	for node_name in DMSettings.get_setting(DMSettings.STATE_AUTOLOAD_SHORTCUTS, ""):
+		var state: Node = Engine.get_main_loop().root.get_node_or_null(node_name)
+		if state:
+			state_shortcuts.append(state)
+
+	# Check any top level names for a collision
+	var states_with_key: Array = []
+	for state in extra_game_states + [get_current_scene.call()] + state_shortcuts:
+		if state is Dictionary:
+			if state.keys().has(target_key):
+				states_with_key.append("Dictionary")
+		else:
+			var script: Script = (state as Object).get_script()
+			if script == null:
+				continue
+
+			for method in script.get_script_method_list():
+				if method.name == target_key and not states_with_key.has(state.name):
+					states_with_key.append(state.name)
+					break
+
+			for property in script.get_script_property_list():
+				if property.name == target_key and not states_with_key.has(state.name):
+					states_with_key.append(state.name)
+					break
+
+			for signal_info in script.get_script_signal_list():
+				if signal_info.name == target_key and not states_with_key.has(state.name):
+					states_with_key.append(state.name)
+					break
+
+	if states_with_key.size() > 1:
+		push_warning(DMConstants.translate(&"runtime.top_level_states_share_name").format({ states = ", ".join(states_with_key), key = target_key }))
 
 
 # Set a value on the current scene or game state
@@ -869,6 +938,9 @@ func _resolve(tokens: Array, extra_game_states: Array):
 						token.value = randi_range(1, args[0])
 						found = true
 					_:
+						# Check for top level name conflicts
+						_warn_about_state_name_collisions(function_name, extra_game_states)
+
 						for state in _get_game_states(extra_game_states):
 							if _thing_has_method(state, function_name, args):
 								token.type = DMConstants.TOKEN_VALUE
@@ -982,6 +1054,9 @@ func _resolve(tokens: Array, extra_game_states: Array):
 			if str(token.value) == "null":
 				token.type = DMConstants.TOKEN_VALUE
 				token.value = null
+			elif str(token.value) == "self":
+				token.type = DMConstants.TOKEN_VALUE
+				token.value = extra_game_states[0].self
 			elif tokens[i - 1].type == DMConstants.TOKEN_DOT:
 				var caller: Dictionary = tokens[i - 2]
 				var property = token.value
@@ -1237,8 +1312,10 @@ func _is_valid(line: DialogueLine) -> bool:
 
 # Check that a thing has a given method.
 func _thing_has_method(thing, method: String, args: Array) -> bool:
-	if Builtins.is_supported(thing):
+	if Builtins.is_supported(thing, method):
 		return thing != _autoloads
+	elif thing is Dictionary:
+		return false
 
 	if method in [&"call", &"call_deferred"]:
 		return thing.has_method(args[0])
