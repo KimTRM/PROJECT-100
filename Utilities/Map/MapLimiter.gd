@@ -2,7 +2,6 @@ class_name MapLimitter extends TileMapLayer
 
 func _ready() -> void:
 	LevelManager.ChangeTileMapBounds(GetTilemapBounds())
-	pass
 
 func GetTilemapBounds() -> Array[Vector2]:
 	var bounds: Array[Vector2] = []
