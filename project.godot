@@ -23,7 +23,7 @@ boot_splash/minimum_display_time=7
 LevelManager="*res://Globals/LevelManager.gd"
 HttpManager="*res://Globals/HTTPManager.gd"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
-EmbedGameAutoload="*res://addons/fabimakesgames.embed_game/embed_game_autoload.gd"
+GameManager="*res://Globals/GameManager.cs"
 
 [dialogue_manager]
 

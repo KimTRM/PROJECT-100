@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b2ybcteaijmtu"]
+
+[ext_resource type="Script" path="res://Scripts/Components/MapLimiter.cs" id="1_dehjo"]
+
+[node name="MapContainerComponent" type="Node2D"]
+script = ExtResource("1_dehjo")
