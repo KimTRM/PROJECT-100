@@ -1,0 +1,74 @@
+[gd_scene load_steps=4 format=3 uid="uid://bahqfay47fdok"]
+
+[ext_resource type="Texture2D" uid="uid://bcsntasu7npgo" path="res://Assets/ProjectFiles/Title.png" id="1_fk7go"]
+[ext_resource type="Script" path="res://Scripts/UI/StartingScreen/starting_menu.gd" id="1_rjkec"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l5ogm"]
+bg_color = Color(0.545098, 0.576471, 0.686275, 1)
+
+[node name="StartingMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rjkec")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_l5ogm")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -205.574
+offset_right = 205.574
+offset_bottom = 170.0
+grow_horizontal = 2
+theme_override_constants/margin_top = 120
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 70
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer2"]
+texture_filter = 1
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+size_flags_vertical = 0
+texture = ExtResource("1_fk7go")
+expand_mode = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_right = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer2/MarginContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="StartButton" type="Button" parent="MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Start"
+
+[node name="SettingsButton" type="Button" parent="MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Settings"
+
+[node name="AboutButton" type="Button" parent="MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "About"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]

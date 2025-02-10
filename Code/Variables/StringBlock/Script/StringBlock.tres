@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="VarCodeInfo" load_steps=2 format=3 uid="uid://bsducodj1co2n"]
 
-[ext_resource type="Script" path="res://Common/01 Resource/VarCodeInfo.gd" id="1_tv6oi"]
+[ext_resource type="Script" path="res://Resources/VarCodeInfo.gd" id="1_tv6oi"]
 
 [resource]
 script = ExtResource("1_tv6oi")

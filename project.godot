@@ -11,19 +11,18 @@ config_version=5
 [application]
 
 config/name="PROJECT 100"
-run/main_scene="res://AdminControl/UserAccountsMenu/LoginMenu.tscn"
+run/main_scene="res://Scenes/UI/LoginMenu/LoginMenu.tscn"
 config/features=PackedStringArray("4.3", "C#", "Mobile")
 boot_splash/bg_color=Color(0.0470588, 0.0470588, 0.0470588, 1)
-boot_splash/image="res://Assets/KLTL.png"
-config/icon="res://Assets/KLTL Logo.png"
+boot_splash/image="res://Assets/ProjectFiles/KLTL.png"
+config/icon="res://Assets/ProjectFiles/Title.png"
 boot_splash/minimum_display_time=7
 
 [autoload]
 
-LevelManager="*res://Common/00 Global/LevelManager.gd"
-HttpManager="*res://Common/00 Global/HTTPManager.gd"
+LevelManager="*res://Globals/LevelManager.gd"
+HttpManager="*res://Globals/HTTPManager.gd"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
-RuntimeDebugTools="*res://addons/runtime_debug_tools/scenes/remote_inspector.tscn"
 EmbedGameAutoload="*res://addons/fabimakesgames.embed_game/embed_game_autoload.gd"
 
 [dialogue_manager]
@@ -48,29 +47,30 @@ naming/scene_name_casing=1
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/AsepriteWizard/plugin.cfg", "res://addons/block_code/plugin.cfg", "res://addons/dialogue_manager/plugin.cfg", "res://addons/runtime_debug_tools/plugin.cfg", "res://addons/script-ide/plugin.cfg")
+enabled=PackedStringArray("res://addons/AsepriteWizard/plugin.cfg", "res://addons/block_code/plugin.cfg", "res://addons/dialogue_manager/plugin.cfg", "res://addons/script-ide/plugin.cfg")
 
 [file_customization]
 
 folder_colors={
 "res://Assets/": "yellow",
-"res://Code/": "gray",
 "res://Code/Conditionals/": "orange",
 "res://Code/Loops/": "purple",
 "res://Code/Symbols/": "blue",
 "res://Code/Variables/": "red",
-"res://Common/": "pink",
 "res://Dialouge/": "purple",
-"res://Entities/": "orange",
+"res://Globals/": "red",
 "res://Resource/": "blue",
-"res://Stages/": "green",
-"res://Utilities/": "teal",
-"res://addons/": "blue"
+"res://Resources/": "green",
+"res://Scenes/": "teal",
+"res://Scripts/": "orange",
+"res://addons/": "blue",
+"res://build/": "pink"
 }
 
 [gui]
 
-theme/custom_font="res://Assets/Jaro-Regular.ttf"
+theme/custom_font="res://Assets/ProjectFiles/Jaro-Regular.ttf"
+theme/default_font_hinting=2
 theme/default_font_subpixel_positioning=0
 theme/default_font_generate_mipmaps=true
 

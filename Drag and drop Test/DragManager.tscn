@@ -1,9 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://dntoo5nvtn8uf"]
-
-[ext_resource type="Script" path="res://Drag and drop Test/drag_manager.gd" id="1_p2mte"]
-[ext_resource type="PackedScene" uid="uid://cc427qcvgfoqb" path="res://Drag and drop Test/Block/CodeBlock.tscn" id="2_jucr7"]
-
-[node name="DragManager" type="Node2D"]
-script = ExtResource("1_p2mte")
-
-[node name="CodeBlock" parent="." instance=ExtResource("2_jucr7")]
