@@ -3,6 +3,8 @@ using Godot.Collections;
 
 public partial class HTTPManager : Node
 {
+	public static HTTPManager Instance {get; private set;}
+
 	[Signal] public delegate void RequestCompletedEventHandler(Dictionary response_data);
 	[Signal] public delegate void RequestErrorEventHandler(Dictionary response_data);
 
@@ -15,12 +17,12 @@ public partial class HTTPManager : Node
 	//private const string SERVER_URL = "http://127.0.0.1/project100/dbmediator.php";
 	private string[] SERVER_HEADERS = {"Content-Type: application/x-www-form-urlencoded"};
 
-	public Dictionary Commands = new()
-	{   
+	public static readonly Dictionary<string, string> Commands = new()
+	{
 		{"GET_USER_ACCOUNT", "get_user_account"},
-		{"ADD_USER_ACCOUNT", "add_user_account"},
-	
-		{"GET_QUIZ", "get_quiz"},
+        {"ADD_USER_ACCOUNT", "add_user_account"},
+
+        {"GET_QUIZ", "get_quiz"},
 		{"ADD_QUIZ", "add_quiz"},
 		{"DELETE_QUIZ", "delete_quiz"},
 	
@@ -30,9 +32,13 @@ public partial class HTTPManager : Node
 
 	public override void _Ready()
 	{
+		Instance = this;
+
 		_HttpRequest = new HttpRequest();
 		AddChild(_HttpRequest);
+
 		_HttpRequest.RequestCompleted += OnRequestCompleted;
+
 		RequestError += OnRequestError;
 	}
 
@@ -117,7 +123,7 @@ public partial class HTTPManager : Node
 		}
     }
 
-	public static string GenarateId()
+	public string GenarateId()
 	{
 		double TimeStamp = Time.GetUnixTimeFromSystem();
 		uint RandomPart = GD.Randi() % 100000;
