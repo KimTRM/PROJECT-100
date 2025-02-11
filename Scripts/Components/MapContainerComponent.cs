@@ -1,7 +1,8 @@
 using Godot;
 using System;
 
-public partial class MapLimiter : Node
+[GlobalClass]
+public partial class MapContainerComponent : Node2D
 {
 	[Export]
 	private TileMapLayer layer;

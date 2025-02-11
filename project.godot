@@ -21,7 +21,7 @@ boot_splash/minimum_display_time=7
 [autoload]
 
 LevelManager="*res://Globals/LevelManager.gd"
-HttpManager="*res://Globals/HTTPManager.gd"
+HttpManager="*res://Globals/HTTPManager.cs"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 GameManager="*res://Globals/GameManager.cs"
 
@@ -33,7 +33,6 @@ runtime/advanced/uses_dotnet=true
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
-window/size/always_on_top=true
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 

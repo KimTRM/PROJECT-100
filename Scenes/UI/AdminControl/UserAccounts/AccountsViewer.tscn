@@ -55,6 +55,8 @@ layout_mode = 2
 [node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
 custom_minimum_size = Vector2(950, 590)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 horizontal_scroll_mode = 0
 
 [node name="Rows" type="HBoxContainer" parent="VBoxContainer/ScrollContainer"]

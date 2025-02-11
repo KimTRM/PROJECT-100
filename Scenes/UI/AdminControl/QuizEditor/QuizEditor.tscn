@@ -64,11 +64,14 @@ text = "Reload Questions"
 [node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
 custom_minimum_size = Vector2(950, 590)
 layout_mode = 2
+size_flags_horizontal = 4
 horizontal_scroll_mode = 0
 
 [node name="QuestionContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
 theme_override_constants/separation = 8
+alignment = 1
 
 [connection signal="pressed" from="VBoxContainer/ColorRect/HBoxContainer/AddQuestion" to="." method="_on_add_question_pressed"]
 [connection signal="pressed" from="VBoxContainer/ColorRect/HBoxContainer/ReloadQuestions" to="." method="_on_reload_questions_pressed"]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=4 uid="uid://v44f4qcx5kcp"]
 
-[ext_resource type="PackedScene" uid="uid://b2ybcteaijmtu" path="res://Scenes/Components/MapContainerComponent.tscn" id="1_1bsi0"]
 [ext_resource type="PackedScene" uid="uid://dtscjhtq01e2l" path="res://Scenes/Worlds/TileTemplate/grass01.tscn" id="1_t5dos"]
+[ext_resource type="Script" path="res://Scripts/Components/MapContainerComponent.cs" id="1_u2ijb"]
 [ext_resource type="PackedScene" uid="uid://bb8k2csafhk6w" path="res://Scenes/Entities/Player/player.tscn" id="3_v8sym"]
 [ext_resource type="PackedScene" uid="uid://d37ct8qy5o2ym" path="res://Scenes/Entities/D.A.L..tscn" id="4_qef5h"]
 [ext_resource type="PackedScene" uid="uid://d284sa273yh0t" path="res://Code/Drag Manager/DragManager.tscn" id="4_rxplg"]
@@ -10,7 +10,8 @@
 y_sort_enabled = true
 position = Vector2(-1, 0)
 
-[node name="MapContainerComponent" parent="." node_paths=PackedStringArray("layer") instance=ExtResource("1_1bsi0")]
+[node name="MapContainerComponent" type="Node2D" parent="." node_paths=PackedStringArray("layer")]
+script = ExtResource("1_u2ijb")
 layer = NodePath("Grass02")
 
 [node name="Grass02" parent="MapContainerComponent" instance=ExtResource("1_t5dos")]
@@ -28,4 +29,8 @@ position = Vector2(0, -3)
 [node name="D-A-L" parent="." instance=ExtResource("4_qef5h")]
 position = Vector2(-40, -2)
 
-[node name="DragManager" parent="." instance=ExtResource("4_rxplg")]
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="DragManager" parent="UI" instance=ExtResource("4_rxplg")]
+offset_left = 2.0
+offset_right = 2.16003

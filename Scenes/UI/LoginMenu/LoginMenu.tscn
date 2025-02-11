@@ -1,8 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://f4rd76efnhp5"]
+[gd_scene load_steps=7 format=3 uid="uid://f4rd76efnhp5"]
 
-[ext_resource type="Script" path="res://Scripts/UI/LoginMenu/login_menu.gd" id="1_tmlyc"]
+[ext_resource type="Script" path="res://Scripts/UI/LoginMenu/LoginMenu.cs" id="1_nv5x4"]
 [ext_resource type="PackedScene" uid="uid://b7olgo4xh10gm" path="res://Scenes/UI/LoginMenu/SignupPanel.tscn" id="2_e5ldj"]
-[ext_resource type="Script" path="res://Scripts/UI/LoginMenu/login_panel.gd" id="2_fdyq0"]
 [ext_resource type="Texture2D" uid="uid://bcsntasu7npgo" path="res://Assets/ProjectFiles/Title.png" id="3_l6b4q"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l5ogm"]
@@ -29,7 +28,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_tmlyc")
+script = ExtResource("1_nv5x4")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -45,7 +44,6 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_jo6mb")
-script = ExtResource("2_fdyq0")
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer/LoginPanel"]
 layout_mode = 2

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Godot;
 using Godot.Collections;
 
@@ -5,19 +6,19 @@ public partial class HTTPManager : Node
 {
 	public static HTTPManager Instance {get; private set;}
 
-	[Signal] public delegate void RequestCompletedEventHandler(Dictionary response_data);
+	[Signal] public delegate void RequestCompletedEventHandler(Array<Dictionary> response_data);
 	[Signal] public delegate void RequestErrorEventHandler(Dictionary response_data);
 
 	private HttpRequest _HttpRequest;
-	[Export] private Array _RequestQueue = new();
+	[Export] private Array<Dictionary> _RequestQueue = new();
 	[Export] private bool _IsRequesting = false;
-	[Export] public bool CheckError = false;
+	[Export] public bool CheckError = true;
 
 	// private const string SERVER_URL = "https://kltldev.com/project100/dbmediator.php";
 	private const string SERVER_URL = "http://127.0.0.1/project100/dbmediator.php";
 	private string[] SERVER_HEADERS = {"Content-Type: application/x-www-form-urlencoded"};
 
-	public static readonly Dictionary<string, string> Commands = new()
+	public static readonly System.Collections.Generic.Dictionary<string, string> Commands = new()
 	{
 		{"GET_USER_ACCOUNT", "get_user_account"},
         {"ADD_USER_ACCOUNT", "add_user_account"},
@@ -36,9 +37,7 @@ public partial class HTTPManager : Node
 
 		_HttpRequest = new HttpRequest();
 		AddChild(_HttpRequest);
-
 		_HttpRequest.RequestCompleted += OnRequestCompleted;
-
 		RequestError += OnRequestError;
 	}
 
@@ -46,37 +45,32 @@ public partial class HTTPManager : Node
 	{
 		ProcessRequestQueue();
 	}
-	
-	public void QueueRequest(string command, Dictionary data)
+
+    public void QueueRequest(string command, Dictionary data)
 	{
-		_RequestQueue.Add
-		(new Dictionary
-			{
-				{"command", command},
-				{"data", data}
-			}
-		);
+        _RequestQueue.Add(new Dictionary
+        {
+            { "command", command },
+            { "data", data }
+        });
 	}
 
 	private void SendRequest(Dictionary request)
 	{
 		HttpClient client = new();
 
-		string data = client.QueryStringFromDict
-		(
-			new Dictionary
-			{
-				{"data", Json.Stringify(request["data"])}
-			}
-		);
+		var data = client.QueryStringFromDict(new Dictionary
+        { 
+            { "data", Json.Stringify(request.GetValueOrDefault("data", new Dictionary())) }
+        });
 
-		string body = "command=" + request["command"] + "&" + data;
+		var body = $"command={request.GetValueOrDefault("command", "")}&{data}";
 
 		Error err = _HttpRequest.Request(SERVER_URL, SERVER_HEADERS, HttpClient.Method.Post, body);
-	
+
 		if (err != Error.Ok)
 		{
-			EmitSignal(SignalName.RequestError, "HTTP Request Error: " + err);
+			EmitSignal(SignalName.RequestError, $"HTTP Request Error: {err}");
 			_IsRequesting = false;
 		}
 	}
@@ -87,7 +81,8 @@ public partial class HTTPManager : Node
 			return;
 
 		_IsRequesting = true;
-		SendRequest((Dictionary)_RequestQueue[0]);
+		SendRequest(_RequestQueue[0]);
+		_RequestQueue.RemoveAt(0);
 	}
 
 	private void OnRequestError(Dictionary ErrorMessage)
@@ -104,22 +99,21 @@ public partial class HTTPManager : Node
 
 		if (result != 0)
 		{
-			EmitSignal("RequestError","Connection Error: " + result);
+			EmitSignal(SignalName.RequestError, $"Connection Error: {result}");
 			return;
 		}
 
-        string ReponseBody = body.GetStringFromUtf8();
+        string ReponseBody = System.Text.Encoding.UTF8.GetString(body);
 		Json json = new();
 
 		if (json.Parse(ReponseBody) == Error.Ok)
 		{
-			Variant ParsedResponse = json.GetParsedText();
-			GD.Print(ParsedResponse); 
-			EmitSignal("RequestCompleted", ParsedResponse);
+			var ParsedResponse = json.Data;
+			EmitSignal(SignalName.RequestCompleted, ParsedResponse);
 		}
 		else
 		{
-			EmitSignal("RequestError", "JSON Parse Error");
+			EmitSignal(SignalName.RequestError, "JSON Parse Error");
 		}
     }
 
