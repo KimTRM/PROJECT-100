@@ -1,27 +1,72 @@
 using Godot;
 using Godot.Collections;
+using GodotUtilities;
 
+[Scene]
 public partial class LoginMenu : Control
 {
-	private LineEdit UserName;
+	[Node ("PanelContainer/LoginPanel/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Username")]
+	private LineEdit Username;
+	[Node ("PanelContainer/LoginPanel/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/Password")]
 	private LineEdit Password;
+
+	[Node ("PanelContainer/SignupPanel")]
+	private PanelContainer SignupPanel;
 
 	[Export]
 	private Array<Dictionary> UserDatas;
 
-	public override void _Ready()
+    public override void _Notification(int what)
+    {
+        if(what == NotificationSceneInstantiated)
+		{
+			WireNodes();
+		}
+    }
+
+    public override void _Ready()
 	{
-		UserName = GetNode<LineEdit>("PanelContainer/LoginPanel/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Username");
-		Password = GetNode<LineEdit>("PanelContainer/LoginPanel/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/Password");
-	
 		HTTPManager.Instance.RequestCompleted += OnAccountReceived;
 		var data = new Dictionary();
-		HTTPManager.Instance.QueueRequest("get_user_account", data);
+		HTTPManager.Instance.QueueRequest(HTTPManager.Instance.Commands["GET_USER_ACCOUNT"]);
 	}
 	
 	private void OnAccountReceived(Array<Dictionary> response)
 	{
 		UserDatas = response;
+	}
+
+	private void _on_login_button_pressed()
+	{
+		var username = Username.Text;
+		var password = Password.Text;
+
+		GD.Print("Username: " + username);
+		GD.Print("Password: " + password);
+
+		foreach(var user in UserDatas)
+		{
+			if(user["UserName"].ToString() == username && user["Password"].ToString() == password)
+			{
+				if(user["Role"].ToString() == "Admin")
+				{
+					GetTree().ChangeSceneToFile("res://Scenes/UI/AdminControl/AdminPage.tscn");
+				}
+				else
+				{
+					GetTree().ChangeSceneToFile("res://Scenes/UI/StartingScreen/StartingMenu.tscn");
+				}
+			}
+			else
+			{
+				GD.Print("Invalid");
+			}
+		}
+	}
+
+	private void _on_to_signup_button_pressed()
+	{
+		SignupPanel.Show();
 	}
 
 }

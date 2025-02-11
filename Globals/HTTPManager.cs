@@ -18,7 +18,7 @@ public partial class HTTPManager : Node
 	private const string SERVER_URL = "http://127.0.0.1/project100/dbmediator.php";
 	private string[] SERVER_HEADERS = {"Content-Type: application/x-www-form-urlencoded"};
 
-	public static readonly System.Collections.Generic.Dictionary<string, string> Commands = new()
+	public readonly System.Collections.Generic.Dictionary<string, string> Commands = new()
 	{
 		{"GET_USER_ACCOUNT", "get_user_account"},
         {"ADD_USER_ACCOUNT", "add_user_account"},
@@ -46,8 +46,9 @@ public partial class HTTPManager : Node
 		ProcessRequestQueue();
 	}
 
-    public void QueueRequest(string command, Dictionary data)
+    public void QueueRequest(string command, Dictionary data = null)
 	{
+		data ??= new Dictionary();
         _RequestQueue.Add(new Dictionary
         {
             { "command", command },
