@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://b6gosw6qc25tx"]
 
-[ext_resource type="Script" path="res://Scripts/UI/AdminControl/admin_page.gd" id="1_7x023"]
+[ext_resource type="Script" path="res://Scripts/UI/AdminControl/AdminPage.cs" id="1_txpec"]
 [ext_resource type="Texture2D" uid="uid://bcsntasu7npgo" path="res://Assets/ProjectFiles/Title.png" id="2_xm8k8"]
 
 [node name="AdminPage" type="Control"]
@@ -11,7 +11,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
-script = ExtResource("1_7x023")
+script = ExtResource("1_txpec")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
