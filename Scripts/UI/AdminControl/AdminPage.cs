@@ -23,6 +23,7 @@ public partial class AdminPage : Control
     public override void _Ready()
 	{
 		AccountsViewerScene = ResourceLoader.Load<PackedScene>("res://Scenes/UI/AdminControl/UserAccounts/AccountsViewer.tscn").Instantiate();
+		QuizEditorScene = ResourceLoader.Load<PackedScene>("res://Scenes/UI/AdminControl/QuizEditor/QuizEditor.tscn").Instantiate();
 		Content.AddChild(AccountsViewerScene);
 	}
 

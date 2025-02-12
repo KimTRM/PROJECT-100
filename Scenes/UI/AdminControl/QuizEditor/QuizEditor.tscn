@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cbhclcplspftq"]
 
-[ext_resource type="Script" path="res://Scripts/UI/AdminControl/QuizEditor/quiz_editor.gd" id="1_e3dl0"]
+[ext_resource type="Script" path="res://Scripts/UI/AdminControl/QuizEditor/QuizEditor.cs" id="1_0xrlg"]
 
 [node name="QuizEditor" type="MarginContainer"]
 custom_minimum_size = Vector2(1055, 500)
@@ -14,7 +14,7 @@ grow_horizontal = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
-script = ExtResource("1_e3dl0")
+script = ExtResource("1_0xrlg")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2

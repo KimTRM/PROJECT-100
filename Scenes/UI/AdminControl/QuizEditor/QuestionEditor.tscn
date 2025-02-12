@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bvuvdubi3uwau"]
 
-[ext_resource type="Script" path="res://Scripts/UI/AdminControl/QuizEditor/question_editor.gd" id="1_okcoi"]
+[ext_resource type="Script" path="res://Scripts/UI/AdminControl/QuizEditor/QuestionEditor.cs" id="1_ybj7f"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jun1v"]
 bg_color = Color(0.278431, 0.298039, 0.32549, 0.819608)
@@ -11,7 +11,7 @@ bg_color = Color(0.278431, 0.298039, 0.32549, 0.819608)
 [node name="Question" type="PanelContainer"]
 offset_right = 1015.0
 offset_bottom = 124.0
-script = ExtResource("1_okcoi")
+script = ExtResource("1_ybj7f")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
