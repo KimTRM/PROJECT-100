@@ -29,6 +29,7 @@ public partial class AdminPage : Control
 
 	private void _on_accounts_pressed()
 	{
+		HTTPManager.Instance.RequestCompleted -= ((QuizEditor)QuizEditorScene).OnQuestionsReceived;
 		QuizEditorScene.QueueFree();
 		AccountsViewerScene = ResourceLoader.Load<PackedScene>("res://Scenes/UI/AdminControl/UserAccounts/AccountsViewer.tscn").Instantiate();
 		Content.AddChild(AccountsViewerScene);
@@ -36,6 +37,7 @@ public partial class AdminPage : Control
 
 	private void _on_quiz_editor_pressed()
 	{
+        HTTPManager.Instance.RequestCompleted -= ((AccountsViewer)AccountsViewerScene).OnAccountReceived;
 		AccountsViewerScene.QueueFree();
 		QuizEditorScene = ResourceLoader.Load<PackedScene>("res://Scenes/UI/AdminControl/QuizEditor/QuizEditor.tscn").Instantiate();
 		Content.AddChild(QuizEditorScene);

@@ -11,6 +11,9 @@ public partial class LoginMenu : Control
 	[Node ("PanelContainer/LoginPanel/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/Password")]
 	private LineEdit Password;
 
+	[Node ("PanelContainer/LoginPanel/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/ErrorMessage")]
+	private Label ErrorMessage;
+
 	[Node ("PanelContainer/SignupPanel")]
 	private PanelContainer SignupPanel;
 
@@ -65,7 +68,8 @@ public partial class LoginMenu : Control
 			}
 			else
 			{
-				GD.Print("Invalid");
+				ErrorMessage.Show();
+				ErrorMessage.Text = "Invalid";
 			}
 		}
 	}

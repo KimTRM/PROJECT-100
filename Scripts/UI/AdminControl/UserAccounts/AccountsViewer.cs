@@ -43,7 +43,7 @@ public partial class AccountsViewer : MarginContainer
 		HTTPManager.Instance.QueueRequest(HTTPManager.Instance.Commands["GET_USER_ACCOUNT"]);
 	}
 
-	private void OnAccountReceived(Array<Dictionary> response)
+	public void OnAccountReceived(Array<Dictionary> response)
 	{
 		Datas = response;
 		LoadUserAccounts();

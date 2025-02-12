@@ -33,7 +33,7 @@ public partial class QuizEditor : MarginContainer
 		HTTPManager.Instance.QueueRequest(HTTPManager.Instance.Commands["GET_QUIZ"]);
 	}
 
-	private void OnQuestionsReceived(Array<Dictionary> response)
+	public void OnQuestionsReceived(Array<Dictionary> response)
 	{
 		Datas = response;
 		NumOfQuestions.Text = Datas.Count.ToString();

@@ -46,7 +46,6 @@ public partial class QuestionEditor : PanelContainer
 		}
 	}
 
-
     private bool CanSaveData()
 	{
 		Question.Modulate = Question.Text == "" ? new Color(1, 0, 0) : new Color(1, 1, 1);
