@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://b7olgo4xh10gm"]
 
-[ext_resource type="Script" path="res://Scripts/UI/LoginMenu/signup_panel.gd" id="1_k8ew3"]
+[ext_resource type="Script" path="res://Scripts/UI/LoginMenu/SignupPanel.cs" id="1_gkpfx"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jo6mb"]
 bg_color = Color(0.2, 0.223529, 0.254902, 1)
@@ -20,7 +20,7 @@ corner_radius_bottom_left = 5
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_jo6mb")
-script = ExtResource("1_k8ew3")
+script = ExtResource("1_gkpfx")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2

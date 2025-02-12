@@ -12,7 +12,7 @@ public partial class HTTPManager : Node
 	private HttpRequest _HttpRequest;
 	[Export] private Array<Dictionary> _RequestQueue = new();
 	[Export] private bool _IsRequesting = false;
-	[Export] public bool CheckError = true;
+	[Export] public bool CheckError = false;
 
 	// private const string SERVER_URL = "https://kltldev.com/project100/dbmediator.php";
 	private const string SERVER_URL = "http://127.0.0.1/project100/dbmediator.php";
