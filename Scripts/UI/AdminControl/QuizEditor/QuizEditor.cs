@@ -59,21 +59,27 @@ public partial class QuizEditor : MarginContainer
 		foreach (Dictionary data in Datas)
 		{
 			Quizes[index].ID = $"{data["ID"]}";
-			Quizes[index].QuestionNumber.Text = $"{index + 1}";
-			Quizes[index].Question.Text = $"{data["Question"]}";
-			Quizes[index].ChoiceA.Text = $"{data["ChoiceA"]}";
-			Quizes[index].ChoiceB.Text = $"{data["ChoiceB"]}";
-			Quizes[index].ChoiceC.Text = $"{data["ChoiceC"]}";
-			Quizes[index].ChoiceD.Text = $"{data["ChoiceD"]}";
-			Quizes[index].toggle_answer($"{data["CorrectAnswer"]}");
+			Quizes[index]._questionNumber.Text = $"{index + 1}";
+			Quizes[index]._questionBox.Text = $"{data["Question"]}";
+			Quizes[index]._choiceA.Text = $"{data["ChoiceA"]}";
+			Quizes[index]._choiceB.Text = $"{data["ChoiceB"]}";
+			Quizes[index]._choiceC.Text = $"{data["ChoiceC"]}";
+			Quizes[index]._choiceD.Text = $"{data["ChoiceD"]}";
+			Quizes[index].SetAnswer($"{data["CorrectAnswer"]}");
 			index++;
 		}
 	}
 
 	private void _on_add_question_pressed()
 	{
-		Node Qustion = ResourceLoader.Load<PackedScene>("res://Scenes/UI/AdminControl/QuizEditor/QuestionEditor.tscn").Instantiate();
+		QuestionEditor Qustion = (QuestionEditor)ResourceLoader.Load<PackedScene>("res://Scenes/UI/AdminControl/QuizEditor/QuestionEditor.tscn").Instantiate();
 		QuizList.AddChild(Qustion);
+	
+		Qustion._questionNumber.Text = $"{index + 1}";
+		Qustion.ID = HTTPManager.Instance.GenarateId();
+
+		index++;
+		NumOfQuestions.Text = $"{index}";
 	}
 
 	private void _on_reload_questions_pressed()

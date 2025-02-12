@@ -5,152 +5,125 @@ using Godot.Collections;
 [Scene]
 public partial class QuestionEditor : PanelContainer
 {
-	[Node ("MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/QuestionNumber")]
-	public Label QuestionNumber;
+    [Node("MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/QuestionNumber")]
+    public Label _questionNumber;
 
-	[Node ("MarginContainer/VBoxContainer/QuestionPanel/MarginContainer/QuestionBox")]
-	public LineEdit Question;
+    [Node("MarginContainer/VBoxContainer/QuestionPanel/MarginContainer/QuestionBox")]
+    public LineEdit _questionBox;
 
-	[Node ("MarginContainer/VBoxContainer/ChoicePanel/MarginContainer/HBoxContainer/ChoiceA")]
-	public LineEdit ChoiceA;
+    [Node("MarginContainer/VBoxContainer/ChoicePanel/MarginContainer/HBoxContainer/ChoiceA")]
+    public LineEdit _choiceA;
+    [Node("MarginContainer/VBoxContainer/ChoicePanel/MarginContainer/HBoxContainer/CorrectAnswerA")]
+    private CheckBox _correctAnswerA;
 
-	[Node ("MarginContainer/VBoxContainer/ChoicePanel/MarginContainer/HBoxContainer/CorrectAnswerA")]
-	public CheckBox CorrectAnswerA;
+    [Node("MarginContainer/VBoxContainer/ChoicePanel2/MarginContainer/HBoxContainer/ChoiceB")]
+    public LineEdit _choiceB;
+    [Node("MarginContainer/VBoxContainer/ChoicePanel2/MarginContainer/HBoxContainer/CorrectAnswerB")]
+    private CheckBox _correctAnswerB;
 
-	[Node ("MarginContainer/VBoxContainer/ChoicePanel2/MarginContainer/HBoxContainer/ChoiceB")]
-	public LineEdit ChoiceB;
+    [Node("MarginContainer/VBoxContainer/ChoicePanel3/MarginContainer/HBoxContainer/ChoiceC")]
+    public LineEdit _choiceC;
+    [Node("MarginContainer/VBoxContainer/ChoicePanel3/MarginContainer/HBoxContainer/CorrectAnswerC")]
+    private CheckBox _correctAnswerC;
 
-	[Node ("MarginContainer/VBoxContainer/ChoicePanel2/MarginContainer/HBoxContainer/CorrectAnswerB")]
-	public CheckBox CorrectAnswerB;
+    [Node("MarginContainer/VBoxContainer/ChoicePanel4/MarginContainer/HBoxContainer/ChoiceD")]
+    public LineEdit _choiceD;
+    [Node("MarginContainer/VBoxContainer/ChoicePanel4/MarginContainer/HBoxContainer/CorrectAnswerD")]
+    private CheckBox _correctAnswerD;
 
-	[Node ("MarginContainer/VBoxContainer/ChoicePanel3/MarginContainer/HBoxContainer/ChoiceC")]		
-	public LineEdit ChoiceC;
+    [Node("MarginContainer/VBoxContainer/MarginContainer")]
+    private MarginContainer _errorContainer;
 
-	[Node ("MarginContainer/VBoxContainer/ChoicePanel3/MarginContainer/HBoxContainer/CorrectAnswerC")]
-	public CheckBox CorrectAnswerC;
-
-	[Node ("MarginContainer/VBoxContainer/ChoicePanel4/MarginContainer/HBoxContainer/ChoiceD")]
-	public LineEdit ChoiceD;
-
-	[Node ("MarginContainer/VBoxContainer/ChoicePanel4/MarginContainer/HBoxContainer/CorrectAnswerD")]
-	public CheckBox CorrectAnswerD;
-
-	public string ID;
-	private string _CorrectAnswer = "";
-
+    public string ID;
+    private string _correctAnswer = string.Empty;
+    
     public override void _Notification(int what)
     {
-		if (what == NotificationSceneInstantiated)
-		{
-			WireNodes();
-		}
-	}
+        if (what == NotificationSceneInstantiated)
+        {
+            WireNodes();
+        }
+    }
+
+    private bool ValidateField(LineEdit field)
+    {
+        bool isValid = !string.IsNullOrEmpty(field.Text);
+        field.Modulate = isValid ? Colors.White : Colors.Red;
+        return isValid;
+    }
 
     private bool CanSaveData()
-	{
-		Question.Modulate = Question.Text == "" ? new Color(1, 0, 0) : new Color(1, 1, 1);
-		ChoiceA.Modulate = ChoiceA.Text == "" ? new Color(1, 0, 0) : new Color(1, 1, 1);
-		ChoiceB.Modulate = ChoiceB.Text == "" ? new Color(1, 0, 0) : new Color(1, 1, 1);
-		ChoiceC.Modulate = ChoiceC.Text == "" ? new Color(1, 0, 0) : new Color(1, 1, 1);
-		ChoiceD.Modulate = ChoiceD.Text == "" ? new Color(1, 0, 0) : new Color(1, 1, 1);
+    {
+        bool isValid = ValidateField(_questionBox) &&
+                        ValidateField(_choiceA) &&
+                        ValidateField(_choiceB) &&
+                        ValidateField(_choiceC) &&
+                        ValidateField(_choiceD) &&
+                        !string.IsNullOrEmpty(_correctAnswer);
 
-		if (_CorrectAnswer == "")
-		{
-			GetNode<MarginContainer>("MarginContainer/VBoxContainer/MarginContainer").Show();
-		}
-		else
-		{
-			GetNode<MarginContainer>("MarginContainer/VBoxContainer/MarginContainer").Hide();
-		}
+        _errorContainer.Visible = string.IsNullOrEmpty(_correctAnswer);
+        return isValid;
+    }
 
-		return Question.Text != "" && ChoiceA.Text != "" && ChoiceB.Text != "" && ChoiceC.Text != "" && ChoiceD.Text != "";
-	}
+    private void SaveData()
+    {
+        if (!CanSaveData()) return;
 
-	private void _on_save_button_pressed()
-	{
-		GD.Print("Save Question");
-		if (CanSaveData())
-		{
-			var data = new Dictionary
-			{
-				{"ID", ID},
-				{ "Question", Question.Text },
-				{ "Option1", ChoiceA.Text },
-				{ "Option2", ChoiceB.Text },
-				{ "Option3", ChoiceC.Text },
-				{ "Option4", ChoiceD.Text },
-				{ "Answer", _CorrectAnswer }
-			};
+        var data = new Dictionary
+        {
+            { "ID", ID },
+            { "Question", _questionBox.Text },
+            { "ChoiceA", _choiceA.Text },
+            { "ChoiceB", _choiceB.Text },
+            { "ChoiceC", _choiceC.Text },
+            { "ChoiceD", _choiceD.Text },
+            { "CorrectAnswer", _correctAnswer }
+        };
 
-			HTTPManager.Instance.QueueRequest(HTTPManager.Instance.Commands["UPDATE_QUIZ"], data);
-		}
-	}
+        HTTPManager.Instance.QueueRequest(HTTPManager.Instance.Commands["ADD_QUIZ"], data);
+    }
 
-	private void _on_delete_button_pressed()
-	{
-		var data = new Dictionary
-		{
-			{"ID", ID}
-		};
+    private void _on_save_button_pressed() => SaveData();
 
-		HTTPManager.Instance.QueueRequest(HTTPManager.Instance.Commands["DELETE_QUIZ"], data);
-		QueueFree();
-	}
+    private void _on_delete_button_pressed()
+    {
+        var data = new Dictionary { { "ID", ID } };
+        HTTPManager.Instance.QueueRequest(HTTPManager.Instance.Commands["DELETE_QUIZ"], data);
+        QueueFree();
+    }
 
-	public void toggle_answer(string answer)
-	{
-		_CorrectAnswer = answer;
-		Color greenColor = new Color(0, 1, 0);
-		Color whiteColor = new Color(1, 1, 1);
+    public void SetAnswer(string answer)
+    {
+        var checkBoxes = new[] { _correctAnswerA, _correctAnswerB, _correctAnswerC, _correctAnswerD };
+        var answers = new[] { "A", "B", "C", "D" };
 
-		CorrectAnswerA.ButtonPressed = answer == "A"? true : false;
-		CorrectAnswerB.ButtonPressed = answer == "B"? true : false;
-		CorrectAnswerC.ButtonPressed = answer == "C"? true : false;
-		CorrectAnswerD.ButtonPressed = answer == "D"? true : false;
+        for (int i = 0; i < checkBoxes.Length; i++)
+        {
+            checkBoxes[i].ButtonPressed = answers[i] == answer;
+        }
+        _correctAnswer = answer;
+    }
 
-	}
+    private void HandleAnswerToggle(CheckBox pressedBox, string answer, params CheckBox[] otherBoxes)
+    {
+        if (!pressedBox.ButtonPressed) return;
 
-	private void _on_correct_answer_a_pressed(bool button_pressed)
-	{
-		if (button_pressed)
-		{
-			CorrectAnswerB.ButtonPressed = false;
-			CorrectAnswerC.ButtonPressed = false;
-			CorrectAnswerD.ButtonPressed = false;
-			_CorrectAnswer = "A";
-		}
-	}
+        foreach (var box in otherBoxes)
+        {
+            box.ButtonPressed = false;
+        }
+        _correctAnswer = answer;
+    }
 
-	private void _on_correct_answer_b_pressed(bool button_pressed)
-	{
-		if (button_pressed)
-		{
-			CorrectAnswerA.ButtonPressed = false;
-			CorrectAnswerC.ButtonPressed = false;
-			CorrectAnswerD.ButtonPressed = false;
-			_CorrectAnswer = "B";
-		}
-	}
+    private void _on_correct_answer_a_toggled(bool buttonPressed) =>
+        HandleAnswerToggle(_correctAnswerA, "A", _correctAnswerB, _correctAnswerC, _correctAnswerD);
 
-	private void _on_correct_answer_c_pressed(bool button_pressed)	
-	{
-		if (button_pressed)
-		{
-			CorrectAnswerA.ButtonPressed = false;
-			CorrectAnswerB.ButtonPressed = false;
-			CorrectAnswerD.ButtonPressed = false;
-			_CorrectAnswer = "C";
-		}
-	}
+    private void _on_correct_answer_b_toggled(bool buttonPressed) =>
+        HandleAnswerToggle(_correctAnswerB, "B", _correctAnswerA, _correctAnswerC, _correctAnswerD);
 
-	private void _on_correct_answer_d_pressed(bool button_pressed)
-	{
-		if (button_pressed)
-		{
-			CorrectAnswerA.ButtonPressed = false;
-			CorrectAnswerB.ButtonPressed = false;
-			CorrectAnswerC.ButtonPressed = false;
-			_CorrectAnswer = "D";
-		}
-	}
+    private void _on_correct_answer_c_toggled(bool buttonPressed) =>
+        HandleAnswerToggle(_correctAnswerC, "C", _correctAnswerA, _correctAnswerB, _correctAnswerD);
+
+    private void _on_correct_answer_d_toggled(bool buttonPressed) =>
+        HandleAnswerToggle(_correctAnswerD, "D", _correctAnswerA, _correctAnswerB, _correctAnswerC);
 }
