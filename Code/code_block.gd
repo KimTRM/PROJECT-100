@@ -18,7 +18,7 @@ func _gui_input(event) -> void:
 		elif !event.pressed:
 			stop_drag()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if dragging:
 		global_position = get_global_mouse_position() + offset
 

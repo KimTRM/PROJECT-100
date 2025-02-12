@@ -1,6 +1,5 @@
-[gd_scene load_steps=7 format=3 uid="uid://d284sa273yh0t"]
+[gd_scene load_steps=6 format=3 uid="uid://d284sa273yh0t"]
 
-[ext_resource type="Script" path="res://Code/Drag Manager/drag_manager.gd" id="1_8840x"]
 [ext_resource type="PackedScene" uid="uid://c4pumpxm1xsoq" path="res://Code/Variables/BooleanBlock/BooleanBlock.tscn" id="3_vxa88"]
 [ext_resource type="PackedScene" uid="uid://cojfo4sy7un6u" path="res://Code/Variables/FloatBlock/FloatBlock.tscn" id="4_jsohs"]
 [ext_resource type="PackedScene" uid="uid://ghfmwfgjo781" path="res://Code/Variables/StringBlock/StringBlock.tscn" id="5_67utt"]
@@ -26,7 +25,6 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.00552, 1)
 size_flags_horizontal = 0
-script = ExtResource("1_8840x")
 
 [node name="IntBlock" parent="." instance=ExtResource("6_w0wfh")]
 layout_mode = 0
