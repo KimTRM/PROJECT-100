@@ -65,7 +65,7 @@ public partial class QuestionEditor : PanelContainer
         return isValid;
     }
 
-    private void _on_save_button_pressed()
+    public void _on_save_button_pressed()
     {
         if (!CanSaveData()) return;
 

@@ -33,6 +33,8 @@ public partial class LoginMenu : Control
 		HTTPManager.Instance.RequestCompleted += OnAccountReceived;
 		HTTPManager.Instance.RequestError += CheckError;
 		HTTPManager.Instance.QueueRequest(HTTPManager.Instance.Commands["GET_USER_ACCOUNT"]);
+
+		// GameManager.Instance.SavePlayerData("1739364453", new Vector2(0, 0), "1", "5");
 	}
 	
 	private void CheckError(Dictionary ErrorMessage)

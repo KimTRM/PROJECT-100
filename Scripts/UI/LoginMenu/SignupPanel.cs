@@ -57,13 +57,13 @@ public partial class SignupPanel : PanelContainer
         }
     }
 
-    private void _on_signup_button_pressed()
+    public void _on_signup_button_pressed()
     {
         if (!CanSaveData()) return;
 
         var data = new Dictionary
             {
-                {"UserID", HTTPManager.Instance.GenarateId()},
+                { "UserID", HTTPManager.Instance.GenarateId()},
                 { "FirstName", Firstname.Text },
                 { "LastName", Lastname.Text },
                 { "UserName", Username.Text },
