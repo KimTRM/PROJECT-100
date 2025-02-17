@@ -49,7 +49,7 @@ public partial class SignupPanel : PanelContainer
             ErrorMessage.Show();
             ErrorMessage.Text = "Please fill out all fields";
             return false;
-        }   
+        }
         else
         {
             ErrorMessage.Hide();
@@ -57,11 +57,11 @@ public partial class SignupPanel : PanelContainer
         }
     }
 
-    private void SaveData()
+    private void _on_signup_button_pressed()
     {
-        if (CanSaveData())
-        {
-            var data = new Dictionary
+        if (!CanSaveData()) return;
+
+        var data = new Dictionary
             {
                 {"UserID", HTTPManager.Instance.GenarateId()},
                 { "FirstName", Firstname.Text },
@@ -70,13 +70,8 @@ public partial class SignupPanel : PanelContainer
                 { "Password", Password.Text },
                 { "Role", "Student" }
             };
-            HTTPManager.Instance.QueueRequest(HTTPManager.Instance.Commands["ADD_USER_ACCOUNT"], data);
-            Hide();
-        }
-    }
+        HTTPManager.Instance.QueueRequest(HTTPManager.Instance.Commands["ADD_USER_ACCOUNT"], data);
+        Hide();
 
-    private void _on_signup_button_pressed()
-    {
-        SaveData();
     }
 }

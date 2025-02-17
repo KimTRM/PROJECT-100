@@ -181,9 +181,8 @@ _data = {
 "walk_up": SubResource("Animation_blahc")
 }
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_o1ray"]
-radius = 11.0
-height = 64.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dckff"]
+size = Vector2(21, 44)
 
 [node name="Player" type="CharacterBody2D"]
 disable_mode = 2
@@ -223,10 +222,9 @@ libraries = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 5)
-shape = SubResource("CapsuleShape2D_o1ray")
+position = Vector2(0.5, 9)
+shape = SubResource("RectangleShape2D_dckff")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(-1, -27)
 zoom = Vector2(2.5, 2.5)
 script = ExtResource("3_djuet")

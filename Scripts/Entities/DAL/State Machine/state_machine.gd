@@ -1,4 +1,4 @@
-class_name StateMachine extends Node
+class_name StateMachines extends Node
 
 var states: Array[ States ] 
 var pre_state: States

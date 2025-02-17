@@ -1,101 +1,142 @@
 using Godot;
+using Godot.Collections;
 using GodotUtilities;
-using System;
 
-[Scene]
+[Scene, Icon("res://Assets/Icons/Player.png")]
 public partial class Player : CharacterBody2D
 {
-	[Export] public float Speed = 105.0f;
-    [Export] public float JumpVelocity = -500.0f;
-    [Export] public float GravityScale = 1.0f; // Scale for adjusting gravity for smoother jumps
-    [Export] public float JumpSmoothness = 0.5f; // Smoothness for jumps using lerp
-    [Export] public int MaxJumps = 2;
-    [Export] public float Friction = 5.0f; // Increase for smoother friction effect
+	// [Export] public float WalkSpeed { get; set; } = 150.0f;
+	// [Export] public float RunSpeed { get; set; } = 250.0f;
+	// [Export(PropertyHint.Range, "0,1")] public float Acceleration { get; set; } = 0.1f;
+	// [Export(PropertyHint.Range, "0,1")] public float Deceleration { get; set; } = 0.1f;
 
-    [Node]
-    private AnimationPlayer animationPlayer;
+	// [Export] public float JumpForce { get; set; } = -400.0f;
+	// [Export(PropertyHint.Range, "0,1")] public float DecelerateOnJumpRelease { get; set; } = 0.5f;
+
+	// [Export] public float DashSpeed { get; set; } = 1000.0f;
+	// [Export] public float DashMaxDistance { get; set; } = 300.0f;
+	// [Export] public Curve DashCurve { get; set; }
+	// [Export] public float DashCooldown { get; set; } = 1.0f;
+
+	// private double gravity;
+	// private bool isDashing = false;
+	// private float dashStartPosition = 0;
+	// private int dashDirection = 0;
+	// private float dashTimer = 0;
+
+	[Node]
+	public AnimationPlayer animationPlayer;
 
 	[Node]
 	private Sprite2D sprite2D;
 
-	private float gravity;
-    private int jumpCount = 0;
+	[Export]
+	private Dictionary<string, State> states;
 
-    public override void _Notification(int what)
-    {
-        if (what == NotificationSceneInstantiated)
-        {
-            WireNodes();
-        }
-    }
+	private State currentState;
 
-    public override void _Ready()
-    {
-        gravity = (float)ProjectSettings.GetSetting("physics/2d/default_gravity") * GravityScale;
-    }
+	[Export(PropertyHint.Range, "50,500")] public float MaxSpeed = 200.0f;
+	[Export(PropertyHint.Range, "0,100")] public float GravityScale = 20.0f;
+	[Export(PropertyHint.Range, "0,20")] public float JumpHeight = 2.0f;
 
-    public override void _PhysicsProcess(double delta)
-    {
-        // Add the gravity smoothly
-        if (!IsOnFloor())
-        {
-            Velocity = new Vector2(Velocity.X, Velocity.Y + (float)(gravity * delta));
-        }
+	public float JumpMagnitude => Mathf.Sqrt(2 * JumpHeight * GravityScale * 9.8f);
 
-        // Reset jump count when on the floor
-        if (IsOnFloor())
-        {
-            jumpCount = 0;
-        }
+	public override void _Notification(int what)
+	{
+		if (what == NotificationSceneInstantiated)
+		{
+			WireNodes();
+		}
+	}
 
-        // Handle jumps and double air jump
-        if (Input.IsActionJustPressed("Up") && jumpCount < MaxJumps)
-        {
-            Velocity = new Vector2(Velocity.X, Mathf.Lerp(Velocity.Y, JumpVelocity, JumpSmoothness));
-            jumpCount++;
-        }
+	public override void _Ready()
+	{
+		// GravityScale = (float)ProjectSettings.GetSetting("physics/2d/default_gravity");
 
-        // Get the input direction: -1, 0, 1
-        float direction = Input.GetAxis("Left", "Right");
+		states = new Dictionary<string, State>
+			{
+				{ "IdleState", new IdleState(this) },
+				{ "WalkingState", new WalkingState(this) },
+				{ "JumpingState", new JumpingState(this) },
+				{ "FallingState", new FallingState(this) },
+			};
 
-        // Flip the Sprite
-        if (direction > 0)
-        {
-            sprite2D.FlipH = false;
-        }
-        else if (direction < 0)
-        {
-			sprite2D.FlipH = true;
-        }
+		currentState = states["IdleState"];
+		currentState.Enter();
+	}
 
-        // Play animations
-        if (IsOnFloor())
-        {
-            if (Mathf.IsZeroApprox(direction))
-            {
-                // animatedSprite.Play("idle");
-            }
-            else
-            {
-                // animatedSprite.Play("run");
-            }
-        }
-        else
-        {
-            // animatedSprite.Play("jump");
-        }
+	public override void _Input(InputEvent @event)
+	{
+		currentState.HandleInput(@event);
+	}
 
-        // Apply movement
-        if (!Mathf.IsZeroApprox(direction))
-        {
-            Velocity = new Vector2(direction * Speed, Velocity.Y);
-        }
-        else
-        {
-            // Apply friction to simulate sliding when stopping
-            Velocity = new Vector2(Mathf.MoveToward(Velocity.X, 0, Friction * Speed), Velocity.Y);
-        }
+	public override void _Process(double delta)
+	{
+		currentState.Update(delta);
+	}
 
-        MoveAndSlide();
-    }
+	public override void _PhysicsProcess(double delta)
+	{
+		currentState.PhysicsUpdate(delta);
+	}
+
+	public void Transition(string StateName)
+	{
+		if (states.ContainsKey(StateName) && currentState != states[StateName])
+		{
+			currentState.Exit();
+			currentState = states[StateName];
+			currentState.Enter();
+		}
+	}
+
+	// public override void _PhysicsProcess(double delta)
+	// {
+	// 	if (!IsOnFloor())
+	// 	{
+	// 		Velocity = new Vector2(Velocity.X, (float)(Velocity.Y + gravity * delta));
+	// 	}
+
+	// 	float speed = Input.IsActionPressed("Run") ? RunSpeed : WalkSpeed;
+
+	// 	float direction = Input.GetAxis("Left", "Right");
+	// 	if (direction != 0)
+	// 	{
+	// 		Velocity = new Vector2(Mathf.MoveToward(Velocity.X, direction * speed, speed * Acceleration), Velocity.Y);
+	// 		sprite2D.FlipH = direction == -1;
+	// 		if (IsOnFloor())
+	// 		{
+	// 			if (Input.IsActionPressed("Down"))
+	// 			{
+	// 				// AnimatedSprite.Play("RunSword");
+	// 			}
+	// 			else
+	// 			{
+	// 				animationPlayer?.Play("walk_side");
+	// 			}
+	// 		}
+	// 	}
+	// 	else
+	// 	{
+	// 		Velocity = new Vector2(Mathf.MoveToward(Velocity.X, 0, WalkSpeed * Deceleration), Velocity.Y);
+	// 		if (IsOnFloor())
+	// 		{
+	// 			animationPlayer?.Play("idle_side");
+	// 		}
+	// 	}
+
+	// 	// Handle jump.
+	// 	if (Input.IsActionJustPressed("Jump") && (IsOnFloor() || IsOnWall()))
+	// 	{
+	// 		Velocity = new Vector2(Velocity.Y, JumpForce);
+	// 		// AnimatedSprite.Play("Jump");
+	// 	}
+
+	// 	if (Input.IsActionJustReleased("Jump") && Velocity.Y < 0)
+	// 	{
+	// 		Velocity = new Vector2(Velocity.X, Velocity.Y * DecelerateOnJumpRelease);
+	// 	}
+
+	// 	MoveAndSlide();
+	// }
 }

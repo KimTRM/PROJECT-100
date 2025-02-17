@@ -1,11 +1,11 @@
 [gd_scene load_steps=17 format=3 uid="uid://bb8k2csafhk6w"]
 
-[ext_resource type="Script" path="res://Scripts/Entities/Player/player.gd" id="1_y1s6u"]
-[ext_resource type="Texture2D" uid="uid://b8v544pw40ynf" path="res://Assets/SpriteSheets/Character-Male.png" id="2_s63mq"]
-[ext_resource type="Script" path="res://Scripts/Entities/Player/PlayerCamera.cs" id="3_x05l3"]
-[ext_resource type="Script" path="res://Scripts/Entities/Player/Player State Machine/player_state_manager.gd" id="4_ikttp"]
-[ext_resource type="Script" path="res://Scripts/Entities/Player/Player State Machine/States/state_idle.gd" id="5_ru3g7"]
-[ext_resource type="Script" path="res://Scripts/Entities/Player/Player State Machine/States/state_walk.gd" id="6_pgp57"]
+[ext_resource type="Script" path="res://Scripts/Entities/Player/player.gd" id="1_cuyxf"]
+[ext_resource type="Texture2D" uid="uid://b8v544pw40ynf" path="res://Assets/SpriteSheets/Character-Male.png" id="2_t4nwy"]
+[ext_resource type="Script" path="res://Scripts/Entities/Player/PlayerCamera.cs" id="3_8xekp"]
+[ext_resource type="Script" path="res://Scripts/Entities/Player/Player State Machine/player_state_manager.gd" id="4_in7t8"]
+[ext_resource type="Script" path="res://Scripts/Entities/Player/Player State Machine/States/state_idle.gd" id="5_yicg2"]
+[ext_resource type="Script" path="res://Scripts/Entities/Player/Player State Machine/States/state_walk.gd" id="6_1bds6"]
 
 [sub_resource type="Animation" id="Animation_utl62"]
 length = 0.001
@@ -236,12 +236,12 @@ collision_layer = 2
 collision_mask = 20
 motion_mode = 1
 platform_floor_layers = 4294967041
-script = ExtResource("1_y1s6u")
+script = ExtResource("1_cuyxf")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 position = Vector2(0, -12)
-texture = ExtResource("2_s63mq")
+texture = ExtResource("2_t4nwy")
 hframes = 6
 vframes = 5
 frame = 1
@@ -275,16 +275,16 @@ shape = SubResource("CapsuleShape2D_ypl2b")
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -23)
 zoom = Vector2(2.5, 2.5)
-script = ExtResource("3_x05l3")
+script = ExtResource("3_8xekp")
 
 [node name="PlayerStateManager" type="Node" parent="."]
-script = ExtResource("4_ikttp")
+script = ExtResource("4_in7t8")
 
 [node name="Idle" type="Node" parent="PlayerStateManager"]
-script = ExtResource("5_ru3g7")
+script = ExtResource("5_yicg2")
 
 [node name="Walk" type="Node" parent="PlayerStateManager"]
-script = ExtResource("6_pgp57")
+script = ExtResource("6_1bds6")
 
 [node name="Direction" type="Marker2D" parent="."]
 

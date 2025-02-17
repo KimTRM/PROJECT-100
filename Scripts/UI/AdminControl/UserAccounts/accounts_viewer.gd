@@ -45,5 +45,6 @@ func load_user_ids() -> void:
 		var RoleLebel: Label = Label.new()
 		role_column.add_child(RoleLebel)
 		RoleLebel.text = UID["Role"]
+		
 func test():
 	question_number.text = str(user_datas.size())

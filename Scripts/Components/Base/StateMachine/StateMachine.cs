@@ -1,32 +1,19 @@
 using Godot;
 using Godot.Collections;
 
+[GlobalClass]
 public partial class StateMachine : Node
 {
-	[Export] 
-	public NodePath initialStatePath;
-
     [Export] 
 	private Dictionary<string, State> states = new Dictionary<string, State>();
 	
 	private State currentState;
-
-	public override void _Ready()
+	
+    public void StartMachine(Dictionary<string, State> initStates)
     {
-		foreach (Node node in GetChildren())
-		{
-			if (node is State state)
-			{
-				states[node.Name] = state;
-				
-				state.Exit();
-			}
-		}
+        currentState = initStates["IdleState"];
 
-		currentState = GetNode<State>(initialStatePath);
-
-		
-		currentState.Enter();
+        currentState.Enter();
     }
 
     public override void _Input(InputEvent @event)
