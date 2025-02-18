@@ -16,7 +16,7 @@ public partial class HTTPManager : Node
 
 	// private const string SERVER_URL = "https://kltldev.com/project100/dbmediator.php";
 	private const string SERVER_URL = "http://127.0.0.1/project100/dbmediator.php";
-	private string[] SERVER_HEADERS = {"Content-Type: application/x-www-form-urlencoded"};
+	private string[] SERVER_HEADERS = ["Content-Type: application/x-www-form-urlencoded"];
 
 	public readonly System.Collections.Generic.Dictionary<string, string> Commands = new()
 	{
@@ -104,10 +104,10 @@ public partial class HTTPManager : Node
 			return;
 		}
 
-        string ReponseBody = System.Text.Encoding.UTF8.GetString(body);
+        string ResponseBody = System.Text.Encoding.UTF8.GetString(body);
 		Json json = new();
 
-		if (json.Parse(ReponseBody) == Error.Ok)
+		if (json.Parse(ResponseBody) == Error.Ok)
 		{
 			var ParsedResponse = json.Data;
 			EmitSignal(SignalName.RequestCompleted, ParsedResponse);
