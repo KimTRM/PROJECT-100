@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cbim2qw3563y2" path="res://Scenes/Worlds/TileTemplate/PrototypeTilemap.tscn" id="3_6yupe"]
 [ext_resource type="PackedScene" uid="uid://d37ct8qy5o2ym" path="res://Scenes/Entities/D.A.L..tscn" id="4_qef5h"]
 [ext_resource type="PackedScene" uid="uid://d284sa273yh0t" path="res://Code/Drag Manager/DragManager.tscn" id="4_rxplg"]
-[ext_resource type="PackedScene" uid="uid://b65nxfrri78o0" path="res://Scenes/Entities/Player/Player.tscn" id="7_2586v"]
+[ext_resource type="PackedScene" uid="uid://b65nxfrri78o0" path="res://Scenes/Entities/Player/player.tscn" id="7_2586v"]
 
 [node name="World" type="Node2D"]
 y_sort_enabled = true

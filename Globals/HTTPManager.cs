@@ -16,7 +16,7 @@ public partial class HTTPManager : Node
 
 	// private const string SERVER_URL = "https://kltldev.com/project100/dbmediator.php";
 	private const string SERVER_URL = "http://127.0.0.1/project100/dbmediator.php";
-	private string[] SERVER_HEADERS = ["Content-Type: application/x-www-form-urlencoded"];
+	private string[] SERVER_HEADERS = {"Content-Type: application/x-www-form-urlencoded"};
 
 	public readonly System.Collections.Generic.Dictionary<string, string> Commands = new()
 	{
