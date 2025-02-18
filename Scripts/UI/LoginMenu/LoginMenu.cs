@@ -47,7 +47,7 @@ public partial class LoginMenu : Control
 		UserDatas = response;
 	}
 
-	private void _on_login_button_pressed()
+	public void _on_login_button_pressed()
 	{
 		var username = Username.Text;
 		var password = Password.Text;
