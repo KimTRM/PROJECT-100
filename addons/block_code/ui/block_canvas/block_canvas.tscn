@@ -123,7 +123,6 @@ mouse_filter = 2
 
 [node name="EmptyBox" type="VBoxContainer" parent="."]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 size_flags_vertical = 4
 
@@ -134,6 +133,7 @@ horizontal_alignment = 1
 
 [node name="SelectedNodeBox" type="VBoxContainer" parent="."]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 size_flags_vertical = 4
 
@@ -153,6 +153,7 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 theme_type_variation = &"InspectorActionButton"
+disabled = true
 text = "Add Block Code"
 icon = ExtResource("2_710vn")
 

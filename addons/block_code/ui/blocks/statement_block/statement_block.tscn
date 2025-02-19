@@ -34,6 +34,8 @@ unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 1
 script = ExtResource("2_lctqt")
+color = Color(1, 1, 1, 1)
+block_type = 4
 
 [node name="DragDropArea" parent="VBoxContainer/TopMarginContainer" instance=ExtResource("3_mbxhq")]
 layout_mode = 2

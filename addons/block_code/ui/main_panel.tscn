@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bq37yla8ya707"]
+[gd_scene load_steps=18 format=3 uid="uid://bq37yla8ya707"]
 
 [ext_resource type="Script" path="res://addons/block_code/ui/main_panel.gd" id="1_u0xju"]
 [ext_resource type="PackedScene" uid="uid://dlabt3bgmpna2" path="res://addons/block_code/ui/picker/picker.tscn" id="2_hv5f3"]
@@ -8,7 +8,6 @@
 [ext_resource type="Script" path="res://addons/block_code/block_code_node/block_code.gd" id="5_ryub5"]
 [ext_resource type="Script" path="res://addons/block_code/serialization/block_serialization_tree.gd" id="6_10rp4"]
 [ext_resource type="Script" path="res://addons/block_code/serialization/block_serialization.gd" id="7_8ddqa"]
-[ext_resource type="Script" path="res://addons/block_code/serialization/value_block_serialization.gd" id="8_81pqi"]
 [ext_resource type="Script" path="res://addons/block_code/serialization/block_script_serialization.gd" id="8_eexy6"]
 [ext_resource type="Script" path="res://addons/block_code/code_generation/variable_definition.gd" id="9_5oygf"]
 
@@ -24,65 +23,27 @@ data = {
 [sub_resource type="ImageTexture" id="ImageTexture_mrr6q"]
 image = SubResource("Image_8e63u")
 
-[sub_resource type="Resource" id="Resource_3a713"]
-script = ExtResource("8_81pqi")
-name = &"CanvasItem_get_modulate"
+[sub_resource type="Resource" id="Resource_x677c"]
+script = ExtResource("7_8ddqa")
+name = &"ready"
+children = Array[ExtResource("7_8ddqa")]([])
 arguments = {}
 
-[sub_resource type="Resource" id="Resource_xdhqd"]
-script = ExtResource("7_8ddqa")
-name = &"CanvasItem_set_modulate"
-children = Array[ExtResource("7_8ddqa")]([])
-arguments = {
-"value": SubResource("Resource_3a713")
-}
-
-[sub_resource type="Resource" id="Resource_8nu1l"]
-script = ExtResource("7_8ddqa")
-name = &"queue_free_node"
-children = Array[ExtResource("7_8ddqa")]([])
-arguments = {
-"node": ""
-}
-
-[sub_resource type="Resource" id="Resource_d5ttg"]
-script = ExtResource("8_81pqi")
-name = &"CanvasItem_get_visible"
-arguments = {}
-
-[sub_resource type="Resource" id="Resource_fnl6f"]
-script = ExtResource("7_8ddqa")
-name = &"CanvasItem_set_visible"
-children = Array[ExtResource("7_8ddqa")]([])
-arguments = {
-"value": SubResource("Resource_d5ttg")
-}
-
-[sub_resource type="Resource" id="Resource_nplar"]
-script = ExtResource("7_8ddqa")
-name = &"define_method"
-children = Array[ExtResource("7_8ddqa")]([SubResource("Resource_xdhqd"), SubResource("Resource_8nu1l"), SubResource("Resource_fnl6f")])
-arguments = {
-"method_name": &"llll"
-}
-
-[sub_resource type="Resource" id="Resource_bxtwg"]
+[sub_resource type="Resource" id="Resource_0fq4a"]
 script = ExtResource("6_10rp4")
-root = SubResource("Resource_nplar")
-canvas_position = Vector2(-5500, -100)
+root = SubResource("Resource_x677c")
+canvas_position = Vector2(-75, 25)
 
 [sub_resource type="Resource" id="Resource_542hc"]
 script = ExtResource("8_eexy6")
 script_inherits = "MarginContainer"
-block_serialization_trees = Array[ExtResource("6_10rp4")]([SubResource("Resource_bxtwg")])
+block_serialization_trees = Array[ExtResource("6_10rp4")]([SubResource("Resource_0fq4a")])
 variables = Array[ExtResource("9_5oygf")]([])
 generated_script = "extends MarginContainer
 
 
-func llll():
-	modulate = (modulate)
-	''.queue_free()
-	visible = (visible)
+func _ready():
+	pass
 
 "
 version = 0
@@ -163,7 +124,6 @@ theme_override_constants/margin_bottom = 4
 layout_mode = 2
 
 [node name="BlockCanvas" parent="MarginContainer/HBoxContainer/ScriptVBox/MarginContainer/PickerSplit/MarginContainer/VBoxContainer" instance=ExtResource("4_cu87g")]
-unique_name_in_owner = true
 layout_mode = 2
 
 [node name="BlockCode" type="Node" parent="MarginContainer/HBoxContainer/ScriptVBox/MarginContainer/PickerSplit/MarginContainer/VBoxContainer/BlockCanvas"]
