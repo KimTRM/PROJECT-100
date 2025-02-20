@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=4 uid="uid://v44f4qcx5kcp"]
+[gd_scene load_steps=7 format=4 uid="uid://v44f4qcx5kcp"]
 
+[ext_resource type="Script" path="res://Scripts/World.cs" id="1_o4e6j"]
 [ext_resource type="Script" path="res://Scripts/Components/MapContainerComponent.cs" id="1_u2ijb"]
 [ext_resource type="PackedScene" uid="uid://cbim2qw3563y2" path="res://Scenes/Worlds/TileTemplate/PrototypeTilemap.tscn" id="3_6yupe"]
 [ext_resource type="PackedScene" uid="uid://d37ct8qy5o2ym" path="res://Scenes/Entities/D.A.L..tscn" id="4_qef5h"]
@@ -9,6 +10,7 @@
 [node name="World" type="Node2D"]
 y_sort_enabled = true
 position = Vector2(-1, 0)
+script = ExtResource("1_o4e6j")
 
 [node name="MapContainerComponent2" type="Node2D" parent="." node_paths=PackedStringArray("layer")]
 position = Vector2(1, 0)
@@ -30,7 +32,7 @@ JumpHeight = 3.778
 [node name="D-A-L" parent="." instance=ExtResource("4_qef5h")]
 position = Vector2(-40, -16)
 
-[node name="UI" type="CanvasLayer" parent="."]
+[node name="UserInterface" type="CanvasLayer" parent="."]
 
-[node name="MainPanel" parent="UI" instance=ExtResource("5_vhxru")]
+[node name="MainPanel" parent="UserInterface" instance=ExtResource("5_vhxru")]
 visible = false

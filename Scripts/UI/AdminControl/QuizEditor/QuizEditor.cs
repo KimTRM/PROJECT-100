@@ -94,6 +94,7 @@ public partial class QuizEditor : MarginContainer
 		index = 0;
 
 		HTTPManager.Instance.RequestCompleted -= OnQuestionsReceived;
+		
 		HTTPManager.Instance.RequestCompleted += OnQuestionsReceived;
 		HTTPManager.Instance.QueueRequest(HTTPManager.Instance.Commands["GET_QUIZ"]);
 	}

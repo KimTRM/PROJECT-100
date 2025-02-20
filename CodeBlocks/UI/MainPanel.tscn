@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bp0aevc7dehng" path="res://CodeBlocks/UI/BlockCanvas/BlockCanvas.tscn" id="1_4yxsc"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_utt0q"]
-bg_color = Color(0.2544, 0.38224, 0.48, 1)
+bg_color = Color(0.173341, 0.294419, 0.387008, 1)
 corner_radius_top_left = 24
 corner_radius_top_right = 24
 corner_radius_bottom_right = 24

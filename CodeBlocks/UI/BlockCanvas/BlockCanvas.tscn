@@ -101,7 +101,7 @@ theme_override_constants/margin_bottom = 8
 [node name="ZoomButtons" type="HBoxContainer" parent="WindowContainer/Overlay/MarginContainer"]
 layout_mode = 2
 
-[node name="ZoomInButton" type="Button" parent="WindowContainer/Overlay/MarginContainer/ZoomButtons"]
+[node name="ZoomOutButton" type="Button" parent="WindowContainer/Overlay/MarginContainer/ZoomButtons"]
 custom_minimum_size = Vector2(25, 0)
 layout_mode = 2
 focus_mode = 0
@@ -115,13 +115,13 @@ focus_mode = 0
 theme_override_font_sizes/font_size = 24
 text = "1.0x"
 
-[node name="ZoomOutButton" type="Button" parent="WindowContainer/Overlay/MarginContainer/ZoomButtons"]
+[node name="ZoomInButton" type="Button" parent="WindowContainer/Overlay/MarginContainer/ZoomButtons"]
 custom_minimum_size = Vector2(25, 0)
 layout_mode = 2
 focus_mode = 0
 theme_override_font_sizes/font_size = 24
 text = "+"
 
-[connection signal="pressed" from="WindowContainer/Overlay/MarginContainer/ZoomButtons/ZoomInButton" to="WindowContainer/Window" method="_on_zoom_in_button_pressed"]
-[connection signal="pressed" from="WindowContainer/Overlay/MarginContainer/ZoomButtons/ZoomButton" to="WindowContainer/Window" method="_on_zoom_button_pressed"]
-[connection signal="pressed" from="WindowContainer/Overlay/MarginContainer/ZoomButtons/ZoomOutButton" to="WindowContainer/Window" method="_on_zoom_out_button_pressed"]
+[connection signal="pressed" from="WindowContainer/Overlay/MarginContainer/ZoomButtons/ZoomOutButton" to="." method="_on_zoom_out_button_pressed"]
+[connection signal="pressed" from="WindowContainer/Overlay/MarginContainer/ZoomButtons/ZoomButton" to="." method="_on_zoom_button_pressed"]
+[connection signal="pressed" from="WindowContainer/Overlay/MarginContainer/ZoomButtons/ZoomInButton" to="." method="_on_zoom_in_button_pressed"]
