@@ -1,0 +1,76 @@
+[gd_scene load_steps=2 format=3 uid="uid://dl1yi3e2oqj0k"]
+
+[ext_resource type="PackedScene" uid="uid://rkxkm6m8ey64" path="res://Code/Variables/IntBlock/IntBlock.tscn" id="1_1gcx5"]
+
+[node name="BlockPicker" type="MarginContainer"]
+custom_minimum_size = Vector2(200, 0)
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 200.0
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="IntBlock" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("1_1gcx5")]
+layout_mode = 2
+
+[node name="IntBlock2" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("1_1gcx5")]
+layout_mode = 2
+
+[node name="IntBlock3" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("1_1gcx5")]
+layout_mode = 2
+
+[node name="IntBlock4" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("1_1gcx5")]
+layout_mode = 2
+
+[node name="IntBlock5" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("1_1gcx5")]
+layout_mode = 2
+
+[node name="IntBlock6" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("1_1gcx5")]
+layout_mode = 2
+
+[node name="IntBlock7" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("1_1gcx5")]
+layout_mode = 2
+
+[node name="IntBlock8" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("1_1gcx5")]
+layout_mode = 2
+
+[node name="IntBlock9" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("1_1gcx5")]
+layout_mode = 2
+
+[node name="IntBlock10" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("1_1gcx5")]
+layout_mode = 2
+
+[node name="IntBlock11" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("1_1gcx5")]
+layout_mode = 2
+
+[node name="IntBlock12" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("1_1gcx5")]
+layout_mode = 2
+
+[node name="IntBlock13" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("1_1gcx5")]
+layout_mode = 2
+
+[node name="IntBlock14" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("1_1gcx5")]
+layout_mode = 2
+
+[node name="IntBlock15" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("1_1gcx5")]
+layout_mode = 2
+
+[node name="IntBlock16" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("1_1gcx5")]
+layout_mode = 2

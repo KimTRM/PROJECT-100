@@ -16,9 +16,11 @@ script = ExtResource("1_084tk")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 2
+mouse_filter = 1
 
 [node name="WindowContainer" type="Control" parent="."]
 layout_mode = 2
+mouse_filter = 1
 
 [node name="Window" type="Control" parent="WindowContainer"]
 layout_mode = 1
