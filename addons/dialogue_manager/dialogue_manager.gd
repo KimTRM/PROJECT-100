@@ -60,6 +60,8 @@ var _autoloads: Dictionary = {}
 var _node_properties: Array = []
 var _method_info_cache: Dictionary = {}
 
+var _dotnet_dialogue_manager: RefCounted
+
 
 func _ready() -> void:
 	# Cache the known Node2D properties
@@ -70,13 +72,8 @@ func _ready() -> void:
 	temp_node.free()
 
 	# Make the dialogue manager available as a singleton
-	if Engine.has_singleton("DialogueManager"):
-		Engine.unregister_singleton("DialogueManager")
-	Engine.register_singleton("DialogueManager", self)
-
-	# Connect up the C# signals if need be
-	if DMSettings.check_for_dotnet_solution():
-		_get_dotnet_dialogue_manager().Prepare()
+	if not Engine.has_singleton("DialogueManager"):
+		Engine.register_singleton("DialogueManager", self)
 
 
 ## Step through lines and run any mutations until we either hit some dialogue or the end of the conversation
@@ -103,7 +100,7 @@ func get_next_dialogue_line(resource: DialogueResource, key: String = "", extra_
 
 	# If our dialogue is nothing then we hit the end
 	if not _is_valid(dialogue):
-		(func(): dialogue_ended.emit(resource)).call_deferred()
+		dialogue_ended.emit.call_deferred(resource)
 		return null
 
 	# Run the mutation if it is one
@@ -118,7 +115,7 @@ func get_next_dialogue_line(resource: DialogueResource, key: String = "", extra_
 				pass
 		if actual_next_id in [DMConstants.ID_END_CONVERSATION, DMConstants.ID_NULL, null]:
 			# End the conversation
-			(func(): dialogue_ended.emit(resource)).call_deferred()
+			dialogue_ended.emit.call_deferred(resource)
 			return null
 		else:
 			return await get_next_dialogue_line(resource, dialogue.next_id, extra_game_states, mutation_behaviour)
@@ -167,7 +164,7 @@ func get_line(resource: DialogueResource, key: String, extra_game_states: Array)
 	var data: Dictionary = resource.lines.get(key)
 
 	# If next_id is an expression we need to resolve it.
-	if data.has("next_id_expression"):
+	if data.has(&"next_id_expression"):
 		data.next_id = await _resolve(data.next_id_expression, extra_game_states)
 
 	# This title key points to another title key so we should jump there instead
@@ -207,17 +204,14 @@ func get_line(resource: DialogueResource, key: String, extra_game_states: Array)
 				cummulative_weight += sibling.weight
 
 	# Find any simultaneously said lines.
+	var concurrent_lines: Array[DialogueLine] = []
 	if data.has(&"concurrent_lines"):
 		# If the list includes this line then it isn't the origin line so ignore it.
-		if data.concurrent_lines.has(data.id):
-			data.concurrent_lines = [] as Array[DialogueLine]
-		else:
-			var concurrent_lines: Array[DialogueLine] = []
+		if not data.concurrent_lines.has(data.id):
 			for concurrent_id: String in data.concurrent_lines:
 				var concurrent_line: DialogueLine = await get_line(resource, concurrent_id, extra_game_states)
 				if concurrent_line:
 					concurrent_lines.append(concurrent_line)
-			data.concurrent_lines = concurrent_lines
 
 	# If this line is blank and it's the last line then check for returning snippets.
 	if data.type in [DMConstants.TYPE_COMMENT, DMConstants.TYPE_UNKNOWN]:
@@ -255,6 +249,7 @@ func get_line(resource: DialogueResource, key: String, extra_game_states: Array)
 
 	# Set up a line object.
 	var line: DialogueLine = await create_dialogue_line(data, extra_game_states)
+	line.concurrent_lines = concurrent_lines
 
 	# If the jump point somehow has no content then just end.
 	if not line: return null
@@ -467,12 +462,25 @@ func _get_example_balloon_path() -> String:
 #region dotnet bridge
 
 
-func _get_dotnet_dialogue_manager() -> Node:
-	return load(get_script().resource_path.get_base_dir() + "/DialogueManager.cs").new()
+func _get_dotnet_dialogue_manager() -> RefCounted:
+	if not is_instance_valid(_dotnet_dialogue_manager):
+		_dotnet_dialogue_manager = load(get_script().resource_path.get_base_dir() + "/DialogueManager.cs").new()
+	return _dotnet_dialogue_manager
 
 
 func _bridge_get_new_instance() -> Node:
+	# For some reason duplicating the node with its signals doesn't work so we have to copy them over manually
 	var instance = new()
+	for s: Dictionary in dialogue_started.get_connections():
+		instance.dialogue_started.connect(s.callable)
+	for s: Dictionary in passed_title.get_connections():
+		instance.passed_title.connect(s.callable)
+	for s: Dictionary in got_dialogue.get_connections():
+		instance.got_dialogue.connect(s.callable)
+	for s: Dictionary in mutated.get_connections():
+		instance.mutated.connect(s.callable)
+	for s: Dictionary in dialogue_ended.get_connections():
+		instance.dialogue_ended.connect(s.callable)
 	instance.get_current_scene = get_current_scene
 	return instance
 
@@ -558,7 +566,6 @@ func create_dialogue_line(data: Dictionary, extra_game_states: Array) -> Dialogu
 				inline_mutations = resolved_data.mutations,
 				time = resolved_data.time,
 				tags = data.get(&"tags", []),
-				concurrent_lines = data.get(&"concurrent_lines", [] as Array[DialogueLine]),
 				extra_game_states = extra_game_states
 			})
 

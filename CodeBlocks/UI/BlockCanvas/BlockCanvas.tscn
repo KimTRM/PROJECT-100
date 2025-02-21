@@ -1,0 +1,141 @@
+[gd_scene load_steps=7 format=3 uid="uid://bp0aevc7dehng"]
+
+[ext_resource type="Script" path="res://CodeBlocks/UI/BlockCanvas/BlockCanvas.cs" id="1_084tk"]
+[ext_resource type="PackedScene" uid="uid://rkxkm6m8ey64" path="res://Code/Variables/IntBlock/IntBlock.tscn" id="1_ha26f"]
+[ext_resource type="StyleBox" uid="uid://ckwftcgkqlc7e" path="res://Code/Variables/IntBlock/IntBlock.tres" id="2_vlhft"]
+[ext_resource type="PackedScene" uid="uid://c4pumpxm1xsoq" path="res://Code/Variables/BooleanBlock/BooleanBlock.tscn" id="3_28aru"]
+[ext_resource type="PackedScene" uid="uid://cojfo4sy7un6u" path="res://Code/Variables/FloatBlock/FloatBlock.tscn" id="5_gldq2"]
+[ext_resource type="PackedScene" uid="uid://ghfmwfgjo781" path="res://Code/Variables/StringBlock/StringBlock.tscn" id="6_8ld84"]
+
+[node name="BlockCanvas" type="MarginContainer"]
+clip_contents = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_084tk")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="WindowContainer" type="Control" parent="."]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="Window" type="Control" parent="WindowContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="IntBlock" parent="WindowContainer/Window" instance=ExtResource("1_ha26f")]
+layout_mode = 0
+offset_left = 89.0
+offset_top = 109.0
+offset_right = 303.0
+offset_bottom = 147.0
+theme_override_styles/panel = ExtResource("2_vlhft")
+
+[node name="BooleanBlock" parent="WindowContainer/Window" instance=ExtResource("3_28aru")]
+layout_mode = 0
+offset_left = 90.0
+offset_top = 154.0
+offset_right = 348.0
+offset_bottom = 194.0
+
+[node name="FloatBlock" parent="WindowContainer/Window" instance=ExtResource("5_gldq2")]
+layout_mode = 0
+offset_left = 90.0
+offset_top = 202.0
+offset_right = 322.0
+offset_bottom = 240.0
+
+[node name="StringBlock" parent="WindowContainer/Window" instance=ExtResource("6_8ld84")]
+layout_mode = 0
+offset_left = 89.0
+offset_top = 65.0
+offset_right = 326.0
+offset_bottom = 103.0
+
+[node name="Overlay" type="Control" parent="WindowContainer"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+mouse_filter = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="WindowContainer/Overlay"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Execute" type="Button" parent="WindowContainer/Overlay/MarginContainer2"]
+layout_mode = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 24
+text = "Execute"
+
+[node name="MarginContainer" type="MarginContainer" parent="WindowContainer/Overlay"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="ZoomButtons" type="HBoxContainer" parent="WindowContainer/Overlay/MarginContainer"]
+layout_mode = 2
+
+[node name="ZoomOutButton" type="Button" parent="WindowContainer/Overlay/MarginContainer/ZoomButtons"]
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 24
+text = "-"
+flat = true
+
+[node name="ZoomButton" type="Button" parent="WindowContainer/Overlay/MarginContainer/ZoomButtons"]
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 24
+text = "1.0x"
+flat = true
+
+[node name="ZoomInButton" type="Button" parent="WindowContainer/Overlay/MarginContainer/ZoomButtons"]
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 24
+text = "+"
+flat = true
+
+[connection signal="pressed" from="WindowContainer/Overlay/MarginContainer/ZoomButtons/ZoomOutButton" to="." method="_on_zoom_out_button_pressed"]
+[connection signal="pressed" from="WindowContainer/Overlay/MarginContainer/ZoomButtons/ZoomButton" to="." method="_on_zoom_button_pressed"]
+[connection signal="pressed" from="WindowContainer/Overlay/MarginContainer/ZoomButtons/ZoomInButton" to="." method="_on_zoom_in_button_pressed"]

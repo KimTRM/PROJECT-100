@@ -104,10 +104,10 @@ public partial class HTTPManager : Node
 			return;
 		}
 
-        string ReponseBody = System.Text.Encoding.UTF8.GetString(body);
+        string ResponseBody = System.Text.Encoding.UTF8.GetString(body);
 		Json json = new();
 
-		if (json.Parse(ReponseBody) == Error.Ok)
+		if (json.Parse(ResponseBody) == Error.Ok)
 		{
 			var ParsedResponse = json.Data;
 			EmitSignal(SignalName.RequestCompleted, ParsedResponse);

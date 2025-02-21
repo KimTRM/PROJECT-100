@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bk2argmujy0kk"]
+[gd_scene load_steps=7 format=3 uid="uid://bk2argmujy0kk"]
 
 [ext_resource type="Script" path="res://addons/block_code/ui/blocks/control_block/control_block.gd" id="1_2hbir"]
 [ext_resource type="Script" path="res://addons/block_code/ui/blocks/utilities/background/gutter.gd" id="2_6o8pf"]
@@ -6,88 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://c7puyxpqcq6xo" path="res://addons/block_code/ui/blocks/utilities/drag_drop_area/drag_drop_area.tscn" id="3_21e8n"]
 [ext_resource type="PackedScene" uid="uid://b1oge52xhjqnu" path="res://addons/block_code/ui/blocks/utilities/snap_point/snap_point.tscn" id="3_nhryi"]
 [ext_resource type="PackedScene" uid="uid://b1xvp3u11h41s" path="res://addons/block_code/ui/blocks/utilities/template_editor/template_editor.tscn" id="4_6uktl"]
-[ext_resource type="Script" path="res://addons/block_code/block_code_node/block_code.gd" id="7_r70vv"]
-[ext_resource type="Script" path="res://addons/block_code/serialization/block_serialization_tree.gd" id="8_b8l8j"]
-[ext_resource type="Script" path="res://addons/block_code/serialization/block_serialization.gd" id="9_40yrx"]
-[ext_resource type="Script" path="res://addons/block_code/serialization/value_block_serialization.gd" id="10_u0wy2"]
-[ext_resource type="Script" path="res://addons/block_code/serialization/block_script_serialization.gd" id="11_4gtwy"]
-[ext_resource type="Script" path="res://addons/block_code/code_generation/variable_definition.gd" id="12_slahy"]
-
-[sub_resource type="Resource" id="Resource_d78b4"]
-script = ExtResource("10_u0wy2")
-name = &"subtract"
-arguments = {
-"a": 1.0,
-"b": 1.0
-}
-
-[sub_resource type="Resource" id="Resource_tmd4m"]
-script = ExtResource("10_u0wy2")
-name = &"multiply"
-arguments = {
-"a": 1.0,
-"b": 1.0
-}
-
-[sub_resource type="Resource" id="Resource_08qp6"]
-script = ExtResource("10_u0wy2")
-name = &"add"
-arguments = {
-"a": SubResource("Resource_d78b4"),
-"b": SubResource("Resource_tmd4m")
-}
-
-[sub_resource type="Resource" id="Resource_38l3s"]
-script = ExtResource("10_u0wy2")
-name = &"compare"
-arguments = {
-"float1": SubResource("Resource_08qp6"),
-"float2": 1.0,
-"op": "<"
-}
-
-[sub_resource type="Resource" id="Resource_4e5yk"]
-script = ExtResource("9_40yrx")
-name = &"if"
-children = Array[ExtResource("9_40yrx")]([])
-arguments = {
-"condition": SubResource("Resource_38l3s")
-}
-
-[sub_resource type="Resource" id="Resource_7emxa"]
-script = ExtResource("9_40yrx")
-name = &"CanvasItem_set_modulate"
-children = Array[ExtResource("9_40yrx")]([])
-arguments = {
-"value": Color(1, 0.54902, 0, 1)
-}
-
-[sub_resource type="Resource" id="Resource_83qyy"]
-script = ExtResource("9_40yrx")
-name = &"ready"
-children = Array[ExtResource("9_40yrx")]([SubResource("Resource_4e5yk"), SubResource("Resource_7emxa")])
-arguments = {}
-
-[sub_resource type="Resource" id="Resource_m8l7g"]
-script = ExtResource("8_b8l8j")
-root = SubResource("Resource_83qyy")
-canvas_position = Vector2(425, 325)
-
-[sub_resource type="Resource" id="Resource_0yjrj"]
-script = ExtResource("11_4gtwy")
-script_inherits = "Control"
-block_serialization_trees = Array[ExtResource("8_b8l8j")]([SubResource("Resource_m8l7g")])
-variables = Array[ExtResource("12_slahy")]([])
-generated_script = "extends Control
-
-
-func _ready():
-	if (((1 - 1) + (1 * 1)) < 1):
-		pass
-	modulate = Color(1, 0.549, 0, 1)
-
-"
-version = 0
 
 [node name="ControlBlock" type="MarginContainer" node_paths=PackedStringArray("bottom_snap", "child_snap", "template_editor")]
 size_flags_horizontal = 0
@@ -175,10 +93,6 @@ script = ExtResource("2_tx0qr")
 color = Color(1, 1, 1, 1)
 block_type = 4
 control_part = 1
-
-[node name="BlockCode" type="Node" parent="VBoxContainer/MarginContainer/Rows/BottomBackground"]
-script = ExtResource("7_r70vv")
-block_script = SubResource("Resource_0yjrj")
 
 [node name="SnapPoint" parent="VBoxContainer" instance=ExtResource("3_nhryi")]
 layout_mode = 2

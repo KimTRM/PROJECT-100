@@ -65,7 +65,7 @@ public partial class QuestionEditor : PanelContainer
         return isValid;
     }
 
-    private void SaveData()
+    public void _on_save_button_pressed()
     {
         if (!CanSaveData()) return;
 
@@ -82,8 +82,6 @@ public partial class QuestionEditor : PanelContainer
 
         HTTPManager.Instance.QueueRequest(HTTPManager.Instance.Commands["ADD_QUIZ"], data);
     }
-
-    private void _on_save_button_pressed() => SaveData();
 
     private void _on_delete_button_pressed()
     {
