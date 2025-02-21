@@ -39,6 +39,11 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_l5ogm")
 
+[node name="Title" type="Sprite2D" parent="PanelContainer"]
+position = Vector2(137.688, 56.4375)
+scale = Vector2(1.03648, 1.03484)
+texture = ExtResource("3_l6b4q")
+
 [node name="LoginPanel" type="PanelContainer" parent="PanelContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
@@ -155,10 +160,12 @@ flat = true
 visible = false
 layout_mode = 2
 
-[node name="Title" type="Sprite2D" parent="."]
-position = Vector2(137.688, 56.4375)
-scale = Vector2(1.03648, 1.03484)
-texture = ExtResource("3_l6b4q")
+[node name="LoadingPanel" type="MarginContainer" parent="PanelContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="PanelContainer/LoadingPanel"]
+layout_mode = 2
 
 [connection signal="pressed" from="PanelContainer/LoginPanel/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/VBoxContainer/MarginContainer/LoginButton" to="." method="_on_login_button_pressed"]
 [connection signal="pressed" from="PanelContainer/LoginPanel/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/VBoxContainer/HBoxContainer/ToSignupButton" to="." method="_on_to_signup_button_pressed"]

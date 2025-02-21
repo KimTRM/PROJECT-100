@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://4280cgrri3yh"]
+[gd_scene load_steps=5 format=3 uid="uid://4280cgrri3yh"]
 
 [ext_resource type="PackedScene" uid="uid://bp0aevc7dehng" path="res://CodeBlocks/UI/BlockCanvas/BlockCanvas.tscn" id="1_4yxsc"]
 [ext_resource type="PackedScene" uid="uid://dl1yi3e2oqj0k" path="res://CodeBlocks/UI/BlockPicker/BlockPicker.tscn" id="1_54hmq"]
+[ext_resource type="PackedScene" uid="uid://cirmbhtex875r" path="res://CodeBlocks/UI/Console/Console.tscn" id="3_n7jqw"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_utt0q"]
 bg_color = Color(0.173341, 0.294419, 0.387008, 1)
@@ -51,10 +52,5 @@ split_offset = 504
 custom_minimum_size = Vector2(600, 200)
 layout_mode = 2
 
-[node name="Console" type="MarginContainer" parent="PanelContainer/MarginContainer/HBoxContainer/VSplitContainer"]
-clip_contents = true
-custom_minimum_size = Vector2(0, 100)
-layout_mode = 2
-
-[node name="Panel" type="Panel" parent="PanelContainer/MarginContainer/HBoxContainer/VSplitContainer/Console"]
+[node name="Console" parent="PanelContainer/MarginContainer/HBoxContainer/VSplitContainer" instance=ExtResource("3_n7jqw")]
 layout_mode = 2

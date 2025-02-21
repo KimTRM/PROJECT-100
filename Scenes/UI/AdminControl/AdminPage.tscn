@@ -143,6 +143,7 @@ layout_mode = 2
 text = "QUIZ EDITOR"
 
 [node name="Scores" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/SideBar/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 text = "SCORES"
 
