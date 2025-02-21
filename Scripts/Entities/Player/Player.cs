@@ -1,6 +1,7 @@
 using Godot;
 using Godot.Collections;
 using GodotUtilities;
+using DialogueManagerRuntime;
 
 [Scene, Icon("res://Assets/Icons/Player.png")]
 public partial class Player : CharacterBody2D
@@ -29,6 +30,9 @@ public partial class Player : CharacterBody2D
 
 	[Node]
 	private Sprite2D sprite2D;
+
+	[Node("Sprite2D/Direction/InteractableFinder")]
+	private Area2D InteractableFinder;
 
 	[Export]
 	private Dictionary<string, State> states;
@@ -93,6 +97,15 @@ public partial class Player : CharacterBody2D
 
 	public override void _PhysicsProcess(double delta)
 	{
+		if (Input.IsActionJustPressed("interact"))
+		{
+			var interactable = InteractableFinder.GetOverlappingAreas();
+			if (interactable.Count > 0)
+			{
+				(interactable[0] as Interactable)?.Interact();
+			}
+		}
+
 		if (!IsOnFloor())
 		{
 			Velocity = new Vector2(Velocity.X, (float)(Velocity.Y + gravity * delta));

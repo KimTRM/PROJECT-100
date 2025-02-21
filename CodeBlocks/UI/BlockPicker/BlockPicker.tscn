@@ -6,7 +6,7 @@
 custom_minimum_size = Vector2(200, 0)
 anchors_preset = 9
 anchor_bottom = 1.0
-offset_right = 200.0
+offset_right = 270.0
 grow_vertical = 2
 
 [node name="Panel" type="Panel" parent="."]
@@ -18,59 +18,62 @@ horizontal_scroll_mode = 0
 
 [node name="MarginContainer" type="MarginContainer" parent="ScrollContainer"]
 layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
 theme_override_constants/margin_left = 24
 theme_override_constants/margin_top = 24
 theme_override_constants/margin_right = 24
 theme_override_constants/margin_bottom = 24
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer"]
+[node name="CodeBlockContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 24
+alignment = 1
 
-[node name="IntBlock" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("1_1gcx5")]
+[node name="IntBlock" parent="ScrollContainer/MarginContainer/CodeBlockContainer" instance=ExtResource("1_1gcx5")]
 layout_mode = 2
 
-[node name="IntBlock2" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("1_1gcx5")]
+[node name="IntBlock2" parent="ScrollContainer/MarginContainer/CodeBlockContainer" instance=ExtResource("1_1gcx5")]
 layout_mode = 2
 
-[node name="IntBlock3" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("1_1gcx5")]
+[node name="IntBlock3" parent="ScrollContainer/MarginContainer/CodeBlockContainer" instance=ExtResource("1_1gcx5")]
 layout_mode = 2
 
-[node name="IntBlock4" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("1_1gcx5")]
+[node name="IntBlock4" parent="ScrollContainer/MarginContainer/CodeBlockContainer" instance=ExtResource("1_1gcx5")]
 layout_mode = 2
 
-[node name="IntBlock5" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("1_1gcx5")]
+[node name="IntBlock5" parent="ScrollContainer/MarginContainer/CodeBlockContainer" instance=ExtResource("1_1gcx5")]
 layout_mode = 2
 
-[node name="IntBlock6" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("1_1gcx5")]
+[node name="IntBlock6" parent="ScrollContainer/MarginContainer/CodeBlockContainer" instance=ExtResource("1_1gcx5")]
 layout_mode = 2
 
-[node name="IntBlock7" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("1_1gcx5")]
+[node name="IntBlock7" parent="ScrollContainer/MarginContainer/CodeBlockContainer" instance=ExtResource("1_1gcx5")]
 layout_mode = 2
 
-[node name="IntBlock8" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("1_1gcx5")]
+[node name="IntBlock8" parent="ScrollContainer/MarginContainer/CodeBlockContainer" instance=ExtResource("1_1gcx5")]
 layout_mode = 2
 
-[node name="IntBlock9" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("1_1gcx5")]
+[node name="IntBlock9" parent="ScrollContainer/MarginContainer/CodeBlockContainer" instance=ExtResource("1_1gcx5")]
 layout_mode = 2
 
-[node name="IntBlock10" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("1_1gcx5")]
+[node name="IntBlock10" parent="ScrollContainer/MarginContainer/CodeBlockContainer" instance=ExtResource("1_1gcx5")]
 layout_mode = 2
 
-[node name="IntBlock11" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("1_1gcx5")]
+[node name="IntBlock11" parent="ScrollContainer/MarginContainer/CodeBlockContainer" instance=ExtResource("1_1gcx5")]
 layout_mode = 2
 
-[node name="IntBlock12" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("1_1gcx5")]
+[node name="IntBlock12" parent="ScrollContainer/MarginContainer/CodeBlockContainer" instance=ExtResource("1_1gcx5")]
 layout_mode = 2
 
-[node name="IntBlock13" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("1_1gcx5")]
+[node name="IntBlock13" parent="ScrollContainer/MarginContainer/CodeBlockContainer" instance=ExtResource("1_1gcx5")]
 layout_mode = 2
 
-[node name="IntBlock14" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("1_1gcx5")]
+[node name="IntBlock14" parent="ScrollContainer/MarginContainer/CodeBlockContainer" instance=ExtResource("1_1gcx5")]
 layout_mode = 2
 
-[node name="IntBlock15" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("1_1gcx5")]
+[node name="IntBlock15" parent="ScrollContainer/MarginContainer/CodeBlockContainer" instance=ExtResource("1_1gcx5")]
 layout_mode = 2
 
-[node name="IntBlock16" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("1_1gcx5")]
+[node name="IntBlock16" parent="ScrollContainer/MarginContainer/CodeBlockContainer" instance=ExtResource("1_1gcx5")]
 layout_mode = 2

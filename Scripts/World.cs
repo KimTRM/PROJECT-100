@@ -18,7 +18,7 @@ public partial class World : Node2D
 
     public override void _Input(InputEvent @event)
     {
-		if (Input.IsActionJustPressed("ui_accept"))
+		if (Input.IsActionJustPressed("ui_cancel"))
 		{
 			MainPanel.Visible = !MainPanel.Visible;
 		}
