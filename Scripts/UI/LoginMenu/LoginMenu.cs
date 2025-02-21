@@ -17,6 +17,12 @@ public partial class LoginMenu : Control
 	[Node ("PanelContainer/SignupPanel")]
 	private PanelContainer SignupPanel;
 
+	[Node ("PanelContainer/LoadingPanel")]
+	private MarginContainer LoadingPanel;
+
+	[Node ("PanelContainer/NoConnectionPanel")]
+	private MarginContainer NoConnectionPanel;
+
 	[Export]
 	private Array<Dictionary> UserDatas;
 
@@ -30,6 +36,7 @@ public partial class LoginMenu : Control
 
     public override void _Ready()
 	{
+		LoadingPanel.Show();
 		HTTPManager.Instance.RequestCompleted += OnAccountReceived;
 		HTTPManager.Instance.RequestError += CheckError;
 		HTTPManager.Instance.QueueRequest(HTTPManager.Instance.Commands["GET_USER_ACCOUNT"]);
@@ -39,11 +46,17 @@ public partial class LoginMenu : Control
 	
 	private void CheckError(Dictionary ErrorMessage)
 	{
-		GD.Print("No Connection");
+		NoConnectionPanel.Show();
+
+		HTTPManager.Instance.RequestCompleted -= OnAccountReceived;
+		HTTPManager.Instance.RequestError -= CheckError;
 	}
 	
 	private void OnAccountReceived(Array<Dictionary> response)
 	{
+		LoadingPanel.Hide();
+		NoConnectionPanel.Hide();
+
 		UserDatas = response;
 	}
 
@@ -61,10 +74,16 @@ public partial class LoginMenu : Control
 			{
 				if(user["Role"].ToString() == "Admin")
 				{
+					HTTPManager.Instance.RequestCompleted -= OnAccountReceived;
+					HTTPManager.Instance.RequestError -= CheckError;
+
 					GetTree().ChangeSceneToFile("res://Scenes/UI/AdminControl/AdminPage.tscn");
 				}
 				else
 				{
+					HTTPManager.Instance.RequestCompleted -= OnAccountReceived;
+					HTTPManager.Instance.RequestError -= CheckError;
+
 					GetTree().ChangeSceneToFile("res://Scenes/UI/StartingScreen/StartingMenu.tscn");
 				}
 			}
@@ -79,5 +98,18 @@ public partial class LoginMenu : Control
 	private void _on_to_signup_button_pressed()
 	{
 		SignupPanel.Show();
+	}
+
+	private void _on_reconnect_button_pressed()
+	{
+		NoConnectionPanel.Hide();
+		HTTPManager.Instance.RequestCompleted += OnAccountReceived;
+		HTTPManager.Instance.RequestError += CheckError;
+		HTTPManager.Instance.QueueRequest(HTTPManager.Instance.Commands["GET_USER_ACCOUNT"]);
+	}
+
+	private void _on_play_anyway_button_pressed()
+	{
+		GetTree().ChangeSceneToFile("res://Scenes/UI/StartingScreen/StartingMenu.tscn");
 	}
 }
