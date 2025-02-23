@@ -14,15 +14,12 @@ public partial class SettingsMenu : CanvasLayer
 		{
 			case 0:
 				DisplayServer.WindowSetSize(new Vector2I(1920, 1080));
-				GD.Print("1920x1080");
 				break;
 			case 1:
 				DisplayServer.WindowSetSize(new Vector2I(1600, 900));
-				GD.Print("1600x900");
 				break;
 			case 2:
 				DisplayServer.WindowSetSize(new Vector2I(1280, 720));
-				GD.Print("1280x720");
 				break;
 		}
 	}

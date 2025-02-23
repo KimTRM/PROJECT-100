@@ -4,7 +4,7 @@ public partial class StartingMenu : Control
 {
 	void _on_start_button_pressed()
 	{
-		GetTree().ChangeSceneToFile("res://Scenes/Worlds/world.tscn");
+		GameManager.Instance.LoadScene("res://Scenes/Worlds/world.tscn");
 	}
 
 	void _on_settings_button_pressed()
@@ -25,6 +25,6 @@ public partial class StartingMenu : Control
 
 	void _on_logout_button_pressed()
 	{
-		GetTree().ChangeSceneToFile("res://Scenes/UI/LoginMenu/LoginMenu.tscn");
+		GameManager.Instance.LoadScene("res://Scenes/UI/LoginMenu/LoginMenu.tscn");
 	}
 }

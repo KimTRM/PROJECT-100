@@ -56,6 +56,6 @@ public partial class AdminPage : Control
 		HTTPManager.Instance.RequestCompleted -= ((QuizEditor)QuizEditorScene).OnQuestionsReceived;
 		HTTPManager.Instance.RequestCompleted -= ((AccountsViewer)AccountsViewerScene).OnAccountReceived;
 		
-		GetTree().ChangeSceneToFile("res://Scenes/UI/LoginMenu/LoginMenu.tscn");
+		GameManager.Instance.LoadScene("res://Scenes/UI/LoginMenu/LoginMenu.tscn");
 	}
 }
