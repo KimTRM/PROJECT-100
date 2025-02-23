@@ -157,6 +157,24 @@ visible = false
 layout_mode = 2
 text = "Chapter 5"
 
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/SideBar"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -44.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 28
+theme_override_constants/margin_top = 28
+theme_override_constants/margin_right = 28
+theme_override_constants/margin_bottom = 8
+
+[node name="LogoutButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/SideBar/MarginContainer2"]
+layout_mode = 2
+text = "Log out"
+
 [node name="Content" type="ColorRect" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(1055, 650)
 layout_mode = 2
@@ -166,3 +184,4 @@ color = Color(0.121569, 0.0901961, 0.121569, 0.54902)
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/SideBar/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/Accounts" to="." method="_on_accounts_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/SideBar/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/QuizEditor" to="." method="_on_quiz_editor_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/SideBar/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/Scores" to="." method="_on_scores_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/SideBar/MarginContainer2/LogoutButton" to="." method="_on_logout_button_pressed"]

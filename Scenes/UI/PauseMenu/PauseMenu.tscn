@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/UI/PauseMenu/PauseMenu.cs" id="1_2o5dk"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4hlp2"]
-bg_color = Color(0.2, 0.223529, 0.254902, 1)
+bg_color = Color(0.2, 0.223529, 0.254902, 0.784314)
 
 [node name="PauseMenu" type="CanvasLayer"]
 process_mode = 3

@@ -17,4 +17,9 @@ public partial class StartingMenu : Control
 	{
 		
 	}
+
+	void _on_exit_button_pressed()
+	{
+		GetTree().Quit();
+	}
 }

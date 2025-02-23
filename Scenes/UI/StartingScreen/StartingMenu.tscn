@@ -71,6 +71,12 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "About"
 
+[node name="ExitButton" type="Button" parent="MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Exit"
+
 [connection signal="pressed" from="MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/AboutButton" to="." method="_on_about_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]

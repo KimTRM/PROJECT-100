@@ -33,7 +33,6 @@ JumpHeight = 3.778
 position = Vector2(-40, -16)
 
 [node name="UserInterface" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="MainPanel" parent="UserInterface" instance=ExtResource("5_vhxru")]
 visible = false
