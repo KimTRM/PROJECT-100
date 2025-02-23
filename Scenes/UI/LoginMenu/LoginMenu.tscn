@@ -22,7 +22,7 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c7n5u"]
-bg_color = Color(0, 0, 0, 0.321569)
+bg_color = Color(0, 0, 0, 0.427451)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t1og7"]
 bg_color = Color(0.161023, 0.161023, 0.161023, 1)
@@ -183,13 +183,19 @@ layout_mode = 2
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_c7n5u")
 
+[node name="Label" type="Label" parent="PanelContainer/LoadingPanel"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "LOADING..."
+horizontal_alignment = 1
+
 [node name="NoConnectionPanel" type="MarginContainer" parent="PanelContainer"]
 visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 400
-theme_override_constants/margin_top = 190
+theme_override_constants/margin_top = 181
 theme_override_constants/margin_right = 400
-theme_override_constants/margin_bottom = 190
+theme_override_constants/margin_bottom = 181
 
 [node name="PanelContainer" type="PanelContainer" parent="PanelContainer/NoConnectionPanel"]
 layout_mode = 2

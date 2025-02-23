@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bahqfay47fdok"]
 
 [ext_resource type="Texture2D" uid="uid://bcsntasu7npgo" path="res://Assets/ProjectFiles/Title.png" id="1_fk7go"]
-[ext_resource type="Script" path="res://Scripts/UI/StartingScreen/starting_menu.gd" id="1_rjkec"]
+[ext_resource type="Script" path="res://Scripts/UI/StartingScreen/StartingMenu.cs" id="1_jfvfq"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l5ogm"]
 bg_color = Color(0.545098, 0.576471, 0.686275, 1)
@@ -13,7 +13,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_rjkec")
+script = ExtResource("1_jfvfq")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -72,3 +72,5 @@ theme_override_font_sizes/font_size = 32
 text = "About"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/AboutButton" to="." method="_on_about_button_pressed"]

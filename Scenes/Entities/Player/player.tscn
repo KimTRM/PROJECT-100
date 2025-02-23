@@ -220,6 +220,7 @@ metadata/_aseprite_wizard_interface_config_ = {
 metadata/_aseprite_wizard_source_file_hash_ = "ce117a974f5f951e7c76016bfc7c042b"
 
 [node name="Direction" type="Marker2D" parent="Sprite2D"]
+visible = false
 
 [node name="InteractableFinder" type="Area2D" parent="Sprite2D/Direction"]
 collision_layer = 0
@@ -235,6 +236,7 @@ libraries = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0.5, 9)
 shape = SubResource("RectangleShape2D_dckff")
 
