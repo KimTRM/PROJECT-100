@@ -25,6 +25,7 @@ HttpManager="*res://Globals/HTTPManager.cs"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 GameManager="*res://Globals/GameManager.cs"
 PauseMenu="*res://Scenes/UI/PauseMenu/PauseMenu.tscn"
+SettingsMenu="*res://Scenes/UI/PauseMenu/SettingsMenu.tscn"
 
 [dialogue_manager]
 
@@ -36,6 +37,7 @@ window/size/viewport_width=1280
 window/size/viewport_height=720
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
+window/vsync/vsync_mode=2
 
 [dotnet]
 
