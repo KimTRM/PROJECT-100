@@ -38,10 +38,10 @@ offset_bottom = 179.0
 
 [node name="VariableBlock2" parent="WindowContainer/Window" instance=ExtResource("2_gjct8")]
 layout_mode = 0
-offset_left = 648.0
-offset_top = 161.0
-offset_right = 844.0
-offset_bottom = 209.0
+offset_left = 218.0
+offset_top = 199.0
+offset_right = 414.0
+offset_bottom = 247.0
 
 [node name="Overlay" type="Control" parent="WindowContainer"]
 layout_mode = 1

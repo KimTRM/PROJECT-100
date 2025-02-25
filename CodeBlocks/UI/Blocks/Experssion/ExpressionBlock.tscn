@@ -1,25 +1,28 @@
 [gd_scene load_steps=4 format=3 uid="uid://cxeco0k7s7brh"]
 
-[ext_resource type="Script" path="res://CodeBlocks/UI/Blocks/Experssion/ExressionBlock.cs" id="1_hlvvu"]
+[ext_resource type="Script" path="res://CodeBlocks/UI/Blocks/Experssion/ExpressionBlock.cs" id="1_eerog"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lgf25"]
 bg_color = Color(0.6, 1, 0.521569, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
+corner_radius_top_left = 28
+corner_radius_top_right = 28
+corner_radius_bottom_right = 28
+corner_radius_bottom_left = 28
+corner_detail = 20
 anti_aliasing = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_22g5j"]
-bg_color = Color(0, 0, 0, 0.262745)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
+bg_color = Color(0, 0, 0, 0.556863)
+corner_radius_top_left = 28
+corner_radius_top_right = 28
+corner_radius_bottom_right = 28
+corner_radius_bottom_left = 28
 anti_aliasing = false
 
-[node name="ExressionBlock" type="MarginContainer"]
-script = ExtResource("1_hlvvu")
+[node name="ExpressionBlock" type="MarginContainer"]
+offset_right = 142.0
+offset_bottom = 38.0
+script = ExtResource("1_eerog")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 2
@@ -27,10 +30,10 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_lgf25")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 4
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2

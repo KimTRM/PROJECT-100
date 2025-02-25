@@ -1,13 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://dl1yi3e2oqj0k"]
+[gd_scene load_steps=7 format=3 uid="uid://dl1yi3e2oqj0k"]
 
 [ext_resource type="PackedScene" uid="uid://rkxkm6m8ey64" path="res://Code/Variables/IntBlock/IntBlock.tscn" id="1_1gcx5"]
+[ext_resource type="PackedScene" uid="uid://drcorwafubvtf" path="res://CodeBlocks/UI/Blocks/Variable/VariableBlock.tscn" id="1_1h783"]
+[ext_resource type="PackedScene" uid="uid://cxeco0k7s7brh" path="res://CodeBlocks/UI/Blocks/Experssion/ExpressionBlock.tscn" id="2_qsbpy"]
+[ext_resource type="PackedScene" uid="uid://c4pumpxm1xsoq" path="res://Code/Variables/BooleanBlock/BooleanBlock.tscn" id="3_78ge1"]
+[ext_resource type="PackedScene" uid="uid://ghfmwfgjo781" path="res://Code/Variables/StringBlock/StringBlock.tscn" id="4_rc73x"]
+[ext_resource type="PackedScene" uid="uid://cojfo4sy7un6u" path="res://Code/Variables/FloatBlock/FloatBlock.tscn" id="6_slnsk"]
 
 [node name="BlockPicker" type="MarginContainer"]
-custom_minimum_size = Vector2(200, 0)
-anchors_preset = 9
-anchor_bottom = 1.0
-offset_right = 270.0
-grow_vertical = 2
+offset_right = 223.0
+offset_bottom = 253.0
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 2
@@ -18,8 +20,7 @@ horizontal_scroll_mode = 0
 
 [node name="MarginContainer" type="MarginContainer" parent="ScrollContainer"]
 layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 6
+size_flags_horizontal = 4
 theme_override_constants/margin_left = 24
 theme_override_constants/margin_top = 24
 theme_override_constants/margin_right = 24
@@ -30,50 +31,24 @@ layout_mode = 2
 theme_override_constants/separation = 24
 alignment = 1
 
+[node name="VariableBlock" parent="ScrollContainer/MarginContainer/CodeBlockContainer" instance=ExtResource("1_1h783")]
+layout_mode = 2
+
+[node name="ExpressionBlock" parent="ScrollContainer/MarginContainer/CodeBlockContainer" instance=ExtResource("2_qsbpy")]
+layout_mode = 2
+
+[node name="BooleanBlock" parent="ScrollContainer/MarginContainer/CodeBlockContainer" instance=ExtResource("3_78ge1")]
+visible = false
+layout_mode = 2
+
+[node name="StringBlock" parent="ScrollContainer/MarginContainer/CodeBlockContainer" instance=ExtResource("4_rc73x")]
+visible = false
+layout_mode = 2
+
 [node name="IntBlock" parent="ScrollContainer/MarginContainer/CodeBlockContainer" instance=ExtResource("1_1gcx5")]
+visible = false
 layout_mode = 2
 
-[node name="IntBlock2" parent="ScrollContainer/MarginContainer/CodeBlockContainer" instance=ExtResource("1_1gcx5")]
-layout_mode = 2
-
-[node name="IntBlock3" parent="ScrollContainer/MarginContainer/CodeBlockContainer" instance=ExtResource("1_1gcx5")]
-layout_mode = 2
-
-[node name="IntBlock4" parent="ScrollContainer/MarginContainer/CodeBlockContainer" instance=ExtResource("1_1gcx5")]
-layout_mode = 2
-
-[node name="IntBlock5" parent="ScrollContainer/MarginContainer/CodeBlockContainer" instance=ExtResource("1_1gcx5")]
-layout_mode = 2
-
-[node name="IntBlock6" parent="ScrollContainer/MarginContainer/CodeBlockContainer" instance=ExtResource("1_1gcx5")]
-layout_mode = 2
-
-[node name="IntBlock7" parent="ScrollContainer/MarginContainer/CodeBlockContainer" instance=ExtResource("1_1gcx5")]
-layout_mode = 2
-
-[node name="IntBlock8" parent="ScrollContainer/MarginContainer/CodeBlockContainer" instance=ExtResource("1_1gcx5")]
-layout_mode = 2
-
-[node name="IntBlock9" parent="ScrollContainer/MarginContainer/CodeBlockContainer" instance=ExtResource("1_1gcx5")]
-layout_mode = 2
-
-[node name="IntBlock10" parent="ScrollContainer/MarginContainer/CodeBlockContainer" instance=ExtResource("1_1gcx5")]
-layout_mode = 2
-
-[node name="IntBlock11" parent="ScrollContainer/MarginContainer/CodeBlockContainer" instance=ExtResource("1_1gcx5")]
-layout_mode = 2
-
-[node name="IntBlock12" parent="ScrollContainer/MarginContainer/CodeBlockContainer" instance=ExtResource("1_1gcx5")]
-layout_mode = 2
-
-[node name="IntBlock13" parent="ScrollContainer/MarginContainer/CodeBlockContainer" instance=ExtResource("1_1gcx5")]
-layout_mode = 2
-
-[node name="IntBlock14" parent="ScrollContainer/MarginContainer/CodeBlockContainer" instance=ExtResource("1_1gcx5")]
-layout_mode = 2
-
-[node name="IntBlock15" parent="ScrollContainer/MarginContainer/CodeBlockContainer" instance=ExtResource("1_1gcx5")]
-layout_mode = 2
-
-[node name="IntBlock16" parent="ScrollContainer/MarginContainer/CodeBlockContainer" instance=ExtResource("1_1gcx5")]
+[node name="FloatBlock" parent="ScrollContainer/MarginContainer/CodeBlockContainer" instance=ExtResource("6_slnsk")]
+visible = false
 layout_mode = 2

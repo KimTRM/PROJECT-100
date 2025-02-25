@@ -14,16 +14,34 @@ public partial class VariableBlock : CodeBlock
 	[Node ("MarginContainer/HBoxContainer/VariableContainer")]
 	private PanelContainer varContainer;
 
-	public override async Task Execute()
+	[Export] public string varNameStr;
+	[Export] public Variant varValue;
+
+    public override void _Notification(int what)
     {
-		GD.Print("Executing Variable Block");
-		await Task.CompletedTask;
+		if (what == NotificationSceneInstantiated)
+		{
+			WireNodes();
+		}
     }
 
-	private void Execution()
-	{
-		
-	}
+    public override async Task Execute()
+    {
+		foreach (Control child in varContainer.GetChildren())	
+		{
+			if (child is ExpressionBlock block)
+			{
+				await block.Execute();
+				varNameStr = block.Value1;
+				varValue = block.Value2;
+				GD.Print($"{varNameStr} = {varValue}");
+			}
+			else
+			{
+				varNameStr = varName.Text;
+			}
+		}
 
-
+		await Task.CompletedTask;
+    }
 }
