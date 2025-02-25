@@ -22,11 +22,11 @@ boot_splash/minimum_display_time=7
 
 LevelManager="*res://Globals/LevelManager.gd"
 HttpManager="*res://Globals/HTTPManager.cs"
-DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 GameManager="*res://Globals/GameManager.cs"
 PauseMenu="*res://Scenes/UI/PauseMenu/PauseMenu.tscn"
 SettingsMenu="*res://Scenes/UI/PauseMenu/SettingsMenu.tscn"
 SceneTransition="*res://Scenes/Components/SceneTransition.tscn"
+DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 
 [dialogue_manager]
 
@@ -50,7 +50,7 @@ naming/scene_name_casing=1
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/AsepriteWizard/plugin.cfg", "res://addons/block_code/plugin.cfg", "res://addons/dialogue_manager/plugin.cfg", "res://addons/script-ide/plugin.cfg")
+enabled=PackedStringArray("res://addons/AsepriteWizard/plugin.cfg", "res://addons/dialogue_manager/plugin.cfg", "res://addons/script-ide/plugin.cfg")
 
 [file_customization]
 
@@ -60,6 +60,9 @@ folder_colors={
 "res://Code/Loops/": "purple",
 "res://Code/Symbols/": "blue",
 "res://Code/Variables/": "red",
+"res://CodeBlocks/UI/Blocks/Condition/": "purple",
+"res://CodeBlocks/UI/Blocks/Experssion/": "green",
+"res://CodeBlocks/UI/Blocks/Variable/": "red",
 "res://Dialouge/": "purple",
 "res://Globals/": "red",
 "res://Resource/": "blue",

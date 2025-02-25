@@ -1,10 +1,13 @@
 using Godot;
-using System;
-
-namespace CodeBlocks.Blocks;
+using System.Threading.Tasks;
 
 public partial class CodeBlock : Control
 {
+    [Export] Resource BlockDefinition = null;
+
+    public virtual async Task Execute() { await Task.CompletedTask; }
+
+
     [Export] public bool Dragging = false; 
     public CodeBlock NextBlock = null;
     
@@ -13,7 +16,6 @@ public partial class CodeBlock : Control
     
     public string BlockType;
     public Variant BlockValue;
-
     public override void _GuiInput(InputEvent @event)
     {
         if (@event is InputEventMouseButton mouseEvent)
@@ -64,29 +66,5 @@ public partial class CodeBlock : Control
     {
         GlobalPosition = _snapTarget.GlobalPosition + new Vector2(0, 50);
         NextBlock = _snapTarget;
-    }
-
-    // Execution logic
-    public void Execute()
-    {
-        GD.Print("Executing block: " + BlockType);
-
-        if (BlockType == "print")
-        {
-            GD.Print("PRINT: " + BlockValue);
-        }
-        else if (BlockType == "loop")
-        {
-            for (int i = 0; i < Convert.ToInt32(BlockValue); i++)
-            {
-                GD.Print("Loop Iteration: " + i);
-            }
-        }
-
-        // Execute the next block in sequence
-        if (NextBlock != null)
-        {
-            GetTree().CreateTimer(0.5f).Timeout += () => NextBlock.Execute();
-        }
     }
 }

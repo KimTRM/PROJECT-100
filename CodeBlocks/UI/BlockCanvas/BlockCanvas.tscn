@@ -1,11 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://bp0aevc7dehng"]
+[gd_scene load_steps=3 format=3 uid="uid://bp0aevc7dehng"]
 
 [ext_resource type="Script" path="res://CodeBlocks/UI/BlockCanvas/BlockCanvas.cs" id="1_084tk"]
-[ext_resource type="PackedScene" uid="uid://rkxkm6m8ey64" path="res://Code/Variables/IntBlock/IntBlock.tscn" id="1_ha26f"]
-[ext_resource type="StyleBox" uid="uid://ckwftcgkqlc7e" path="res://Code/Variables/IntBlock/IntBlock.tres" id="2_vlhft"]
-[ext_resource type="PackedScene" uid="uid://c4pumpxm1xsoq" path="res://Code/Variables/BooleanBlock/BooleanBlock.tscn" id="3_28aru"]
-[ext_resource type="PackedScene" uid="uid://cojfo4sy7un6u" path="res://Code/Variables/FloatBlock/FloatBlock.tscn" id="5_gldq2"]
-[ext_resource type="PackedScene" uid="uid://ghfmwfgjo781" path="res://Code/Variables/StringBlock/StringBlock.tscn" id="6_8ld84"]
+[ext_resource type="PackedScene" uid="uid://drcorwafubvtf" path="res://CodeBlocks/UI/Blocks/Variable/VariableBlock.tscn" id="2_gjct8"]
 
 [node name="BlockCanvas" type="MarginContainer"]
 clip_contents = true
@@ -33,34 +29,19 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 
-[node name="IntBlock" parent="WindowContainer/Window" instance=ExtResource("1_ha26f")]
+[node name="VariableBlock" parent="WindowContainer/Window" instance=ExtResource("2_gjct8")]
 layout_mode = 0
-offset_left = 89.0
-offset_top = 109.0
-offset_right = 303.0
-offset_bottom = 147.0
-theme_override_styles/panel = ExtResource("2_vlhft")
+offset_left = 213.0
+offset_top = 131.0
+offset_right = 409.0
+offset_bottom = 179.0
 
-[node name="BooleanBlock" parent="WindowContainer/Window" instance=ExtResource("3_28aru")]
+[node name="VariableBlock2" parent="WindowContainer/Window" instance=ExtResource("2_gjct8")]
 layout_mode = 0
-offset_left = 90.0
-offset_top = 154.0
-offset_right = 348.0
-offset_bottom = 194.0
-
-[node name="FloatBlock" parent="WindowContainer/Window" instance=ExtResource("5_gldq2")]
-layout_mode = 0
-offset_left = 90.0
-offset_top = 202.0
-offset_right = 322.0
-offset_bottom = 240.0
-
-[node name="StringBlock" parent="WindowContainer/Window" instance=ExtResource("6_8ld84")]
-layout_mode = 0
-offset_left = 89.0
-offset_top = 65.0
-offset_right = 326.0
-offset_bottom = 103.0
+offset_left = 648.0
+offset_top = 161.0
+offset_right = 844.0
+offset_bottom = 209.0
 
 [node name="Overlay" type="Control" parent="WindowContainer"]
 layout_mode = 1
@@ -136,6 +117,7 @@ theme_override_font_sizes/font_size = 24
 text = "+"
 flat = true
 
+[connection signal="pressed" from="WindowContainer/Overlay/MarginContainer2/Execute" to="." method="_on_execute_pressed"]
 [connection signal="pressed" from="WindowContainer/Overlay/MarginContainer/ZoomButtons/ZoomOutButton" to="." method="_on_zoom_out_button_pressed"]
 [connection signal="pressed" from="WindowContainer/Overlay/MarginContainer/ZoomButtons/ZoomButton" to="." method="_on_zoom_button_pressed"]
 [connection signal="pressed" from="WindowContainer/Overlay/MarginContainer/ZoomButtons/ZoomInButton" to="." method="_on_zoom_in_button_pressed"]

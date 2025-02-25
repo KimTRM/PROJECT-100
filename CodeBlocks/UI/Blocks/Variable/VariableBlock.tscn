@@ -1,0 +1,87 @@
+[gd_scene load_steps=6 format=3 uid="uid://drcorwafubvtf"]
+
+[ext_resource type="Script" path="res://CodeBlocks/UI/Blocks/Variable/VariableBlock.cs" id="1_yup04"]
+[ext_resource type="PackedScene" uid="uid://dotwg7dqn1q6p" path="res://CodeBlocks/Drag&Drop/DragDropArea/DragDropArea.tscn" id="2_tm14k"]
+[ext_resource type="PackedScene" uid="uid://cxeco0k7s7brh" path="res://CodeBlocks/UI/Blocks/Experssion/ExressionBlock.tscn" id="3_dsqkf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7f2a0"]
+bg_color = Color(0.847059, 0.384314, 0.384314, 1)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+corner_detail = 20
+anti_aliasing = false
+anti_aliasing_size = 0.5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p7kf4"]
+bg_color = Color(0, 0, 0, 0.262745)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+anti_aliasing = false
+
+[node name="VariableBlock" type="MarginContainer"]
+offset_right = 159.0
+offset_bottom = 38.0
+script = ExtResource("1_yup04")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_7f2a0")
+
+[node name="DragDropArea" parent="." instance=ExtResource("2_tm14k")]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 14
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="VariableLabel" type="Label" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "Int"
+uppercase = true
+
+[node name="VariableContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_p7kf4")
+
+[node name="VarName" type="LineEdit" parent="MarginContainer/HBoxContainer/VariableContainer"]
+layout_mode = 2
+placeholder_text = "variable name"
+alignment = 1
+expand_to_text_length = true
+flat = true
+caret_blink = true
+caret_blink_interval = 0.38
+
+[node name="ExressionBlock" parent="MarginContainer/HBoxContainer/VariableContainer" instance=ExtResource("3_dsqkf")]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="MarginContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+text = "="
+
+[node name="PanelContainer3" type="PanelContainer" parent="MarginContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_p7kf4")
+
+[node name="Value" type="LineEdit" parent="MarginContainer/HBoxContainer/PanelContainer3"]
+layout_mode = 2
+placeholder_text = "value"
+alignment = 1
+expand_to_text_length = true
+flat = true
+caret_blink = true
+caret_blink_interval = 0.38

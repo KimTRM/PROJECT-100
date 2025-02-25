@@ -87,4 +87,15 @@ public partial class BlockCanvas : MarginContainer
 
         ZoomButton.Text = $"{zoomFactor:F1}x";
     }
+
+    private async void _on_execute_pressed()
+    {
+        foreach (Control child in Window.GetChildren())
+        {
+            if (child is CodeBlock block)
+            {
+                await block.Execute();
+            }
+        }
+    }
 }
