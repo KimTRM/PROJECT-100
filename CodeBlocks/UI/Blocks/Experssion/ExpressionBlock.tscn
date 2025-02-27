@@ -1,0 +1,69 @@
+[gd_scene load_steps=4 format=3 uid="uid://cxeco0k7s7brh"]
+
+[ext_resource type="Script" path="res://CodeBlocks/UI/Blocks/Experssion/ExpressionBlock.cs" id="1_eerog"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lgf25"]
+bg_color = Color(0.6, 1, 0.521569, 1)
+corner_radius_top_left = 28
+corner_radius_top_right = 28
+corner_radius_bottom_right = 28
+corner_radius_bottom_left = 28
+corner_detail = 20
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_22g5j"]
+bg_color = Color(0, 0, 0, 0.556863)
+corner_radius_top_left = 28
+corner_radius_top_right = 28
+corner_radius_bottom_right = 28
+corner_radius_bottom_left = 28
+anti_aliasing = false
+
+[node name="ExpressionBlock" type="MarginContainer"]
+offset_right = 142.0
+offset_bottom = 38.0
+script = ExtResource("1_eerog")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_lgf25")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="ValueContainer1" type="PanelContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_22g5j")
+
+[node name="Value1" type="LineEdit" parent="MarginContainer/HBoxContainer/ValueContainer1"]
+layout_mode = 2
+alignment = 1
+expand_to_text_length = true
+flat = true
+caret_blink = true
+caret_blink_interval = 0.38
+
+[node name="Label2" type="Label" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "="
+
+[node name="ValueContainer2" type="PanelContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_22g5j")
+
+[node name="Value2" type="LineEdit" parent="MarginContainer/HBoxContainer/ValueContainer2"]
+layout_mode = 2
+alignment = 1
+expand_to_text_length = true
+flat = true
+caret_blink = true
+caret_blink_interval = 0.38

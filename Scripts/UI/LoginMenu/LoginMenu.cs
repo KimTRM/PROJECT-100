@@ -5,45 +5,56 @@ using GodotUtilities;
 [Scene]
 public partial class LoginMenu : Control
 {
-	[Node ("PanelContainer/LoginPanel/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Username")]
+	[Node("PanelContainer/LoginPanel/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Username")]
 	private LineEdit Username;
-	
-	[Node ("PanelContainer/LoginPanel/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/Password")]
+
+	[Node("PanelContainer/LoginPanel/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/Password")]
 	private LineEdit Password;
 
-	[Node ("PanelContainer/LoginPanel/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/ErrorMessage")]
+	[Node("PanelContainer/LoginPanel/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/ErrorMessage")]
 	private Label ErrorMessage;
 
-	[Node ("PanelContainer/SignupPanel")]
+	[Node("PanelContainer/SignupPanel")]
 	private PanelContainer SignupPanel;
+
+	[Node("PanelContainer/LoadingPanel")]
+	private MarginContainer LoadingPanel;
+
+	[Node("PanelContainer/NoConnectionPanel")]
+	private MarginContainer NoConnectionPanel;
 
 	[Export]
 	private Array<Dictionary> UserDatas;
 
-    public override void _Notification(int what)
-    {
-        if(what == NotificationSceneInstantiated)
+	public override void _Notification(int what)
+	{
+		if (what == NotificationSceneInstantiated)
 		{
 			WireNodes();
 		}
-    }
+	}
 
-    public override void _Ready()
+	public override void _Ready()
 	{
+		LoadingPanel.Show();
 		HTTPManager.Instance.RequestCompleted += OnAccountReceived;
 		HTTPManager.Instance.RequestError += CheckError;
 		HTTPManager.Instance.QueueRequest(HTTPManager.Instance.Commands["GET_USER_ACCOUNT"]);
-
-		// GameManager.Instance.SavePlayerData("1739364453", new Vector2(0, 0), "1", "5");
 	}
-	
+
 	private void CheckError(Dictionary ErrorMessage)
 	{
-		GD.Print("No Connection");
+		NoConnectionPanel.Show();
+
+		HTTPManager.Instance.RequestCompleted -= OnAccountReceived;
+		HTTPManager.Instance.RequestError -= CheckError;
 	}
-	
+
 	private void OnAccountReceived(Array<Dictionary> response)
 	{
+		LoadingPanel.Hide();
+		NoConnectionPanel.Hide();
+
 		UserDatas = response;
 	}
 
@@ -52,32 +63,61 @@ public partial class LoginMenu : Control
 		var username = Username.Text;
 		var password = Password.Text;
 
-		if(UserDatas == null)
+		if (UserDatas == null)
 			return;
-		
-		foreach(var user in UserDatas)
+
+		bool isValidUser = false;
+
+		foreach (var user in UserDatas)
 		{
-			if(user["UserName"].ToString() == username && user["Password"].ToString() == password)
+			if (username == user["UserName"].ToString() && password == user["Password"].ToString())
 			{
-				if(user["Role"].ToString() == "Admin")
+				isValidUser = true;
+
+				if (user["Role"].ToString() == "Admin")
 				{
-					GetTree().ChangeSceneToFile("res://Scenes/UI/AdminControl/AdminPage.tscn");
+					ErrorMessage.Hide();
+					GameManager.Instance.LoadScene("res://Scenes/UI/AdminControl/AdminPage.tscn");
 				}
-				else
+				else if (user["Role"].ToString() == "Student")
 				{
-					GetTree().ChangeSceneToFile("res://Scenes/UI/StartingScreen/StartingMenu.tscn");
+					ErrorMessage.Hide();
+					GameManager.Instance.LoadScene("res://Scenes/UI/StartingScreen/StartingMenu.tscn");
 				}
-			}
-			else
-			{
-				ErrorMessage.Show();
-				ErrorMessage.Text = "Invalid";
+
+				// Remove event listeners
+				HTTPManager.Instance.RequestError -= CheckError;
+				HTTPManager.Instance.RequestCompleted -= OnAccountReceived;
+
+				break; // Exit loop since we found a valid user
 			}
 		}
+
+		// If no valid user was found, show error message
+		if (!isValidUser)
+		{
+			GD.Print("Invalid");
+			ErrorMessage.Show();
+			ErrorMessage.Text = "Invalid";
+		}
 	}
+
 
 	private void _on_to_signup_button_pressed()
 	{
 		SignupPanel.Show();
+	}
+
+	private void _on_reconnect_button_pressed()
+	{
+		NoConnectionPanel.Hide();
+		HTTPManager.Instance.RequestCompleted += OnAccountReceived;
+		HTTPManager.Instance.RequestError += CheckError;
+		HTTPManager.Instance.QueueRequest(HTTPManager.Instance.Commands["GET_USER_ACCOUNT"]);
+	}
+
+	private void _on_play_anyway_button_pressed()
+	{
+		GameManager.Instance.LoadScene("res://Scenes/UI/StartingScreen/StartingMenu.tscn");
 	}
 }

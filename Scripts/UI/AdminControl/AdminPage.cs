@@ -50,4 +50,12 @@ public partial class AdminPage : Control
 	private void _on_scores_pressed()
 	{
 	}
+
+	private void _on_logout_button_pressed()
+	{
+		HTTPManager.Instance.RequestCompleted -= ((QuizEditor)QuizEditorScene).OnQuestionsReceived;
+		HTTPManager.Instance.RequestCompleted -= ((AccountsViewer)AccountsViewerScene).OnAccountReceived;
+		
+		GameManager.Instance.LoadScene("res://Scenes/UI/LoginMenu/LoginMenu.tscn");
+	}
 }

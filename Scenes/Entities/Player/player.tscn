@@ -220,6 +220,7 @@ metadata/_aseprite_wizard_interface_config_ = {
 metadata/_aseprite_wizard_source_file_hash_ = "ce117a974f5f951e7c76016bfc7c042b"
 
 [node name="Direction" type="Marker2D" parent="Sprite2D"]
+visible = false
 
 [node name="InteractableFinder" type="Area2D" parent="Sprite2D/Direction"]
 collision_layer = 0
@@ -235,9 +236,18 @@ libraries = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0.5, 9)
 shape = SubResource("RectangleShape2D_dckff")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2.5, 2.5)
+rotation_smoothing_enabled = true
+rotation_smoothing_speed = 8.0
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_left_margin = 0.05
+drag_top_margin = 0.05
+drag_right_margin = 0.05
+drag_bottom_margin = 0.05
 script = ExtResource("3_djuet")

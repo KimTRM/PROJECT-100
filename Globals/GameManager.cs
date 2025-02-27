@@ -1,6 +1,6 @@
+using System.Threading.Tasks;
 using Godot;
 using Godot.Collections;
-using System;
 
 public partial class GameManager : Node
 {
@@ -9,15 +9,49 @@ public partial class GameManager : Node
 	[Export] public Vector2[] currentTilemapBounds;
 	[Signal] public delegate void TileMapBoundsChangedEventHandler(Vector2[] bounds);
 
+	[Signal] public delegate void GamePauseToggleEventHandler(bool isPaused);
+	public bool isPaused = false;
+
 	public override void _Ready()
 	{
 		Instance = this;
+		ProcessMode = ProcessModeEnum.Always;
 	}
-	
+
+	public override void _Input(InputEvent @event)
+	{
+		if (@event is InputEventKey keyEvent && keyEvent.Pressed)
+		{
+			if (keyEvent.Keycode != Key.Escape) return;
+
+			isPaused = !isPaused;
+			EmitSignal(SignalName.GamePauseToggle, isPaused);
+
+			GetTree().Paused = isPaused;
+		}
+	}
+
 	public void ChangeTilemapBounds(Vector2[] bounds)
 	{
 		currentTilemapBounds = bounds;
 		EmitSignal("TileMapBoundsChanged", bounds);
+	}
+
+	public async void LoadScene(string scenePath)
+	{
+		SceneTransition sceneTransition = GetNode<SceneTransition>("/root/SceneTransition");
+
+		sceneTransition.Show();
+		GetTree().Paused = true;
+
+		await sceneTransition.FadeOut();
+
+		GetTree().ChangeSceneToFile(scenePath);
+
+		await sceneTransition.FadeIn();
+		GetTree().Paused = false;
+
+		sceneTransition.Hide();
 	}
 
 	public void SaveScore(string scoreID, string playerID, string chapterID, string score)

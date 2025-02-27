@@ -1,7 +1,6 @@
 using Godot;
 using GodotUtilities;
 using Godot.Collections;
-using System;
 
 [Scene]
 public partial class SignupPanel : PanelContainer
@@ -72,6 +71,5 @@ public partial class SignupPanel : PanelContainer
             };
         HTTPManager.Instance.QueueRequest(HTTPManager.Instance.Commands["ADD_USER_ACCOUNT"], data);
         Hide();
-
     }
 }

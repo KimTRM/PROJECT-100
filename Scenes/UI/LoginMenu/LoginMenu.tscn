@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://f4rd76efnhp5"]
+[gd_scene load_steps=9 format=3 uid="uid://f4rd76efnhp5"]
 
 [ext_resource type="Script" path="res://Scripts/UI/LoginMenu/LoginMenu.cs" id="1_nv5x4"]
 [ext_resource type="PackedScene" uid="uid://b7olgo4xh10gm" path="res://Scenes/UI/LoginMenu/SignupPanel.tscn" id="2_e5ldj"]
@@ -21,6 +21,21 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c7n5u"]
+bg_color = Color(0, 0, 0, 0.427451)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t1og7"]
+bg_color = Color(0.161023, 0.161023, 0.161023, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(0.432205, 0.432205, 0.432205, 1)
+corner_radius_top_left = 28
+corner_radius_top_right = 28
+corner_radius_bottom_right = 28
+corner_radius_bottom_left = 28
+
 [node name="LoginMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -38,6 +53,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_l5ogm")
+
+[node name="Title" type="Sprite2D" parent="PanelContainer"]
+position = Vector2(137.688, 56.4375)
+scale = Vector2(1.03648, 1.03484)
+texture = ExtResource("3_l6b4q")
 
 [node name="LoginPanel" type="PanelContainer" parent="PanelContainer"]
 layout_mode = 2
@@ -155,10 +175,80 @@ flat = true
 visible = false
 layout_mode = 2
 
-[node name="Title" type="Sprite2D" parent="."]
-position = Vector2(137.688, 56.4375)
-scale = Vector2(1.03648, 1.03484)
-texture = ExtResource("3_l6b4q")
+[node name="LoadingPanel" type="MarginContainer" parent="PanelContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="PanelContainer/LoadingPanel"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_c7n5u")
+
+[node name="Label" type="Label" parent="PanelContainer/LoadingPanel"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "LOADING..."
+horizontal_alignment = 1
+
+[node name="NoConnectionPanel" type="MarginContainer" parent="PanelContainer"]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 400
+theme_override_constants/margin_top = 181
+theme_override_constants/margin_right = 400
+theme_override_constants/margin_bottom = 181
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/NoConnectionPanel"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_t1og7")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/NoConnectionPanel/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/NoConnectionPanel/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 64
+
+[node name="Label" type="Label" parent="PanelContainer/NoConnectionPanel/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.986438, 0.694682, 1)
+theme_override_font_sizes/font_size = 32
+text = "Network Error"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/NoConnectionPanel/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_right = 32
+
+[node name="Label2" type="Label" parent="PanelContainer/NoConnectionPanel/PanelContainer/MarginContainer/VBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Failed to connect, please check your network settings"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/NoConnectionPanel/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ReconnectButton" type="Button" parent="PanelContainer/NoConnectionPanel/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 10
+text = "Reconnect"
+
+[node name="PlayAnywayButton" type="Button" parent="PanelContainer/NoConnectionPanel/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+text = "Play Without Login"
 
 [connection signal="pressed" from="PanelContainer/LoginPanel/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/VBoxContainer/MarginContainer/LoginButton" to="." method="_on_login_button_pressed"]
 [connection signal="pressed" from="PanelContainer/LoginPanel/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/VBoxContainer/HBoxContainer/ToSignupButton" to="." method="_on_to_signup_button_pressed"]
+[connection signal="pressed" from="PanelContainer/NoConnectionPanel/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/ReconnectButton" to="." method="_on_reconnect_button_pressed"]
+[connection signal="pressed" from="PanelContainer/NoConnectionPanel/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PlayAnywayButton" to="." method="_on_play_anyway_button_pressed"]

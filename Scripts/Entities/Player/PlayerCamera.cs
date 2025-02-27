@@ -7,6 +7,7 @@ public partial class PlayerCamera : Camera2D
 	{
 		GameManager.Instance.TileMapBoundsChanged += UpdateLimits;
 		UpdateLimits(GameManager.Instance.currentTilemapBounds);
+		GameManager.Instance.TileMapBoundsChanged -= UpdateLimits;
 	}
 
 	private void UpdateLimits(Vector2[] bounds)

@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://4280cgrri3yh"]
+[gd_scene load_steps=6 format=3 uid="uid://4280cgrri3yh"]
 
 [ext_resource type="PackedScene" uid="uid://bp0aevc7dehng" path="res://CodeBlocks/UI/BlockCanvas/BlockCanvas.tscn" id="1_4yxsc"]
 [ext_resource type="PackedScene" uid="uid://dl1yi3e2oqj0k" path="res://CodeBlocks/UI/BlockPicker/BlockPicker.tscn" id="1_54hmq"]
+[ext_resource type="PackedScene" uid="uid://cirmbhtex875r" path="res://CodeBlocks/UI/Console/Console.tscn" id="3_n7jqw"]
+[ext_resource type="PackedScene" uid="uid://b5ngkaniwp57" path="res://CodeBlocks/Drag&Drop/DragManager.tscn" id="4_hfufw"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_utt0q"]
 bg_color = Color(0.173341, 0.294419, 0.387008, 1)
@@ -35,26 +37,30 @@ theme_override_constants/margin_top = 30
 theme_override_constants/margin_right = 30
 theme_override_constants/margin_bottom = 30
 
-[node name="HBoxContainer" type="HSplitContainer" parent="PanelContainer/MarginContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HSplitContainer" parent="PanelContainer/MarginContainer/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 4
 
-[node name="BlockPicker" parent="PanelContainer/MarginContainer/HBoxContainer" instance=ExtResource("1_54hmq")]
+[node name="BlockPicker" parent="PanelContainer/MarginContainer/MarginContainer/HBoxContainer" instance=ExtResource("1_54hmq")]
 layout_mode = 2
 
-[node name="VSplitContainer" type="VSplitContainer" parent="PanelContainer/MarginContainer/HBoxContainer"]
+[node name="VSplitContainer" type="VSplitContainer" parent="PanelContainer/MarginContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 4
 split_offset = 504
 
-[node name="BlockCanvas" parent="PanelContainer/MarginContainer/HBoxContainer/VSplitContainer" instance=ExtResource("1_4yxsc")]
+[node name="BlockCanvas" parent="PanelContainer/MarginContainer/MarginContainer/HBoxContainer/VSplitContainer" instance=ExtResource("1_4yxsc")]
 custom_minimum_size = Vector2(600, 200)
 layout_mode = 2
 
-[node name="Console" type="MarginContainer" parent="PanelContainer/MarginContainer/HBoxContainer/VSplitContainer"]
-clip_contents = true
-custom_minimum_size = Vector2(0, 100)
+[node name="Console" parent="PanelContainer/MarginContainer/MarginContainer/HBoxContainer/VSplitContainer" instance=ExtResource("3_n7jqw")]
 layout_mode = 2
 
-[node name="Panel" type="Panel" parent="PanelContainer/MarginContainer/HBoxContainer/VSplitContainer/Console"]
+[node name="DragManager" parent="PanelContainer/MarginContainer/MarginContainer" instance=ExtResource("4_hfufw")]
 layout_mode = 2
+mouse_filter = 2
+pickerPath = NodePath("../HBoxContainer/BlockPicker")
+blockCanvasPath = NodePath("../HBoxContainer/VSplitContainer/BlockCanvas")
