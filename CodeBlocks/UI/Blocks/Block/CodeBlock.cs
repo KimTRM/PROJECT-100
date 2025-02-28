@@ -7,6 +7,7 @@ public partial class CodeBlock : Control
 
     public virtual async Task Execute() { await Task.CompletedTask; }
 
+    public DragManager dragManager;
 
     [Export] public bool Dragging = false; 
     public CodeBlock NextBlock = null;
@@ -16,17 +17,21 @@ public partial class CodeBlock : Control
     
     public string BlockType;
     public Variant BlockValue;
+    
     public override void _GuiInput(InputEvent @event)
     {
         if (@event is InputEventMouseButton mouseEvent)
         {
             if (mouseEvent.Pressed && mouseEvent.ButtonIndex == MouseButton.Left)
             {
-                StartDrag();
+                GD.Print("Pressed");
+                dragManager.StartDrag(this);
             }
-            else if (!mouseEvent.Pressed)
+            else
             {
-                StopDrag();
+                GD.Print("Released");
+                dragManager.EndDrag();
+                // StopDrag();
             }
         }
     }

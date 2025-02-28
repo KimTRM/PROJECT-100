@@ -33,6 +33,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_7f2a0")
 
 [node name="DragDropArea" parent="." instance=ExtResource("2_tm14k")]
 layout_mode = 2
+mouse_filter = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
