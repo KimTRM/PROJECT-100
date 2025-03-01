@@ -1,4 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://lppqo40qh0jx"]
+[gd_scene load_steps=4 format=3 uid="uid://lppqo40qh0jx"]
+
+[ext_resource type="Script" path="res://Scripts/UI/QuizMenu/Activity.cs" id="1_m3q7n"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hs62t"]
 bg_color = Color(1, 1, 1, 1)
@@ -16,6 +18,7 @@ corner_radius_top_right = 16
 custom_minimum_size = Vector2(188, 220)
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("1_m3q7n")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 2
@@ -33,7 +36,7 @@ custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_0h18g")
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="ActivityName" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Activity 1"
@@ -43,3 +46,10 @@ horizontal_alignment = 1
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "No. of Items:"
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+focus_mode = 0
+flat = true
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

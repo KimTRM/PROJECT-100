@@ -35,6 +35,9 @@ public partial class QuestionEditor : PanelContainer
     private MarginContainer _errorContainer;
 
     public string ID;
+
+    [Export]
+    public string QuizCategory;
     private string _correctAnswer = string.Empty;
     
     public override void _Notification(int what)
@@ -77,8 +80,12 @@ public partial class QuestionEditor : PanelContainer
             { "ChoiceB", _choiceB.Text },
             { "ChoiceC", _choiceC.Text },
             { "ChoiceD", _choiceD.Text },
-            { "CorrectAnswer", _correctAnswer }
+            { "CorrectAnswer", _correctAnswer },
+            { "QuizCategory", QuizCategory }
         };
+
+        GD.Print(QuizCategory);
+        GD.Print(data);
 
         HTTPManager.Instance.QueueRequest(HTTPManager.Instance.Commands["ADD_QUIZ"], data);
     }

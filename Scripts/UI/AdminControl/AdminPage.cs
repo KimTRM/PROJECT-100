@@ -5,7 +5,7 @@ using GodotUtilities;
 public partial class AdminPage : Control
 {
 	[Node("MarginContainer/VBoxContainer/HBoxContainer/Content")]
-	private ColorRect Content;
+	public ColorRect Content;
 
 	private Node QuizEditorScene;
 	private Node AccountsViewerScene;
@@ -22,7 +22,7 @@ public partial class AdminPage : Control
 	{
 		AccountsViewerScene = ResourceLoader.Load<PackedScene>("res://Scenes/UI/AdminControl/UserAccounts/AccountsViewer.tscn").Instantiate();
 		QuizEditorScene = ResourceLoader.Load<PackedScene>("res://Scenes/UI/AdminControl/QuizEditor/QuizEditor.tscn").Instantiate();
-		Content?.AddChild(AccountsViewerScene);
+		// Content?.AddChild(AccountsViewerScene);
 	}
 
 	private void _on_accounts_pressed()
