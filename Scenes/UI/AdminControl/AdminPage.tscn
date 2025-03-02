@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://b6gosw6qc25tx"]
 
-[ext_resource type="Script" path="res://Scripts/UI/AdminControl/AdminPage.cs" id="1_txpec"]
+[ext_resource type="Script" uid="uid://qtajua2a8ob2" path="res://Scripts/UI/AdminControl/AdminPage.cs" id="1_txpec"]
 [ext_resource type="Texture2D" uid="uid://bcsntasu7npgo" path="res://Assets/ProjectFiles/Title.png" id="2_xm8k8"]
 [ext_resource type="PackedScene" uid="uid://pm4uiwv60qkn" path="res://Scenes/UI/AdminControl/QuizEditor/QuizLists.tscn" id="3_6ej3f"]
 

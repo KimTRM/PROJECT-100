@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cbhclcplspftq"]
 
-[ext_resource type="Script" path="res://Scripts/UI/AdminControl/QuizEditor/QuizEditor.cs" id="1_0xrlg"]
+[ext_resource type="Script" uid="uid://dw48hdyubsq0h" path="res://Scripts/UI/AdminControl/QuizEditor/QuizEditor.cs" id="1_0xrlg"]
 
 [node name="QuizEditor" type="MarginContainer"]
 custom_minimum_size = Vector2(1055, 500)

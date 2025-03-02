@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cojfo4sy7un6u"]
 
-[ext_resource type="Script" path="res://Code/Variables/FloatBlock/Scripts/float_block.gd" id="1_r1nf7"]
+[ext_resource type="Script" uid="uid://dgw4rqjogk85w" path="res://Code/Variables/FloatBlock/Scripts/float_block.gd" id="1_r1nf7"]
 [ext_resource type="Resource" uid="uid://cbt5qv67g5lef" path="res://Code/Variables/FloatBlock/Scripts/FloatBlock.tres" id="2_w3bk6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mrdtd"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b5ngkaniwp57"]
 
-[ext_resource type="Script" path="res://CodeBlocks/Drag&Drop/DragManager.cs" id="1_jm04w"]
+[ext_resource type="Script" uid="uid://rue4kargso4m" path="res://CodeBlocks/Drag&Drop/DragManager.cs" id="1_jm04w"]
 
 [node name="DragManager" type="Control"]
 layout_mode = 3

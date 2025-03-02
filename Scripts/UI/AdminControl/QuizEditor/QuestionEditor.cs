@@ -84,9 +84,6 @@ public partial class QuestionEditor : PanelContainer
             { "QuizCategory", QuizCategory }
         };
 
-        GD.Print(QuizCategory);
-        GD.Print(data);
-
         HTTPManager.Instance.QueueRequest(HTTPManager.Instance.Commands["ADD_QUIZ"], data);
     }
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dxw73qfwdm0ag"]
 
-[ext_resource type="Script" path="res://Scripts/UI/AdminControl/UserAccounts/AccountsViewer.cs" id="1_cbaon"]
+[ext_resource type="Script" uid="uid://dvd68q0ui8i4q" path="res://Scripts/UI/AdminControl/UserAccounts/AccountsViewer.cs" id="1_cbaon"]
 
 [node name="AccountsViewer" type="MarginContainer"]
 custom_minimum_size = Vector2(1055, 500)

@@ -2,10 +2,10 @@
 
 [ext_resource type="PackedScene" uid="uid://bp0aevc7dehng" path="res://CodeBlocks/UI/BlockCanvas/BlockCanvas.tscn" id="1_4yxsc"]
 [ext_resource type="PackedScene" uid="uid://dl1yi3e2oqj0k" path="res://CodeBlocks/UI/BlockPicker/BlockPicker.tscn" id="1_54hmq"]
-[ext_resource type="Script" path="res://CodeBlocks/UI/BlockPicker/BlockPicker.cs" id="2_8au1s"]
+[ext_resource type="Script" uid="uid://b2h0ktgys47cl" path="res://CodeBlocks/UI/BlockPicker/BlockPicker.cs" id="2_8au1s"]
 [ext_resource type="PackedScene" uid="uid://cirmbhtex875r" path="res://CodeBlocks/UI/Console/Console.tscn" id="3_n7jqw"]
 [ext_resource type="PackedScene" uid="uid://b5ngkaniwp57" path="res://CodeBlocks/Drag&Drop/DragManager.tscn" id="4_hfufw"]
-[ext_resource type="Script" path="res://CodeBlocks/UI/Console/Console.cs" id="4_lar7w"]
+[ext_resource type="Script" uid="uid://dp2r7tc5m121q" path="res://CodeBlocks/UI/Console/Console.cs" id="4_lar7w"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_utt0q"]
 bg_color = Color(0.173341, 0.294419, 0.387008, 1)

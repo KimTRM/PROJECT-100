@@ -1,4 +1,4 @@
-class_name QuestionEditor extends PanelContainer
+extends PanelContainer
 
 @onready var question_number: Label = $MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/QuestionNumber
 

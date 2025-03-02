@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://pm4uiwv60qkn"]
 
-[ext_resource type="Script" path="res://Scripts/UI/AdminControl/QuizEditor/QuizLists.cs" id="1_1b7t2"]
+[ext_resource type="Script" uid="uid://dof8rjay83x8v" path="res://Scripts/UI/AdminControl/QuizEditor/QuizLists.cs" id="1_1b7t2"]
 
 [node name="QuizLists" type="MarginContainer"]
 anchors_preset = 15

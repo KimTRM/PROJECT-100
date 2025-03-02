@@ -1,15 +1,15 @@
 extends Node
 
-const DialogueResource = preload("./dialogue_resource.gd")
-const DialogueLine = preload("./dialogue_line.gd")
-const DialogueResponse = preload("./dialogue_response.gd")
+const DialogueResourceFile = preload("res://addons/dialogue_manager/dialogue_resource.gd")
+const DialogueLineResource = preload("res://addons/dialogue_manager/dialogue_line.gd")
+const DialogueResponseResource = preload("res://addons/dialogue_manager/dialogue_response.gd")
 
-const DMConstants = preload("./constants.gd")
-const Builtins = preload("./utilities/builtins.gd")
-const DMSettings = preload("./settings.gd")
-const DMCompiler = preload("./compiler/compiler.gd")
-const DMCompilerResult = preload("./compiler/compiler_result.gd")
-const DMResolvedLineData = preload("./compiler/resolved_line_data.gd")
+const DMConstantsResource = preload("res://addons/dialogue_manager/constants.gd")
+const BuiltinsResource = preload("res://addons/dialogue_manager/utilities/builtins.gd")
+const DMSettingsResource = preload("res://addons/dialogue_manager/settings.gd")
+const DMCompilerResource = preload("res://addons/dialogue_manager/compiler/compiler.gd")
+const DMCompilerResultResource = preload("res://addons/dialogue_manager/compiler/compiler_result.gd")
+const DMResolvedLineDataResource = preload("res://addons/dialogue_manager/compiler/resolved_line_data.gd")
 
 
 ## Emitted when a dialogue balloon is created and dialogue starts
@@ -863,9 +863,9 @@ func _resolve(tokens: Array, extra_game_states: Array):
 				# If we are calling a deeper function then we need to collapse the
 				# value into the thing we are calling the function on
 				var caller: Dictionary = tokens[i - 2]
-				if Builtins.is_supported(caller.value):
+				if BuiltinsResource.is_supported(caller.value):
 					caller.type = DMConstants.TOKEN_VALUE
-					caller.value = Builtins.resolve_method(caller.value, function_name, args)
+					caller.value = BuiltinsResource.resolve_method(caller.value, function_name, args)
 					tokens.remove_at(i)
 					tokens.remove_at(i - 1)
 					i -= 2
@@ -1076,8 +1076,8 @@ func _resolve(tokens: Array, extra_game_states: Array):
 					# If we are requesting a deeper property then we need to collapse the
 					# value into the thing we are referencing from
 					caller.type = DMConstants.TOKEN_VALUE
-					if Builtins.is_supported(caller.value):
-						caller.value = Builtins.resolve_property(caller.value, property)
+					if BuiltinsResource.is_supported(caller.value):
+						caller.value = BuiltinsResource.resolve_property(caller.value, property)
 					else:
 						caller.value = caller.value.get(property)
 				tokens.remove_at(i)
@@ -1319,7 +1319,7 @@ func _is_valid(line: DialogueLine) -> bool:
 
 # Check that a thing has a given method.
 func _thing_has_method(thing, method: String, args: Array) -> bool:
-	if Builtins.is_supported(thing, method):
+	if BuiltinsResource.is_supported(thing, method):
 		return thing != _autoloads
 	elif thing is Dictionary:
 		return false
@@ -1368,9 +1368,9 @@ func _get_method_info_for(thing, method: String) -> Dictionary:
 
 
 func _resolve_thing_method(thing, method: String, args: Array):
-	if Builtins.is_supported(thing):
-		var result = Builtins.resolve_method(thing, method, args)
-		if not Builtins.has_resolve_method_failed():
+	if BuiltinsResource.is_supported(thing):
+		var result = BuiltinsResource.resolve_method(thing, method, args)
+		if not BuiltinsResource.has_resolve_method_failed():
 			return result
 
 	if thing.has_method(method):

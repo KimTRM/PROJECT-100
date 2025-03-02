@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bvuvdubi3uwau"]
 
-[ext_resource type="Script" path="res://Scripts/UI/AdminControl/QuizEditor/QuestionEditor.cs" id="1_ybj7f"]
+[ext_resource type="Script" uid="uid://btpe8u38xj8k4" path="res://Scripts/UI/AdminControl/QuizEditor/QuestionEditor.cs" id="1_ybj7f"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jun1v"]
 bg_color = Color(0.278431, 0.298039, 0.32549, 0.819608)

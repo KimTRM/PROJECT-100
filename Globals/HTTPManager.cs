@@ -71,9 +71,7 @@ public partial class HTTPManager : Node
         });
 
 		var body = $"command={request.GetValueOrDefault("command", "")}&{data}";
-
-		GD.Print(body);
-
+		
 		Error err = _HttpRequest.Request(SERVER_URL, SERVER_HEADERS, HttpClient.Method.Post, body);
 
 		if (err != Error.Ok)

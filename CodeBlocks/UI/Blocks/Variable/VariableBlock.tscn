@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://drcorwafubvtf"]
 
-[ext_resource type="Script" path="res://CodeBlocks/UI/Blocks/Variable/VariableBlock.cs" id="1_yup04"]
+[ext_resource type="Script" uid="uid://cyod5r2p4kyj6" path="res://CodeBlocks/UI/Blocks/Variable/VariableBlock.cs" id="1_yup04"]
 [ext_resource type="PackedScene" uid="uid://dotwg7dqn1q6p" path="res://CodeBlocks/Drag&Drop/DragDropArea/DragDropArea.tscn" id="2_tm14k"]
 [ext_resource type="PackedScene" uid="uid://cxeco0k7s7brh" path="res://CodeBlocks/UI/Blocks/Experssion/ExpressionBlock.tscn" id="3_dsqkf"]
 
