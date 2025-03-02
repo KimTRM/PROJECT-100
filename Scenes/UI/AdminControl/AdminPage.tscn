@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://b6gosw6qc25tx"]
+[gd_scene load_steps=3 format=3 uid="uid://b6gosw6qc25tx"]
 
 [ext_resource type="Script" uid="uid://qtajua2a8ob2" path="res://Scripts/UI/AdminControl/AdminPage.cs" id="1_txpec"]
 [ext_resource type="Texture2D" uid="uid://bcsntasu7npgo" path="res://Assets/ProjectFiles/Title.png" id="2_xm8k8"]
-[ext_resource type="PackedScene" uid="uid://pm4uiwv60qkn" path="res://Scenes/UI/AdminControl/QuizEditor/QuizLists.tscn" id="3_6ej3f"]
 
 [node name="AdminPage" type="Control"]
 layout_mode = 3
@@ -149,7 +148,6 @@ layout_mode = 2
 text = "SCORES"
 
 [node name="Button4" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/SideBar/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
-visible = false
 layout_mode = 2
 text = "Chapter 4"
 
@@ -181,16 +179,6 @@ custom_minimum_size = Vector2(1055, 650)
 layout_mode = 2
 size_flags_horizontal = 3
 color = Color(0.121569, 0.0901961, 0.121569, 0.54902)
-
-[node name="QuizLists" parent="MarginContainer/VBoxContainer/HBoxContainer/Content" instance=ExtResource("3_6ej3f")]
-layout_mode = 0
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_right = 1055.0
-offset_bottom = 703.0
-grow_horizontal = 1
-grow_vertical = 1
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/SideBar/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/Accounts" to="." method="_on_accounts_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/SideBar/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/QuizEditor" to="." method="_on_quiz_editor_pressed"]

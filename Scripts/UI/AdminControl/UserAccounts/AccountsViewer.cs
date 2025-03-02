@@ -47,6 +47,8 @@ public partial class AccountsViewer : MarginContainer
 	{
 		Datas = response;
 		LoadUserAccounts();
+
+		HTTPManager.Instance.RequestCompleted -= OnAccountReceived;
 	}
 
 	private void LoadUserAccounts()

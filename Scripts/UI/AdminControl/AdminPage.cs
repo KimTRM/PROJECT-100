@@ -21,29 +21,28 @@ public partial class AdminPage : Control
 	public override void _Ready()
 	{
 		AccountsViewerScene = ResourceLoader.Load<PackedScene>("res://Scenes/UI/AdminControl/UserAccounts/AccountsViewer.tscn").Instantiate();
-		QuizEditorScene = ResourceLoader.Load<PackedScene>("res://Scenes/UI/AdminControl/QuizEditor/QuizEditor.tscn").Instantiate();
-		// Content?.AddChild(AccountsViewerScene);
+		Content?.AddChild(AccountsViewerScene);
+	}
+
+	private void RemoveContent()
+	{
+		foreach (Node node in Content.GetChildren())
+		{
+			node.QueueFree();
+		}
 	}
 
 	private void _on_accounts_pressed()
 	{
-		if (QuizEditorScene == null || Content.HasNode("AccountsViewer"))
-			return;
-
-		HTTPManager.Instance.RequestCompleted -= ((QuizEditor)QuizEditorScene).OnQuestionsReceived;
-		QuizEditorScene?.QueueFree();
+		RemoveContent();
 		AccountsViewerScene = ResourceLoader.Load<PackedScene>("res://Scenes/UI/AdminControl/UserAccounts/AccountsViewer.tscn").Instantiate();
 		Content?.AddChild(AccountsViewerScene);
 	}
 
 	private void _on_quiz_editor_pressed()
 	{
-		if (AccountsViewerScene == null || Content.HasNode("QuizEditor"))
-			return;
-
-		HTTPManager.Instance.RequestCompleted -= ((AccountsViewer)AccountsViewerScene).OnAccountReceived;
-		AccountsViewerScene?.QueueFree();
-		QuizEditorScene = ResourceLoader.Load<PackedScene>("res://Scenes/UI/AdminControl/QuizEditor/QuizEditor.tscn").Instantiate();
+		RemoveContent();
+		QuizEditorScene = ResourceLoader.Load<PackedScene>("uid://pm4uiwv60qkn").Instantiate();
 		Content?.AddChild(QuizEditorScene);
 	}
 

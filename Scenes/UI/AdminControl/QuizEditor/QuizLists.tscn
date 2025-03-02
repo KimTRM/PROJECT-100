@@ -68,3 +68,6 @@ size_flags_vertical = 3
 theme_override_constants/h_separation = 16
 theme_override_constants/v_separation = 16
 alignment = 1
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ColorRect/HBoxContainer/AddQuestion" to="." method="_on_add_question_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ColorRect/HBoxContainer/ReloadQuestions" to="." method="_on_reload_questions_pressed"]

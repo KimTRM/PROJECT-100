@@ -58,4 +58,21 @@ public partial class QuizLists : MarginContainer
 		}
 	}
 
+	private void _on_add_question_pressed()
+	{
+		Activity activity = (Activity)ResourceLoader.Load<PackedScene>("res://Scenes/UI/ActivitesMenu/Activity.tscn").Instantiate();
+		activity.ActivityName.Text = "New Quiz";
+		QuizList.AddChild(activity);
+	}
+
+	private void _on_reload_questions_pressed()
+	{
+		foreach (Node child in QuizList.GetChildren())
+		{
+			child.QueueFree();
+		}
+		
+		HTTPManager.Instance.RequestCompleted += OnLessonsReceived;
+		HTTPManager.Instance.QueueRequest(HTTPManager.Instance.Commands["GET_LESSON"]);
+	}
 }
