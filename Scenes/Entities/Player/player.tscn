@@ -187,11 +187,12 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dckff"]
 size = Vector2(21, 44)
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("states")]
 disable_mode = 2
 collision_layer = 2
 collision_mask = 16
 script = ExtResource("1_oihhe")
+states = {}
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -232,7 +233,7 @@ debug_color = Color(0.889251, 0.889251, 0.889251, 0.42)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_x288k")
+&"": SubResource("AnimationLibrary_x288k")
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

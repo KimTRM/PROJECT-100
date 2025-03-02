@@ -20,7 +20,6 @@ boot_splash/minimum_display_time=7
 
 [autoload]
 
-LevelManager="*res://Globals/LevelManager.gd"
 HttpManager="*res://Globals/HTTPManager.cs"
 GameManager="*res://Globals/GameManager.cs"
 PauseMenu="*res://Scenes/UI/PauseMenu/PauseMenu.tscn"
