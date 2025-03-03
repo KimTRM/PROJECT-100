@@ -96,8 +96,6 @@ public partial class QuizEditor : MarginContainer
 
 		HTTPManager.Instance.RequestCompleted += OnQuestionsReceived;
 
-		GD.Print(QuizCategory);
-
 		var datas = new Dictionary {{ "QuizCategory", QuizCategory }};
 		HTTPManager.Instance.QueueRequest(HTTPManager.Instance.Commands["GET_SPECIFIC_QUIZ"], datas);
 		// HTTPManager.Instance.QueueRequest(HTTPManager.Instance.Commands["GET_QUIZ"]);

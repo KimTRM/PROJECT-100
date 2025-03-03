@@ -5,7 +5,7 @@ using GodotUtilities;
 public partial class AdminPage : Control
 {
 	[Node("MarginContainer/VBoxContainer/HBoxContainer/Content")]
-	public ColorRect Content;
+	public PanelContainer Content;
 
 	private Node QuizEditorScene;
 	private Node AccountsViewerScene;
@@ -52,9 +52,6 @@ public partial class AdminPage : Control
 
 	private void _on_logout_button_pressed()
 	{
-		HTTPManager.Instance.RequestCompleted -= ((QuizEditor)QuizEditorScene).OnQuestionsReceived;
-		HTTPManager.Instance.RequestCompleted -= ((AccountsViewer)AccountsViewerScene).OnAccountReceived;
-		
 		GameManager.Instance.LoadScene("res://Scenes/UI/LoginMenu/LoginMenu.tscn");
 	}
 }

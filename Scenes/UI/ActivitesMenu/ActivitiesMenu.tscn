@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://34rfdpi65bvp"]
 
-[ext_resource type="PackedScene" uid="uid://lppqo40qh0jx" path="res://Scenes/UI/ActivitesMenu/Activity.tscn" id="1_cwlvk"]
+[ext_resource type="Script" uid="uid://d4bsqowki1au" path="res://Scripts/UI/ActivitiesMenu/ActivitiesMenu.cs" id="1_fvawc"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cpuor"]
 bg_color = Color(0.2, 0.223529, 0.254902, 1)
@@ -21,6 +21,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_fvawc")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 2
@@ -48,39 +49,9 @@ theme_override_constants/margin_right = 128
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_w0ius")
 
-[node name="HFlowContainer" type="HFlowContainer" parent="MarginContainer"]
+[node name="ActivitiesContainer" type="HFlowContainer" parent="MarginContainer"]
 layout_mode = 2
 theme_override_constants/h_separation = 12
 theme_override_constants/v_separation = 12
 alignment = 1
 last_wrap_alignment = 2
-
-[node name="Activity" parent="MarginContainer/HFlowContainer" instance=ExtResource("1_cwlvk")]
-layout_mode = 2
-
-[node name="Activity2" parent="MarginContainer/HFlowContainer" instance=ExtResource("1_cwlvk")]
-layout_mode = 2
-
-[node name="Activity3" parent="MarginContainer/HFlowContainer" instance=ExtResource("1_cwlvk")]
-layout_mode = 2
-
-[node name="Activity4" parent="MarginContainer/HFlowContainer" instance=ExtResource("1_cwlvk")]
-layout_mode = 2
-
-[node name="Activity5" parent="MarginContainer/HFlowContainer" instance=ExtResource("1_cwlvk")]
-layout_mode = 2
-
-[node name="Activity6" parent="MarginContainer/HFlowContainer" instance=ExtResource("1_cwlvk")]
-layout_mode = 2
-
-[node name="Activity7" parent="MarginContainer/HFlowContainer" instance=ExtResource("1_cwlvk")]
-layout_mode = 2
-
-[node name="Activity8" parent="MarginContainer/HFlowContainer" instance=ExtResource("1_cwlvk")]
-layout_mode = 2
-
-[node name="Activity9" parent="MarginContainer/HFlowContainer" instance=ExtResource("1_cwlvk")]
-layout_mode = 2
-
-[node name="Activity10" parent="MarginContainer/HFlowContainer" instance=ExtResource("1_cwlvk")]
-layout_mode = 2

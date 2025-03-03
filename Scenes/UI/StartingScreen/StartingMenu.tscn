@@ -1,10 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://bahqfay47fdok"]
+[gd_scene load_steps=8 format=3 uid="uid://bahqfay47fdok"]
 
-[ext_resource type="Texture2D" uid="uid://bcsntasu7npgo" path="res://Assets/ProjectFiles/Title.png" id="1_fk7go"]
 [ext_resource type="Script" uid="uid://bbdkjllcbw3xs" path="res://Scripts/UI/StartingScreen/StartingMenu.cs" id="1_jfvfq"]
+[ext_resource type="Texture2D" uid="uid://c4yoh484wtl26" path="res://Assets/UI/Ellipse 10.png" id="2_agdox"]
+[ext_resource type="Texture2D" uid="uid://ce6gw4qeiar5q" path="res://Assets/UI/Title.png" id="3_agdox"]
+[ext_resource type="Texture2D" uid="uid://5nevt7vnyvu" path="res://Assets/UI/Rectangle 101.png" id="4_1vdme"]
+[ext_resource type="Texture2D" uid="uid://diirllfyehafa" path="res://Assets/UI/Group 65.png" id="4_egl5x"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l5ogm"]
-bg_color = Color(0.545098, 0.576471, 0.686275, 1)
+bg_color = Color(0, 0.619771, 0.828571, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_uyfbc"]
+texture = ExtResource("4_1vdme")
 
 [node name="StartingMenu" type="Control"]
 layout_mode = 3
@@ -24,60 +30,107 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_l5ogm")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -205.574
-offset_top = -257.0
-offset_right = 205.574
-offset_bottom = 257.0
-grow_horizontal = 2
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -651.0
+offset_top = -86.0
+offset_right = 86.0
+offset_bottom = 182.0
+grow_horizontal = 0
 grow_vertical = 2
+texture = ExtResource("2_agdox")
+expand_mode = 1
+flip_h = true
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer"]
-layout_mode = 2
-theme_override_constants/separation = 70
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer2"]
+[node name="TextureRect3" type="TextureRect" parent="."]
 texture_filter = 1
 custom_minimum_size = Vector2(0, 120)
 layout_mode = 2
+offset_left = 64.0
+offset_top = 65.0
+offset_right = 798.0
+offset_bottom = 256.0
 size_flags_vertical = 0
-texture = ExtResource("1_fk7go")
-expand_mode = 3
+texture = ExtResource("3_agdox")
+expand_mode = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer2"]
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 475.0
+grow_vertical = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 64
+
+[node name="MarginContainer3" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 512.0
+grow_vertical = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer3"]
 layout_mode = 2
-theme_override_constants/margin_left = 50
-theme_override_constants/margin_right = 50
+theme_override_constants/separation = 70
+alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer2/MarginContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer3/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/margin_top = 158
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer3/VBoxContainer2/MarginContainer"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
+theme_override_constants/separation = 16
 
-[node name="StartButton" type="Button" parent="MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer3/VBoxContainer2/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 32
+theme_override_styles/panel = SubResource("StyleBoxTexture_uyfbc")
+
+[node name="StartButton" type="Button" parent="MarginContainer3/VBoxContainer2/MarginContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.32549, 0.427451, 1)
+theme_override_font_sizes/font_size = 42
 text = "Start"
+flat = true
 
-[node name="SettingsButton" type="Button" parent="MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer"]
+[node name="PanelContainer2" type="PanelContainer" parent="MarginContainer3/VBoxContainer2/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 32
+theme_override_styles/panel = SubResource("StyleBoxTexture_uyfbc")
+
+[node name="SettingsButton" type="Button" parent="MarginContainer3/VBoxContainer2/MarginContainer/VBoxContainer/PanelContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.32549, 0.427451, 1)
+theme_override_font_sizes/font_size = 42
 text = "Settings"
+flat = true
 
-[node name="AboutButton" type="Button" parent="MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer"]
+[node name="PanelContainer3" type="PanelContainer" parent="MarginContainer3/VBoxContainer2/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 32
+theme_override_styles/panel = SubResource("StyleBoxTexture_uyfbc")
+
+[node name="AboutButton" type="Button" parent="MarginContainer3/VBoxContainer2/MarginContainer/VBoxContainer/PanelContainer3"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.32549, 0.427451, 1)
+theme_override_font_sizes/font_size = 42
 text = "About"
+flat = true
 
-[node name="ExitButton" type="Button" parent="MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer"]
+[node name="PanelContainer4" type="PanelContainer" parent="MarginContainer3/VBoxContainer2/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 32
+theme_override_styles/panel = SubResource("StyleBoxTexture_uyfbc")
+
+[node name="ExitButton" type="Button" parent="MarginContainer3/VBoxContainer2/MarginContainer/VBoxContainer/PanelContainer4"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.32549, 0.427451, 1)
+theme_override_font_sizes/font_size = 42
 text = "Exit"
+flat = true
 
 [node name="MarginContainer2" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -94,11 +147,27 @@ theme_override_constants/margin_bottom = 8
 
 [node name="LogoutButton" type="Button" parent="MarginContainer2"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 28
 text = "Log out"
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/AboutButton" to="." method="_on_about_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
+[node name="TextureRect2" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -338.0
+offset_top = 35.0
+offset_right = -4.0
+offset_bottom = -45.0
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("4_egl5x")
+expand_mode = 1
+flip_h = true
+
+[connection signal="pressed" from="MarginContainer3/VBoxContainer2/MarginContainer/VBoxContainer/PanelContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="MarginContainer3/VBoxContainer2/MarginContainer/VBoxContainer/PanelContainer2/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="MarginContainer3/VBoxContainer2/MarginContainer/VBoxContainer/PanelContainer3/AboutButton" to="." method="_on_about_button_pressed"]
+[connection signal="pressed" from="MarginContainer3/VBoxContainer2/MarginContainer/VBoxContainer/PanelContainer4/ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="pressed" from="MarginContainer2/LogoutButton" to="." method="_on_logout_button_pressed"]

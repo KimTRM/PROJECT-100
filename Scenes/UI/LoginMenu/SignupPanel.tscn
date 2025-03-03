@@ -138,6 +138,7 @@ text = "PASSWORD"
 
 [node name="Password" type="LineEdit" parent="MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/PasswordPanel/MarginContainer/VBoxContainer"]
 layout_mode = 2
+secret = true
 
 [node name="PasswordPanel2" type="PanelContainer" parent="MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer"]
 layout_mode = 2
@@ -159,6 +160,7 @@ text = "CONFIRM PASSWORD"
 
 [node name="ConfirmPassword" type="LineEdit" parent="MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/PasswordPanel2/MarginContainer/VBoxContainer"]
 layout_mode = 2
+secret = true
 
 [node name="ErrorMessage" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer"]
 visible = false

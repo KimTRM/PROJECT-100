@@ -58,6 +58,8 @@ public partial class QuizMenu : MarginContainer
 
 		SetAnswer(Datas[0]["CorrectAnswer"].ToString());
 		SetAnswer("A");
+
+		HTTPManager.Instance.RequestCompleted -= OnQuizReceived;
 	}
 
 	public void SetQuizData(string itemQuestion, string choiceA, string choiceB, string choiceC, string choiceD)
