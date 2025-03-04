@@ -5,7 +5,7 @@
 class_name DialogueResource extends Resource
 
 
-const DialogueLineResource = preload("res://addons/dialogue_manager/dialogue_line.gd")
+const DialogueLine = preload("./dialogue_line.gd")
 
 ## A list of state shortcuts
 @export var using_states: PackedStringArray = []

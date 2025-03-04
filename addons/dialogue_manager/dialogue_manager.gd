@@ -1,15 +1,15 @@
 extends Node
 
-const DialogueResourceFile = preload("res://addons/dialogue_manager/dialogue_resource.gd")
-const DialogueLineResource = preload("res://addons/dialogue_manager/dialogue_line.gd")
-const DialogueResponseResource = preload("res://addons/dialogue_manager/dialogue_response.gd")
+const DialogueResource = preload("./dialogue_resource.gd")
+const DialogueLine = preload("./dialogue_line.gd")
+const DialogueResponse = preload("./dialogue_response.gd")
 
-const DMConstantsResource = preload("res://addons/dialogue_manager/constants.gd")
-const BuiltinsResource = preload("res://addons/dialogue_manager/utilities/builtins.gd")
-const DMSettingsResource = preload("res://addons/dialogue_manager/settings.gd")
-const DMCompilerResource = preload("res://addons/dialogue_manager/compiler/compiler.gd")
-const DMCompilerResultResource = preload("res://addons/dialogue_manager/compiler/compiler_result.gd")
-const DMResolvedLineDataResource = preload("res://addons/dialogue_manager/compiler/resolved_line_data.gd")
+const DMConstants = preload("./constants.gd")
+const Builtins = preload("./utilities/builtins.gd")
+const DMSettings = preload("./settings.gd")
+const DMCompiler = preload("./compiler/compiler.gd")
+const DMCompilerResult = preload("./compiler/compiler_result.gd")
+const DMResolvedLineData = preload("./compiler/resolved_line_data.gd")
 
 
 ## Emitted when a dialogue balloon is created and dialogue starts
@@ -30,6 +30,9 @@ signal dialogue_ended(resource: DialogueResource)
 
 ## Used internally.
 signal bridge_get_next_dialogue_line_completed(line: DialogueLine)
+
+## Used internally
+signal bridge_dialogue_started(resource: DialogueResource)
 
 ## Used inernally
 signal bridge_mutated()
@@ -415,10 +418,7 @@ func create_resource_from_text(text: String) -> Resource:
 ## Show the example balloon
 func show_example_dialogue_balloon(resource: DialogueResource, title: String = "", extra_game_states: Array = []) -> CanvasLayer:
 	var balloon: Node = load(_get_example_balloon_path()).instantiate()
-	get_current_scene.call().add_child(balloon)
-	balloon.start(resource, title, extra_game_states)
-	dialogue_started.emit(resource)
-
+	_start_balloon.call_deferred(balloon, resource, title, extra_game_states)
 	return balloon
 
 
@@ -438,7 +438,14 @@ func show_dialogue_balloon_scene(balloon_scene, resource: DialogueResource, titl
 		balloon_scene = balloon_scene.instantiate()
 
 	var balloon: Node = balloon_scene
-	get_current_scene.call().add_child.call_deferred(balloon)
+	_start_balloon.call_deferred(balloon, resource, title, extra_game_states)
+	return balloon
+
+
+# Call "start" on the given balloon.
+func _start_balloon(balloon: Node, resource: DialogueResource, title: String, extra_game_states: Array) -> void:
+	get_current_scene.call().add_child(balloon)
+
 	if balloon.has_method(&"start"):
 		balloon.start(resource, title, extra_game_states)
 	elif balloon.has_method(&"Start"):
@@ -447,7 +454,7 @@ func show_dialogue_balloon_scene(balloon_scene, resource: DialogueResource, titl
 		assert(false, DMConstants.translate(&"runtime.dialogue_balloon_missing_start_method"))
 
 	dialogue_started.emit(resource)
-	return balloon
+	bridge_dialogue_started.emit(resource)
 
 
 # Get the path to the example balloon
@@ -680,7 +687,7 @@ func _mutate(mutation: Dictionary, extra_game_states: Array, is_inline_mutation:
 		var args: Array = await _resolve_each(expression[0].value, extra_game_states)
 		match expression[0].function:
 			&"wait", &"Wait":
-				mutated.emit(mutation)
+				mutated.emit(mutation.merged({ is_inline = is_inline_mutation }))
 				await Engine.get_main_loop().create_timer(float(args[0])).timeout
 				return
 
@@ -691,7 +698,7 @@ func _mutate(mutation: Dictionary, extra_game_states: Array, is_inline_mutation:
 	# Or pass through to the resolver
 	else:
 		if not _mutation_contains_assignment(mutation.expression) and not is_inline_mutation:
-			mutated.emit(mutation)
+			mutated.emit(mutation.merged({ is_inline = is_inline_mutation }))
 
 		if mutation.get("is_blocking", true):
 			await _resolve(mutation.expression.duplicate(true), extra_game_states)
@@ -709,14 +716,6 @@ func _mutation_contains_assignment(mutation: Array) -> bool:
 		if token.type == DMConstants.TOKEN_ASSIGNMENT:
 			return true
 	return false
-
-
-# Resolve an array of expressions.
-func _resolve_each(array: Array, extra_game_states: Array) -> Array:
-	var results: Array = []
-	for item in array:
-		results.append(await _resolve(item.duplicate(true), extra_game_states))
-	return results
 
 
 # Replace an array of line IDs with their response prompts
@@ -841,8 +840,20 @@ func _get_state_shortcut_names(extra_game_states: Array) -> String:
 	return ", ".join(states.map(func(s): return "\"%s\"" % (s.name if "name" in s else s)))
 
 
+# Resolve an array of expressions.
+func _resolve_each(array: Array, extra_game_states: Array) -> Array:
+	var results: Array = []
+	for item in array:
+		if not item[0].type in [DMConstants.TOKEN_BRACE_CLOSE, DMConstants.TOKEN_BRACKET_CLOSE, DMConstants.TOKEN_PARENS_CLOSE]:
+			results.append(await _resolve(item.duplicate(true), extra_game_states))
+	return results
+
+
 # Collapse any expressions
 func _resolve(tokens: Array, extra_game_states: Array):
+	var i: int = 0
+	var limit: int = 0
+
 	# Handle groups first
 	for token in tokens:
 		if token.type == DMConstants.TOKEN_GROUP:
@@ -850,8 +861,8 @@ func _resolve(tokens: Array, extra_game_states: Array):
 			token.value = await _resolve(token.value, extra_game_states)
 
 	# Then variables/methods
-	var i: int = 0
-	var limit: int = 0
+	i = 0
+	limit = 0
 	while i < tokens.size() and limit < 1000:
 		limit += 1
 		var token: Dictionary = tokens[i]
@@ -863,9 +874,9 @@ func _resolve(tokens: Array, extra_game_states: Array):
 				# If we are calling a deeper function then we need to collapse the
 				# value into the thing we are calling the function on
 				var caller: Dictionary = tokens[i - 2]
-				if BuiltinsResource.is_supported(caller.value):
+				if Builtins.is_supported(caller.value):
 					caller.type = DMConstants.TOKEN_VALUE
-					caller.value = BuiltinsResource.resolve_method(caller.value, function_name, args)
+					caller.value = Builtins.resolve_method(caller.value, function_name, args)
 					tokens.remove_at(i)
 					tokens.remove_at(i - 1)
 					i -= 2
@@ -1076,8 +1087,8 @@ func _resolve(tokens: Array, extra_game_states: Array):
 					# If we are requesting a deeper property then we need to collapse the
 					# value into the thing we are referencing from
 					caller.type = DMConstants.TOKEN_VALUE
-					if BuiltinsResource.is_supported(caller.value):
-						caller.value = BuiltinsResource.resolve_property(caller.value, property)
+					if Builtins.is_supported(caller.value):
+						caller.value = Builtins.resolve_property(caller.value, property)
 					else:
 						caller.value = caller.value.get(property)
 				tokens.remove_at(i)
@@ -1319,7 +1330,7 @@ func _is_valid(line: DialogueLine) -> bool:
 
 # Check that a thing has a given method.
 func _thing_has_method(thing, method: String, args: Array) -> bool:
-	if BuiltinsResource.is_supported(thing, method):
+	if Builtins.is_supported(thing, method):
 		return thing != _autoloads
 	elif thing is Dictionary:
 		return false
@@ -1335,7 +1346,7 @@ func _thing_has_method(thing, method: String, args: Array) -> bool:
 
 	if method.to_snake_case() != method and DMSettings.check_for_dotnet_solution():
 		# If we get this far then the method might be a C# method with a Task return type
-		return _get_dotnet_dialogue_manager().ThingHasMethod(thing, method)
+		return _get_dotnet_dialogue_manager().ThingHasMethod(thing, method, args)
 
 	return false
 
@@ -1355,27 +1366,34 @@ func _thing_has_property(thing: Object, property: String) -> bool:
 	return false
 
 
-func _get_method_info_for(thing, method: String) -> Dictionary:
+func _get_method_info_for(thing: Variant, method: String, args: Array) -> Dictionary:
 	# Use the thing instance id as a key for the caching dictionary.
 	var thing_instance_id: int = thing.get_instance_id()
 	if not _method_info_cache.has(thing_instance_id):
 		var methods: Dictionary = {}
 		for m in thing.get_method_list():
-			methods[m.name] = m
+			methods["%s:%d" % [m.name, m.args.size()]] = m
+			if not methods.has(m.name):
+				methods[m.name] = m
 		_method_info_cache[thing_instance_id] = methods
 
-	return _method_info_cache.get(thing_instance_id, {}).get(method)
+	var methods: Dictionary = _method_info_cache.get(thing_instance_id, {})
+	var method_key: String = "%s:%d" % [method, args.size()]
+	if methods.has(method_key):
+		return methods.get(method_key)
+	else:
+		return methods.get(method)
 
 
 func _resolve_thing_method(thing, method: String, args: Array):
-	if BuiltinsResource.is_supported(thing):
-		var result = BuiltinsResource.resolve_method(thing, method, args)
-		if not BuiltinsResource.has_resolve_method_failed():
+	if Builtins.is_supported(thing):
+		var result = Builtins.resolve_method(thing, method, args)
+		if not Builtins.has_resolve_method_failed():
 			return result
 
 	if thing.has_method(method):
 		# Try to convert any literals to the right type
-		var method_info: Dictionary = _get_method_info_for(thing, method)
+		var method_info: Dictionary = _get_method_info_for(thing, method, args)
 		var method_args: Array = method_info.args
 		if method_info.flags & METHOD_FLAG_VARARG == 0 and method_args.size() < args.size():
 			assert(false, DMConstants.translate(&"runtime.expected_n_got_n_args").format({ expected = method_args.size(), method = method, received = args.size()}))

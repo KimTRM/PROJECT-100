@@ -40,7 +40,6 @@ public partial class QuizMenu : MarginContainer
 	{
 		HTTPManager.Instance.RequestCompleted += OnQuizReceived;
 		HTTPManager.Instance.QueueRequest(HTTPManager.Instance.Commands["GET_QUIZ"]);
-	
 	}
 
 	public void OnQuizReceived(Array<Dictionary> response)

@@ -16,7 +16,7 @@ script = ExtResource("1_2o5dk")
 [node name="TextureRect" type="TextureRect" parent="."]
 anchors_preset = 9
 anchor_bottom = 1.0
-offset_right = 987.0
+offset_right = 857.0
 grow_vertical = 2
 texture = ExtResource("2_7g5nr")
 expand_mode = 1
