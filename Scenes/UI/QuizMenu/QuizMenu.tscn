@@ -105,6 +105,8 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 34
 text = "D."
 
+[node name="Timer" type="Timer" parent="."]
+
 [connection signal="pressed" from="QuizContainer/VBoxContainer/MarginContainer/ChoiceButtonContainer/ChoiceButtonA" to="." method="_on_choice_button_a_pressed"]
 [connection signal="pressed" from="QuizContainer/VBoxContainer/MarginContainer/ChoiceButtonContainer/ChoiceButtonB" to="." method="_on_choice_button_b_pressed"]
 [connection signal="pressed" from="QuizContainer/VBoxContainer/MarginContainer/ChoiceButtonContainer/ChoiceButtonC" to="." method="_on_choice_button_c_pressed"]

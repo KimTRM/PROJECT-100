@@ -89,7 +89,11 @@ public partial class QuizMenu : MarginContainer
 				correctCount++;
 			}
 		}
-		GD.Print($"You got {correctCount} out of {Datas.Count} correct!");
+
+		var QuizResults = (QuizResults)ResourceLoader.Load<PackedScene>("res://Scenes/UI/QuizMenu/QuizResults.tscn").Instantiate();
+		QuizResults.SetQuizResults("Player", "123", correctCount, Datas.Count - correctCount);
+		QueueFree();
+		GetParent().AddChild(QuizResults);
 	}
 
 	void _on_choice_button_a_pressed()

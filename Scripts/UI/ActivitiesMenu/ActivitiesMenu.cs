@@ -21,7 +21,6 @@ public partial class ActivitiesMenu : MarginContainer
 
 	public override void _Ready()
 	{
-		GD.Print("Test");
 		HTTPManager.Instance.RequestCompleted += OnLessonsReceived;
 		HTTPManager.Instance.QueueRequest(HTTPManager.Instance.Commands["GET_LESSON"]);
 	}
