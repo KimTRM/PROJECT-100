@@ -23,7 +23,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/margin_bottom = 150
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer"]
+[node name="CutSceneContainer" type="TextureRect" parent="MarginContainer"]
 custom_minimum_size = Vector2(512, 512)
 layout_mode = 2
 texture = ExtResource("1_b75yi")

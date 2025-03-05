@@ -2,6 +2,7 @@ using Godot;
 using GodotUtilities;
 using Godot.Collections;
 using System.Linq;
+using System;
 
 [Scene]
 public partial class QuizMenu : MarginContainer
@@ -14,6 +15,9 @@ public partial class QuizMenu : MarginContainer
 	[Node("QuizContainer/VBoxContainer/Question")]
 	public Label question;
 
+	[Node("QuizContainer/VBoxContainer/MarginContainer/ChoiceButtonContainer")]
+	public HBoxContainer choiceButtonContainer;
+
 	[Node("QuizContainer/VBoxContainer/MarginContainer/ChoiceButtonContainer/ChoiceButtonA")]
 	public Button choiceButtonA;
 	[Node("QuizContainer/VBoxContainer/MarginContainer/ChoiceButtonContainer/ChoiceButtonB")]
@@ -22,6 +26,8 @@ public partial class QuizMenu : MarginContainer
 	public Button choiceButtonC;
 	[Node("QuizContainer/VBoxContainer/MarginContainer/ChoiceButtonContainer/ChoiceButtonD")]
 	public Button choiceButtonD;
+
+	int index = 0;
 
 	[Export]
 	private Array<Dictionary> Datas = new();
@@ -36,42 +42,110 @@ public partial class QuizMenu : MarginContainer
 		}
 	}
 
-	public override void _Ready()
+	public void RandomizeQuiz(int maxQuestions = 0)
 	{
-		HTTPManager.Instance.RequestCompleted += OnQuizReceived;
-		HTTPManager.Instance.QueueRequest(HTTPManager.Instance.Commands["GET_QUIZ"]);
+		Datas = [.. Datas.OrderBy(x => new Random().Next()).ToList()];
+
+		if (maxQuestions > 0 && maxQuestions < Datas.Count)
+		{
+			Datas = [.. Datas.Take(maxQuestions)];
+		}
 	}
 
 	public void OnQuizReceived(Array<Dictionary> response)
 	{
 		Datas = response;
-		
-		SetQuizData
-		(
-			Datas[0]["Question"].ToString(), 
-			Datas[0]["ChoiceA"].ToString(), 
-			Datas[0]["ChoiceB"].ToString(),
-			Datas[0]["ChoiceC"].ToString(),
-			Datas[0]["ChoiceD"].ToString()
-		);
 
-		SetAnswer(Datas[0]["CorrectAnswer"].ToString());
-		SetAnswer("A");
+		RandomizeQuiz(3);
+
+		SetQuizData();
 
 		HTTPManager.Instance.RequestCompleted -= OnQuizReceived;
 	}
 
-	public void SetQuizData(string itemQuestion, string choiceA, string choiceB, string choiceC, string choiceD)
+	public void SetQuizData()
 	{
-		question.Text = itemQuestion;
-		choiceButtonA.Text = choiceA;
-		choiceButtonB.Text = choiceB;
-		choiceButtonC.Text = choiceC;
-		choiceButtonD.Text = choiceD;
+		currentItem.Text = $"{index + 1}";
+		totalItems.Text = $"{Datas.Count}";
+		question.Text = Datas[index]["Question"].ToString();
+		choiceButtonA.Text = Datas[index]["ChoiceA"].ToString();
+		choiceButtonB.Text = Datas[index]["ChoiceB"].ToString();
+		choiceButtonC.Text = Datas[index]["ChoiceC"].ToString();
+		choiceButtonD.Text = Datas[index]["ChoiceD"].ToString();
 	}
 
 	public void SetAnswer(string answer)
-    {
+	{
 		currentAnswers.Add(answer);
-    }
+	}
+
+	private void CheckAnswers()
+	{
+		int correctCount = 0;
+		for (int i = 0; i < Datas.Count; i++)
+		{
+			if (i < currentAnswers.Count && Datas[i]["CorrectAnswer"].ToString() == currentAnswers[i])
+			{
+				correctCount++;
+			}
+		}
+		GD.Print($"You got {correctCount} out of {Datas.Count} correct!");
+	}
+
+	void _on_choice_button_a_pressed()
+	{
+		if (index < Datas.Count - 1)
+		{
+			SetAnswer("A");
+			index++;
+			SetQuizData();
+		}
+		else
+		{
+			SetAnswer("A");
+			CheckAnswers();
+		}
+	}
+	void _on_choice_button_b_pressed()
+	{
+		if (index < Datas.Count - 1)
+		{
+			SetAnswer("B");
+			index++;
+			SetQuizData();
+		}
+		else
+		{
+			SetAnswer("B");
+			CheckAnswers();
+		}
+	}
+	void _on_choice_button_c_pressed()
+	{
+		if (index < Datas.Count - 1)
+		{
+			SetAnswer("C");
+			index++;
+			SetQuizData();
+		}
+		else
+		{
+			SetAnswer("C");
+			CheckAnswers();
+		}
+	}
+	void _on_choice_button_d_pressed()
+	{
+		if (index < Datas.Count - 1)
+		{
+			SetAnswer("D");
+			index++;
+			SetQuizData();
+		}
+		else
+		{
+			SetAnswer("D");
+			CheckAnswers();
+		}
+	}
 }
