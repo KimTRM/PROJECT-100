@@ -77,6 +77,18 @@ theme_override_font_sizes/font_size = 42
 text = "Resume"
 flat = true
 
+[node name="PanelContainer4" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_7jjt0")
+
+[node name="ActivitiesButton" type="Button" parent="MarginContainer/VBoxContainer/PanelContainer4"]
+layout_mode = 2
+focus_mode = 0
+theme_override_colors/font_color = Color(0, 0.32549, 0.427451, 1)
+theme_override_font_sizes/font_size = 42
+text = "Activites"
+flat = true
+
 [node name="PanelContainer2" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_7jjt0")
@@ -102,5 +114,6 @@ text = "Save & Quit"
 flat = true
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/PanelContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/PanelContainer4/ActivitiesButton" to="." method="_on_activities_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/PanelContainer2/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/PanelContainer3/Save&QuitButton" to="." method="_on_save_quit_button_pressed"]

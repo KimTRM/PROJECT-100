@@ -1,11 +1,12 @@
+using System;
 using Godot;
 using GodotUtilities;
-using System;
-using DialogueManagerRuntime;
 
 [Scene]
 public partial class CutSceneLoader : CanvasLayer
 {
+    [Node("MarginContainer/CutSceneContainer")]
+    private TextureRect cutSceneContainer;
     [Node("MarginContainer2/DialougeText")]
     private RichTextLabel dialougeText;
     [Node("LetterDisplayTimer")]
@@ -20,7 +21,7 @@ public partial class CutSceneLoader : CanvasLayer
     private double SpaceTime = 0.06;
     private double PuncutationTime = 0.2;
 
-    public delegate void FinishedDisplayingEventHandler();
+    [Signal] public delegate void FinishedDisplayingEventHandler();
 
     public override void _Notification(int what)
     {
@@ -32,10 +33,45 @@ public partial class CutSceneLoader : CanvasLayer
 
     public void DisplayText(string textToDisplay)
     {
+        letterDisplayTimer.Timeout += OnLetterDisplayTimeout;
         Text = textToDisplay;
         LetterIndex = 0;
         dialougeText.Text = "";
-        letterDisplayTimer.Start();
+        letterDisplayTimer.Start(LetterTime);
+    }
+
+    private void OnLetterDisplayTimeout()
+    {
+        if (LetterIndex < Text.Length)
+        {
+            char currentChar = Text[LetterIndex];
+            dialougeText.Text += currentChar;
+            LetterIndex++;
+
+            if (currentChar == ' ')
+            {
+                letterDisplayTimer.Start(SpaceTime);
+            }
+            else if (".,!?".Contains(currentChar))
+            {
+                letterDisplayTimer.Start(PuncutationTime);
+            }
+            else
+            {
+                letterDisplayTimer.Start(LetterTime);
+            }
+        }
+        else
+        {
+            letterDisplayTimer.Stop();
+            EmitSignal(SignalName.FinishedDisplaying);
+        }
+    }
+
+    public void ChangeTexture(Texture newTexture)
+    {
+        Tween tween = CreateTween();
+        tween.TweenProperty(cutSceneContainer, "modulate:a", 0, 0.5f).SetTrans(Tween.TransitionType.Sine).SetEase(Tween.EaseType.InOut);
     }
 
 }
