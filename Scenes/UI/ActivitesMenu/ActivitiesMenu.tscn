@@ -1,0 +1,57 @@
+[gd_scene load_steps=4 format=3 uid="uid://34rfdpi65bvp"]
+
+[ext_resource type="Script" uid="uid://d4bsqowki1au" path="res://Scripts/UI/ActivitiesMenu/ActivitiesMenu.cs" id="1_fvawc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cpuor"]
+bg_color = Color(0.2, 0.223529, 0.254902, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w0ius"]
+bg_color = Color(0.115475, 0.12683, 0.174144, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+expand_margin_left = 32.0
+expand_margin_top = 32.0
+expand_margin_right = 32.0
+
+[node name="ActivitiesMenu" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fvawc")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_cpuor")
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+
+[node name="Label" type="Label" parent="MarginContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Activites"
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 128
+theme_override_constants/margin_top = 148
+theme_override_constants/margin_right = 128
+
+[node name="Panel" type="Panel" parent="MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_w0ius")
+
+[node name="ActivitiesContainer" type="HFlowContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 12
+theme_override_constants/v_separation = 12
+alignment = 1
+last_wrap_alignment = 2

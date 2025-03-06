@@ -23,7 +23,12 @@ public partial class HTTPManager : Node
 		{"GET_USER_ACCOUNT", "get_user_account"},
         {"ADD_USER_ACCOUNT", "add_user_account"},
 
+		{"GET_LESSON", "get_lesson"},
+		{"ADD_LESSON", "add_lesson"},
+		{"DELETE_LESSON", "delete_lesson"},
+
         {"GET_QUIZ", "get_quiz"},
+		{"GET_SPECIFIC_QUIZ", "get_specific_quiz"},
 		{"ADD_QUIZ", "add_quiz"},
 		{"DELETE_QUIZ", "delete_quiz"},
 	
@@ -66,7 +71,7 @@ public partial class HTTPManager : Node
         });
 
 		var body = $"command={request.GetValueOrDefault("command", "")}&{data}";
-
+		
 		Error err = _HttpRequest.Request(SERVER_URL, SERVER_HEADERS, HttpClient.Method.Post, body);
 
 		if (err != Error.Ok)

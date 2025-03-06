@@ -42,7 +42,7 @@ public partial class LoginMenu : Control
 		HTTPManager.Instance.QueueRequest(HTTPManager.Instance.Commands["GET_USER_ACCOUNT"]);
 	}
 
-	private void CheckError(Dictionary ErrorMessage)
+	public void CheckError(Dictionary ErrorMessage)
 	{
 		NoConnectionPanel.Show();
 
@@ -50,12 +50,15 @@ public partial class LoginMenu : Control
 		HTTPManager.Instance.RequestError -= CheckError;
 	}
 
-	private void OnAccountReceived(Array<Dictionary> response)
+	public void OnAccountReceived(Array<Dictionary> response)
 	{
 		LoadingPanel.Hide();
 		NoConnectionPanel.Hide();
 
 		UserDatas = response;
+
+		HTTPManager.Instance.RequestCompleted -= OnAccountReceived;
+		HTTPManager.Instance.RequestError -= CheckError;
 	}
 
 	public void _on_login_button_pressed()

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
@@ -8,9 +9,16 @@ public partial class BlockCanvas : MarginContainer
 {
     [Node("WindowContainer/Overlay/MarginContainer/ZoomButtons/ZoomButton")]
     private Button ZoomButton;
-
     [Node("WindowContainer/Window")]
     public Control Window;
+
+    [Export]
+    private NodePath DragManagerPath;
+    private DragManager dragManager;
+
+    [Export]
+    private NodePath ConsolePath;
+    private Console console;
 
     private float zoomFactor = 1.0f;
     private float zoomStep = 0.1f;
@@ -28,6 +36,20 @@ public partial class BlockCanvas : MarginContainer
         if (what == NotificationSceneInstantiated)
         {
             WireNodes();
+        }
+    }
+
+    public override void _Ready()
+    {
+        dragManager = GetNode<DragManager>(DragManagerPath);
+        console = GetNode<Console>(ConsolePath);
+
+        foreach (Control child in Window.GetChildren())
+        {
+            if (child is CodeBlock block)
+            {
+                block.dragManager = dragManager;
+            }
         }
     }
 
@@ -67,22 +89,6 @@ public partial class BlockCanvas : MarginContainer
             Window.Position = controlStartPos + mouseDelta;
         }
     }
-
-    public void _on_zoom_in_button_pressed()
-    {
-        Zoom(zoomFactor + zoomStep);
-    }
-
-    public void _on_zoom_button_pressed()
-    {
-        Zoom(1.0f);
-    }
-
-    public void _on_zoom_out_button_pressed()
-    {
-        Zoom(zoomFactor - zoomStep);
-    }
-
     private void Zoom(float newZoom)
     {
         zoomFactor = Mathf.Clamp(newZoom, minZoom, maxZoom);
@@ -91,7 +97,18 @@ public partial class BlockCanvas : MarginContainer
         ZoomButton.Text = $"{zoomFactor:F1}x";
     }
 
-
+    private void _on_zoom_in_button_pressed()
+    {
+        Zoom(zoomFactor + zoomStep);
+    }
+    private void _on_zoom_button_pressed()
+    {
+        Zoom(1.0f);
+    }
+    private void _on_zoom_out_button_pressed()
+    {
+        Zoom(zoomFactor - zoomStep);
+    }
 
     private async void _on_execute_pressed()
     {

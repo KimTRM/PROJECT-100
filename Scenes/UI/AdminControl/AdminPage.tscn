@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://b6gosw6qc25tx"]
+[gd_scene load_steps=4 format=3 uid="uid://b6gosw6qc25tx"]
 
-[ext_resource type="Script" path="res://Scripts/UI/AdminControl/AdminPage.cs" id="1_txpec"]
+[ext_resource type="Script" uid="uid://qtajua2a8ob2" path="res://Scripts/UI/AdminControl/AdminPage.cs" id="1_txpec"]
 [ext_resource type="Texture2D" uid="uid://bcsntasu7npgo" path="res://Assets/ProjectFiles/Title.png" id="2_xm8k8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lvd8j"]
+bg_color = Color(0.121569, 0.0901961, 0.121569, 0.54902)
 
 [node name="AdminPage" type="Control"]
 layout_mode = 3
@@ -11,6 +14,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
+size_flags_vertical = 3
 script = ExtResource("1_txpec")
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -136,6 +140,7 @@ theme_override_constants/separation = 20
 
 [node name="Accounts" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/SideBar/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+tooltip_text = "Views all the acounts"
 text = "ACCOUNTS"
 
 [node name="QuizEditor" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/SideBar/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
@@ -175,11 +180,11 @@ theme_override_constants/margin_bottom = 8
 layout_mode = 2
 text = "Log out"
 
-[node name="Content" type="ColorRect" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Content" type="PanelContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(1055, 650)
 layout_mode = 2
 size_flags_horizontal = 3
-color = Color(0.121569, 0.0901961, 0.121569, 0.54902)
+theme_override_styles/panel = SubResource("StyleBoxFlat_lvd8j")
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/SideBar/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/Accounts" to="." method="_on_accounts_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/SideBar/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/QuizEditor" to="." method="_on_quiz_editor_pressed"]

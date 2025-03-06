@@ -32,6 +32,11 @@ public partial class PauseMenu : CanvasLayer
 		GetTree().Paused = false;
 	}
 
+	void _on_activities_button_pressed()
+	{
+		GameManager.Instance.LoadScene("res://Scenes/UI/ActivitesMenu/ActivitiesMenu.tscn");
+	}
+
 	void _on_settings_button_pressed()
 	{
 		SettingsMenu SettingsMenu = (SettingsMenu)GetNode("/root/SettingsMenu");

@@ -19,6 +19,9 @@ public partial class QuizEditor : MarginContainer
 	private Array<QuestionEditor> Quizes = new();
 	int index = 0;
 
+	[Export]
+	public string QuizCategory;
+
     public override void _Notification(int what)
     {
         if (what == NotificationSceneInstantiated)
@@ -27,17 +30,13 @@ public partial class QuizEditor : MarginContainer
 		}
 	}
 
-    public override void _Ready()
-	{
-		HTTPManager.Instance.RequestCompleted += OnQuestionsReceived;
-		HTTPManager.Instance.QueueRequest(HTTPManager.Instance.Commands["GET_QUIZ"]);
-	}
-
 	public void OnQuestionsReceived(Array<Dictionary> response)
 	{
 		Datas = response;
 		NumOfQuestions.Text = Datas.Count.ToString();
 		LoadQuestions();
+
+		HTTPManager.Instance.RequestCompleted -= OnQuestionsReceived;
 	}
 
 	private void LoadQuestions()
@@ -66,6 +65,7 @@ public partial class QuizEditor : MarginContainer
 			Quizes[index]._choiceC.Text = $"{data["ChoiceC"]}";
 			Quizes[index]._choiceD.Text = $"{data["ChoiceD"]}";
 			Quizes[index].SetAnswer($"{data["CorrectAnswer"]}");
+			Quizes[index].QuizCategory = QuizCategory;
 			index++;
 		}
 	}
@@ -77,6 +77,7 @@ public partial class QuizEditor : MarginContainer
 	
 		Qustion._questionNumber.Text = $"{index + 1}";
 		Qustion.ID = HTTPManager.Instance.GenarateId();
+		Qustion.QuizCategory = QuizCategory;
 
 		index++;
 		NumOfQuestions.Text = $"{index}";
@@ -93,9 +94,10 @@ public partial class QuizEditor : MarginContainer
 		Quizes.Clear();
 		index = 0;
 
-		HTTPManager.Instance.RequestCompleted -= OnQuestionsReceived;
-		
 		HTTPManager.Instance.RequestCompleted += OnQuestionsReceived;
-		HTTPManager.Instance.QueueRequest(HTTPManager.Instance.Commands["GET_QUIZ"]);
+
+		var datas = new Dictionary {{ "QuizCategory", QuizCategory }};
+		HTTPManager.Instance.QueueRequest(HTTPManager.Instance.Commands["GET_SPECIFIC_QUIZ"], datas);
+		// HTTPManager.Instance.QueueRequest(HTTPManager.Instance.Commands["GET_QUIZ"]);
 	}
 }

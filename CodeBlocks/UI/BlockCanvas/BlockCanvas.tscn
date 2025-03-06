@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bp0aevc7dehng"]
 
-[ext_resource type="Script" path="res://CodeBlocks/UI/BlockCanvas/BlockCanvas.cs" id="1_084tk"]
+[ext_resource type="Script" uid="uid://rnrlcufl0xql" path="res://CodeBlocks/UI/BlockCanvas/BlockCanvas.cs" id="1_084tk"]
 [ext_resource type="PackedScene" uid="uid://drcorwafubvtf" path="res://CodeBlocks/UI/Blocks/Variable/VariableBlock.tscn" id="2_gjct8"]
 
 [node name="BlockCanvas" type="MarginContainer"]

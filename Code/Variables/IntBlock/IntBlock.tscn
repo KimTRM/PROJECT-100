@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://rkxkm6m8ey64"]
 
-[ext_resource type="Script" path="res://Code/Variables/IntBlock/Scripts/int_block.gd" id="1_cu3lx"]
+[ext_resource type="Script" uid="uid://d2k6c2epqi4xm" path="res://Code/Variables/IntBlock/Scripts/int_block.gd" id="1_cu3lx"]
 [ext_resource type="Resource" uid="uid://bjovrmktfx4ss" path="res://Code/Variables/IntBlock/Scripts/IntBlock.tres" id="2_xospl"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mrdtd"]

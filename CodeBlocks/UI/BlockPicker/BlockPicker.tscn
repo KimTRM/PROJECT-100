@@ -1,11 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://dl1yi3e2oqj0k"]
+[gd_scene load_steps=3 format=3 uid="uid://dl1yi3e2oqj0k"]
 
-[ext_resource type="PackedScene" uid="uid://rkxkm6m8ey64" path="res://Code/Variables/IntBlock/IntBlock.tscn" id="1_1gcx5"]
 [ext_resource type="PackedScene" uid="uid://drcorwafubvtf" path="res://CodeBlocks/UI/Blocks/Variable/VariableBlock.tscn" id="1_1h783"]
 [ext_resource type="PackedScene" uid="uid://cxeco0k7s7brh" path="res://CodeBlocks/UI/Blocks/Experssion/ExpressionBlock.tscn" id="2_qsbpy"]
-[ext_resource type="PackedScene" uid="uid://c4pumpxm1xsoq" path="res://Code/Variables/BooleanBlock/BooleanBlock.tscn" id="3_78ge1"]
-[ext_resource type="PackedScene" uid="uid://ghfmwfgjo781" path="res://Code/Variables/StringBlock/StringBlock.tscn" id="4_rc73x"]
-[ext_resource type="PackedScene" uid="uid://cojfo4sy7un6u" path="res://Code/Variables/FloatBlock/FloatBlock.tscn" id="6_slnsk"]
 
 [node name="BlockPicker" type="MarginContainer"]
 offset_right = 223.0
@@ -35,20 +31,4 @@ alignment = 1
 layout_mode = 2
 
 [node name="ExpressionBlock" parent="ScrollContainer/MarginContainer/CodeBlockContainer" instance=ExtResource("2_qsbpy")]
-layout_mode = 2
-
-[node name="BooleanBlock" parent="ScrollContainer/MarginContainer/CodeBlockContainer" instance=ExtResource("3_78ge1")]
-visible = false
-layout_mode = 2
-
-[node name="StringBlock" parent="ScrollContainer/MarginContainer/CodeBlockContainer" instance=ExtResource("4_rc73x")]
-visible = false
-layout_mode = 2
-
-[node name="IntBlock" parent="ScrollContainer/MarginContainer/CodeBlockContainer" instance=ExtResource("1_1gcx5")]
-visible = false
-layout_mode = 2
-
-[node name="FloatBlock" parent="ScrollContainer/MarginContainer/CodeBlockContainer" instance=ExtResource("6_slnsk")]
-visible = false
 layout_mode = 2

@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://b7olgo4xh10gm"]
 
-[ext_resource type="Script" path="res://Scripts/UI/LoginMenu/SignupPanel.cs" id="1_gkpfx"]
+[ext_resource type="Script" uid="uid://c2f6unkpd3bng" path="res://Scripts/UI/LoginMenu/SignupPanel.cs" id="1_gkpfx"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jo6mb"]
 bg_color = Color(0.2, 0.223529, 0.254902, 1)
@@ -138,6 +138,7 @@ text = "PASSWORD"
 
 [node name="Password" type="LineEdit" parent="MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/PasswordPanel/MarginContainer/VBoxContainer"]
 layout_mode = 2
+secret = true
 
 [node name="PasswordPanel2" type="PanelContainer" parent="MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer"]
 layout_mode = 2
@@ -159,6 +160,7 @@ text = "CONFIRM PASSWORD"
 
 [node name="ConfirmPassword" type="LineEdit" parent="MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/PasswordPanel2/MarginContainer/VBoxContainer"]
 layout_mode = 2
+secret = true
 
 [node name="ErrorMessage" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer"]
 visible = false

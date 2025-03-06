@@ -45,6 +45,8 @@ public partial class DragDropArea : Control
         // if (_dragStartPosition.DistanceTo(motionEvent.GlobalPosition) < Constants.MINIMUM_DRAG_THRESHOLD)
         //     return;
 
+        GD.Print("drag started");
+
         GetViewport().SetInputAsHandled();
         EmitSignal(SignalName.DragStarted, _dragStartPosition - motionEvent.GlobalPosition);
         _dragStartPosition = Vector2.Inf;

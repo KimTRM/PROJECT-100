@@ -8,7 +8,7 @@ public partial class DragManager : Control
 
     private BlockCanvas _blockCanvas;
 
-    // private BlockPicker _picker;
+    private BlockPicker _picker;
     private DragBlock dragBlock;
 
     [Export] private NodePath pickerPath;
@@ -16,37 +16,107 @@ public partial class DragManager : Control
 
     public override void _Ready()
     {
-        // _picker = GetNode<Picker>(pickerPath);
+        _picker = GetNode<BlockPicker>(pickerPath);
         _blockCanvas = GetNode<BlockCanvas>(blockCanvasPath);
     }
 
+    private Node _originalParent;
+    private Control _draggedObject;
+    private Vector2 _offset;
+
+    private Node _dropTarget;
+
+    bool dragging = false;
+
     public override void _Process(double delta)
     {
-        // dragBlock?.UpdateDragState();
+        if (dragging)
+        {
+            _draggedObject.GlobalPosition = GetGlobalMousePosition() - _offset;
+        }
     }
 
-    public void StartDrag(CodeBlock block, Vector2 offset)
+    public void StartDrag(Control draggable)
     {
-        if (block.GetParent() != null)
-        {
-            block.GetParent().RemoveChild(block);
-        }
+        if (draggable == null) return;
         
-        dragBlock = new DragBlock(block, offset, _blockCanvas);
-        AddChild(dragBlock);
+        dragging = true;
+
+        _originalParent = draggable.GetParent();
+        _draggedObject = draggable;
+        _offset = GetGlobalMousePosition() - _draggedObject.GlobalPosition;
+        _originalParent.RemoveChild(_draggedObject);
+        AddChild(_draggedObject); // Temporarily parent to DragManager
     }
 
     public void EndDrag()
     {
-        if (dragBlock == null) return;
+        if (_draggedObject == null) return;
 
-        CodeBlock placedBlock = dragBlock.ApplyDrag();
-        if (placedBlock != null)
+        dragging = false;
+        // if (_dropTarget == _blockCanvas)
+        // {
+        //     _draggedObject.QueueFree();
+        //     _draggedObject = null;
+        //     return;
+        // }
+
+        Node newParent = GetDropTarget() ?? _originalParent; // Fallback if no valid target
+
+        RemoveChild(_draggedObject);
+        newParent.AddChild(_draggedObject);
+        _draggedObject.GlobalPosition = GetGlobalMousePosition() - _offset;
+        _draggedObject = null;
+    }
+
+    private Node GetDropTarget()
+    {
+        Vector2 mousePos = GetGlobalMousePosition();
+
+        if (_on_block_canvas_mouse_entered())
         {
-            EmitSignal(SignalName.BlockDropped);
+            return _blockCanvas.Window;
         }
         
-        dragBlock.QueueFree();
-        dragBlock = null;
+        if (_on_block_picker_mouse_entered())
+        {
+            return _picker.codeBlockContainer;
+        }
+
+        return null; // No valid target found
     }
+
+    private bool _on_block_canvas_mouse_entered()
+    {
+        return true;
+    }
+
+    private bool _on_block_picker_mouse_entered()
+    {
+        return true;
+    }
+    // public void StartDrag(CodeBlock block, Vector2 offset)
+    // {
+    //     if (block.GetParent() != null)
+    //     {
+    //         block.GetParent().RemoveChild(block);
+    //     }
+
+    //     dragBlock = new DragBlock(block, offset, _blockCanvas);
+    //     AddChild(dragBlock);
+    // }
+
+    // public void EndDrag()
+    // {
+    //     if (dragBlock == null) return;
+
+    //     CodeBlock placedBlock = dragBlock.ApplyDrag();
+    //     if (placedBlock != null)
+    //     {
+    //         EmitSignal(SignalName.BlockDropped);
+    //     }
+
+    //     dragBlock.QueueFree();
+    //     dragBlock = null;
+    // }
 }

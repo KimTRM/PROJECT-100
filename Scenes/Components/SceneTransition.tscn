@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://b2fvkh5s5ofkq"]
 
-[ext_resource type="Script" path="res://Scripts/Components/SceneTransition.cs" id="1_okwu8"]
+[ext_resource type="Script" uid="uid://ciejx1b4plcfg" path="res://Scripts/Components/SceneTransition.cs" id="1_okwu8"]
 
 [sub_resource type="Animation" id="Animation_8ds03"]
 resource_name = "FadeIn"
@@ -51,9 +51,9 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3v812"]
 _data = {
-"FadeIn": SubResource("Animation_8ds03"),
-"FadeOut": SubResource("Animation_5jbod"),
-"RESET": SubResource("Animation_ewj33")
+&"FadeIn": SubResource("Animation_8ds03"),
+&"FadeOut": SubResource("Animation_5jbod"),
+&"RESET": SubResource("Animation_ewj33")
 }
 
 [node name="SceneTransition" type="CanvasLayer"]

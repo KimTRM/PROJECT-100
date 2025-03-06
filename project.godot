@@ -12,7 +12,7 @@ config_version=5
 
 config/name="PROJECT 100"
 run/main_scene="res://Scenes/UI/LoginMenu/LoginMenu.tscn"
-config/features=PackedStringArray("4.3", "C#", "Mobile")
+config/features=PackedStringArray("4.4", "C#", "Mobile")
 boot_splash/bg_color=Color(0.0470588, 0.0470588, 0.0470588, 1)
 boot_splash/image="res://Assets/ProjectFiles/KLTL.png"
 config/icon="res://Assets/ProjectFiles/Title.png"
@@ -20,13 +20,18 @@ boot_splash/minimum_display_time=7
 
 [autoload]
 
-LevelManager="*res://Globals/LevelManager.gd"
 HttpManager="*res://Globals/HTTPManager.cs"
 GameManager="*res://Globals/GameManager.cs"
 PauseMenu="*res://Scenes/UI/PauseMenu/PauseMenu.tscn"
 SettingsMenu="*res://Scenes/UI/PauseMenu/SettingsMenu.tscn"
 SceneTransition="*res://Scenes/Components/SceneTransition.tscn"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
+CutSceneManager="*res://Globals/CutSceneManager.cs"
+
+[debug]
+
+gdscript/warnings/untyped_declaration=1
+gdscript/warnings/inferred_declaration=1
 
 [dialogue_manager]
 
@@ -50,7 +55,7 @@ naming/scene_name_casing=1
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/AsepriteWizard/plugin.cfg", "res://addons/block_code/plugin.cfg", "res://addons/dialogue_manager/plugin.cfg", "res://addons/script-ide/plugin.cfg")
+enabled=PackedStringArray("res://addons/AsepriteWizard/plugin.cfg", "res://addons/dialogue_manager/plugin.cfg", "res://addons/script-ide/plugin.cfg")
 
 [file_customization]
 
@@ -160,5 +165,5 @@ locale/translations_pot_files=PackedStringArray("res://Dialouge/Hi.dialogue")
 
 [rendering]
 
-renderer/rendering_method="gl_compatibility"
-renderer/rendering_method.mobile="gl_compatibility"
+renderer/rendering_method="mobile"
+textures/vram_compression/import_etc2_astc=true

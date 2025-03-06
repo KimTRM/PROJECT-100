@@ -1,8 +1,8 @@
 [gd_scene load_steps=13 format=3 uid="uid://b65nxfrri78o0"]
 
 [ext_resource type="Texture2D" uid="uid://b8v544pw40ynf" path="res://Assets/SpriteSheets/Character-Male.png" id="1_0wmuu"]
-[ext_resource type="Script" path="res://Scripts/Entities/Player/Player.cs" id="1_oihhe"]
-[ext_resource type="Script" path="res://Scripts/Entities/Player/PlayerCamera.cs" id="3_djuet"]
+[ext_resource type="Script" uid="uid://2oihglsyravb" path="res://Scripts/Entities/Player/Player.cs" id="1_oihhe"]
+[ext_resource type="Script" uid="uid://b0hy23vvuav4u" path="res://Scripts/Entities/Player/PlayerCamera.cs" id="3_djuet"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nmvpq"]
 radius = 28.5549
@@ -176,22 +176,23 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_x288k"]
 _data = {
-"idle_down": SubResource("Animation_ja64u"),
-"idle_side": SubResource("Animation_ee214"),
-"idle_up": SubResource("Animation_6536t"),
-"walk_down": SubResource("Animation_26eq2"),
-"walk_side": SubResource("Animation_r2v65"),
-"walk_up": SubResource("Animation_blahc")
+&"idle_down": SubResource("Animation_ja64u"),
+&"idle_side": SubResource("Animation_ee214"),
+&"idle_up": SubResource("Animation_6536t"),
+&"walk_down": SubResource("Animation_26eq2"),
+&"walk_side": SubResource("Animation_r2v65"),
+&"walk_up": SubResource("Animation_blahc")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dckff"]
 size = Vector2(21, 44)
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("states")]
 disable_mode = 2
 collision_layer = 2
 collision_mask = 16
 script = ExtResource("1_oihhe")
+states = {}
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -232,7 +233,7 @@ debug_color = Color(0.889251, 0.889251, 0.889251, 0.42)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_x288k")
+&"": SubResource("AnimationLibrary_x288k")
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

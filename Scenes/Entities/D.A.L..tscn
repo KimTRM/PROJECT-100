@@ -1,13 +1,12 @@
-[gd_scene load_steps=16 format=3 uid="uid://d37ct8qy5o2ym"]
+[gd_scene load_steps=15 format=3 uid="uid://d37ct8qy5o2ym"]
 
 [ext_resource type="Texture2D" uid="uid://bcbt0kycumkfp" path="res://Assets/SpriteSheets/D.A.L..png" id="1_20exx"]
-[ext_resource type="Script" path="res://Scripts/Entities/DAL/dal.gd" id="1_xdmxv"]
-[ext_resource type="Script" path="res://Scripts/Entities/DAL/State Machine/state_machine.gd" id="3_lgt54"]
-[ext_resource type="Script" path="res://Scripts/Entities/DAL/State Machine/States/idle.gd" id="4_c73x2"]
-[ext_resource type="Script" path="res://Scripts/Entities/DAL/State Machine/States/walk.gd" id="5_ohkiw"]
+[ext_resource type="Script" uid="uid://6spoqsp3bslc" path="res://Scripts/Entities/DAL/dal.gd" id="1_xdmxv"]
+[ext_resource type="Script" uid="uid://ypl60xq0fdsw" path="res://Scripts/Entities/DAL/State Machine/state_machine.gd" id="3_lgt54"]
+[ext_resource type="Script" uid="uid://77ekcyxh3200" path="res://Scripts/Entities/DAL/State Machine/States/idle.gd" id="4_c73x2"]
+[ext_resource type="Script" uid="uid://drv5jt0ifiv07" path="res://Scripts/Entities/DAL/State Machine/States/walk.gd" id="5_ohkiw"]
 [ext_resource type="PackedScene" uid="uid://cb2boj8kymtpp" path="res://Scenes/Components/Interactable.tscn" id="6_a3w74"]
 [ext_resource type="Resource" uid="uid://b32emc6hkhtth" path="res://Dialouge/Hi.dialogue" id="7_5pd0b"]
-[ext_resource type="Script" path="res://Scripts/Components/Interactable.cs" id="7_vk1n6"]
 
 [sub_resource type="Animation" id="Animation_isrq6"]
 length = 0.72
@@ -123,10 +122,10 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_g6mwp"]
 _data = {
-"idle_down": SubResource("Animation_isrq6"),
-"idle_up": SubResource("Animation_j56i6"),
-"walk_down": SubResource("Animation_s2yvn"),
-"walk_up": SubResource("Animation_yhc6i")
+&"idle_down": SubResource("Animation_isrq6"),
+&"idle_up": SubResource("Animation_j56i6"),
+&"walk_down": SubResource("Animation_s2yvn"),
+&"walk_up": SubResource("Animation_yhc6i")
 }
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_chly2"]
@@ -171,7 +170,7 @@ metadata/_aseprite_wizard_interface_config_ = {
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_g6mwp")
+&"": SubResource("AnimationLibrary_g6mwp")
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -188,7 +187,6 @@ script = ExtResource("4_c73x2")
 script = ExtResource("5_ohkiw")
 
 [node name="Interactable" parent="." instance=ExtResource("6_a3w74")]
-script = ExtResource("7_vk1n6")
 dialogue_resource = ExtResource("7_5pd0b")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable"]

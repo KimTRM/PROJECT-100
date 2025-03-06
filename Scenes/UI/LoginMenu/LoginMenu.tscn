@@ -1,21 +1,21 @@
 [gd_scene load_steps=9 format=3 uid="uid://f4rd76efnhp5"]
 
-[ext_resource type="Script" path="res://Scripts/UI/LoginMenu/LoginMenu.cs" id="1_nv5x4"]
+[ext_resource type="Script" uid="uid://yfn4wr1t4ajd" path="res://Scripts/UI/LoginMenu/LoginMenu.cs" id="1_nv5x4"]
 [ext_resource type="PackedScene" uid="uid://b7olgo4xh10gm" path="res://Scenes/UI/LoginMenu/SignupPanel.tscn" id="2_e5ldj"]
 [ext_resource type="Texture2D" uid="uid://bcsntasu7npgo" path="res://Assets/ProjectFiles/Title.png" id="3_l6b4q"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l5ogm"]
-bg_color = Color(0.545098, 0.576471, 0.686275, 1)
+bg_color = Color(0, 0.0901961, 0.211765, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jo6mb"]
-bg_color = Color(0.2, 0.223529, 0.254902, 0.847059)
+bg_color = Color(0, 0.733333, 0.980392, 1)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1glk3"]
-bg_color = Color(0.121569, 0.0901961, 0.121569, 0.54902)
+bg_color = Color(0.85098, 0.85098, 0.85098, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
@@ -109,6 +109,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="PanelContainer/LoginPanel/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "USERNAME"
 
 [node name="Username" type="LineEdit" parent="PanelContainer/LoginPanel/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
@@ -130,6 +131,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="PanelContainer/LoginPanel/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "PASSWORD"
 
 [node name="Password" type="LineEdit" parent="PanelContainer/LoginPanel/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer"]
@@ -166,7 +168,7 @@ text = "Dont have an account?"
 
 [node name="ToSignupButton" type="Button" parent="PanelContainer/LoginPanel/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.734215, 1, 0.511401, 1)
+theme_override_colors/font_color = Color(0.538692, 1, 0, 1)
 theme_override_font_sizes/font_size = 12
 text = "Sign up"
 flat = true
