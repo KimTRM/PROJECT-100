@@ -6,6 +6,9 @@
 [node name="CutSceneLoader" type="CanvasLayer"]
 script = ExtResource("1_fqyko")
 
+[node name="LetterDisplayTimer" type="Timer" parent="."]
+one_shot = true
+
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
@@ -55,6 +58,3 @@ scroll_active = false
 scroll_following = true
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="LetterDisplayTimer" type="Timer" parent="."]
-one_shot = true

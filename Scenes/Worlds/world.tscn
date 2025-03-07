@@ -1,11 +1,15 @@
-[gd_scene load_steps=7 format=4 uid="uid://v44f4qcx5kcp"]
+[gd_scene load_steps=11 format=4 uid="uid://v44f4qcx5kcp"]
 
 [ext_resource type="Script" uid="uid://khv751650grx" path="res://Scripts/World.cs" id="1_o4e6j"]
 [ext_resource type="Script" uid="uid://4gnr01n5i227" path="res://Scripts/Components/MapContainerComponent.cs" id="1_u2ijb"]
 [ext_resource type="PackedScene" uid="uid://cbim2qw3563y2" path="res://Scenes/Worlds/TileTemplate/PrototypeTilemap.tscn" id="3_6yupe"]
 [ext_resource type="PackedScene" uid="uid://d37ct8qy5o2ym" path="res://Scenes/Entities/D.A.L..tscn" id="4_qef5h"]
 [ext_resource type="PackedScene" uid="uid://4280cgrri3yh" path="res://CodeBlocks/UI/MainPanel.tscn" id="5_vhxru"]
+[ext_resource type="PackedScene" uid="uid://xk4t184etv8f" path="res://Scenes/Components/CutSceneSpawner.tscn" id="7_8q0pn"]
 [ext_resource type="PackedScene" uid="uid://b65nxfrri78o0" path="res://Scenes/Entities/Player/player.tscn" id="7_2586v"]
+[ext_resource type="Texture2D" uid="uid://cqkhyl27cuv01" path="res://Assets/CutScenes/Scene 1 PROJECT 100.png" id="8_vbdlg"]
+[ext_resource type="Texture2D" uid="uid://cwwqfq6lq5wrl" path="res://Assets/CutScenes/Scene 2.png" id="9_k3jyg"]
+[ext_resource type="Texture2D" uid="uid://itqlfbpvg0cg" path="res://Assets/CutScenes/scene 3.png" id="10_x7v1i"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_o4e6j")
@@ -45,3 +49,9 @@ shadow_filter_smooth = 64.0
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.592326, 0.592326, 0.592326, 1)
+
+[node name="CutSceneSpawner" parent="." instance=ExtResource("7_8q0pn")]
+cutScenePath = ExtResource("8_vbdlg")
+cutSceneText = "In the quiet province of CamSur, a bright and curious boy named Kim lived a simple life. He was a student at Artificial Dimension Tech Institute, where he learned about building virtual worlds and how to create simulations in the metaverse."
+CutSceneImage = Array[Texture]([ExtResource("8_vbdlg"), ExtResource("9_k3jyg"), ExtResource("10_x7v1i")])
+CutSceneText = ["In the quiet province of CamSur, a bright and curious boy named Kim lived a simple life. He was a student at Artificial Dimension Tech Institute, where he learned about building virtual worlds and how to create simulations in the metaverse.", "One day, while working on an update for the metaverse, something strange happened. A sudden distortion spread across his body, but no one else seemed to notice. Before he could react, he was pulled into the metaverse itself.", "When Kim woke up, he was completely inside the digital world—but he had no idea how he got there. His memories were intact, but something was missing. All his knowledge about programming was gone. Now, trapped in a world he once understood, he had to figure out how to navigate it all over again."]

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://xk4t184etv8f"]
+
+[ext_resource type="Script" uid="uid://b2n7kfqm82wr8" path="res://Globals/CutSceneManager.cs" id="1_8byny"]
+
+[node name="CutSceneSpawner" type="Node"]
+script = ExtResource("1_8byny")

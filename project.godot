@@ -26,7 +26,6 @@ PauseMenu="*res://Scenes/UI/PauseMenu/PauseMenu.tscn"
 SettingsMenu="*res://Scenes/UI/PauseMenu/SettingsMenu.tscn"
 SceneTransition="*res://Scenes/Components/SceneTransition.tscn"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
-CutSceneManager="*res://Globals/CutSceneManager.cs"
 
 [debug]
 
