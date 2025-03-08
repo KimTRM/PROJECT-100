@@ -19,7 +19,7 @@ public partial class CutSceneLoader : CanvasLayer
 
     private double LetterTime = 0.03;
     private double SpaceTime = 0.06;
-    private double PuncutationTime = 0.2;
+    private double PuncutationTime = 0.8;
 
     [Signal] public delegate void FinishedDisplayingEventHandler();
 
@@ -27,7 +27,7 @@ public partial class CutSceneLoader : CanvasLayer
     {
         if (what == NotificationSceneInstantiated)
         {
-            WireNodes();
+            WireNodes(); 
         }
     }
 
