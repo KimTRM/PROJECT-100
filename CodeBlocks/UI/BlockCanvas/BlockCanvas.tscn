@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bp0aevc7dehng"]
+[gd_scene load_steps=4 format=3 uid="uid://bp0aevc7dehng"]
 
 [ext_resource type="Script" uid="uid://rnrlcufl0xql" path="res://CodeBlocks/UI/BlockCanvas/BlockCanvas.cs" id="1_084tk"]
 [ext_resource type="PackedScene" uid="uid://drcorwafubvtf" path="res://CodeBlocks/UI/Blocks/Variable/VariableBlock.tscn" id="2_gjct8"]
+[ext_resource type="PackedScene" uid="uid://dbkjr5boxysai" path="res://CodeBlocks/UI/Blocks/Print/PrintBlock.tscn" id="3_x56fl"]
 
 [node name="BlockCanvas" type="MarginContainer"]
 clip_contents = true
@@ -42,6 +43,13 @@ offset_left = 218.0
 offset_top = 199.0
 offset_right = 414.0
 offset_bottom = 247.0
+
+[node name="PrintBlock" parent="WindowContainer/Window" instance=ExtResource("3_x56fl")]
+layout_mode = 0
+offset_left = 214.0
+offset_top = 350.0
+offset_right = 327.0
+offset_bottom = 386.0
 
 [node name="Overlay" type="Control" parent="WindowContainer"]
 layout_mode = 1

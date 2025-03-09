@@ -7,6 +7,16 @@ public partial class StartingMenu : Control
 		GameManager.Instance.LoadScene("res://Scenes/Worlds/world.tscn");
 	}
 
+	void _on_continue_button_pressed()
+	{
+		
+	}
+
+	void _on_select_scene_button_pressed()
+	{
+
+	}
+
 	void _on_settings_button_pressed()
 	{
 		SettingsMenu SettingsMenu = (SettingsMenu)GetNode("/root/SettingsMenu");

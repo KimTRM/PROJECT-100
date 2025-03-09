@@ -19,6 +19,8 @@ public partial class CutSceneManager : Node
 	int index = 0;
 	private async Task LoadText()
 	{
+		GetTree().Paused = true;
+
 		foreach (string dialougeText in CutSceneText)
 		{
 			cutSceneLoader.DisplayText(dialougeText);
@@ -33,5 +35,7 @@ public partial class CutSceneManager : Node
 				cutSceneLoader.Hide();
 			}
 		}
+
+		GetTree().Paused = false;
 	}
 }

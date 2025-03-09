@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://ysjvd76prl80"
+path="res://.godot/imported/DialougeBox.aseprite-2c906cbf7964205c377b418b6d7f1854.res"
+
+[deps]
+
+source_file="res://Assets/AsepriteFiles/DialougeBox.aseprite"
+dest_files=["res://.godot/imported/DialougeBox.aseprite-2c906cbf7964205c377b418b6d7f1854.res"]
+
+[params]
+

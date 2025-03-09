@@ -188,6 +188,7 @@ script = ExtResource("5_ohkiw")
 
 [node name="Interactable" parent="." instance=ExtResource("6_a3w74")]
 dialogue_resource = ExtResource("7_5pd0b")
+interact_on_enter = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable"]
 position = Vector2(0, 6)

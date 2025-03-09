@@ -1,16 +1,24 @@
-[gd_scene load_steps=8 format=3 uid="uid://bahqfay47fdok"]
+[gd_scene load_steps=10 format=3 uid="uid://bahqfay47fdok"]
 
 [ext_resource type="Script" uid="uid://bbdkjllcbw3xs" path="res://Scripts/UI/StartingScreen/StartingMenu.cs" id="1_jfvfq"]
 [ext_resource type="Texture2D" uid="uid://c4yoh484wtl26" path="res://Assets/UI/Ellipse 10.png" id="2_agdox"]
 [ext_resource type="Texture2D" uid="uid://ce6gw4qeiar5q" path="res://Assets/UI/Title.png" id="3_agdox"]
 [ext_resource type="Texture2D" uid="uid://5nevt7vnyvu" path="res://Assets/UI/Rectangle 101.png" id="4_1vdme"]
 [ext_resource type="Texture2D" uid="uid://diirllfyehafa" path="res://Assets/UI/Group 65.png" id="4_egl5x"]
+[ext_resource type="Texture2D" uid="uid://bhqtwt6ahm2b1" path="res://Assets/UI/DialougeBox/DialougeBox.png" id="6_1vdme"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l5ogm"]
 bg_color = Color(0, 0.619771, 0.828571, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_uyfbc"]
 texture = ExtResource("4_1vdme")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3pfln"]
+texture = ExtResource("6_1vdme")
+texture_margin_left = 32.0
+texture_margin_top = 16.0
+texture_margin_right = 32.0
+texture_margin_bottom = 16.0
 
 [node name="StartingMenu" type="Control"]
 layout_mode = 3
@@ -79,44 +87,69 @@ custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer3/VBoxContainer2/MarginContainer/VBoxContainer"]
+[node name="NewGame" type="PanelContainer" parent="MarginContainer3/VBoxContainer2/MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_uyfbc")
 
-[node name="StartButton" type="Button" parent="MarginContainer3/VBoxContainer2/MarginContainer/VBoxContainer/PanelContainer"]
+[node name="NewGameButton" type="Button" parent="MarginContainer3/VBoxContainer2/MarginContainer/VBoxContainer/NewGame"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.32549, 0.427451, 1)
 theme_override_font_sizes/font_size = 42
-text = "Start"
+text = "New Game"
 flat = true
 
-[node name="PanelContainer2" type="PanelContainer" parent="MarginContainer3/VBoxContainer2/MarginContainer/VBoxContainer"]
+[node name="Continue" type="PanelContainer" parent="MarginContainer3/VBoxContainer2/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_uyfbc")
 
-[node name="SettingsButton" type="Button" parent="MarginContainer3/VBoxContainer2/MarginContainer/VBoxContainer/PanelContainer2"]
+[node name="ContinueButton" type="Button" parent="MarginContainer3/VBoxContainer2/MarginContainer/VBoxContainer/Continue"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.32549, 0.427451, 1)
+theme_override_font_sizes/font_size = 42
+text = "Continue
+"
+flat = true
+
+[node name="SelectScene" type="PanelContainer" parent="MarginContainer3/VBoxContainer2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_uyfbc")
+
+[node name="SelectSceneButton" type="Button" parent="MarginContainer3/VBoxContainer2/MarginContainer/VBoxContainer/SelectScene"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.32549, 0.427451, 1)
+theme_override_font_sizes/font_size = 42
+text = "Select Scene"
+flat = true
+
+[node name="Settings" type="PanelContainer" parent="MarginContainer3/VBoxContainer2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_uyfbc")
+
+[node name="SettingsButton" type="Button" parent="MarginContainer3/VBoxContainer2/MarginContainer/VBoxContainer/Settings"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.32549, 0.427451, 1)
 theme_override_font_sizes/font_size = 42
 text = "Settings"
 flat = true
 
-[node name="PanelContainer3" type="PanelContainer" parent="MarginContainer3/VBoxContainer2/MarginContainer/VBoxContainer"]
+[node name="About" type="PanelContainer" parent="MarginContainer3/VBoxContainer2/MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_uyfbc")
 
-[node name="AboutButton" type="Button" parent="MarginContainer3/VBoxContainer2/MarginContainer/VBoxContainer/PanelContainer3"]
+[node name="AboutButton" type="Button" parent="MarginContainer3/VBoxContainer2/MarginContainer/VBoxContainer/About"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.32549, 0.427451, 1)
 theme_override_font_sizes/font_size = 42
 text = "About"
 flat = true
 
-[node name="PanelContainer4" type="PanelContainer" parent="MarginContainer3/VBoxContainer2/MarginContainer/VBoxContainer"]
+[node name="Exit" type="PanelContainer" parent="MarginContainer3/VBoxContainer2/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_uyfbc")
 
-[node name="ExitButton" type="Button" parent="MarginContainer3/VBoxContainer2/MarginContainer/VBoxContainer/PanelContainer4"]
+[node name="ExitButton" type="Button" parent="MarginContainer3/VBoxContainer2/MarginContainer/VBoxContainer/Exit"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.32549, 0.427451, 1)
 theme_override_font_sizes/font_size = 42
@@ -125,11 +158,14 @@ flat = true
 
 [node name="MarginContainer2" type="MarginContainer" parent="."]
 layout_mode = 1
-anchors_preset = 2
+anchors_preset = 3
+anchor_left = 1.0
 anchor_top = 1.0
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -44.0
-offset_right = 72.0
+offset_left = -107.0
+offset_top = -59.0
+grow_horizontal = 0
 grow_vertical = 0
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
@@ -157,8 +193,42 @@ texture = ExtResource("4_egl5x")
 expand_mode = 1
 flip_h = true
 
-[connection signal="pressed" from="MarginContainer3/VBoxContainer2/MarginContainer/VBoxContainer/PanelContainer/StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="MarginContainer3/VBoxContainer2/MarginContainer/VBoxContainer/PanelContainer2/SettingsButton" to="." method="_on_settings_button_pressed"]
-[connection signal="pressed" from="MarginContainer3/VBoxContainer2/MarginContainer/VBoxContainer/PanelContainer3/AboutButton" to="." method="_on_about_button_pressed"]
-[connection signal="pressed" from="MarginContainer3/VBoxContainer2/MarginContainer/VBoxContainer/PanelContainer4/ExitButton" to="." method="_on_exit_button_pressed"]
+[node name="MarginContainer" type="PanelContainer" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 9.0
+offset_top = -63.0
+offset_right = 681.0
+offset_bottom = -11.0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxTexture_3pfln")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Alpha 1.13"
+
+[node name="Label2" type="Label" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "|"
+
+[node name="Label3" type="Label" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "This game is still in development threfore this is not indicative of the final product."
+
+[connection signal="pressed" from="MarginContainer3/VBoxContainer2/MarginContainer/VBoxContainer/NewGame/NewGameButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="MarginContainer3/VBoxContainer2/MarginContainer/VBoxContainer/Continue/ContinueButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="MarginContainer3/VBoxContainer2/MarginContainer/VBoxContainer/Continue/ContinueButton" to="." method="_on_continue_button_pressed"]
+[connection signal="pressed" from="MarginContainer3/VBoxContainer2/MarginContainer/VBoxContainer/SelectScene/SelectSceneButton" to="." method="_on_select_scene_button_pressed"]
+[connection signal="pressed" from="MarginContainer3/VBoxContainer2/MarginContainer/VBoxContainer/Settings/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="MarginContainer3/VBoxContainer2/MarginContainer/VBoxContainer/About/AboutButton" to="." method="_on_about_button_pressed"]
+[connection signal="pressed" from="MarginContainer3/VBoxContainer2/MarginContainer/VBoxContainer/Exit/ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="pressed" from="MarginContainer2/LogoutButton" to="." method="_on_logout_button_pressed"]

@@ -1,0 +1,82 @@
+[gd_scene load_steps=4 format=3 uid="uid://bm8qnm1lt3fgb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_58g58"]
+content_margin_left = 12.0
+content_margin_top = 16.0
+content_margin_right = 16.0
+content_margin_bottom = 16.0
+bg_color = Color(0.611765, 0.419608, 1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iabyi"]
+content_margin_left = 16.0
+content_margin_top = 16.0
+content_margin_right = 16.0
+content_margin_bottom = 16.0
+bg_color = Color(0.611765, 0.419608, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4lg8h"]
+content_margin_left = 16.0
+content_margin_top = 16.0
+content_margin_right = 16.0
+content_margin_bottom = 16.0
+bg_color = Color(0.611765, 0.419608, 1, 1)
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="ConditionBlock" type="MarginContainer"]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = -1
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_58g58")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+text = "IF"
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="OptionButton" type="OptionButton" parent="VBoxContainer/PanelContainer/HBoxContainer/PanelContainer"]
+layout_mode = 2
+flat = true
+alignment = 1
+selected = 0
+item_count = 2
+popup/item_0/text = "false"
+popup/item_0/id = 0
+popup/item_1/text = "true"
+popup/item_1/id = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = -1
+
+[node name="PanelContainer2" type="PanelContainer" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(40, 20)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_iabyi")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="PanelContainer3" type="PanelContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(100, 25)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4lg8h")
