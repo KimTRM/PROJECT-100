@@ -11,19 +11,12 @@ public partial class PrintBlock : CodeBlock
 	[Node("PanelContainer/MarginContainer/HBoxContainer/ValueContainer/Value")]
 	private LineEdit value;
 
-	private Console console;
-
     public override void _Notification(int what)
     {
 		if (what == NotificationSceneInstantiated)
 		{
 			WireNodes();	
 		}
-    }
-
-    public override void _Ready()
-    {
-		console = GetParent().GetParent().GetParent().GetParent().GetNode<Console>("Console");
     }
 
     public override async Task Execute()
@@ -33,11 +26,12 @@ public partial class PrintBlock : CodeBlock
 			if (child is CodeBlock block)
 			{
 				await block.Execute();
-				EmitSignal(Console.SignalName.CommandEntered, block.BlockValue.ToString());
+				console.OnCommandEntered(block.BlockValue.ToString());
 			}
-			else
+			
+			else if (valueContainer.GetChildren().Count == 1 && child is LineEdit lineEdit)
 			{
-				EmitSignal(Console.SignalName.CommandEntered, value.Text);
+				console.OnCommandEntered(value.Text);
 			}
 		}
 		await Task.CompletedTask;

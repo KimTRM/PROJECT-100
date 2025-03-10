@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dl1yi3e2oqj0k"]
 
 [ext_resource type="PackedScene" uid="uid://drcorwafubvtf" path="res://CodeBlocks/UI/Blocks/Variable/VariableBlock.tscn" id="1_1h783"]
-[ext_resource type="PackedScene" uid="uid://cxeco0k7s7brh" path="res://CodeBlocks/UI/Blocks/Experssion/ExpressionBlock.tscn" id="2_qsbpy"]
+[ext_resource type="PackedScene" uid="uid://cxeco0k7s7brh" path="res://CodeBlocks/UI/Blocks/Experssion/Setvalue/ExpressionBlock.tscn" id="2_qsbpy"]
 
 [node name="BlockPicker" type="MarginContainer"]
 offset_right = 223.0

@@ -9,8 +9,7 @@ public partial class Console : MarginContainer
 	[Node("MarginContainer/TextEdit")]
 	private TextEdit textEdit;
 
-	[Signal] public delegate void CommandEnteredEventHandler(string command);
-
+	[Export]
 	private Array<string> commandHistory = new Array<string>();
 
 	public override void _Notification(int what)
@@ -23,10 +22,10 @@ public partial class Console : MarginContainer
 
 	public override void _Ready()
 	{
-		CommandEntered += OnCommandEntered;
+		textEdit = GetNode<TextEdit>("MarginContainer/TextEdit");
 	}
 
-	private void OnCommandEntered(string command)
+	public void OnCommandEntered(string command)
 	{
 		commandHistory.Add(command);
 		UpdateConsole();

@@ -8,6 +8,7 @@ public partial class CodeBlock : Control
     public virtual async Task Execute() { await Task.CompletedTask; }
 
     public DragManager dragManager;
+    public Console console;
 
     [Export] public bool Dragging = false; 
     public CodeBlock NextBlock = null;

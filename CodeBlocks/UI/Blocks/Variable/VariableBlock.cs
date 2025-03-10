@@ -15,7 +15,6 @@ public partial class VariableBlock : CodeBlock
 	private PanelContainer varContainer;
 
 	[Export] public string varNameStr;
-	[Export] public Variant varValue;
 
     public override void _Notification(int what)
     {
@@ -33,8 +32,7 @@ public partial class VariableBlock : CodeBlock
 			{
 				await block.Execute();
 				varNameStr = block.Value1;
-				varValue = block.Value2;
-				GD.Print($"{varNameStr} = {varValue}");
+				BlockValue = block.Value2;
 			}
 			else
 			{

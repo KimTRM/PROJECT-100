@@ -18,7 +18,7 @@ public partial class BlockCanvas : MarginContainer
 
     [Export]
     private NodePath ConsolePath;
-    private Console console;
+    public Console console;
 
     private float zoomFactor = 1.0f;
     private float zoomStep = 0.1f;
@@ -49,6 +49,7 @@ public partial class BlockCanvas : MarginContainer
             if (child is CodeBlock block)
             {
                 block.dragManager = dragManager;
+                block.console = console;
             }
         }
     }
