@@ -225,8 +225,8 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "This game is still in development threfore this is not indicative of the final product."
 
 [connection signal="pressed" from="MarginContainer3/VBoxContainer2/MarginContainer/VBoxContainer/NewGame/NewGameButton" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="MarginContainer3/VBoxContainer2/MarginContainer/VBoxContainer/Continue/ContinueButton" to="." method="_on_continue_button_pressed"]
 [connection signal="pressed" from="MarginContainer3/VBoxContainer2/MarginContainer/VBoxContainer/Continue/ContinueButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="MarginContainer3/VBoxContainer2/MarginContainer/VBoxContainer/Continue/ContinueButton" to="." method="_on_continue_button_pressed"]
 [connection signal="pressed" from="MarginContainer3/VBoxContainer2/MarginContainer/VBoxContainer/SelectScene/SelectSceneButton" to="." method="_on_select_scene_button_pressed"]
 [connection signal="pressed" from="MarginContainer3/VBoxContainer2/MarginContainer/VBoxContainer/Settings/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="MarginContainer3/VBoxContainer2/MarginContainer/VBoxContainer/About/AboutButton" to="." method="_on_about_button_pressed"]

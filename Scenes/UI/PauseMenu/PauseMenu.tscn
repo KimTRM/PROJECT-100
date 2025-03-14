@@ -11,6 +11,7 @@ texture = ExtResource("4_0nva5")
 
 [node name="PauseMenu" type="CanvasLayer"]
 process_mode = 3
+layer = 101
 script = ExtResource("1_2o5dk")
 
 [node name="TextureRect" type="TextureRect" parent="."]
@@ -29,14 +30,14 @@ anchor_bottom = 1.0
 offset_left = -515.0
 offset_top = 147.0
 offset_right = -1.0
-offset_bottom = 50.0
+offset_bottom = 107.0
 grow_horizontal = 0
 grow_vertical = 2
 texture = ExtResource("3_0nva5")
 expand_mode = 1
 
 [node name="MarginContainer2" type="MarginContainer" parent="."]
-offset_right = 535.0
+offset_right = 647.0
 offset_bottom = 92.0
 theme_override_constants/margin_top = 28
 
@@ -57,6 +58,7 @@ texture = ExtResource("4_cshyb")
 anchors_preset = 9
 anchor_bottom = 1.0
 offset_right = 512.0
+offset_bottom = 516.0
 grow_vertical = 2
 theme_override_constants/margin_top = 264
 

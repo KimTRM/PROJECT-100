@@ -26,7 +26,7 @@ public partial class DragManager : Control
 
     private Node _dropTarget;
 
-    bool dragging = false;
+    public bool dragging = false;
 
     public override void _Process(double delta)
     {
@@ -36,12 +36,20 @@ public partial class DragManager : Control
         }
     }
 
-    public void StartDrag(Control draggable)
+    public void StartDrag(Control draggable, InputEvent @event)
     {
         if (draggable == null) return;
         
-        dragging = true;
+        // dragging = true;
 
+        if (@event is InputEventMouseButton mouseEvent)
+        {
+            if (dragging && !mouseEvent.Pressed && mouseEvent.ButtonIndex != MouseButton.Left)
+            {
+                EndDrag();  
+            }
+        }
+        
         _originalParent = draggable.GetParent();
         _draggedObject = draggable;
         _offset = GetGlobalMousePosition() - _draggedObject.GlobalPosition;
@@ -53,7 +61,8 @@ public partial class DragManager : Control
     {
         if (_draggedObject == null) return;
 
-        dragging = false;
+        // dragging = false;
+        
         // if (_dropTarget == _blockCanvas)
         // {
         //     _draggedObject.QueueFree();

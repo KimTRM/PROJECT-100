@@ -2,18 +2,17 @@
 
 [ext_resource type="PackedScene" uid="uid://bp0aevc7dehng" path="res://CodeBlocks/UI/BlockCanvas/BlockCanvas.tscn" id="1_4yxsc"]
 [ext_resource type="PackedScene" uid="uid://dl1yi3e2oqj0k" path="res://CodeBlocks/UI/BlockPicker/BlockPicker.tscn" id="1_54hmq"]
+[ext_resource type="Texture2D" uid="uid://bhqtwt6ahm2b1" path="res://Assets/UI/DialougeBox/DialougeBox.png" id="1_mdfro"]
 [ext_resource type="Script" uid="uid://b2h0ktgys47cl" path="res://CodeBlocks/UI/BlockPicker/BlockPicker.cs" id="2_8au1s"]
 [ext_resource type="PackedScene" uid="uid://cirmbhtex875r" path="res://CodeBlocks/UI/Console/Console.tscn" id="3_n7jqw"]
 [ext_resource type="PackedScene" uid="uid://b5ngkaniwp57" path="res://CodeBlocks/Drag&Drop/DragManager.tscn" id="4_hfufw"]
-[ext_resource type="Script" uid="uid://dp2r7tc5m121q" path="res://CodeBlocks/UI/Console/Console.cs" id="4_lar7w"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_utt0q"]
-bg_color = Color(0.173341, 0.294419, 0.387008, 1)
-corner_radius_top_left = 24
-corner_radius_top_right = 24
-corner_radius_bottom_right = 24
-corner_radius_bottom_left = 24
-anti_aliasing = false
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ijaqk"]
+texture = ExtResource("1_mdfro")
+texture_margin_left = 32.0
+texture_margin_top = 32.0
+texture_margin_right = 32.0
+texture_margin_bottom = 32.0
 
 [node name="MainPanel" type="MarginContainer"]
 anchors_preset = 15
@@ -23,14 +22,11 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_constants/margin_left = 24
-theme_override_constants/margin_top = 24
-theme_override_constants/margin_right = 24
-theme_override_constants/margin_bottom = 24
 
 [node name="PanelContainer" type="Panel" parent="."]
+texture_filter = 1
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_utt0q")
+theme_override_styles/panel = SubResource("StyleBoxTexture_ijaqk")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
@@ -64,7 +60,6 @@ ConsolePath = NodePath("../Console")
 
 [node name="Console" parent="MarginContainer/MarginContainer/HBoxContainer/VSplitContainer" instance=ExtResource("3_n7jqw")]
 layout_mode = 2
-script = ExtResource("4_lar7w")
 
 [node name="DragManager" parent="MarginContainer/MarginContainer" instance=ExtResource("4_hfufw")]
 layout_mode = 2

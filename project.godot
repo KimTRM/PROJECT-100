@@ -22,10 +22,10 @@ boot_splash/minimum_display_time=7
 
 HttpManager="*res://Globals/HTTPManager.cs"
 GameManager="*res://Globals/GameManager.cs"
-PauseMenu="*res://Scenes/UI/PauseMenu/PauseMenu.tscn"
 SettingsMenu="*res://Scenes/UI/PauseMenu/SettingsMenu.tscn"
 SceneTransition="*res://Scenes/Components/SceneTransition.tscn"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
+PauseMenu="*res://Scenes/UI/PauseMenu/PauseMenu.tscn"
 
 [debug]
 
@@ -67,6 +67,7 @@ folder_colors={
 "res://Code/Variables/": "red",
 "res://CodeBlocks/UI/Blocks/Condition/": "purple",
 "res://CodeBlocks/UI/Blocks/Experssion/": "green",
+"res://CodeBlocks/UI/Blocks/Print/": "blue",
 "res://CodeBlocks/UI/Blocks/Variable/": "red",
 "res://Dialouge/": "purple",
 "res://Globals/": "red",

@@ -11,6 +11,7 @@ corner_radius_bottom_left = 16
 
 [node name="SettingsMenu" type="CanvasLayer"]
 process_mode = 3
+layer = 102
 script = ExtResource("1_785ur")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]

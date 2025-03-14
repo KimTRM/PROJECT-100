@@ -23,8 +23,12 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_2ryak")
 
+[node name="DragDropArea" parent="." instance=ExtResource("2_lkm8c")]
+layout_mode = 2
+
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 2
+mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_lkm8c")
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
@@ -78,7 +82,3 @@ expand_to_text_length = true
 flat = true
 caret_blink = true
 caret_blink_interval = 0.38
-
-[node name="DragDropArea" parent="." instance=ExtResource("2_lkm8c")]
-layout_mode = 2
-mouse_filter = 1
