@@ -26,6 +26,23 @@ public partial class UiManager : CanvasLayer
 
 	public void ChangeCurrentUI(CanvasLayer newUI)
 	{
-		
+		switch (newUI.Name)
+		{
+			case "PauseMenu":
+				PauseMenu.Visible = true;
+				break;
+			case "SettingsMenu":
+				SettingsMenu.Visible = true;
+				break;
+			case "CutSceneLoader":
+				CutSceneLoader.Visible = true;
+				break;
+			case "PopupWindow":
+				PopupWindow.Visible = true;
+				break;
+			case "SceneTransition":
+				SceneTransition.Visible = true;
+				break;
+		}
 	}
 }
