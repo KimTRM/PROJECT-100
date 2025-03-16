@@ -90,7 +90,7 @@ SceneToLoad = ExtResource("2_30ano")
 
 [node name="ButtonScene2" parent="PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/VBoxContainer" instance=ExtResource("1_dopv0")]
 layout_mode = 2
-SceneTitle = "The Astrul"
+SceneTitle = "The Astrum"
 SceneToLoad = ExtResource("4_v7mum")
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="PanelContainer/MarginContainer/ScrollContainer/VBoxContainer"]

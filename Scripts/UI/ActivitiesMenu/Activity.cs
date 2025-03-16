@@ -5,10 +5,10 @@ using System;
 [Scene]
 public partial class Activity : MarginContainer
 {
-	[Node("MarginContainer/VBoxContainer/ActivityName")]
+	[Node("PanelContainer/VBoxContainer/HBoxContainer/ActivityName")]
 	public Label ActivityName;
-	[Node("MarginContainer/VBoxContainer/Label")]
-	public Label label;
+	[Node("PanelContainer/VBoxContainer/HBoxContainer/HBoxContainer/NumItems")]
+	public Label NumItems;
 	[Node]
 	public Button button;
 

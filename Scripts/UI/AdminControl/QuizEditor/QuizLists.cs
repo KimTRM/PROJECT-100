@@ -7,7 +7,7 @@ using System;
 public partial class QuizLists : MarginContainer
 {
 	[Node("MarginContainer/VBoxContainer/ScrollContainer/QuizListContainer")]
-	private HFlowContainer QuizList;
+	private VBoxContainer QuizList;
 
 	[Export]
 	private Array<Dictionary> Data = new();
