@@ -1,0 +1,92 @@
+[gd_scene load_steps=7 format=3 uid="uid://dtkum5tklehbe"]
+
+[ext_resource type="PackedScene" uid="uid://bkpe57g2wdqc6" path="res://Scenes/UI/SceneSelector/ButtonScene.tscn" id="1_dopv0"]
+[ext_resource type="Script" uid="uid://bmxmxbtc570tw" path="res://Scripts/UI/SceneSelector/SceneLoader.cs" id="1_enrf4"]
+[ext_resource type="PackedScene" uid="uid://v44f4qcx5kcp" path="res://Scenes/Worlds/world.tscn" id="2_30ano"]
+[ext_resource type="Texture2D" uid="uid://cbunacwidtbhj" path="res://Assets/UI/ScenePreview/Screenshot 2025-03-16 094612.png" id="2_bufaa"]
+[ext_resource type="PackedScene" uid="uid://bahqfay47fdok" path="res://Scenes/UI/StartingScreen/StartingMenu.tscn" id="4_v7mum"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_30ano"]
+bg_color = Color(0, 0.619608, 0.827451, 1)
+
+[node name="SceneLoader" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_enrf4")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_30ano")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 128
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/MarginContainer"]
+custom_minimum_size = Vector2(640, 0)
+layout_mode = 2
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/ScrollContainer"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+theme_override_constants/separation = 28
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = " CHAPTER 1"
+
+[node name="ButtonScene" parent="PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/VBoxContainer" instance=ExtResource("1_dopv0")]
+layout_mode = 2
+textureRect = ExtResource("2_bufaa")
+SceneTitle = "In The Beninging"
+SceneToLoad = ExtResource("2_30ano")
+
+[node name="ButtonScene2" parent="PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/VBoxContainer" instance=ExtResource("1_dopv0")]
+layout_mode = 2
+SceneTitle = "The Astrul"
+SceneToLoad = ExtResource("4_v7mum")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="PanelContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label2" type="Label" parent="PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = " CHAPTER 2"
+
+[node name="ButtonScene" parent="PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/VBoxContainer2" instance=ExtResource("1_dopv0")]
+layout_mode = 2
+
+[node name="ButtonScene2" parent="PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/VBoxContainer2" instance=ExtResource("1_dopv0")]
+layout_mode = 2
+
+[node name="ButtonScene3" parent="PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/VBoxContainer2" instance=ExtResource("1_dopv0")]
+layout_mode = 2
+
+[node name="ButtonScene4" parent="PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/VBoxContainer2" instance=ExtResource("1_dopv0")]
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = 18
+
+[node name="BackButton" type="Button" parent="PanelContainer/MarginContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Back"
+
+[connection signal="pressed" from="PanelContainer/MarginContainer2/BackButton" to="." method="_on_back_button_pressed"]

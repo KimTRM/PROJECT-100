@@ -14,7 +14,7 @@ public partial class StartingMenu : Control
 
 	void _on_select_scene_button_pressed()
 	{
-
+		GameManager.Instance.LoadScene("res://Scenes/UI/SceneSelector/SceneLoader.tscn");
 	}
 
 	void _on_settings_button_pressed()
