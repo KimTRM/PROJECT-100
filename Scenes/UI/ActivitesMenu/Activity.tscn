@@ -42,7 +42,7 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Activity 1"
 horizontal_alignment = 1
 
-[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "No. of Items:"
@@ -51,5 +51,3 @@ text = "No. of Items:"
 layout_mode = 2
 focus_mode = 0
 flat = true
-
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

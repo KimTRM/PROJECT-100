@@ -84,6 +84,9 @@ public partial class LoginMenu : Control
 				}
 				else if (user["Role"].ToString() == "Student")
 				{
+					GameManager.Instance.PlayerUsername = user["UserName"].ToString();
+					GameManager.Instance.PlayerID = user["UserID"].ToString();
+
 					ErrorMessage.Hide();
 					GameManager.Instance.LoadScene("res://Scenes/UI/StartingScreen/StartingMenu.tscn");
 				}

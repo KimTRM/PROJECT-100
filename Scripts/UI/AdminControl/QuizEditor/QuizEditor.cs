@@ -9,7 +9,7 @@ public partial class QuizEditor : MarginContainer
 	[Node ("VBoxContainer/ScrollContainer/QuestionContainer")]
 	private VBoxContainer QuizList;
 
-	[Node ("VBoxContainer/ColorRect/HBoxContainer/MarginContainer/HBoxContainer/QuestionNumber")]
+	[Node ("VBoxContainer/PanelContainer/HBoxContainer/MarginContainer/HBoxContainer/QuestionNumber")]
 	private Label NumOfQuestions;
 
 	[Export]

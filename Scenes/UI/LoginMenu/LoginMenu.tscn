@@ -55,6 +55,7 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_l5ogm")
 
 [node name="Title" type="Sprite2D" parent="PanelContainer"]
+texture_filter = 1
 position = Vector2(137.688, 56.4375)
 scale = Vector2(1.03648, 1.03484)
 texture = ExtResource("3_l6b4q")

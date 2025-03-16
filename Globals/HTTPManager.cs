@@ -31,6 +31,9 @@ public partial class HTTPManager : Node
 		{"GET_SPECIFIC_QUIZ", "get_specific_quiz"},
 		{"ADD_QUIZ", "add_quiz"},
 		{"DELETE_QUIZ", "delete_quiz"},
+
+		{"GET_SCORE", "get_score"},
+		{"ADD_SCORE", "add_score"},
 	
 		{"GET_PLAYER_DATA", "get_player_data"},
 		{"ADD_PLAYER_DATA", "add_player_data"},

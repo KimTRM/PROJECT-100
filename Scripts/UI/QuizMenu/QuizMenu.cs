@@ -91,7 +91,7 @@ public partial class QuizMenu : MarginContainer
 		}
 
 		var QuizResults = (QuizResults)ResourceLoader.Load<PackedScene>("res://Scenes/UI/QuizMenu/QuizResults.tscn").Instantiate();
-		QuizResults.SetQuizResults("Player", "123", correctCount, Datas.Count - correctCount);
+		QuizResults.SetQuizResults(GameManager.Instance.PlayerUsername, GameManager.Instance.PlayerID, correctCount, Datas.Count - correctCount);
 		QueueFree();
 		GetParent().AddChild(QuizResults);
 	}

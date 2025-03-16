@@ -7,6 +7,8 @@ public partial class Activity : MarginContainer
 {
 	[Node("MarginContainer/VBoxContainer/ActivityName")]
 	public Label ActivityName;
+	[Node("MarginContainer/VBoxContainer/Label")]
+	public Label label;
 	[Node]
 	public Button button;
 

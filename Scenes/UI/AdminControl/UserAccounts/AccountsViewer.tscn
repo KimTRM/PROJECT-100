@@ -4,6 +4,7 @@
 
 [node name="AccountsViewer" type="MarginContainer"]
 custom_minimum_size = Vector2(1055, 500)
+layout_direction = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -11,7 +12,8 @@ offset_left = -527.5
 offset_right = 527.5
 offset_bottom = 693.0
 grow_horizontal = 2
-size_flags_vertical = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
@@ -19,6 +21,7 @@ script = ExtResource("1_cbaon")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
+alignment = 1
 
 [node name="Label" type="Label" parent="VBoxContainer"]
 layout_mode = 2
@@ -52,21 +55,73 @@ text = "Total No. of Accounts: "
 [node name="NoAccounts" type="Label" parent="VBoxContainer/ColorRect/HBoxContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
-custom_minimum_size = Vector2(950, 590)
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_right = 16
+
+[node name="Rows2" type="HBoxContainer" parent="VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 120
+
+[node name="UIDColumn" type="VBoxContainer" parent="VBoxContainer/MarginContainer/Rows2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/Rows2/UIDColumn"]
+layout_mode = 2
+text = "USER ID"
+
+[node name="FirstnameColumn" type="VBoxContainer" parent="VBoxContainer/MarginContainer/Rows2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/Rows2/FirstnameColumn"]
+layout_mode = 2
+text = "FIRST NAME"
+
+[node name="LastnameColumn" type="VBoxContainer" parent="VBoxContainer/MarginContainer/Rows2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/Rows2/LastnameColumn"]
+layout_mode = 2
+text = "LAST NAME"
+
+[node name="UsernameColumn" type="VBoxContainer" parent="VBoxContainer/MarginContainer/Rows2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/Rows2/UsernameColumn"]
+layout_mode = 2
+text = "USER NAME"
+
+[node name="PasswordColumn" type="VBoxContainer" parent="VBoxContainer/MarginContainer/Rows2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/Rows2/PasswordColumn"]
+layout_mode = 2
+text = "PASSWORD"
+
+[node name="RoleColumn" type="VBoxContainer" parent="VBoxContainer/MarginContainer/Rows2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/Rows2/RoleColumn"]
+layout_mode = 2
+text = "ROLE"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
 horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
 
 [node name="Rows" type="HBoxContainer" parent="VBoxContainer/ScrollContainer"]
 layout_mode = 2
 theme_override_constants/separation = 100
+alignment = 1
 
 [node name="UIDColumn" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/Rows"]
 layout_mode = 2
 
 [node name="Label" type="Label" parent="VBoxContainer/ScrollContainer/Rows/UIDColumn"]
+visible = false
 layout_mode = 2
 text = "USER ID"
 
@@ -74,6 +129,7 @@ text = "USER ID"
 layout_mode = 2
 
 [node name="Label" type="Label" parent="VBoxContainer/ScrollContainer/Rows/FirstnameColumn"]
+visible = false
 layout_mode = 2
 text = "FIRST NAME"
 
@@ -81,6 +137,7 @@ text = "FIRST NAME"
 layout_mode = 2
 
 [node name="Label" type="Label" parent="VBoxContainer/ScrollContainer/Rows/LastnameColumn"]
+visible = false
 layout_mode = 2
 text = "LAST NAME"
 
@@ -88,6 +145,7 @@ text = "LAST NAME"
 layout_mode = 2
 
 [node name="Label" type="Label" parent="VBoxContainer/ScrollContainer/Rows/UsernameColumn"]
+visible = false
 layout_mode = 2
 text = "USER NAME"
 
@@ -95,6 +153,7 @@ text = "USER NAME"
 layout_mode = 2
 
 [node name="Label" type="Label" parent="VBoxContainer/ScrollContainer/Rows/PasswordColumn"]
+visible = false
 layout_mode = 2
 text = "PASSWORD"
 
@@ -102,5 +161,6 @@ text = "PASSWORD"
 layout_mode = 2
 
 [node name="Label" type="Label" parent="VBoxContainer/ScrollContainer/Rows/RoleColumn"]
+visible = false
 layout_mode = 2
 text = "ROLE"

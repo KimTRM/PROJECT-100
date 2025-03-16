@@ -46,8 +46,11 @@ public partial class AdminPage : Control
 		Content?.AddChild(QuizEditorScene);
 	}
 
-	private void _on_scores_pressed()
+	private void _on_class_pressed()
 	{
+		RemoveContent();
+		var ClasslistScene = ResourceLoader.Load<PackedScene>("res://Scenes/UI/AdminControl/ClassList/ClassNameList.tscn").Instantiate();
+		Content?.AddChild(ClasslistScene);
 	}
 
 	private void _on_logout_button_pressed()

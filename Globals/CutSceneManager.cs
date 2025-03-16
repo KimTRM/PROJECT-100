@@ -10,10 +10,10 @@ public partial class CutSceneManager : Node
 
 	public override void _Ready()
 	{
-		cutSceneLoader = (CutSceneLoader)ResourceLoader.Load<PackedScene>("res://Scenes/UI/CutSceneLoader/CutSceneLoader.tscn").Instantiate();
-		AddChild(cutSceneLoader);
+		// cutSceneLoader = (CutSceneLoader)ResourceLoader.Load<PackedScene>("res://Scenes/UI/CutSceneLoader/CutSceneLoader.tscn").Instantiate();
+		// AddChild(cutSceneLoader);
 
-		_ = LoadText();
+		// _ = LoadText();
 	}
 
 	int index = 0;

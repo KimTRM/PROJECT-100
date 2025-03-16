@@ -12,6 +12,9 @@ public partial class GameManager : Node
 	[Signal] public delegate void GamePauseToggleEventHandler(bool isPaused);
 	public bool isPaused = false;
 
+	[Export] public string PlayerUsername;
+	[Export] public string PlayerID;
+
 	public override void _Ready()
 	{
 		Instance = this;
