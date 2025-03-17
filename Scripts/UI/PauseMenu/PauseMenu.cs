@@ -45,10 +45,14 @@ public partial class PauseMenu : CanvasLayer
 
 	void _on_save_quit_button_pressed()
 	{
+		if (GameManager.Instance.PlayerID != null)
+		{
+			GameManager.Instance.SavePlayerData(GameManager.Instance.PlayerID, GameManager.Instance.player.Position, "1", "5");
+		}
+
 		Hide();
 		GameManager.Instance.isPaused = false;
 		GetTree().Paused = false;
-		// GameManager.Instance.SavePlayerData("1739364453", new Vector2(0, 0), "1", "5");
 		GameManager.Instance.LoadScene("res://Scenes/UI/StartingScreen/StartingMenu.tscn");
 	}
 }

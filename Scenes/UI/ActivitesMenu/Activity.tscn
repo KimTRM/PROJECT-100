@@ -38,9 +38,10 @@ layout_mode = 2
 theme_override_constants/separation = 15
 
 [node name="ActivityName" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+modulate = Color(0.328926, 0.328926, 0.328926, 1)
 layout_mode = 2
 size_flags_vertical = 1
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 28
 text = "Activity 1"
 vertical_alignment = 2
@@ -49,16 +50,18 @@ vertical_alignment = 2
 layout_mode = 2
 
 [node name="Label" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
+modulate = Color(0.329412, 0.329412, 0.329412, 1)
 layout_mode = 2
 size_flags_vertical = 1
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "No. of Items:"
 vertical_alignment = 2
 
 [node name="NumItems" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
+modulate = Color(0.329412, 0.329412, 0.329412, 1)
 layout_mode = 2
 size_flags_vertical = 1
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "00"
 vertical_alignment = 2
 
@@ -67,22 +70,25 @@ layout_mode = 2
 focus_mode = 0
 flat = true
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="ModifyButtonContainer" type="MarginContainer" parent="."]
 layout_mode = 2
 size_flags_horizontal = 8
 theme_override_constants/margin_right = 18
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ModifyButtonContainer"]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="MarginContainer/HBoxContainer"]
+[node name="Button" type="Button" parent="ModifyButtonContainer/HBoxContainer"]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 size_flags_vertical = 4
 text = "Edit"
 
-[node name="Button2" type="Button" parent="MarginContainer/HBoxContainer"]
+[node name="Button2" type="Button" parent="ModifyButtonContainer/HBoxContainer"]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 size_flags_vertical = 4
 text = "Delete"
+
+[connection signal="mouse_entered" from="Button" to="." method="_on_button_mouse_entered"]
+[connection signal="mouse_exited" from="Button" to="." method="_on_button_mouse_exited"]

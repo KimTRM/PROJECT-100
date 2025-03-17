@@ -1,14 +1,31 @@
 using Godot;
+using Godot.Collections;
 
 public partial class StartingMenu : Control
 {
-	void _on_start_button_pressed()
+	[Export]
+	private Array<Dictionary> Data = new();
+
+    public override void _Ready()
+    {
+        HTTPManager.Instance.RequestCompleted += OnLogin;
+		HTTPManager.Instance.QueueRequest(HTTPManager.Instance.Commands["GET_PLAYER_DATA"]);
+    }
+
+	public void OnLogin(Array<Dictionary> response)
 	{
-		GameManager.Instance.LoadScene("res://Scenes/Worlds/world.tscn");
+		Data = response;
+		HTTPManager.Instance.RequestCompleted -= OnLogin;
+	}
+
+    void _on_start_button_pressed()
+	{
+		// GameManager.Instance.LoadScene("res://Scenes/Worlds/world.tscn");
 	}
 
 	void _on_continue_button_pressed()
 	{
+		GameManager.Instance.LoadScene("res://Scenes/Worlds/world.tscn");
 		
 	}
 
@@ -35,6 +52,8 @@ public partial class StartingMenu : Control
 
 	void _on_logout_button_pressed()
 	{
+		GameManager.Instance.PlayerUsername = null;
+		GameManager.Instance.PlayerID = null;
 		GameManager.Instance.LoadScene("res://Scenes/UI/LoginMenu/LoginMenu.tscn");
 	}
 }

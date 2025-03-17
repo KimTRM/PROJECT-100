@@ -6,7 +6,7 @@ using Godot.Collections;
 public partial class ActivitiesMenu : MarginContainer
 {
 	[Node("MarginContainer/ActivitiesContainer")]
-	public HFlowContainer activitiesContainer;
+	public VBoxContainer activitiesContainer;
 
 	[Export]
 	private Array<Dictionary> Data = new();

@@ -14,6 +14,9 @@ public partial class GameManager : Node
 
 	[Export] public string PlayerUsername;
 	[Export] public string PlayerID;
+	[Export] public Player player;
+	[Export] public string ChapterNumber;
+	[Export] public string LessonNumber;
 
 	public override void _Ready()
 	{

@@ -49,9 +49,5 @@ theme_override_constants/margin_right = 128
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_w0ius")
 
-[node name="ActivitiesContainer" type="HFlowContainer" parent="MarginContainer"]
+[node name="ActivitiesContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
-theme_override_constants/h_separation = 12
-theme_override_constants/v_separation = 12
-alignment = 1
-last_wrap_alignment = 2

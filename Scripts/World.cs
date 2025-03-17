@@ -8,6 +8,15 @@ public partial class World : Node2D
 	[Node("UserInterface/MainPanel")]
 	private MarginContainer MainPanel;
 
+	public Vector2 PlayerPosition;
+
+	public override void _Ready()
+	{
+		GD.Print(PlayerPosition);
+		// GameManager.Instance.player.Position = PlayerPosition;
+
+	}
+
     public override void _Notification(int what)
     {
 		if (what == NotificationSceneInstantiated)

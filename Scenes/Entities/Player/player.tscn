@@ -1,8 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://b65nxfrri78o0"]
+[gd_scene load_steps=15 format=3 uid="uid://b65nxfrri78o0"]
 
 [ext_resource type="Texture2D" uid="uid://b8v544pw40ynf" path="res://Assets/SpriteSheets/Character-Male.png" id="1_0wmuu"]
 [ext_resource type="Script" uid="uid://2oihglsyravb" path="res://Scripts/Entities/Player/Player.cs" id="1_oihhe"]
+[ext_resource type="Script" uid="uid://dw6qm7dtwnpy7" path="res://Scripts/Entities/Player/InputController.cs" id="2_fcpig"]
 [ext_resource type="Script" uid="uid://b0hy23vvuav4u" path="res://Scripts/Entities/Player/PlayerCamera.cs" id="3_djuet"]
+[ext_resource type="Script" uid="uid://dyxkclgunmupk" path="res://Scripts/Entities/Player/PlayerController.cs" id="3_y6hyn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nmvpq"]
 radius = 28.5549
@@ -187,18 +189,25 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dckff"]
 size = Vector2(21, 44)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("states")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("InteractableFinder")]
 collision_layer = 2
 collision_mask = 16
 script = ExtResource("1_oihhe")
-states = {}
+InteractableFinder = NodePath("Sprite2D/Direction/InteractableFinder")
+
+[node name="InputController" type="Node" parent="."]
+script = ExtResource("2_fcpig")
+
+[node name="PlayerController" type="Node" parent="."]
+script = ExtResource("3_y6hyn")
+MaxFallSpeed = 700.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 texture = ExtResource("1_0wmuu")
 hframes = 6
 vframes = 5
-frame = 20
+frame = 1
 metadata/_aseprite_wizard_config_ = {
 "i_mode": -1,
 "keep_anim_length": false,
