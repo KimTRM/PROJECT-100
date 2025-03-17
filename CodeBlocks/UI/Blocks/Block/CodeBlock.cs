@@ -1,4 +1,5 @@
 using Godot;
+using System;
 using System.Threading.Tasks;
 
 public partial class CodeBlock : Control
@@ -8,28 +9,32 @@ public partial class CodeBlock : Control
     public virtual async Task Execute() { await Task.CompletedTask; }
 
     public DragManager dragManager;
+    public Console console;
 
-    [Export] public bool Dragging = false; 
+    [Export] public bool Dragging = false;
     public CodeBlock NextBlock = null;
-    
+
     private Vector2 _offset = Vector2.Zero;
     private CodeBlock _snapTarget = null;
-    
+
     public string BlockType;
     public Variant BlockValue;
-    
+
     public override void _GuiInput(InputEvent @event)
     {
         if (@event is InputEventMouseButton mouseEvent)
         {
-            if (mouseEvent.Pressed && mouseEvent.ButtonIndex == MouseButton.Left)
+            if (!dragManager.dragging && mouseEvent.Pressed && mouseEvent.ButtonIndex == MouseButton.Left)
             {
                 GD.Print("Pressed");
-                dragManager.StartDrag(this);
+                dragManager.dragging = true;
+                dragManager.StartDrag(this, @event);
             }
+            
             else
             {
                 GD.Print("Released");
+                dragManager.dragging = false;
                 dragManager.EndDrag();
                 // StopDrag();
             }
@@ -38,9 +43,9 @@ public partial class CodeBlock : Control
 
     public override void _Process(double delta)
     {
-        if (Dragging)
+        if (Input.IsMouseButtonPressed(MouseButton.Left))
         {
-            GlobalPosition = GetGlobalMousePosition() + _offset;
+            // Move right.
         }
     }
 
@@ -55,7 +60,7 @@ public partial class CodeBlock : Control
     {
         Dragging = false;
         ZIndex = 0; // Reset Z index when released
-        
+
         if (_snapTarget != null)
         {
             SnapToTarget();

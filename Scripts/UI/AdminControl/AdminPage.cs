@@ -2,7 +2,7 @@ using Godot;
 using GodotUtilities;
 
 [Scene]
-public partial class AdminPage : Control
+public partial class AdminPage : CanvasLayer
 {
 	[Node("MarginContainer/VBoxContainer/HBoxContainer/Content")]
 	public PanelContainer Content;
@@ -46,8 +46,11 @@ public partial class AdminPage : Control
 		Content?.AddChild(QuizEditorScene);
 	}
 
-	private void _on_scores_pressed()
+	private void _on_class_pressed()
 	{
+		RemoveContent();
+		var ClasslistScene = ResourceLoader.Load<PackedScene>("res://Scenes/UI/AdminControl/ClassList/ClassNameList.tscn").Instantiate();
+		Content?.AddChild(ClasslistScene);
 	}
 
 	private void _on_logout_button_pressed()

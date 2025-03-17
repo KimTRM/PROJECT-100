@@ -1,0 +1,70 @@
+[gd_scene load_steps=2 format=3 uid="uid://c3amqm8k0f0jc"]
+
+[ext_resource type="Script" uid="uid://b4y6yc5xrhe7u" path="res://Scripts/UI/AdminControl/ClassList/ClassNameList.cs" id="1_75prs"]
+
+[node name="ClassNameList" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_75prs")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(1055, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+color = Color(0.113725, 0.113725, 0.113725, 0.784314)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ColorRect"]
+layout_mode = 2
+offset_top = 2.0
+offset_right = 1022.0
+offset_bottom = 37.0
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/ColorRect/HBoxContainer"]
+custom_minimum_size = Vector2(790, 0)
+layout_mode = 2
+theme_override_constants/margin_left = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ColorRect/HBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/ColorRect/HBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Classes"
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/ColorRect/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="AddClassButton" type="Button" parent="MarginContainer/VBoxContainer/ColorRect/HBoxContainer/MarginContainer2"]
+layout_mode = 2
+text = "Add Class"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="ClassListContainer" type="HFlowContainer" parent="MarginContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/h_separation = 16
+theme_override_constants/v_separation = 16
+alignment = 1
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ColorRect/HBoxContainer/MarginContainer2/AddClassButton" to="." method="_on_add_class_button_pressed"]

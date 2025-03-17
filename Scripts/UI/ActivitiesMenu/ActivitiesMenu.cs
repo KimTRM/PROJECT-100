@@ -3,10 +3,10 @@ using GodotUtilities;
 using Godot.Collections;
 
 [Scene]
-public partial class ActivitiesMenu : MarginContainer
+public partial class ActivitiesMenu : CanvasLayer
 {
 	[Node("MarginContainer/ActivitiesContainer")]
-	public HFlowContainer activitiesContainer;
+	public VBoxContainer activitiesContainer;
 
 	[Export]
 	private Array<Dictionary> Data = new();
@@ -21,6 +21,7 @@ public partial class ActivitiesMenu : MarginContainer
 
 	public override void _Ready()
 	{
+		GameManager.Instance.isGamePuasable = false;
 		HTTPManager.Instance.RequestCompleted += OnLessonsReceived;
 		HTTPManager.Instance.QueueRequest(HTTPManager.Instance.Commands["GET_LESSON"]);
 	}

@@ -10,7 +10,7 @@ public partial class CutSceneLoader : CanvasLayer
     [Node("MarginContainer2/DialougeText")]
     private RichTextLabel dialougeText;
     [Node("LetterDisplayTimer")]
-    private Timer letterDisplayTimer;
+    public Timer letterDisplayTimer;
 
     public static int MAX_WIDTH = 256;
 
@@ -19,7 +19,7 @@ public partial class CutSceneLoader : CanvasLayer
 
     private double LetterTime = 0.03;
     private double SpaceTime = 0.06;
-    private double PuncutationTime = 0.2;
+    private double PuncutationTime = 0.8;
 
     [Signal] public delegate void FinishedDisplayingEventHandler();
 
@@ -27,13 +27,17 @@ public partial class CutSceneLoader : CanvasLayer
     {
         if (what == NotificationSceneInstantiated)
         {
-            WireNodes();
+            WireNodes(); 
         }
+    }
+
+    public override void _Ready()
+    {
+        letterDisplayTimer.Timeout += OnLetterDisplayTimeout;
     }
 
     public void DisplayText(string textToDisplay)
     {
-        letterDisplayTimer.Timeout += OnLetterDisplayTimeout;
         Text = textToDisplay;
         LetterIndex = 0;
         dialougeText.Text = "";
@@ -68,10 +72,10 @@ public partial class CutSceneLoader : CanvasLayer
         }
     }
 
-    public void ChangeTexture(Texture newTexture)
+    public void ChangeTexture(string texturePath)
     {
-        Tween tween = CreateTween();
-        tween.TweenProperty(cutSceneContainer, "modulate:a", 0, 0.5f).SetTrans(Tween.TransitionType.Sine).SetEase(Tween.EaseType.InOut);
+        Texture2D texture = (Texture2D)GD.Load(texturePath);
+        cutSceneContainer.Texture = texture;
     }
 
 }

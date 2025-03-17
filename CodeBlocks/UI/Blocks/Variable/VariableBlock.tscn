@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cyod5r2p4kyj6" path="res://CodeBlocks/UI/Blocks/Variable/VariableBlock.cs" id="1_yup04"]
 [ext_resource type="PackedScene" uid="uid://dotwg7dqn1q6p" path="res://CodeBlocks/Drag&Drop/DragDropArea/DragDropArea.tscn" id="2_tm14k"]
-[ext_resource type="PackedScene" uid="uid://cxeco0k7s7brh" path="res://CodeBlocks/UI/Blocks/Experssion/ExpressionBlock.tscn" id="3_dsqkf"]
+[ext_resource type="PackedScene" uid="uid://cxeco0k7s7brh" path="res://CodeBlocks/UI/Blocks/Experssion/Setvalue/ExpressionBlock.tscn" id="3_dsqkf"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7f2a0"]
 bg_color = Color(0.847059, 0.384314, 0.384314, 1)
@@ -33,7 +33,6 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_7f2a0")
 
 [node name="DragDropArea" parent="." instance=ExtResource("2_tm14k")]
 layout_mode = 2
-mouse_filter = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2

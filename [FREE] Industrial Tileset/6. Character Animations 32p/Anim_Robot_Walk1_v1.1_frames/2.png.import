@@ -1,0 +1,34 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://db6p6vkw5camw"
+path="res://.godot/imported/2.png-492ce03ad0b874cd85c861f1331700a5.ctex"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://[FREE] Industrial Tileset/6. Character Animations 32p/Anim_Robot_Walk1_v1.1_frames/2.png"
+dest_files=["res://.godot/imported/2.png-492ce03ad0b874cd85c861f1331700a5.ctex"]
+
+[params]
+
+compress/mode=0
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=false
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=1

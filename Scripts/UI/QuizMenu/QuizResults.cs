@@ -3,7 +3,7 @@ using GodotUtilities;
 using System;
 
 [Scene]
-public partial class QuizResults : MarginContainer
+public partial class QuizResults : CanvasLayer
 {
 	[Node("PanelContainer/VBoxContainer/PanelContainer/VBoxContainer/VBoxContainer/PlayerNameLabel")]
 	private Label playerNameLabel;
@@ -28,6 +28,7 @@ public partial class QuizResults : MarginContainer
 
 	public override void _Ready()
 	{
+		GameManager.Instance.isGamePuasable = false;
 	}
 
 	public void SetQuizResults(string name, string uid, int correct, int incorrect)

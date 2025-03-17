@@ -7,7 +7,7 @@ using System;
 public partial class QuizLists : MarginContainer
 {
 	[Node("MarginContainer/VBoxContainer/ScrollContainer/QuizListContainer")]
-	private HFlowContainer QuizList;
+	private VBoxContainer QuizList;
 
 	[Export]
 	private Array<Dictionary> Data = new();
@@ -45,9 +45,9 @@ public partial class QuizLists : MarginContainer
 			activity.button.Connect("pressed", Callable.From(() =>
 			{
 				var QuizEditorScene = (QuizEditor)ResourceLoader.Load<PackedScene>("res://Scenes/UI/AdminControl/QuizEditor/QuizEditor.tscn").Instantiate();
-				
+
 				HTTPManager.Instance.RequestCompleted += QuizEditorScene.OnQuestionsReceived;
-				var datas = new Dictionary {{ "QuizCategory", data["LessonTitle"].ToString() }};
+				var datas = new Dictionary { { "QuizCategory", data["LessonTitle"].ToString() } };
 				HTTPManager.Instance.QueueRequest(HTTPManager.Instance.Commands["GET_SPECIFIC_QUIZ"], datas);
 
 				QuizEditorScene.QuizCategory = data["LessonTitle"].ToString();
@@ -60,9 +60,35 @@ public partial class QuizLists : MarginContainer
 
 	private void _on_add_question_pressed()
 	{
-		Activity activity = (Activity)ResourceLoader.Load<PackedScene>("res://Scenes/UI/ActivitesMenu/Activity.tscn").Instantiate();
-		activity.ActivityName.Text = "New Quiz";
-		QuizList.AddChild(activity);
+		AddElement addElement = (AddElement)ResourceLoader.Load<PackedScene>("res://Scenes/UI/AdminControl/AddElement/AddElement.tscn").Instantiate();
+		addElement.UpdateElementDetails("ADD QUIZ", "Quiz Name");
+
+		AddChild(addElement);
+
+		addElement.AddButton.Connect("pressed", Callable.From(() =>
+		{
+			if (addElement.GetLineData() == "") return;
+
+			Activity activity = (Activity)ResourceLoader.Load<PackedScene>("res://Scenes/UI/ActivitesMenu/Activity.tscn").Instantiate();
+			activity.ActivityName.Text = addElement.GetLineData();
+			QuizList.AddChild(activity);
+
+			activity.button.Connect("pressed", Callable.From(() =>
+			{
+				var QuizEditorScene = (QuizEditor)ResourceLoader.Load<PackedScene>("res://Scenes/UI/AdminControl/QuizEditor/QuizEditor.tscn").Instantiate();
+
+				HTTPManager.Instance.RequestCompleted += QuizEditorScene.OnQuestionsReceived;
+				var datas = new Dictionary {{ "QuizCategory", addElement.GetLineData()}};
+				// HTTPManager.Instance.QueueRequest(HTTPManager.Instance.Commands["GET_SPECIFIC_QUIZ"], datas);
+
+				// QuizEditorScene.QuizCategory = data["LessonTitle"].ToString();
+
+				QueueFree();
+				GetParent().AddChild(QuizEditorScene);
+			}));
+
+			addElement.QueueFree();
+		}));
 	}
 
 	private void _on_reload_questions_pressed()
@@ -71,7 +97,7 @@ public partial class QuizLists : MarginContainer
 		{
 			child.QueueFree();
 		}
-		
+
 		HTTPManager.Instance.RequestCompleted += OnLessonsReceived;
 		HTTPManager.Instance.QueueRequest(HTTPManager.Instance.Commands["GET_LESSON"]);
 	}

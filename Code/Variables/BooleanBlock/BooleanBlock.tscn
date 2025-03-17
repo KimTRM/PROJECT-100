@@ -75,5 +75,6 @@ flat = true
 selected = 0
 item_count = 2
 popup/item_0/text = "false"
+popup/item_0/id = 0
 popup/item_1/text = "true"
 popup/item_1/id = 1

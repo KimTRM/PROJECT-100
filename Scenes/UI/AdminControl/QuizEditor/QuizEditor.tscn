@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://cbhclcplspftq"]
+[gd_scene load_steps=3 format=3 uid="uid://cbhclcplspftq"]
 
 [ext_resource type="Script" uid="uid://dw48hdyubsq0h" path="res://Scripts/UI/AdminControl/QuizEditor/QuizEditor.cs" id="1_0xrlg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kay18"]
+bg_color = Color(0.113725, 0.113725, 0.113725, 0.784314)
 
 [node name="QuizEditor" type="MarginContainer"]
 custom_minimum_size = Vector2(1055, 500)
@@ -25,40 +28,38 @@ theme_override_font_sizes/font_size = 28
 text = "Quiz Editor"
 uppercase = true
 
-[node name="ColorRect" type="ColorRect" parent="VBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
-color = Color(0.113725, 0.113725, 0.113725, 0.784314)
+theme_override_styles/panel = SubResource("StyleBoxFlat_kay18")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/ColorRect"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/PanelContainer"]
 layout_mode = 2
-offset_top = 4.0
-offset_right = 1015.0
-offset_bottom = 32.0
+alignment = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/ColorRect/HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/PanelContainer/HBoxContainer"]
 custom_minimum_size = Vector2(790, 0)
 layout_mode = 2
 theme_override_constants/margin_left = 10
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/ColorRect/HBoxContainer/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/PanelContainer/HBoxContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="Total No_ Items_" type="Label" parent="VBoxContainer/ColorRect/HBoxContainer/MarginContainer/HBoxContainer"]
+[node name="Total No_ Items_" type="Label" parent="VBoxContainer/PanelContainer/HBoxContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
 text = "Total No. Items: "
 
-[node name="QuestionNumber" type="Label" parent="VBoxContainer/ColorRect/HBoxContainer/MarginContainer/HBoxContainer"]
+[node name="QuestionNumber" type="Label" parent="VBoxContainer/PanelContainer/HBoxContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="AddQuestion" type="Button" parent="VBoxContainer/ColorRect/HBoxContainer"]
-layout_direction = 3
+[node name="AddQuestion" type="Button" parent="VBoxContainer/PanelContainer/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 8
 text = "Add Question"
 
-[node name="ReloadQuestions" type="Button" parent="VBoxContainer/ColorRect/HBoxContainer"]
-layout_direction = 3
+[node name="ReloadQuestions" type="Button" parent="VBoxContainer/PanelContainer/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 8
 text = "Reload Questions"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
@@ -73,5 +74,5 @@ size_flags_horizontal = 4
 theme_override_constants/separation = 8
 alignment = 1
 
-[connection signal="pressed" from="VBoxContainer/ColorRect/HBoxContainer/AddQuestion" to="." method="_on_add_question_pressed"]
-[connection signal="pressed" from="VBoxContainer/ColorRect/HBoxContainer/ReloadQuestions" to="." method="_on_reload_questions_pressed"]
+[connection signal="pressed" from="VBoxContainer/PanelContainer/HBoxContainer/AddQuestion" to="." method="_on_add_question_pressed"]
+[connection signal="pressed" from="VBoxContainer/PanelContainer/HBoxContainer/ReloadQuestions" to="." method="_on_reload_questions_pressed"]

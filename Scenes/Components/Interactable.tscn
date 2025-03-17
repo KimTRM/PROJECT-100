@@ -3,4 +3,8 @@
 [ext_resource type="Script" uid="uid://bw3h56exkx7we" path="res://Scripts/Components/Interactable.cs" id="1_tyc48"]
 
 [node name="Interactable" type="Area2D"]
+collision_mask = 3
+collision_priority = 0.0
 script = ExtResource("1_tyc48")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

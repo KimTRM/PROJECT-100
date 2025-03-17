@@ -3,7 +3,7 @@ using Godot.Collections;
 using GodotUtilities;
 
 [Scene]
-public partial class LoginMenu : Control
+public partial class LoginMenu : CanvasLayer
 {
 	[Node("PanelContainer/LoginPanel/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Username")]
 	private LineEdit Username;
@@ -84,6 +84,9 @@ public partial class LoginMenu : Control
 				}
 				else if (user["Role"].ToString() == "Student")
 				{
+					GameManager.Instance.PlayerUsername = user["UserName"].ToString();
+					GameManager.Instance.PlayerID = user["UserID"].ToString();
+
 					ErrorMessage.Hide();
 					GameManager.Instance.LoadScene("res://Scenes/UI/StartingScreen/StartingMenu.tscn");
 				}
