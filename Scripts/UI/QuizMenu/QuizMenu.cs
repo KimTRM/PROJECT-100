@@ -5,7 +5,7 @@ using System.Linq;
 using System;
 
 [Scene]
-public partial class QuizMenu : MarginContainer
+public partial class QuizMenu : CanvasLayer
 {
 	[Node("MarginContainer2/HBoxContainer/CurrentItem")]
 	public Label currentItem;
@@ -91,6 +91,15 @@ public partial class QuizMenu : MarginContainer
 		}
 
 		var QuizResults = (QuizResults)ResourceLoader.Load<PackedScene>("res://Scenes/UI/QuizMenu/QuizResults.tscn").Instantiate();
+
+		HTTPManager.Instance.QueueRequest(HTTPManager.Instance.Commands["ADD_SCORE"], new Dictionary 
+		{ 
+			{ "ScoreID", HTTPManager.Instance.GenarateId() }, 
+			{ "PlayerID", GameManager.Instance.PlayerID }, 
+			{ "ChapterID", Datas[0]["QuizCategory"].ToString() },
+			{ "Score" , correctCount } 
+		});
+
 		QuizResults.SetQuizResults(GameManager.Instance.PlayerUsername, GameManager.Instance.PlayerID, correctCount, Datas.Count - correctCount);
 		QueueFree();
 		GetParent().AddChild(QuizResults);

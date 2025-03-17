@@ -11,6 +11,7 @@ public partial class GameManager : Node
 
 	[Signal] public delegate void GamePauseToggleEventHandler(bool isPaused);
 	public bool isPaused = false;
+	public bool isGamePuasable = false;
 
 	[Export] public string PlayerUsername;
 	[Export] public string PlayerID;
@@ -28,12 +29,14 @@ public partial class GameManager : Node
 	{
 		if (@event is InputEventKey keyEvent && keyEvent.Pressed)
 		{
-			if (keyEvent.Keycode != Key.Escape) return;
+			if (keyEvent.Keycode == Key.Escape && isGamePuasable)
+			{
+				isPaused = !isPaused;
+				EmitSignal(SignalName.GamePauseToggle, isPaused);
+				UiManager.Instance.ChangeCurrentUI(UiManager.Instance.uiElements["PauseMenu"]);
 
-			isPaused = !isPaused;
-			EmitSignal(SignalName.GamePauseToggle, isPaused);
-
-			GetTree().Paused = isPaused;
+				GetTree().Paused = isPaused;
+			}
 		}
 	}
 
@@ -45,7 +48,8 @@ public partial class GameManager : Node
 
 	public async void LoadScene(string scenePath)
 	{
-		SceneTransition sceneTransition = GetNode<SceneTransition>("/root/SceneTransition");
+		SceneTransition sceneTransition = (SceneTransition)UiManager.Instance.uiElements["SceneTransition"];
+		UiManager.Instance.ChangeCurrentUI(sceneTransition);
 
 		sceneTransition.Show();
 		GetTree().Paused = true;

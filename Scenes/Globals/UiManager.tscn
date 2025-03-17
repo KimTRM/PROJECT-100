@@ -8,7 +8,14 @@
 [ext_resource type="PackedScene" uid="uid://64xx67gu0v5f" path="res://Scenes/UI/PopupWindow/PopupWindow.tscn" id="4_u2ed4"]
 
 [node name="UIManager" type="CanvasLayer"]
+layer = 128
 script = ExtResource("1_5vqe7")
+
+[node name="CutSceneLoader" parent="." instance=ExtResource("3_t1epi")]
+visible = false
+
+[node name="PopupWindow" parent="." instance=ExtResource("4_u2ed4")]
+visible = false
 
 [node name="PauseMenu" parent="." instance=ExtResource("2_t1epi")]
 layer = 1
@@ -16,12 +23,6 @@ visible = false
 
 [node name="SettingsMenu" parent="." instance=ExtResource("3_5vqe7")]
 layer = 1
-visible = false
-
-[node name="CutSceneLoader" parent="." instance=ExtResource("3_t1epi")]
-visible = false
-
-[node name="PopupWindow" parent="." instance=ExtResource("4_u2ed4")]
 visible = false
 
 [node name="SceneTransition" parent="." instance=ExtResource("1_6gb0i")]

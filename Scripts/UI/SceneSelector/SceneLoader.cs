@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class SceneLoader : MarginContainer
+public partial class SceneLoader : CanvasLayer
 {
 	void _on_back_button_pressed()
 	{

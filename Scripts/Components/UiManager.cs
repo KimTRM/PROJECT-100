@@ -1,48 +1,69 @@
 using Godot;
 using GodotUtilities;
-using System;
+using System.Collections.Generic;
 
 [Scene]
 public partial class UiManager : CanvasLayer
 {
-	[Node] private CanvasLayer PauseMenu;
-	[Node] private CanvasLayer SettingsMenu;
-	[Node] private CanvasLayer CutSceneLoader;
-	[Node] private CanvasLayer PopupWindow;
-	[Node] private CanvasLayer SceneTransition;
+	public static UiManager Instance { get; private set; }
+    [Node] private CanvasLayer PauseMenu;
+    [Node] private CanvasLayer SettingsMenu;
+    [Node] private CanvasLayer CutSceneLoader;
+    [Node] private CanvasLayer PopupWindow;
+    [Node] private CanvasLayer SceneTransition;
+
+    public Dictionary<string, CanvasLayer> uiElements;
 
     public override void _Notification(int what)
     {
-        if(what == NotificationSceneInstantiated)
-		{
-			WireNodes();
-		}
+        if (what == NotificationSceneInstantiated)
+        {
+            WireNodes();
+        }
     }
 
     public override void _Ready()
-	{
-		
-	}
+    {
+		Instance = this;
+        InitializeUIElements();
+    }
 
-	public void ChangeCurrentUI(CanvasLayer newUI)
-	{
-		switch (newUI.Name)
-		{
-			case "PauseMenu":
-				PauseMenu.Visible = true;
-				break;
-			case "SettingsMenu":
-				SettingsMenu.Visible = true;
-				break;
-			case "CutSceneLoader":
-				CutSceneLoader.Visible = true;
-				break;
-			case "PopupWindow":
-				PopupWindow.Visible = true;
-				break;
-			case "SceneTransition":
-				SceneTransition.Visible = true;
-				break;
-		}
-	}
+    private void InitializeUIElements()
+    {
+        uiElements = new Dictionary<string, CanvasLayer>
+        {
+            { "PauseMenu", PauseMenu },
+            { "SettingsMenu", SettingsMenu },
+            { "CutSceneLoader", CutSceneLoader },
+            { "PopupWindow", PopupWindow },
+            { "SceneTransition", SceneTransition }
+        };
+
+        HideAllUI();
+    }
+
+    private void HideAllUI()
+    {
+        foreach (var uiElement in uiElements.Values)
+        {
+            if (uiElement != null)
+			{
+				uiElement.Visible = false;
+				uiElement.Layer = 0;
+			}
+        }
+    }
+
+    public void ChangeCurrentUI(CanvasLayer newUI)
+    {
+        if (newUI == null || !uiElements.ContainsKey(newUI.Name))
+        {
+            GD.PrintErr($"UI Manager: Attempted to change to an invalid UI: {newUI?.Name ?? "null"}");
+            return;
+        }
+
+        HideAllUI();
+        uiElements[newUI.Name].Visible = true;
+		uiElements[newUI.Name].Layer = Layer;
+    }
 }

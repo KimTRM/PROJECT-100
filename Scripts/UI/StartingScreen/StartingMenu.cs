@@ -36,7 +36,8 @@ public partial class StartingMenu : CanvasLayer
 
 	void _on_settings_button_pressed()
 	{
-		SettingsMenu SettingsMenu = (SettingsMenu)GetNode("/root/SettingsMenu");
+		SettingsMenu SettingsMenu = UiManager.Instance.uiElements["SettingsMenu"] as SettingsMenu;
+		UiManager.Instance.ChangeCurrentUI(SettingsMenu);
 		SettingsMenu.Show();
 	}
 

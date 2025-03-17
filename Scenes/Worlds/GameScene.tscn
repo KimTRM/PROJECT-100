@@ -15,14 +15,11 @@ script = ExtResource("1_44ihx")
 [node name="World" parent="." instance=ExtResource("1_3bkll")]
 
 [node name="D-A-L" parent="." instance=ExtResource("3_7qkkk")]
-position = Vector2(104, -31)
+position = Vector2(114, -18)
 
 [node name="CutSceneSpawner2" parent="." instance=ExtResource("5_lt366")]
 CutSceneImage = Array[Texture]([ExtResource("6_pw1wf"), ExtResource("7_7fssw"), ExtResource("8_sl5mp")])
 CutSceneText = Array[String](["In the quiet province of CamSur, a bright and curious boy named Kim lived a simple life. He was a student at Artificial Dimension Tech Institute, where he learned about building virtual worlds and how to create simulations in the metaverse.", "One day, while working on an update for the metaverse, something strange happened. A sudden distortion spread across his body, but no one else seemed to notice. Before he could react, he was pulled into the metaverse itself.", "When Kim woke up, he was completely inside the digital world—but he had no idea how he got there. His memories were intact, but something was missing. All his knowledge about programming was gone. Now, trapped in a world he once understood, he had to figure out how to navigate it all over again."])
 
 [node name="PlayerSpwaner" parent="." instance=ExtResource("8_44ihx")]
-position = Vector2(34, -332)
-
-[node name="PlayerSpwaner2" parent="." instance=ExtResource("8_44ihx")]
-position = Vector2(34, -332)
+position = Vector2(32, -322)
