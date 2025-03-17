@@ -1,0 +1,28 @@
+[gd_scene load_steps=9 format=3 uid="uid://joynp6brwwbo"]
+
+[ext_resource type="PackedScene" uid="uid://v44f4qcx5kcp" path="res://Scenes/Worlds/world.tscn" id="1_3bkll"]
+[ext_resource type="Script" uid="uid://by27v3phwtvyx" path="res://Scripts/GameScene.cs" id="1_44ihx"]
+[ext_resource type="PackedScene" uid="uid://d37ct8qy5o2ym" path="res://Scenes/Entities/D.A.L..tscn" id="3_7qkkk"]
+[ext_resource type="PackedScene" uid="uid://xk4t184etv8f" path="res://Scenes/Components/CutSceneSpawner.tscn" id="5_lt366"]
+[ext_resource type="Texture2D" uid="uid://cqkhyl27cuv01" path="res://Assets/CutScenes/Scene 1 PROJECT 100.png" id="6_pw1wf"]
+[ext_resource type="Texture2D" uid="uid://cwwqfq6lq5wrl" path="res://Assets/CutScenes/Scene 2.png" id="7_7fssw"]
+[ext_resource type="PackedScene" uid="uid://depv5e7gi147f" path="res://Scenes/Components/PlayerSpwaner.tscn" id="8_44ihx"]
+[ext_resource type="Texture2D" uid="uid://itqlfbpvg0cg" path="res://Assets/CutScenes/scene 3.png" id="8_sl5mp"]
+
+[node name="GameScene" type="Node2D"]
+script = ExtResource("1_44ihx")
+
+[node name="World" parent="." instance=ExtResource("1_3bkll")]
+
+[node name="D-A-L" parent="." instance=ExtResource("3_7qkkk")]
+position = Vector2(104, -31)
+
+[node name="CutSceneSpawner2" parent="." instance=ExtResource("5_lt366")]
+CutSceneImage = Array[Texture]([ExtResource("6_pw1wf"), ExtResource("7_7fssw"), ExtResource("8_sl5mp")])
+CutSceneText = Array[String](["In the quiet province of CamSur, a bright and curious boy named Kim lived a simple life. He was a student at Artificial Dimension Tech Institute, where he learned about building virtual worlds and how to create simulations in the metaverse.", "One day, while working on an update for the metaverse, something strange happened. A sudden distortion spread across his body, but no one else seemed to notice. Before he could react, he was pulled into the metaverse itself.", "When Kim woke up, he was completely inside the digital world—but he had no idea how he got there. His memories were intact, but something was missing. All his knowledge about programming was gone. Now, trapped in a world he once understood, he had to figure out how to navigate it all over again."])
+
+[node name="PlayerSpwaner" parent="." instance=ExtResource("8_44ihx")]
+position = Vector2(34, -332)
+
+[node name="PlayerSpwaner2" parent="." instance=ExtResource("8_44ihx")]
+position = Vector2(34, -332)

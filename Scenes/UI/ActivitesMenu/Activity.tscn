@@ -78,13 +78,13 @@ theme_override_constants/margin_right = 18
 [node name="HBoxContainer" type="HBoxContainer" parent="ModifyButtonContainer"]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="ModifyButtonContainer/HBoxContainer"]
+[node name="EditButton" type="Button" parent="ModifyButtonContainer/HBoxContainer"]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 size_flags_vertical = 4
 text = "Edit"
 
-[node name="Button2" type="Button" parent="ModifyButtonContainer/HBoxContainer"]
+[node name="DeleteButton" type="Button" parent="ModifyButtonContainer/HBoxContainer"]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 size_flags_vertical = 4

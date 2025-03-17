@@ -22,6 +22,7 @@ boot_splash/minimum_display_time=7
 
 HttpManager="*res://Globals/HTTPManager.cs"
 GameManager="*res://Globals/GameManager.cs"
+PlayerManager="*res://Globals/PlayerManager.cs"
 SettingsMenu="*res://Scenes/UI/PauseMenu/SettingsMenu.tscn"
 SceneTransition="*res://Scenes/Components/SceneTransition.tscn"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"

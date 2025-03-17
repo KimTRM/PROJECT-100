@@ -2,7 +2,7 @@ using Godot;
 using GodotUtilities;
 
 [Scene]
-public partial class AdminPage : Control
+public partial class AdminPage : CanvasLayer
 {
 	[Node("MarginContainer/VBoxContainer/HBoxContainer/Content")]
 	public PanelContainer Content;

@@ -1,7 +1,7 @@
 using Godot;
 using Godot.Collections;
 
-public partial class StartingMenu : Control
+public partial class StartingMenu : CanvasLayer
 {
 	[Export]
 	private Array<Dictionary> Data = new();

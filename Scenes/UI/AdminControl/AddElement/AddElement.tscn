@@ -52,6 +52,24 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "ADD"
 
+[node name="ColorSelectorContainer" type="PanelContainer" parent="PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_styles/panel = SubResource("StyleBoxFlat_hghb2")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/ColorSelectorContainer"]
+layout_mode = 2
+
+[node name="InfoLabel" type="Label" parent="PanelContainer/VBoxContainer/ColorSelectorContainer/VBoxContainer"]
+layout_mode = 2
+text = "SELECT COLOR"
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="PanelContainer/VBoxContainer/ColorSelectorContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+color = Color(0.45528, 0.699154, 1, 1)
+
 [node name="PanelContainer" type="PanelContainer" parent="PanelContainer/VBoxContainer"]
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2

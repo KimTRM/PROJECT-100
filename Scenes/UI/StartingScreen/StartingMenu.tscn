@@ -20,17 +20,10 @@ texture_margin_top = 16.0
 texture_margin_right = 32.0
 texture_margin_bottom = 16.0
 
-[node name="StartingMenu" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="StartingMenu" type="CanvasLayer"]
 script = ExtResource("1_jfvfq")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -39,7 +32,6 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_l5ogm")
 
 [node name="TextureRect" type="TextureRect" parent="."]
-layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
@@ -57,7 +49,6 @@ flip_h = true
 [node name="TextureRect3" type="TextureRect" parent="."]
 texture_filter = 1
 custom_minimum_size = Vector2(0, 120)
-layout_mode = 2
 offset_left = 64.0
 offset_top = 65.0
 offset_right = 798.0
@@ -67,7 +58,6 @@ texture = ExtResource("3_agdox")
 expand_mode = 1
 
 [node name="MarginContainer3" type="MarginContainer" parent="."]
-layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
 offset_right = 512.0
@@ -157,7 +147,6 @@ text = "Exit"
 flat = true
 
 [node name="MarginContainer2" type="MarginContainer" parent="."]
-layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -178,7 +167,6 @@ theme_override_font_sizes/font_size = 28
 text = "Log out"
 
 [node name="TextureRect2" type="TextureRect" parent="."]
-layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
@@ -195,7 +183,6 @@ flip_h = true
 
 [node name="MarginContainer" type="PanelContainer" parent="."]
 texture_filter = 1
-layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -225,8 +212,8 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "This game is still in development threfore this is not indicative of the final product."
 
 [connection signal="pressed" from="MarginContainer3/VBoxContainer2/MarginContainer/VBoxContainer/NewGame/NewGameButton" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="MarginContainer3/VBoxContainer2/MarginContainer/VBoxContainer/Continue/ContinueButton" to="." method="_on_continue_button_pressed"]
 [connection signal="pressed" from="MarginContainer3/VBoxContainer2/MarginContainer/VBoxContainer/Continue/ContinueButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="MarginContainer3/VBoxContainer2/MarginContainer/VBoxContainer/Continue/ContinueButton" to="." method="_on_continue_button_pressed"]
 [connection signal="pressed" from="MarginContainer3/VBoxContainer2/MarginContainer/VBoxContainer/SelectScene/SelectSceneButton" to="." method="_on_select_scene_button_pressed"]
 [connection signal="pressed" from="MarginContainer3/VBoxContainer2/MarginContainer/VBoxContainer/Settings/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="MarginContainer3/VBoxContainer2/MarginContainer/VBoxContainer/About/AboutButton" to="." method="_on_about_button_pressed"]

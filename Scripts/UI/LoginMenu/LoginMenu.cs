@@ -3,7 +3,7 @@ using Godot.Collections;
 using GodotUtilities;
 
 [Scene]
-public partial class LoginMenu : Control
+public partial class LoginMenu : CanvasLayer
 {
 	[Node("PanelContainer/LoginPanel/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Username")]
 	private LineEdit Username;

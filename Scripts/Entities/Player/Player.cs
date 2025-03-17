@@ -24,18 +24,13 @@ public partial class Player : CharacterBody2D
 
 	public override void _Ready()
 	{
+		PlayerManager.Instance.player = this;
 		playerController.Initialize(this);
 	}
 
 	public override void _PhysicsProcess(double delta)
 	{
-		if (cutsceneActive)
-		{
-			MoveAndSlide();
-			return;
-		}
-
-		if (inputController.InteractPressed())
+		if (inputController.InteractPressed() && inputController.IsInteracting == false)
 		{
 			var interactables = InteractableFinder.GetOverlappingAreas();
 			if (interactables.Count > 0)
@@ -48,11 +43,13 @@ public partial class Player : CharacterBody2D
 
 		if(GetParent().GetNodeOrNull<ExampleBalloon>("ExampleBalloon") != null)
 		{
+			StartCutscene();
 			inputController.SetInteracting(true);
 		}
 		else
 		{
 			inputController.SetInteracting(false);
+			EndCutscene();
 		}
 
 		// Resume movement if not interacting

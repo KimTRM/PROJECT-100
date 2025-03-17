@@ -47,8 +47,11 @@ public partial class PauseMenu : CanvasLayer
 	{
 		if (GameManager.Instance.PlayerID != null)
 		{
-			GameManager.Instance.SavePlayerData(GameManager.Instance.PlayerID, GameManager.Instance.player.Position, "1", "5");
+			GameManager.Instance.SavePlayerData(GameManager.Instance.PlayerID, PlayerManager.Instance.player.GlobalPosition, "1", "5");
 		}
+
+		PlayerManager.Instance.UnparentPlayer(PlayerManager.Instance.player.GetParent() as Node2D);
+		PlayerManager.Instance.playerSpawned = false;
 
 		Hide();
 		GameManager.Instance.isPaused = false;
