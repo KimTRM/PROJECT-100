@@ -126,4 +126,10 @@ public partial class LoginMenu : CanvasLayer
 	{
 		GameManager.Instance.LoadScene("res://Scenes/UI/StartingScreen/StartingMenu.tscn");
 	}
+
+	void _on_full_screen_toggled(bool button_pressed)
+	{
+		GD.Print("Toggled" + $": {button_pressed}");
+		DisplayServer.WindowSetMode(button_pressed ? DisplayServer.WindowMode.ExclusiveFullscreen : DisplayServer.WindowMode.Windowed);
+	}
 }

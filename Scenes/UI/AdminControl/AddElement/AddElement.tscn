@@ -53,6 +53,7 @@ theme_override_font_sizes/font_size = 32
 text = "ADD"
 
 [node name="ColorSelectorContainer" type="PanelContainer" parent="PanelContainer/VBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 size_flags_vertical = 6

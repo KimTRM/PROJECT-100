@@ -4,22 +4,27 @@ using Godot.Collections;
 
 public partial class CutSceneManager : Node
 {
+	public static CutSceneManager Instance { get; private set; }
+
 	CutSceneLoader cutSceneLoader;
-	[Export] Array<Texture> CutSceneImage = new();
-	[Export] Array<string> CutSceneText = new();
 
 	public override void _Ready()
 	{
-		// cutSceneLoader = (CutSceneLoader)ResourceLoader.Load<PackedScene>("res://Scenes/UI/CutSceneLoader/CutSceneLoader.tscn").Instantiate();
-		// AddChild(cutSceneLoader);
+		Instance = this;
+	}
 
-		// _ = LoadText();
+	public void ShowCutScene(Array<Texture> CutSceneImage = null, Array<string> CutSceneText = null)
+	{
+		cutSceneLoader = UiManager.Instance.uiElements["CutSceneLoader"] as CutSceneLoader;
+		UiManager.Instance.ChangeCurrentUI(cutSceneLoader);
+
+		_ = LoadText(CutSceneImage, CutSceneText);
 	}
 
 	int index = 0;
-	private async Task LoadText()
+	private async Task LoadText(Array<Texture> CutSceneImage = null, Array<string> CutSceneText = null)
 	{
-		GetTree().Paused = true;
+		// GetTree().Paused = true;
 
 		foreach (string dialougeText in CutSceneText)
 		{
@@ -36,6 +41,6 @@ public partial class CutSceneManager : Node
 			}
 		}
 
-		GetTree().Paused = false;
+		// GetTree().Paused = false;
 	}
 }

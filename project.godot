@@ -25,6 +25,7 @@ GameManager="*res://Globals/GameManager.cs"
 PlayerManager="*res://Globals/PlayerManager.cs"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 UiManager="*res://Scenes/Globals/UiManager.tscn"
+CutSceneManager="*res://Globals/CutSceneManager.cs"
 
 [debug]
 
@@ -50,6 +51,7 @@ project/assembly_name="Project 100"
 
 [editor]
 
+movie_writer/movie_file="C:/Users/KIm/Videos/Godot Engine/k.avi"
 naming/scene_name_casing=1
 
 [editor_plugins]
@@ -154,7 +156,7 @@ Jump={
 
 [internationalization]
 
-locale/translations_pot_files=PackedStringArray("res://Dialouge/Hi.dialogue")
+locale/translations_pot_files=PackedStringArray("res://Dialouge/Hi.dialogue", "res://Dialouge/Introduce.dialogue")
 
 [layer_names]
 

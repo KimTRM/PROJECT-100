@@ -5,8 +5,8 @@
 [ext_resource type="Script" uid="uid://ypl60xq0fdsw" path="res://Scripts/Entities/DAL/State Machine/state_machine.gd" id="3_lgt54"]
 [ext_resource type="Script" uid="uid://77ekcyxh3200" path="res://Scripts/Entities/DAL/State Machine/States/idle.gd" id="4_c73x2"]
 [ext_resource type="Script" uid="uid://drv5jt0ifiv07" path="res://Scripts/Entities/DAL/State Machine/States/walk.gd" id="5_ohkiw"]
-[ext_resource type="PackedScene" uid="uid://cb2boj8kymtpp" path="res://Scenes/Components/Interactable.tscn" id="6_a3w74"]
-[ext_resource type="Resource" uid="uid://b32emc6hkhtth" path="res://Dialouge/Hi.dialogue" id="7_5pd0b"]
+[ext_resource type="PackedScene" uid="uid://cb2boj8kymtpp" path="res://Scenes/Components/Dialouge/Interactable.tscn" id="6_a3w74"]
+[ext_resource type="Resource" uid="uid://63gyqnh1ri02" path="res://Dialouge/Introduce.dialogue" id="7_1ibrw"]
 
 [sub_resource type="Animation" id="Animation_isrq6"]
 length = 0.72
@@ -187,7 +187,7 @@ script = ExtResource("4_c73x2")
 script = ExtResource("5_ohkiw")
 
 [node name="Interactable" parent="." instance=ExtResource("6_a3w74")]
-dialogue_resource = ExtResource("7_5pd0b")
+dialogue_resource = ExtResource("7_1ibrw")
 interact_on_enter = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable"]

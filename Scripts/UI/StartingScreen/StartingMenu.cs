@@ -25,7 +25,7 @@ public partial class StartingMenu : CanvasLayer
 
 	void _on_continue_button_pressed()
 	{
-		GameManager.Instance.LoadScene("res://Scenes/Worlds/world.tscn");
+		GameManager.Instance.LoadScene("res://Scenes/Worlds/GameScene.tscn");
 		
 	}
 

@@ -26,6 +26,11 @@ public partial class ActivitiesMenu : CanvasLayer
 		HTTPManager.Instance.QueueRequest(HTTPManager.Instance.Commands["GET_LESSON"]);
 	}
 
+	void _on_exit_button_pressed()
+	{
+		GameManager.Instance.LoadScene("res://Scenes/UI/StartingScreen/StartingMenu.tscn");
+	}
+
 	public void OnLessonsReceived(Array<Dictionary> response)
 	{
 		Data = response;

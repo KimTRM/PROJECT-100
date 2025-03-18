@@ -24,4 +24,10 @@ public partial class PopupWindow : CanvasLayer
 	{
 		label.Text = Text;
 	}
+
+	public void UpateText(string text)
+	{
+		label.Text = text;
+	}
+
 }

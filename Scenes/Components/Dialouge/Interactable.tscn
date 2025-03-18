@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cb2boj8kymtpp"]
 
-[ext_resource type="Script" uid="uid://bw3h56exkx7we" path="res://Scripts/Components/Interactable.cs" id="1_tyc48"]
+[ext_resource type="Script" uid="uid://bw3h56exkx7we" path="res://Scripts/Components/Dialouge/Interactable.cs" id="1_tyc48"]
 
 [node name="Interactable" type="Area2D"]
 collision_mask = 3

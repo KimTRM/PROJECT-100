@@ -40,8 +40,6 @@ public partial class PauseMenu : CanvasLayer
 	void _on_settings_button_pressed()
 	{
 		UiManager.Instance.ChangeCurrentUI(UiManager.Instance.uiElements["SettingsMenu"]);
-		// SettingsMenu SettingsMenu = (SettingsMenu)GetNode("/root/SettingsMenu");
-		// SettingsMenu.Show();
 	}
 
 	void _on_save_quit_button_pressed()

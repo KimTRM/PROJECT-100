@@ -2,10 +2,10 @@
 
 [ext_resource type="PackedScene" uid="uid://bkpe57g2wdqc6" path="res://Scenes/UI/SceneSelector/ButtonScene.tscn" id="1_dopv0"]
 [ext_resource type="Script" uid="uid://bmxmxbtc570tw" path="res://Scripts/UI/SceneSelector/SceneLoader.cs" id="1_enrf4"]
-[ext_resource type="PackedScene" uid="uid://v44f4qcx5kcp" path="res://Scenes/Worlds/world.tscn" id="2_30ano"]
 [ext_resource type="Texture2D" uid="uid://cbunacwidtbhj" path="res://Assets/UI/ScenePreview/Screenshot 2025-03-16 094612.png" id="2_bufaa"]
 [ext_resource type="PackedScene" uid="uid://bahqfay47fdok" path="res://Scenes/UI/StartingScreen/StartingMenu.tscn" id="4_v7mum"]
 [ext_resource type="Texture2D" uid="uid://c4yoh484wtl26" path="res://Assets/UI/Ellipse 10.png" id="6_tsmqb"]
+[ext_resource type="PackedScene" uid="uid://joynp6brwwbo" path="res://Scenes/Worlds/GameScene.tscn" id="6_vkcyw"]
 [ext_resource type="Texture2D" uid="uid://diirllfyehafa" path="res://Assets/UI/Group 65.png" id="7_vkcyw"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_30ano"]
@@ -82,7 +82,7 @@ text = " CHAPTER 1"
 layout_mode = 2
 textureRect = ExtResource("2_bufaa")
 SceneTitle = "In The Beninging"
-SceneToLoad = ExtResource("2_30ano")
+SceneToLoad = ExtResource("6_vkcyw")
 
 [node name="ButtonScene2" parent="PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/VBoxContainer" instance=ExtResource("1_dopv0")]
 layout_mode = 2
