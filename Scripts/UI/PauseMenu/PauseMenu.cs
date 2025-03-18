@@ -51,6 +51,7 @@ public partial class PauseMenu : CanvasLayer
 			PlayerManager.Instance.playerSpawned = false;
 		}
 
+		AudioManager.Instance.PlayMusic((AudioStream)GD.Load("res://Assets/AudioFiles/Astra__May_2_2024_852_PM.wav"));
 		GameManager.Instance.isGamePuasable = false;
 		
 		Hide();

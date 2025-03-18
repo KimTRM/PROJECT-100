@@ -31,14 +31,14 @@ public partial class Activity : MarginContainer
 
     public override void _Process(double delta)
     {
-        if(GameManager.Instance.PlayerUsername == null)
-		{
-			ModifyButtonContainer.Visible = true;
-		}
-		else
-		{
-			ModifyButtonContainer.Visible = false;
-		}
+        // if(GameManager.Instance.PlayerUsername == null)
+		// {
+		// 	ModifyButtonContainer.Visible = true;
+		// }
+		// else
+		// {
+		// 	ModifyButtonContainer.Visible = false;
+		// }
 	}
 
     void _on_button_mouse_entered()

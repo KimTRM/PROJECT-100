@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://joynp6brwwbo"]
+[gd_scene load_steps=14 format=3 uid="uid://joynp6brwwbo"]
 
 [ext_resource type="PackedScene" uid="uid://v44f4qcx5kcp" path="res://Scenes/Worlds/world.tscn" id="1_3bkll"]
 [ext_resource type="Script" uid="uid://by27v3phwtvyx" path="res://Scripts/GameScene.cs" id="1_44ihx"]
@@ -18,6 +18,9 @@ size = Vector2(123, 2.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7fssw"]
 size = Vector2(29, 45)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sl5mp"]
+size = Vector2(137, 135.5)
 
 [node name="GameScene" type="Node2D"]
 script = ExtResource("1_44ihx")
@@ -64,7 +67,8 @@ CanAutoInteract = true
 ShowCodeBlock = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableArea5"]
-shape = SubResource("RectangleShape2D_7fssw")
+position = Vector2(-4.5, -45.25)
+shape = SubResource("RectangleShape2D_sl5mp")
 
 [node name="InteractableArea6" parent="." instance=ExtResource("9_lt366")]
 position = Vector2(-207, -597)

@@ -25,6 +25,7 @@ GameManager="*res://Globals/GameManager.cs"
 PlayerManager="*res://Globals/PlayerManager.cs"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 UiManager="*res://Scenes/Globals/UiManager.tscn"
+AudioManager="*res://Globals/AudioManager.cs"
 CutSceneManager="*res://Globals/CutSceneManager.cs"
 
 [debug]

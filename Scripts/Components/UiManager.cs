@@ -1,6 +1,7 @@
 using Godot;
 using GodotUtilities;
 using Godot.Collections;
+using System;
 
 [Scene]
 public partial class UiManager : CanvasLayer
@@ -55,6 +56,18 @@ public partial class UiManager : CanvasLayer
 				uiElement.Layer = 0;
 			}
         }
+    }
+
+    public void ShowPauseMenu()
+    {
+        uiElements["PauseMenu"].Visible = true;
+        uiElements["PauseMenu"].Layer = Layer;
+    }
+
+    public void HidePauseMenu()
+    {
+        uiElements["PauseMenu"].Visible = false;
+        uiElements["PauseMenu"].Layer = 0;
     }
 
     public void ChangeCurrentUI(CanvasLayer newUI)

@@ -28,6 +28,7 @@ public partial class ActivitiesMenu : CanvasLayer
 
 	void _on_exit_button_pressed()
 	{
+		AudioManager.Instance.PlayMusic((AudioStream)GD.Load("res://Assets/AudioFiles/Astra__May_2_2024_852_PM.wav"));
 		GameManager.Instance.LoadScene("res://Scenes/UI/StartingScreen/StartingMenu.tscn");
 	}
 
