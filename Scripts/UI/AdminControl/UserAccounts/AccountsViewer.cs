@@ -26,6 +26,9 @@ public partial class AccountsViewer : MarginContainer
 	[Node ("VBoxContainer/ScrollContainer/Rows/RoleColumn")]
 	private VBoxContainer RoleColumn;
 
+	[Node("VBoxContainer/ScrollContainer/Rows/StatusColumn")]
+	private VBoxContainer StatusColumn;
+
 	[Export]
 	private Array<Dictionary> Datas;
 
@@ -62,6 +65,7 @@ public partial class AccountsViewer : MarginContainer
 			UsernameColumn.AddChild(new Label { Text = Datas[i]["UserName"].ToString() });
 			PasswordColumn.AddChild(new Label { Text = Datas[i]["Password"].ToString() });
 			RoleColumn.AddChild(new Label { Text = Datas[i]["Role"].ToString() });
+			StatusColumn.AddChild(new Label { Text = Datas[i]["Status"].ToString() });
 		}
 	}
 }

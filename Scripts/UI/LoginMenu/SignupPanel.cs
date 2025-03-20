@@ -67,13 +67,19 @@ public partial class SignupPanel : PanelContainer
                 { "LastName", Lastname.Text },
                 { "UserName", Username.Text },
                 { "Password", Password.Text },
-                { "Role", "Student" }
+                { "Role", "Student" },
+                { "Status", "Offline"}
             };
 
         var LoginMenu = (LoginMenu)GetTree().Root.GetNode("LoginMenu");
         HTTPManager.Instance.QueueRequest(HTTPManager.Instance.Commands["ADD_USER_ACCOUNT"], data);
         HTTPManager.Instance.RequestCompleted += LoginMenu.OnAccountReceived;
 		HTTPManager.Instance.QueueRequest(HTTPManager.Instance.Commands["GET_USER_ACCOUNT"]);
+        Hide();
+    }
+
+    void _on_exit_button_pressed()
+    {
         Hide();
     }
 }

@@ -44,11 +44,12 @@ public partial class PauseMenu : CanvasLayer
 
 	void _on_save_quit_button_pressed()
 	{
+		PlayerManager.Instance.UnparentPlayer(PlayerManager.Instance.player.GetParent() as Node2D);
+		PlayerManager.Instance.playerSpawned = false;
+
 		if (GameManager.Instance.PlayerID != null)
 		{
 			GameManager.Instance.SavePlayerData(GameManager.Instance.PlayerID, PlayerManager.Instance.player.GlobalPosition, "1", "5");
-			PlayerManager.Instance.UnparentPlayer(PlayerManager.Instance.player.GetParent() as Node2D);
-			PlayerManager.Instance.playerSpawned = false;
 		}
 
 		AudioManager.Instance.PlayMusic((AudioStream)GD.Load("res://Assets/AudioFiles/Astra__May_2_2024_852_PM.wav"));

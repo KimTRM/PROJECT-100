@@ -71,7 +71,7 @@ position = Vector2(-4.5, -45.25)
 shape = SubResource("RectangleShape2D_sl5mp")
 
 [node name="InteractableArea6" parent="." instance=ExtResource("9_lt366")]
-position = Vector2(-207, -597)
+position = Vector2(-40, -598)
 CanAutoInteract = true
 switchToQuiz = true
 

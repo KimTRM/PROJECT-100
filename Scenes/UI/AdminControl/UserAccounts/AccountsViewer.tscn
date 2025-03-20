@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dxw73qfwdm0ag"]
+[gd_scene load_steps=3 format=3 uid="uid://dxw73qfwdm0ag"]
 
 [ext_resource type="Script" uid="uid://dvd68q0ui8i4q" path="res://Scripts/UI/AdminControl/UserAccounts/AccountsViewer.cs" id="1_cbaon"]
+[ext_resource type="PackedScene" uid="uid://b3ervjk56j0ea" path="res://Scenes/UI/AdminControl/UserAccounts/StatusIndicator.tscn" id="2_b7qw6"]
 
 [node name="AccountsViewer" type="MarginContainer"]
 custom_minimum_size = Vector2(1055, 500)
@@ -93,6 +94,7 @@ layout_mode = 2
 text = "USER NAME"
 
 [node name="PasswordColumn" type="VBoxContainer" parent="VBoxContainer/MarginContainer/Rows2"]
+visible = false
 layout_mode = 2
 
 [node name="Label" type="Label" parent="VBoxContainer/MarginContainer/Rows2/PasswordColumn"]
@@ -105,6 +107,13 @@ layout_mode = 2
 [node name="Label" type="Label" parent="VBoxContainer/MarginContainer/Rows2/RoleColumn"]
 layout_mode = 2
 text = "ROLE"
+
+[node name="StatusColumn" type="VBoxContainer" parent="VBoxContainer/MarginContainer/Rows2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/Rows2/StatusColumn"]
+layout_mode = 2
+text = "Status"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -150,6 +159,7 @@ layout_mode = 2
 text = "USER NAME"
 
 [node name="PasswordColumn" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/Rows"]
+visible = false
 layout_mode = 2
 
 [node name="Label" type="Label" parent="VBoxContainer/ScrollContainer/Rows/PasswordColumn"]
@@ -164,3 +174,15 @@ layout_mode = 2
 visible = false
 layout_mode = 2
 text = "ROLE"
+
+[node name="StatusColumn" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/Rows"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/ScrollContainer/Rows/StatusColumn"]
+visible = false
+layout_mode = 2
+text = "Status"
+
+[node name="StatusIndicator" parent="VBoxContainer/ScrollContainer/Rows/StatusColumn" instance=ExtResource("2_b7qw6")]
+visible = false
+layout_mode = 2

@@ -181,4 +181,18 @@ theme_override_constants/margin_right = 150
 layout_mode = 2
 text = "SIGN UP"
 
+[node name="MarginContainer3" type="MarginContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_constants/margin_right = 16
+
+[node name="ExitButton" type="Button" parent="MarginContainer3"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 34
+text = "x"
+flat = true
+
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/VBoxContainer/MarginContainer/SignupButton" to="." method="_on_signup_button_pressed"]
+[connection signal="pressed" from="MarginContainer3/ExitButton" to="." method="_on_exit_button_pressed"]
