@@ -39,12 +39,24 @@ public partial class MathCalculationBlock : CodeBlock
 				await block.Execute();
 				BlockValue = block.BlockValue;
 			}
-			else
+			else if (!string.IsNullOrWhiteSpace(value1.Text) && !string.IsNullOrWhiteSpace(value2.Text))
 			{
 				Value1 = value1.Text;
 				Value2 = value2.Text;
-				
-				BlockValue = Calculate(int.Parse(Value1), int.Parse(Value2), mathSymbol.Text);
+
+				int v1, v2;
+				if (int.TryParse(Value1, out v1) && int.TryParse(Value2, out v2))
+				{
+					BlockValue = Calculate(v1, v2, mathSymbol.Text);
+				}
+				else
+				{
+					GD.PrintErr("Invalid input: Value1 or Value2 is not a valid integer.");
+					value1.Text = string.Empty;
+					value2.Text = string.Empty;
+					ShowErrorMessage("Please enter valid integers for Value1 and Value2.");
+					BlockValue = 0; // Reset BlockValue
+				}
 			}
 		}
 		await Task.CompletedTask;
@@ -66,9 +78,19 @@ public partial class MathCalculationBlock : CodeBlock
 				return 0;
 		}
 	}
-	
+
 	public override void _Ready()
 	{
+	}
+
+	private void ShowErrorMessage(string message)
+	{
+		// Example: Display a popup or label with the error message
+		var errorPopup = new Popup();
+		AddChild(errorPopup);
+		errorPopup.PopupCentered();
+		var label = new Label { Text = message };
+		errorPopup.AddChild(label);
 	}
 
 

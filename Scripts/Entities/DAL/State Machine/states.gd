@@ -4,6 +4,7 @@ class_name States extends Node
 static var dal: DAL
 
 func _ready():
+	
 	pass # Replace with function body.
 
 

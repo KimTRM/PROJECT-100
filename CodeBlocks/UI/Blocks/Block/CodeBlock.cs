@@ -30,7 +30,7 @@ public partial class CodeBlock : Control
                 dragManager.dragging = true;
                 dragManager.StartDrag(this, @event);
             }
-            
+
             else
             {
                 GD.Print("Released");

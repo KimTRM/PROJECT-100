@@ -26,26 +26,26 @@ public partial class GameManager : Node
 	}
 
 	public override void _Input(InputEvent @event)
-{
-    if (@event is InputEventKey keyEvent && keyEvent.Pressed)
-    {
-        if (keyEvent.Keycode == Key.Escape && isGamePuasable) // Fixed variable name
-        {
-            isPaused = !isPaused;
-            EmitSignal(SignalName.GamePauseToggle, isPaused);
+	{
+		if (@event is InputEventKey keyEvent && keyEvent.Pressed)
+		{
+			if (keyEvent.Keycode == Key.Escape && isGamePuasable) // Fixed variable name
+			{
+				isPaused = !isPaused;
+				EmitSignal(SignalName.GamePauseToggle, isPaused);
 
-            if (UiManager.Instance != null) // Prevent potential null reference crash
-            {
-                if (isPaused)
-                    UiManager.Instance.ShowPauseMenu();
-                else
-                    UiManager.Instance.HidePauseMenu();
-            }
+				if (UiManager.Instance != null) // Prevent potential null reference crash
+				{
+					if (isPaused)
+						UiManager.Instance.ShowPauseMenu();
+					else
+						UiManager.Instance.HidePauseMenu();
+				}
 
-            GetTree().Paused = isPaused;
-        }
-    }
-}
+				GetTree().Paused = isPaused;
+			}
+		}
+	}
 
 	public void ChangeTilemapBounds(Vector2[] bounds)
 	{
@@ -57,7 +57,7 @@ public partial class GameManager : Node
 	{
 		SceneTransition sceneTransition = (SceneTransition)UiManager.Instance.uiElements["SceneTransition"];
 		UiManager.Instance.ChangeCurrentUI(sceneTransition);
-	
+
 		sceneTransition.Show();
 		GetTree().Paused = true;
 

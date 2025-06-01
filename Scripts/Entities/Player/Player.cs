@@ -41,7 +41,7 @@ public partial class Player : CharacterBody2D
 			}
 		}
 
-		if(GetParent().GetNodeOrNull<ExampleBalloon>("ExampleBalloon") != null)
+		if (GetParent().GetNodeOrNull<ExampleBalloon>("ExampleBalloon") != null)
 		{
 			StartCutscene();
 			inputController.SetInteracting(true);

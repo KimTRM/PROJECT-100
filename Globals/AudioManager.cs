@@ -1,6 +1,8 @@
 using Godot;
 using System;
 
+namespace Game.Globals;
+
 public partial class AudioManager : Node
 {
     public static AudioManager Instance { get; private set; }

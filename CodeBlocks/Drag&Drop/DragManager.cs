@@ -39,17 +39,17 @@ public partial class DragManager : Control
     public void StartDrag(Control draggable, InputEvent @event)
     {
         if (draggable == null) return;
-        
+
         // dragging = true;
 
         if (@event is InputEventMouseButton mouseEvent)
         {
             if (dragging && !mouseEvent.Pressed && mouseEvent.ButtonIndex != MouseButton.Left)
             {
-                EndDrag();  
+                EndDrag();
             }
         }
-        
+
         _originalParent = draggable.GetParent();
         _draggedObject = draggable;
         _offset = GetGlobalMousePosition() - _draggedObject.GlobalPosition;
@@ -62,7 +62,7 @@ public partial class DragManager : Control
         if (_draggedObject == null) return;
 
         // dragging = false;
-        
+
         // if (_dropTarget == _blockCanvas)
         // {
         //     _draggedObject.QueueFree();
@@ -84,11 +84,13 @@ public partial class DragManager : Control
 
         if (_on_block_canvas_mouse_entered())
         {
+            GD.Print("Mouse entered BlockCanvas");
             return _blockCanvas.Window;
         }
-        
+
         if (_on_block_picker_mouse_entered())
         {
+            GD.Print("Mouse entered BlockPicker");
             return _picker.codeBlockContainer;
         }
 

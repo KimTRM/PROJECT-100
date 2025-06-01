@@ -26,6 +26,7 @@ size = Vector2(137, 135.5)
 script = ExtResource("1_44ihx")
 
 [node name="World" parent="." instance=ExtResource("1_3bkll")]
+metadata/_edit_lock_ = true
 
 [node name="PlayerSpwaner" parent="." instance=ExtResource("8_44ihx")]
 position = Vector2(-1964, -1208)

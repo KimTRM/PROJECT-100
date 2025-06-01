@@ -177,13 +177,13 @@ libraries = {
 position = Vector2(0, 2)
 shape = SubResource("CapsuleShape2D_chly2")
 
-[node name="State Machine" type="Node" parent="."]
+[node name="StateMachine" type="Node" parent="."]
 script = ExtResource("3_lgt54")
 
-[node name="Idle" type="Node" parent="State Machine"]
+[node name="Idle" type="Node" parent="StateMachine"]
 script = ExtResource("4_c73x2")
 
-[node name="Walk" type="Node" parent="State Machine"]
+[node name="Walk" type="Node" parent="StateMachine"]
 script = ExtResource("5_ohkiw")
 
 [node name="Interactable" parent="." instance=ExtResource("6_a3w74")]

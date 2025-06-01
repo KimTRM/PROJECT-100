@@ -6,18 +6,18 @@ var direction: Vector2 = Vector2.ZERO
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var sprite: Sprite2D = $Sprite2D
-@onready var state_machine = $"State Machine"
+@onready var state_machine = $"StateMachine"
 
-func _ready():
+func _ready() -> void:
 	state_machine.Initialize(self)
 
-func _process(_delta):
+func _process(_delta: float) -> void:
 	direction = Vector2(
 		Input.get_axis("ui_left", "ui_right"),
 		Input.get_axis("ui_up", "ui_down")
 	).normalized()
 
-func _physics_process(_delta):
+func _physics_process(_delta: float) -> void:
 	move_and_slide()
 
 func SetDirection() -> bool:
