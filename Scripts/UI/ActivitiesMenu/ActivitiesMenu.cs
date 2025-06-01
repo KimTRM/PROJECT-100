@@ -1,6 +1,7 @@
 using Godot;
 using GodotUtilities;
 using Godot.Collections;
+using Game.Globals;
 
 [Scene]
 public partial class ActivitiesMenu : CanvasLayer

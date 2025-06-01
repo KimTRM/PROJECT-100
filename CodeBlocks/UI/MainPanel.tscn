@@ -63,7 +63,6 @@ layout_mode = 2
 layout_mode = 2
 mouse_filter = 1
 theme_override_font_sizes/font_size = 24
-text = ""
 minimap_draw = true
 caret_blink = true
 draw_tabs = true

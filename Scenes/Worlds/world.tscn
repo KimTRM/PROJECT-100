@@ -19,10 +19,10 @@ tile_map_data = PackedByteArray("AAC//+z/AAABAAAAAADA/+z/AAABAAAAAADE/+z/AAABAAA
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 rotation = 0.923279
-color = Color(1, 0.766908, 0.468433, 1)
+color = Color(1, 0.69885, 0.313227, 1)
 energy = 0.4
 shadow_enabled = true
 shadow_filter_smooth = 64.0
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color(0.592326, 0.592326, 0.592326, 1)
+color = Color(0.660212, 0.660212, 0.660212, 1)

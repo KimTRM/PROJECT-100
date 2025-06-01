@@ -1,3 +1,4 @@
+using Game.Globals;
 using Godot;
 using System;
 
@@ -54,7 +55,7 @@ public partial class PauseMenu : CanvasLayer
 
 		AudioManager.Instance.PlayMusic((AudioStream)GD.Load("res://Assets/AudioFiles/Astra__May_2_2024_852_PM.wav"));
 		GameManager.Instance.isGamePuasable = false;
-		
+
 		Hide();
 		GameManager.Instance.isPaused = false;
 		GetTree().Paused = false;

@@ -6,10 +6,10 @@ using System.Linq;
 [Scene]
 public partial class QuizEditor : MarginContainer
 {
-	[Node ("VBoxContainer/ScrollContainer/QuestionContainer")]
+	[Node("VBoxContainer/ScrollContainer/QuestionContainer")]
 	private VBoxContainer QuizList;
 
-	[Node ("VBoxContainer/PanelContainer/HBoxContainer/MarginContainer/HBoxContainer/QuestionNumber")]
+	[Node("VBoxContainer/PanelContainer/HBoxContainer/MarginContainer/HBoxContainer/QuestionNumber")]
 	private Label NumOfQuestions;
 
 	[Export]
@@ -22,9 +22,9 @@ public partial class QuizEditor : MarginContainer
 	[Export]
 	public string QuizCategory;
 
-    public override void _Notification(int what)
-    {
-        if (what == NotificationSceneInstantiated)
+	public override void _Notification(int what)
+	{
+		if (what == NotificationSceneInstantiated)
 		{
 			WireNodes();
 		}
@@ -45,9 +45,9 @@ public partial class QuizEditor : MarginContainer
 		{
 			QuestionEditor Question = (QuestionEditor)ResourceLoader.Load<PackedScene>("res://Scenes/UI/AdminControl/QuizEditor/QuestionEditor.tscn").Instantiate();
 			QuizList.AddChild(Question);
-		}	
+		}
 
-		foreach (QuestionEditor questionEditor in QuizList.GetChildren().Cast<QuestionEditor>())	
+		foreach (QuestionEditor questionEditor in QuizList.GetChildren().Cast<QuestionEditor>())
 		{
 			if (questionEditor is QuestionEditor)
 			{
@@ -74,9 +74,9 @@ public partial class QuizEditor : MarginContainer
 	{
 		QuestionEditor Qustion = (QuestionEditor)ResourceLoader.Load<PackedScene>("res://Scenes/UI/AdminControl/QuizEditor/QuestionEditor.tscn").Instantiate();
 		QuizList.AddChild(Qustion);
-	
+
 		Qustion._questionNumber.Text = $"{index + 1}";
-		Qustion.ID = HTTPManager.Instance.GenarateId();
+		Qustion.ID = HTTPManager.Instance.GenerateId();
 		Qustion.QuizCategory = QuizCategory;
 
 		index++;
@@ -96,7 +96,7 @@ public partial class QuizEditor : MarginContainer
 
 		HTTPManager.Instance.RequestCompleted += OnQuestionsReceived;
 
-		var datas = new Dictionary {{ "QuizCategory", QuizCategory }};
+		var datas = new Dictionary { { "QuizCategory", QuizCategory } };
 		HTTPManager.Instance.QueueRequest(HTTPManager.Instance.Commands["GET_SPECIFIC_QUIZ"], datas);
 		// HTTPManager.Instance.QueueRequest(HTTPManager.Instance.Commands["GET_QUIZ"]);
 	}
