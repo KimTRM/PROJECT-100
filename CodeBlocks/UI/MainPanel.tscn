@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://4280cgrri3yh"]
+[gd_scene load_steps=9 format=3 uid="uid://4280cgrri3yh"]
 
 [ext_resource type="PackedScene" uid="uid://bp0aevc7dehng" path="res://CodeBlocks/UI/BlockCanvas/BlockCanvas.tscn" id="1_4yxsc"]
 [ext_resource type="PackedScene" uid="uid://dl1yi3e2oqj0k" path="res://CodeBlocks/UI/BlockPicker/BlockPicker.tscn" id="1_54hmq"]
+[ext_resource type="Script" uid="uid://cwg6n3ignwku" path="res://CodeBlocks/UI/MainPanel.cs" id="1_ijaqk"]
 [ext_resource type="Texture2D" uid="uid://bhqtwt6ahm2b1" path="res://Assets/UI/DialougeBox/DialougeBox.png" id="1_mdfro"]
 [ext_resource type="Script" uid="uid://b2h0ktgys47cl" path="res://CodeBlocks/UI/BlockPicker/BlockPicker.cs" id="2_8au1s"]
 [ext_resource type="PackedScene" uid="uid://cirmbhtex875r" path="res://CodeBlocks/UI/Console/Console.tscn" id="3_n7jqw"]
@@ -14,22 +15,24 @@ texture_margin_top = 32.0
 texture_margin_right = 32.0
 texture_margin_bottom = 32.0
 
-[node name="MainPanel" type="MarginContainer"]
+[node name="MainPanel" type="CanvasLayer"]
+script = ExtResource("1_ijaqk")
+
+[node name="PanelContainer" type="Panel" parent="."]
+texture_filter = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="PanelContainer" type="Panel" parent="."]
-texture_filter = 1
-layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_ijaqk")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_constants/margin_left = 30
 theme_override_constants/margin_top = 30
 theme_override_constants/margin_right = 30
@@ -51,6 +54,20 @@ DragManagerPath = NodePath("../../DragManager")
 layout_mode = 2
 theme_override_constants/separation = 4
 split_offset = 504
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/MarginContainer/HBoxContainer/VSplitContainer"]
+visible = false
+layout_mode = 2
+
+[node name="CodeEdit" type="CodeEdit" parent="MarginContainer/MarginContainer/HBoxContainer/VSplitContainer/MarginContainer"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_font_sizes/font_size = 24
+text = ""
+minimap_draw = true
+caret_blink = true
+draw_tabs = true
+gutters_draw_line_numbers = true
 
 [node name="BlockCanvas" parent="MarginContainer/MarginContainer/HBoxContainer/VSplitContainer" instance=ExtResource("1_4yxsc")]
 custom_minimum_size = Vector2(600, 200)

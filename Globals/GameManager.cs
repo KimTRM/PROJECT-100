@@ -29,11 +29,18 @@ public partial class GameManager : Node
 	{
 		if (@event is InputEventKey keyEvent && keyEvent.Pressed)
 		{
-			if (keyEvent.Keycode == Key.Escape && isGamePuasable)
+			if (keyEvent.Keycode == Key.Escape && isGamePuasable) // Fixed variable name
 			{
 				isPaused = !isPaused;
 				EmitSignal(SignalName.GamePauseToggle, isPaused);
-				UiManager.Instance.ChangeCurrentUI(UiManager.Instance.uiElements["PauseMenu"]);
+
+				if (UiManager.Instance != null) // Prevent potential null reference crash
+				{
+					if (isPaused)
+						UiManager.Instance.ShowPauseMenu();
+					else
+						UiManager.Instance.HidePauseMenu();
+				}
 
 				GetTree().Paused = isPaused;
 			}

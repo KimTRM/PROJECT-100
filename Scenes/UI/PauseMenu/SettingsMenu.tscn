@@ -49,6 +49,14 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 64
 text = "Settings"
 
+[node name="Label3" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Volume"
+
+[node name="VolumeSlider" type="HSlider" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+max_value = 30.0
+
 [node name="Label2" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Resolution"

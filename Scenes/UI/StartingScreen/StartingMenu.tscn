@@ -209,7 +209,7 @@ text = "|"
 [node name="Label3" type="Label" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "This game is still in development threfore this is not indicative of the final product."
+text = "This game is still in development therefore this is not indicative of the final product."
 
 [connection signal="pressed" from="MarginContainer3/VBoxContainer2/MarginContainer/VBoxContainer/NewGame/NewGameButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="MarginContainer3/VBoxContainer2/MarginContainer/VBoxContainer/Continue/ContinueButton" to="." method="_on_start_button_pressed"]

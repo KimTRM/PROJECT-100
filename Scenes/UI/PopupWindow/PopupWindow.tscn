@@ -28,4 +28,5 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_shdqv")
 [node name="Label" type="RichTextLabel" parent="PanelContainer"]
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
+theme_override_colors/default_color = Color(0.0410866, 0.0410866, 0.0410866, 1)
 bbcode_enabled = true

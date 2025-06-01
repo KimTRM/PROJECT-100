@@ -71,6 +71,7 @@ focus_mode = 0
 flat = true
 
 [node name="ModifyButtonContainer" type="MarginContainer" parent="."]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 8
 theme_override_constants/margin_right = 18

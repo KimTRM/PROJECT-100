@@ -3,3 +3,8 @@
 
 .idea/
 .vscode/
+
+# Build Files
+build/
+.exe
+.apk

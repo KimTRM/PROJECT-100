@@ -79,7 +79,7 @@ public partial class QuizLists : MarginContainer
 
 				HTTPManager.Instance.RequestCompleted += QuizEditorScene.OnQuestionsReceived;
 				var datas = new Dictionary {{ "QuizCategory", addElement.GetLineData()}};
-				// HTTPManager.Instance.QueueRequest(HTTPManager.Instance.Commands["GET_SPECIFIC_QUIZ"], datas);
+				HTTPManager.Instance.QueueRequest(HTTPManager.Instance.Commands["GET_SPECIFIC_QUIZ"], datas);
 
 				// QuizEditorScene.QuizCategory = data["LessonTitle"].ToString();
 

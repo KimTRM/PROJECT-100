@@ -1,4 +1,5 @@
 using Godot;
+using Godot.Collections;
 using GodotUtilities;
 
 [Scene]
@@ -55,6 +56,18 @@ public partial class AdminPage : CanvasLayer
 
 	private void _on_logout_button_pressed()
 	{
+		var data = new Dictionary
+		{
+			{ "UserID", "1739364453"},
+			{ "FirstName", "ADMIN" },
+			{ "LastName", "ADMIN" },
+			{ "UserName", "admin" },
+			{ "Password", "admin" },
+			{ "Role", "Admin" },
+			{ "Status", "Offline"}
+		};
+		HTTPManager.Instance.QueueRequest(HTTPManager.Instance.Commands["ADD_USER_ACCOUNT"], data);
+		
 		GameManager.Instance.LoadScene("res://Scenes/UI/LoginMenu/LoginMenu.tscn");
 	}
 }

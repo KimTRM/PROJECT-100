@@ -3,26 +3,26 @@ using System;
 
 public partial class PlayerManager : Node
 {
-	public static PlayerManager Instance {get; private set;}
+    public static PlayerManager Instance { get; private set; }
 
-	private PackedScene PLAYER = (PackedScene)GD.Load("res://Scenes/Entities/Player/player.tscn");
-	public Player player;
-	public bool playerSpawned = false;
+    private PackedScene PLAYER = (PackedScene)GD.Load("res://Scenes/Entities/Player/player.tscn");
+    public Player player;
+    public bool playerSpawned = false;
 
-	public override void _Ready()
-	{
-		Instance = this;
+    public override void _Ready()
+    {
+        Instance = this;
 
-		AddPlayerInstance();
-	}
+        AddPlayerInstance();
+    }
 
-	private void AddPlayerInstance()
+    private void AddPlayerInstance()
     {
         player = (Player)PLAYER.Instantiate();
         AddChild(player);
     }
 
-	public void SetPlayerPosition(Vector2 newPos)
+    public void SetPlayerPosition(Vector2 newPos)
     {
         player.GlobalPosition = newPos;
     }
@@ -39,6 +39,6 @@ public partial class PlayerManager : Node
     public void UnparentPlayer(Node2D parent)
     {
         parent.RemoveChild(player);
-		AddChild(player);
+        AddChild(player);
     }
 }

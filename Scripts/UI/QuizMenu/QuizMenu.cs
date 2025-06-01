@@ -56,7 +56,7 @@ public partial class QuizMenu : CanvasLayer
 	{
 		Datas = response;
 
-		RandomizeQuiz(3);
+		RandomizeQuiz(5);
 
 		SetQuizData();
 

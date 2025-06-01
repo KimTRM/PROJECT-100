@@ -1,25 +1,95 @@
-[gd_scene load_steps=9 format=3 uid="uid://joynp6brwwbo"]
+[gd_scene load_steps=14 format=3 uid="uid://joynp6brwwbo"]
 
 [ext_resource type="PackedScene" uid="uid://v44f4qcx5kcp" path="res://Scenes/Worlds/world.tscn" id="1_3bkll"]
 [ext_resource type="Script" uid="uid://by27v3phwtvyx" path="res://Scripts/GameScene.cs" id="1_44ihx"]
 [ext_resource type="PackedScene" uid="uid://d37ct8qy5o2ym" path="res://Scenes/Entities/D.A.L..tscn" id="3_7qkkk"]
-[ext_resource type="PackedScene" uid="uid://xk4t184etv8f" path="res://Scenes/Components/CutSceneSpawner.tscn" id="5_lt366"]
 [ext_resource type="Texture2D" uid="uid://cqkhyl27cuv01" path="res://Assets/CutScenes/Scene 1 PROJECT 100.png" id="6_pw1wf"]
 [ext_resource type="Texture2D" uid="uid://cwwqfq6lq5wrl" path="res://Assets/CutScenes/Scene 2.png" id="7_7fssw"]
 [ext_resource type="PackedScene" uid="uid://depv5e7gi147f" path="res://Scenes/Components/PlayerSpwaner.tscn" id="8_44ihx"]
 [ext_resource type="Texture2D" uid="uid://itqlfbpvg0cg" path="res://Assets/CutScenes/scene 3.png" id="8_sl5mp"]
+[ext_resource type="PackedScene" uid="uid://de8bu02wfiwp" path="res://Scenes/Components/InteractableArea.tscn" id="9_lt366"]
+[ext_resource type="Resource" uid="uid://b32emc6hkhtth" path="res://Dialouge/Hi.dialogue" id="10_pw1wf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pw1wf"]
+size = Vector2(67, 111)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lt366"]
+size = Vector2(123, 2.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7fssw"]
+size = Vector2(29, 45)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sl5mp"]
+size = Vector2(137, 135.5)
 
 [node name="GameScene" type="Node2D"]
 script = ExtResource("1_44ihx")
 
 [node name="World" parent="." instance=ExtResource("1_3bkll")]
-
-[node name="D-A-L" parent="." instance=ExtResource("3_7qkkk")]
-position = Vector2(114, -18)
-
-[node name="CutSceneSpawner2" parent="." instance=ExtResource("5_lt366")]
-CutSceneImage = Array[Texture]([ExtResource("6_pw1wf"), ExtResource("7_7fssw"), ExtResource("8_sl5mp")])
-CutSceneText = Array[String](["In the quiet province of CamSur, a bright and curious boy named Kim lived a simple life. He was a student at Artificial Dimension Tech Institute, where he learned about building virtual worlds and how to create simulations in the metaverse.", "One day, while working on an update for the metaverse, something strange happened. A sudden distortion spread across his body, but no one else seemed to notice. Before he could react, he was pulled into the metaverse itself.", "When Kim woke up, he was completely inside the digital world—but he had no idea how he got there. His memories were intact, but something was missing. All his knowledge about programming was gone. Now, trapped in a world he once understood, he had to figure out how to navigate it all over again."])
+metadata/_edit_lock_ = true
 
 [node name="PlayerSpwaner" parent="." instance=ExtResource("8_44ihx")]
-position = Vector2(32, -322)
+position = Vector2(-1964, -1208)
+
+[node name="D-A-L" parent="." instance=ExtResource("3_7qkkk")]
+position = Vector2(-1136, -593)
+
+[node name="InteractableArea" parent="." instance=ExtResource("9_lt366")]
+position = Vector2(-1963, -1180)
+CanAutoInteract = true
+CutSceneImage = Array[Texture]([ExtResource("6_pw1wf"), ExtResource("7_7fssw"), ExtResource("8_sl5mp")])
+CutSceneText = Array[String](["In the quiet province of CamSur, a bright and curious boy named Kim lived a simple life. He was a student at Artificial Dimension Tech Institute, where he learned about building virtual worlds and how to create simulations in the metaverse.", "One day, while working on an update for the metaverse, something strange happened. A sudden distortion spread across his body, but no one else seemed to notice. Before he could react, he was pulled into the metaverse itself", "When Kim woke up, he was completely inside the digital world—but he had no idea how he got there. His memories were intact, but something was missing. All his knowledge about programming was gone. Now, trapped in a world he once understood, he had to figure out how to navigate it all over again."])
+WindowText = "Text"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableArea"]
+shape = SubResource("RectangleShape2D_pw1wf")
+
+[node name="InteractableArea2" parent="." instance=ExtResource("9_lt366")]
+position = Vector2(-1923, -665)
+CanAutoInteract = true
+DialogueResource = ExtResource("10_pw1wf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableArea2"]
+position = Vector2(-12, 25.75)
+shape = SubResource("RectangleShape2D_lt366")
+
+[node name="InteractableArea3" parent="." instance=ExtResource("9_lt366")]
+position = Vector2(-895, -665)
+CanAutoInteract = true
+WindowText = "VARIABLE is a container or storage that holds data/value. 
+DATATYPES are the type of data it can hold"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableArea3"]
+shape = SubResource("RectangleShape2D_7fssw")
+
+[node name="InteractableArea5" parent="." instance=ExtResource("9_lt366")]
+position = Vector2(-319, -595)
+CanAutoInteract = true
+ShowCodeBlock = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableArea5"]
+position = Vector2(-4.5, -45.25)
+shape = SubResource("RectangleShape2D_sl5mp")
+
+[node name="InteractableArea6" parent="." instance=ExtResource("9_lt366")]
+position = Vector2(-40, -598)
+CanAutoInteract = true
+switchToQuiz = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableArea6"]
+shape = SubResource("RectangleShape2D_7fssw")
+
+[node name="InteractableArea4" parent="." instance=ExtResource("9_lt366")]
+position = Vector2(-598, -568)
+CanAutoInteract = true
+WindowText = "the basic data types are:
+int - for numbers
+string - for words/phrases
+char - for single letters and characters
+boolean - for true or false value
+double - for numbers with decimals
+
+these are the different datatypes, drag the data type to the right position"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableArea4"]
+shape = SubResource("RectangleShape2D_7fssw")

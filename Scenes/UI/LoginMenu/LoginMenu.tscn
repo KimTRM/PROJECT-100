@@ -244,7 +244,19 @@ size_flags_horizontal = 4
 size_flags_vertical = 6
 text = "Play Without Login"
 
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="FullScreen" type="CheckBox" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+text = "Full Screen"
+
 [connection signal="pressed" from="PanelContainer/LoginPanel/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/VBoxContainer/MarginContainer/LoginButton" to="." method="_on_login_button_pressed"]
 [connection signal="pressed" from="PanelContainer/LoginPanel/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/VBoxContainer/HBoxContainer/ToSignupButton" to="." method="_on_to_signup_button_pressed"]
 [connection signal="pressed" from="PanelContainer/NoConnectionPanel/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/ReconnectButton" to="." method="_on_reconnect_button_pressed"]
 [connection signal="pressed" from="PanelContainer/NoConnectionPanel/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/PlayAnywayButton" to="." method="_on_play_anyway_button_pressed"]
+[connection signal="toggled" from="PanelContainer/MarginContainer/FullScreen" to="." method="_on_full_screen_toggled"]

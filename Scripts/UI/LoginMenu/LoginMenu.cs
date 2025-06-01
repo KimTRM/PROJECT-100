@@ -46,7 +46,6 @@ public partial class LoginMenu : CanvasLayer
 	{
 		NoConnectionPanel.Show();
 
-		HTTPManager.Instance.RequestCompleted -= OnAccountReceived;
 		HTTPManager.Instance.RequestError -= CheckError;
 	}
 
@@ -58,7 +57,6 @@ public partial class LoginMenu : CanvasLayer
 		UserDatas = response;
 
 		HTTPManager.Instance.RequestCompleted -= OnAccountReceived;
-		HTTPManager.Instance.RequestError -= CheckError;
 	}
 
 	public void _on_login_button_pressed()
@@ -79,11 +77,35 @@ public partial class LoginMenu : CanvasLayer
 
 				if (user["Role"].ToString() == "Admin")
 				{
+					var data = new Dictionary
+					{
+						{ "UserID", user["UserID"]},
+						{ "FirstName", user["FirstName"] },
+						{ "LastName", user["LastName"] },
+						{ "UserName", user["UserName"] },
+						{ "Password", user["Password"] },
+						{ "Role", user["Role"] },
+						{ "Status", "Online"}
+					};
+					HTTPManager.Instance.QueueRequest(HTTPManager.Instance.Commands["ADD_USER_ACCOUNT"], data);
+
 					ErrorMessage.Hide();
 					GameManager.Instance.LoadScene("res://Scenes/UI/AdminControl/AdminPage.tscn");
 				}
 				else if (user["Role"].ToString() == "Student")
 				{
+					var data = new Dictionary
+					{
+						{ "UserID", user["UserID"]},
+						{ "FirstName", user["FirstName"] },
+						{ "LastName", user["LastName"] },
+						{ "UserName", user["UserName"] },
+						{ "Password", user["Password"] },
+						{ "Role", user["Role"] },
+						{ "Status", "Online"}
+					};
+					HTTPManager.Instance.QueueRequest(HTTPManager.Instance.Commands["ADD_USER_ACCOUNT"], data);
+
 					GameManager.Instance.PlayerUsername = user["UserName"].ToString();
 					GameManager.Instance.PlayerID = user["UserID"].ToString();
 
@@ -91,11 +113,10 @@ public partial class LoginMenu : CanvasLayer
 					GameManager.Instance.LoadScene("res://Scenes/UI/StartingScreen/StartingMenu.tscn");
 				}
 
-				// Remove event listeners
 				HTTPManager.Instance.RequestError -= CheckError;
 				HTTPManager.Instance.RequestCompleted -= OnAccountReceived;
 
-				break; // Exit loop since we found a valid user
+				break;
 			}
 		}
 
@@ -125,5 +146,11 @@ public partial class LoginMenu : CanvasLayer
 	private void _on_play_anyway_button_pressed()
 	{
 		GameManager.Instance.LoadScene("res://Scenes/UI/StartingScreen/StartingMenu.tscn");
+	}
+
+	void _on_full_screen_toggled(bool button_pressed)
+	{
+		GD.Print("Toggled" + $": {button_pressed}");
+		DisplayServer.WindowSetMode(button_pressed ? DisplayServer.WindowMode.ExclusiveFullscreen : DisplayServer.WindowMode.Windowed);
 	}
 }
