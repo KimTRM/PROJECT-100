@@ -79,5 +79,5 @@ color = Color(0.0709568, 0.0709568, 0.0709568, 1)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Control"]
 libraries = {
-"": SubResource("AnimationLibrary_3v812")
+&"": SubResource("AnimationLibrary_3v812")
 }

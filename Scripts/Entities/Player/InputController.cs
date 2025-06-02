@@ -7,17 +7,8 @@ public partial class InputController : Node
     public Vector2 GetMovementInput()
     {
         if (IsInteracting) return Vector2.Zero; // Disable movement when interacting
-        return new Vector2(Input.GetAxis("Left", "Right"), 0);
-    }
-
-    public bool JumpPressed()
-    {
-        return !IsInteracting && Input.IsActionJustPressed("Jump");
-    }
-
-    public bool JumpReleased()
-    {
-        return !IsInteracting && Input.IsActionJustReleased("Jump");
+        return new Vector2(Input.GetAxis("Left", "Right"),
+                            Input.GetAxis("Up", "Down")).Normalized();
     }
 
     public bool InteractPressed()
