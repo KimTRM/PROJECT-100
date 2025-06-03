@@ -14,6 +14,7 @@ public partial class Player : CharacterBody2D
 	private InputController inputController;
 	[Node]
 	private VelocityComponent velocityComponent;
+	[Export]
 	[Node("Sprite2D/Direction/InteractableFinder")]
 	private Area2D interactableFinder;
 
@@ -37,8 +38,8 @@ public partial class Player : CharacterBody2D
 
 	public override void _PhysicsProcess(double delta)
 	{
-		var Velocity = velocityComponent.GetVelocity(inputController.GetMovementInput());
-		velocityComponent.AccelerateToVelocity(Velocity);
+		Velocity = velocityComponent.GetVelocity(inputController.GetMovementInput());
+		velocityComponent.AccelerateToVelocity(Velocity, (float)delta);
 		velocityComponent.Move(this);
 
 		UpdateAnimation();

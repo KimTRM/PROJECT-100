@@ -10,14 +10,14 @@ public partial class VelocityComponent : Node
 
 	public Vector2 Velocity;
 
-	public void AccelerateToVelocity(Vector2 targetVelocity)
+	public void AccelerateToVelocity(Vector2 targetVelocity, float delta)
 	{
-		Velocity = Velocity.Lerp(targetVelocity, acceleration);
+		Velocity = Velocity.Lerp(targetVelocity, acceleration * delta);
 	}
 
-	public void Decelerate()
+	public void Decelerate(float delta)
 	{
-		AccelerateToVelocity(Vector2.Zero);
+		AccelerateToVelocity(Vector2.Zero, delta);
 	}
 
 	public Vector2 GetVelocity(Vector2 direction)

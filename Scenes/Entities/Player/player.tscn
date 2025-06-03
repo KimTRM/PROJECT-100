@@ -9,9 +9,6 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_nmvpq"]
 radius = 28.5549
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_dckff"]
-size = Vector2(21, 44)
-
 [sub_resource type="Animation" id="Animation_ja64u"]
 length = 0.98
 loop_mode = 1
@@ -189,6 +186,9 @@ _data = {
 &"walk_up": SubResource("Animation_blahc")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dckff"]
+size = Vector2(21, 44)
+
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 48
@@ -196,6 +196,7 @@ script = ExtResource("1_oihhe")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
+position = Vector2(0, -8)
 texture = ExtResource("1_0wmuu")
 hframes = 6
 vframes = 5
@@ -224,16 +225,19 @@ metadata/_aseprite_wizard_source_file_hash_ = "ce117a974f5f951e7c76016bfc7c042b"
 
 [node name="InteractableFinder" type="Area2D" parent="Sprite2D/Direction"]
 disable_mode = 2
-collision_layer = 3
-collision_mask = 17
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Direction/InteractableFinder"]
 scale = Vector2(1.3, 1.3)
 shape = SubResource("CircleShape2D_nmvpq")
 debug_color = Color(0.889251, 0.889251, 0.889251, 0.42)
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_x288k")
+}
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, 9)
+position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_dckff")
 
 [node name="InputController" type="Node" parent="."]
@@ -242,22 +246,18 @@ script = ExtResource("2_fcpig")
 [node name="VelocityComponent" type="Node" parent="."]
 script = ExtResource("4_y6hyn")
 maxSpeed = 200.0
-acceleration = 1.5
+acceleration = 14.0
 metadata/_custom_type_script = "uid://b5ko2hydh251o"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_x288k")
-}
-
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(2.5, 2.5)
+zoom = Vector2(2, 2)
+position_smoothing_speed = 10.0
 rotation_smoothing_enabled = true
-rotation_smoothing_speed = 8.0
+rotation_smoothing_speed = 0.8
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
-drag_left_margin = 0.05
-drag_top_margin = 0.05
-drag_right_margin = 0.05
-drag_bottom_margin = 0.05
+drag_left_margin = 0.02
+drag_top_margin = 0.02
+drag_right_margin = 0.02
+drag_bottom_margin = 0.02
 script = ExtResource("3_djuet")

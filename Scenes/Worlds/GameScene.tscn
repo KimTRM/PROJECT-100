@@ -1,14 +1,18 @@
-[gd_scene load_steps=14 format=3 uid="uid://joynp6brwwbo"]
+[gd_scene load_steps=16 format=3 uid="uid://joynp6brwwbo"]
 
 [ext_resource type="PackedScene" uid="uid://v44f4qcx5kcp" path="res://Scenes/Worlds/world.tscn" id="1_3bkll"]
 [ext_resource type="Script" uid="uid://by27v3phwtvyx" path="res://Scripts/GameScene.cs" id="1_44ihx"]
 [ext_resource type="PackedScene" uid="uid://d37ct8qy5o2ym" path="res://Scenes/Entities/D.A.L..tscn" id="3_7qkkk"]
 [ext_resource type="Texture2D" uid="uid://cqkhyl27cuv01" path="res://Assets/CutScenes/Scene 1 PROJECT 100.png" id="6_pw1wf"]
+[ext_resource type="Resource" uid="uid://63gyqnh1ri02" path="res://Dialouge/Introduce.dialogue" id="6_sl5mp"]
 [ext_resource type="Texture2D" uid="uid://cwwqfq6lq5wrl" path="res://Assets/CutScenes/Scene 2.png" id="7_7fssw"]
 [ext_resource type="PackedScene" uid="uid://depv5e7gi147f" path="res://Scenes/Components/PlayerSpwaner.tscn" id="8_44ihx"]
 [ext_resource type="Texture2D" uid="uid://itqlfbpvg0cg" path="res://Assets/CutScenes/scene 3.png" id="8_sl5mp"]
 [ext_resource type="PackedScene" uid="uid://de8bu02wfiwp" path="res://Scenes/Components/InteractableArea.tscn" id="9_lt366"]
 [ext_resource type="Resource" uid="uid://b32emc6hkhtth" path="res://Dialouge/Hi.dialogue" id="10_pw1wf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3g4f5"]
+radius = 19.0263
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pw1wf"]
 size = Vector2(67, 111)
@@ -33,6 +37,15 @@ position = Vector2(-1964, -1208)
 
 [node name="D-A-L" parent="." instance=ExtResource("3_7qkkk")]
 position = Vector2(-1137, -595)
+
+[node name="InteractableArea" parent="D-A-L" instance=ExtResource("9_lt366")]
+CanAutoInteract = true
+DialogueResource = ExtResource("6_sl5mp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="D-A-L/InteractableArea"]
+position = Vector2(0, 4)
+shape = SubResource("CircleShape2D_3g4f5")
+debug_color = Color(0.0711944, 0.993485, 0.155312, 0.42)
 
 [node name="Interactables" type="Node2D" parent="."]
 
