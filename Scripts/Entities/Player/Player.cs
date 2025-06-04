@@ -6,22 +6,16 @@ using Godot;
 [Scene, Icon("res://Assets/Icons/Player.png")]
 public partial class Player : CharacterBody2D
 {
-	[Node]
-	private AnimationPlayer animationPlayer;
-	[Node]
-	private Sprite2D sprite2D;
-	[Node]
-	private InputController inputController;
-	[Node]
-	private VelocityComponent velocityComponent;
-	[Export]
-	[Node("Sprite2D/Direction/InteractableFinder")]
-	private Area2D interactableFinder;
+	[Node] private AnimationPlayer _animationPlayer;
+	[Node] private Sprite2D _sprite2D;
+	[Node] private InputController _inputController;
+	[Node] private VelocityComponent _velocityComponent;
 
-	private DelegateStateMachine stateMachine;
+	[Export, Node("Sprite2D/Direction/InteractableFinder")]
+	private Area2D _interactableFinder;
 
-	private bool cutsceneActive = false;
-	private string animDirection = "down";
+	private DelegateStateMachine _stateMachine;
+	private string _animDirection = "down";
 
 	public override void _Notification(int what)
 	{
@@ -31,16 +25,11 @@ public partial class Player : CharacterBody2D
 		}
 	}
 
-	public override void _Ready()
-	{
-		PlayerManager.Instance.player = this;
-	}
-
 	public override void _PhysicsProcess(double delta)
 	{
-		Velocity = velocityComponent.GetVelocity(inputController.GetMovementInput());
-		velocityComponent.AccelerateToVelocity(Velocity, (float)delta);
-		velocityComponent.Move(this);
+		Velocity = _velocityComponent.GetVelocity(_inputController.GetMovementInput());
+		_velocityComponent.AccelerateToVelocity(Velocity, (float)delta);
+		_velocityComponent.Move(this);
 
 		UpdateAnimation();
 		InteractWithObject();
@@ -48,53 +37,53 @@ public partial class Player : CharacterBody2D
 
 	private void InteractWithObject()
 	{
-		if (inputController.InteractPressed() && inputController.IsInteracting == false)
+		if (_inputController.InteractPressed() && _inputController.IsInteracting == false)
 		{
-			var interactables = interactableFinder.GetOverlappingAreas();
+			var interactables = _interactableFinder.GetOverlappingAreas();
 			if (interactables.Count > 0)
 			{
 				(interactables[0] as Interactable)?.Interact();
-				inputController.SetInteracting(true); // Disable movement
+				_inputController.SetInteracting(true); // Disable movement
 				return;
 			}
 		}
 
 		if (GetParent().GetNodeOrNull<ExampleBalloon>("ExampleBalloon") != null)
 		{
-			inputController.SetInteracting(true);
+			_inputController.SetInteracting(true);
 		}
 		else
 		{
-			inputController.SetInteracting(false);
+			_inputController.SetInteracting(false);
 		}
 	}
 
 	private void UpdateAnimation()
 	{
-		Vector2 movementInput = inputController.GetMovementInput();
+		Vector2 movementInput = _inputController.GetMovementInput();
 
 		if (movementInput == Vector2.Up)
 		{
-			animDirection = "up";
+			_animDirection = "up";
 		}
 		else if (movementInput == Vector2.Down)
 		{
-			animDirection = "down";
+			_animDirection = "down";
 		}
 		else if (movementInput == Vector2.Left || movementInput == Vector2.Right)
 		{
-			animDirection = "side";
+			_animDirection = "side";
 		}
 
 
 		if (movementInput != Vector2.Zero)
 		{
-			animationPlayer.Play($"walk_{animDirection}");
-			sprite2D.FlipH = inputController.GetMovementInput().X < 0;
+			_animationPlayer.Play($"walk_{_animDirection}");
+			_sprite2D.FlipH = _inputController.GetMovementInput().X < 0;
 		}
 		else
 		{
-			animationPlayer.Play($"idle_{animDirection}");
+			_animationPlayer.Play($"idle_{_animDirection}");
 		}
 	}
 }

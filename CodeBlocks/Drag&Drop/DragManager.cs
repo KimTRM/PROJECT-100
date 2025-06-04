@@ -99,35 +99,13 @@ public partial class DragManager : Control
 
     private bool _on_block_canvas_mouse_entered()
     {
+        GD.Print("Mouse entered BlockCanvas");
         return true;
     }
 
     private bool _on_block_picker_mouse_entered()
     {
+        GD.Print("Mouse entered BlockPicker");
         return true;
     }
-    // public void StartDrag(CodeBlock block, Vector2 offset)
-    // {
-    //     if (block.GetParent() != null)
-    //     {
-    //         block.GetParent().RemoveChild(block);
-    //     }
-
-    //     dragBlock = new DragBlock(block, offset, _blockCanvas);
-    //     AddChild(dragBlock);
-    // }
-
-    // public void EndDrag()
-    // {
-    //     if (dragBlock == null) return;
-
-    //     CodeBlock placedBlock = dragBlock.ApplyDrag();
-    //     if (placedBlock != null)
-    //     {
-    //         EmitSignal(SignalName.BlockDropped);
-    //     }
-
-    //     dragBlock.QueueFree();
-    //     dragBlock = null;
-    // }
 }

@@ -12,15 +12,16 @@ public partial class BlockPicker : MarginContainer
 	[Node("ScrollContainer/MarginContainer/CodeBlockContainer")]
 	public VBoxContainer codeBlockContainer;
 
-    public override void _Notification(int what)
-    {
-        if (what == NotificationSceneInstantiated)
+
+	public override void _Notification(int what)
+	{
+		if (what == NotificationSceneInstantiated)
 		{
 			WireNodes();
 		}
-    }
+	}
 
-    public override void _Ready()
+	public override void _Ready()
 	{
 		codeBlockContainer = GetNode<VBoxContainer>("ScrollContainer/MarginContainer/CodeBlockContainer");
 		dragManager = GetNode<DragManager>(DragManagerPath);
@@ -32,5 +33,5 @@ public partial class BlockPicker : MarginContainer
 				block.dragManager = dragManager;
 			}
 		}
-	}	
+	}
 }

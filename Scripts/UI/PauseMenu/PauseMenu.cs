@@ -35,7 +35,12 @@ public partial class PauseMenu : CanvasLayer
 
 	void _on_activities_button_pressed()
 	{
+		PlayerManager.Instance.UnparentPlayer(PlayerManager.Instance.player.GetParent() as Node2D);
+		PlayerManager.Instance.playerSpawned = false;
+
 		GameManager.Instance.LoadScene("res://Scenes/UI/ActivitesMenu/ActivitiesMenu.tscn");
+
+		AudioManager.Instance.PlayMusic((AudioStream)GD.Load("res://Assets/AudioFiles/Astra__May_2_2024_852_PM.wav"));
 	}
 
 	void _on_settings_button_pressed()
