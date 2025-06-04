@@ -5,14 +5,11 @@ using GodotUtilities;
 [Scene, Icon("res://Assets/Icons/DAL.png")]
 public partial class Dal : CharacterBody2D
 {
-	[Node]
-	private Sprite2D sprite2D;
-	[Node]
-	private AnimationPlayer animationPlayer;
-	[Node]
-	private VelocityComponent velocityComponent;
-	[Node]
-	private InputController inputController;
+	[Node] private Sprite2D _sprite2D;
+	[Node] private AnimationPlayer _animationPlayer;
+	[Node] private PathFindComponent _pathFindComponent;
+	[Node] private VelocityComponent _velocityComponent;
+	[Node] private InputController _inputController;
 
 	private string animDirection = "down";
 
@@ -26,16 +23,20 @@ public partial class Dal : CharacterBody2D
 
 	public override void _PhysicsProcess(double delta)
 	{
-		Velocity = velocityComponent.GetVelocity(inputController.GetMovementInput());
-		velocityComponent.AccelerateToVelocity(Velocity, (float)delta);
-		velocityComponent.Move(this);
+		// Velocity = _velocityComponent.GetVelocity(_inputController.GetMovementInput());
+		// _velocityComponent.AccelerateToVelocity(Velocity, (float)delta);
+
+		var target = PlayerManager.Instance.player.GlobalPosition;
+		_pathFindComponent.SetTargetPosition(target);
+		_pathFindComponent.FollowPath(delta);
+		_velocityComponent.Move(this);
 
 		UpdateAnimation();
 	}
 
 	private void UpdateAnimation()
 	{
-		Vector2 movementInput = inputController.GetMovementInput();
+		Vector2 movementInput = _inputController.GetMovementInput();
 
 		if (movementInput == Vector2.Up)
 		{
@@ -53,12 +54,12 @@ public partial class Dal : CharacterBody2D
 
 		if (movementInput != Vector2.Zero)
 		{
-			animationPlayer.Play($"walk_{animDirection}");
-			sprite2D.FlipH = inputController.GetMovementInput().X < 0;
+			_animationPlayer.Play($"walk_{animDirection}");
+			_sprite2D.FlipH = _inputController.GetMovementInput().X < 0;
 		}
 		else
 		{
-			animationPlayer.Play($"idle_{animDirection}");
+			_animationPlayer.Play($"idle_{animDirection}");
 		}
 	}
 }

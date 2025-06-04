@@ -81,6 +81,10 @@ folder_colors={
 "res://build/": "pink"
 }
 
+[global_group]
+
+Player=""
+
 [gui]
 
 theme/custom_font="res://Assets/ProjectFiles/Jaro-Regular.ttf"

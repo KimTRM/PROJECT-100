@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://d37ct8qy5o2ym"]
+[gd_scene load_steps=12 format=3 uid="uid://d37ct8qy5o2ym"]
 
 [ext_resource type="Texture2D" uid="uid://bcbt0kycumkfp" path="res://Assets/SpriteSheets/D.A.L..png" id="1_20exx"]
 [ext_resource type="Script" uid="uid://dqglcxokaxwsn" path="res://Scripts/Entities/DAL/Dal.cs" id="1_hnc21"]
+[ext_resource type="Script" uid="uid://ch25q0x50nv60" path="res://Scripts/Components/PathFindComponent.cs" id="3_56fao"]
 [ext_resource type="Script" uid="uid://b5ko2hydh251o" path="res://Scripts/Components/VelocityComponent.cs" id="3_rirfu"]
 [ext_resource type="Script" uid="uid://dw6qm7dtwnpy7" path="res://Scripts/Entities/Player/InputController.cs" id="4_56fao"]
 
@@ -171,6 +172,12 @@ libraries = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 2)
 shape = SubResource("CapsuleShape2D_chly2")
+
+[node name="PathFindComponent" type="Node2D" parent="." node_paths=PackedStringArray("_velocityComponent")]
+script = ExtResource("3_56fao")
+_velocityComponent = NodePath("../VelocityComponent")
+_debugDrawEnable = true
+metadata/_custom_type_script = "uid://ch25q0x50nv60"
 
 [node name="VelocityComponent" type="Node" parent="."]
 script = ExtResource("3_rirfu")
