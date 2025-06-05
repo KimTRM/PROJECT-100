@@ -5,13 +5,10 @@ using System;
 [Scene]
 public partial class BlockPicker : MarginContainer
 {
-	[Export]
-	private NodePath DragManagerPath;
-	private DragManager dragManager;
-
 	[Node("ScrollContainer/MarginContainer/CodeBlockContainer")]
 	public VBoxContainer codeBlockContainer;
 
+	[Export] private DragManager dragManager;
 
 	public override void _Notification(int what)
 	{
@@ -24,7 +21,6 @@ public partial class BlockPicker : MarginContainer
 	public override void _Ready()
 	{
 		codeBlockContainer = GetNode<VBoxContainer>("ScrollContainer/MarginContainer/CodeBlockContainer");
-		dragManager = GetNode<DragManager>(DragManagerPath);
 
 		foreach (Control child in codeBlockContainer.GetChildren())
 		{

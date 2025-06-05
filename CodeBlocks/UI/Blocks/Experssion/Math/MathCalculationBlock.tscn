@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://d2brrh2xkbn6x"]
+[gd_scene load_steps=4 format=3 uid="uid://d2brrh2xkbn6x"]
 
 [ext_resource type="Script" uid="uid://djdfd67hdvkb1" path="res://CodeBlocks/UI/Blocks/Experssion/Math/MathCalculationBlock.cs" id="1_2ryak"]
-[ext_resource type="PackedScene" uid="uid://dotwg7dqn1q6p" path="res://CodeBlocks/Drag&Drop/DragDropArea/DragDropArea.tscn" id="2_lkm8c"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lkm8c"]
 bg_color = Color(0.969775, 0.64295, 0, 1)
@@ -22,9 +21,6 @@ anti_aliasing = false
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_2ryak")
-
-[node name="DragDropArea" parent="." instance=ExtResource("2_lkm8c")]
-layout_mode = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 2

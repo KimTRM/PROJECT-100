@@ -38,10 +38,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -98.0
-offset_top = -24.0
-offset_right = 98.0
-offset_bottom = 24.0
+offset_left = 149.0
+offset_top = 84.0
+offset_right = 345.0
+offset_bottom = 132.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -71,10 +71,10 @@ layout_mode = 2
 
 [node name="MathCalculationBlock" parent="WindowContainer/Window" instance=ExtResource("4_ok155")]
 layout_mode = 0
-offset_left = 482.0
-offset_top = 309.0
-offset_right = 670.0
-offset_bottom = 360.0
+offset_left = 479.0
+offset_top = 236.0
+offset_right = 667.0
+offset_bottom = 287.0
 
 [node name="Overlay" type="Control" parent="WindowContainer"]
 layout_mode = 1
