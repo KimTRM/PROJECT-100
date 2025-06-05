@@ -12,6 +12,7 @@ public partial class Dal : CharacterBody2D
 	[Node] private InputController _inputController;
 
 	private string animDirection = "down";
+	private Vector2 target;
 
 	public override void _Notification(int what)
 	{
@@ -26,7 +27,7 @@ public partial class Dal : CharacterBody2D
 		// Velocity = _velocityComponent.GetVelocity(_inputController.GetMovementInput());
 		// _velocityComponent.AccelerateToVelocity(Velocity, (float)delta);
 
-		var target = PlayerManager.Instance.player.GlobalPosition;
+		target = PlayerManager.Instance.player.GlobalPosition;
 		_pathFindComponent.SetTargetPosition(target);
 		_pathFindComponent.FollowPath(delta);
 		_velocityComponent.Move(this);
@@ -36,7 +37,7 @@ public partial class Dal : CharacterBody2D
 
 	private void UpdateAnimation()
 	{
-		Vector2 movementInput = _inputController.GetMovementInput();
+		Vector2 movementInput = target.Normalized();
 
 		if (movementInput == Vector2.Up)
 		{

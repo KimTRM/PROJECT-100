@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://joynp6brwwbo"]
+[gd_scene load_steps=17 format=3 uid="uid://joynp6brwwbo"]
 
 [ext_resource type="PackedScene" uid="uid://v44f4qcx5kcp" path="res://Scenes/Worlds/world.tscn" id="1_3bkll"]
 [ext_resource type="Script" uid="uid://by27v3phwtvyx" path="res://Scripts/GameScene.cs" id="1_44ihx"]
@@ -11,8 +11,10 @@
 [ext_resource type="PackedScene" uid="uid://de8bu02wfiwp" path="res://Scenes/Components/InteractableArea.tscn" id="9_lt366"]
 [ext_resource type="Resource" uid="uid://b32emc6hkhtth" path="res://Dialouge/Hi.dialogue" id="10_pw1wf"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_3g4f5"]
-radius = 19.0263
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_pw1wf"]
+vertices = PackedVector2Array(-1840.59, -1244.5, -14.8281, -1091.69, -1749.65, -1126.21, -1858.83, -1144.82, -1909.97, -1127.56, -1859.08, -1127.56, -1862.13, -924.102, -2086, -648.156, -2186.97, -627.219, -2183.08, -1169.25, -1997.46, -1139.11, -2173.07, -608.188, -1298.06, -585.617, -1286.09, -459.859, -1333.55, -461.641, -1344.58, -647, -1516.49, -647, -1507.12, -450.141, -1612.7, -452.773, -1626.71, -640.852, -99.1797, -415.109, -1076.91, -461.531, -1075.92, -573.461, -2086, -611.609, -1755.18, -911.813, -1751.96, -1110.88, 65.1406, -499.648)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 0, 3), PackedInt32Array(4, 3, 5, 6, 7), PackedInt32Array(8, 9, 10, 7, 11), PackedInt32Array(12, 13, 14, 15), PackedInt32Array(16, 17, 18, 19), PackedInt32Array(20, 21, 22), PackedInt32Array(7, 23, 11), PackedInt32Array(24, 25, 2, 1, 26, 20, 22, 15), PackedInt32Array(7, 10, 4), PackedInt32Array(19, 7, 6, 24, 16), PackedInt32Array(22, 12, 15), PackedInt32Array(16, 24, 15)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-1996, -1149, -2193, -1181, -2197, -624, -2178, -598, -2076, -602, -2076, -638, -1636, -631, -1622, -443, -1496.62, -439.876, -1506, -637, -1354, -637, -1343, -452, -1275.05, -449.437, -1287, -575, -1086, -564, -1087, -452, -97, -405, 76, -494, -6, -1101, -1846, -1255, -1916, -1137, -1762, -1109, -1765, -923, -1852, -933, -1849, -1133, -1761, -1118)])
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pw1wf"]
 size = Vector2(67, 111)
@@ -26,28 +28,21 @@ size = Vector2(29, 45)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sl5mp"]
 size = Vector2(137, 135.5)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_3g4f5"]
+radius = 19.0263
+
 [node name="GameScene" type="Node2D"]
 script = ExtResource("1_44ihx")
 
 [node name="World" parent="." instance=ExtResource("1_3bkll")]
-metadata/_edit_lock_ = true
 
-[node name="PlayerSpwaner" parent="." instance=ExtResource("8_44ihx")]
-position = Vector2(-1964, -1208)
-
-[node name="D-A-L" parent="." instance=ExtResource("3_7qkkk")]
-position = Vector2(-1137, -595)
-
-[node name="InteractableArea" parent="D-A-L" instance=ExtResource("9_lt366")]
-CanAutoInteract = true
-DialogueResource = ExtResource("6_sl5mp")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="D-A-L/InteractableArea"]
-position = Vector2(0, 4)
-shape = SubResource("CircleShape2D_3g4f5")
-debug_color = Color(0.0711944, 0.993485, 0.155312, 0.42)
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+visible = false
+position = Vector2(0, -2)
+navigation_polygon = SubResource("NavigationPolygon_pw1wf")
 
 [node name="Interactables" type="Node2D" parent="."]
+visible = false
 
 [node name="InteractableArea" parent="Interactables" instance=ExtResource("9_lt366")]
 position = Vector2(-1963, -1180)
@@ -107,3 +102,19 @@ these are the different datatypes, drag the data type to the right position"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/InteractableArea4"]
 shape = SubResource("RectangleShape2D_7fssw")
+
+[node name="PlayerSpwaner" parent="." instance=ExtResource("8_44ihx")]
+position = Vector2(-1964, -1208)
+
+[node name="D-A-L" parent="." instance=ExtResource("3_7qkkk")]
+position = Vector2(-1137, -595)
+
+[node name="InteractableArea" parent="D-A-L" instance=ExtResource("9_lt366")]
+visible = false
+CanAutoInteract = true
+DialogueResource = ExtResource("6_sl5mp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="D-A-L/InteractableArea"]
+position = Vector2(0, 4)
+shape = SubResource("CircleShape2D_3g4f5")
+debug_color = Color(0.0711944, 0.993485, 0.155312, 0.42)

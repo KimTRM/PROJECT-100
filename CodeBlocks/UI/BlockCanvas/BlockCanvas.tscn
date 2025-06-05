@@ -32,11 +32,18 @@ grow_vertical = 2
 mouse_filter = 1
 
 [node name="VariableBlock" parent="WindowContainer/Window" instance=ExtResource("2_gjct8")]
-layout_mode = 0
-offset_left = 213.0
-offset_top = 131.0
-offset_right = 409.0
-offset_bottom = 179.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -98.0
+offset_top = -24.0
+offset_right = 98.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="VariableBlock2" parent="WindowContainer/Window" instance=ExtResource("2_gjct8")]
 layout_mode = 0

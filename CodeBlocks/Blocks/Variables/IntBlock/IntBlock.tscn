@@ -1,0 +1,69 @@
+[gd_scene load_steps=3 format=3 uid="uid://rkxkm6m8ey64"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mrdtd"]
+bg_color = Color(0.847059, 0.384314, 0.384314, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p7kf4"]
+bg_color = Color(0, 0, 0, 0.262745)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+anti_aliasing = false
+
+[node name="IntBlock" type="PanelContainer"]
+offset_right = 214.0
+offset_bottom = 38.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_mrdtd")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "Int"
+uppercase = true
+
+[node name="PanelContainer2" type="PanelContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_p7kf4")
+
+[node name="VarName" type="LineEdit" parent="MarginContainer/HBoxContainer/PanelContainer2"]
+layout_mode = 2
+placeholder_text = "variable name"
+alignment = 1
+expand_to_text_length = true
+flat = true
+caret_blink = true
+caret_blink_interval = 0.38
+
+[node name="Label2" type="Label" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "="
+
+[node name="PanelContainer3" type="PanelContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_p7kf4")
+
+[node name="Value" type="LineEdit" parent="MarginContainer/HBoxContainer/PanelContainer3"]
+layout_mode = 2
+placeholder_text = "value"
+alignment = 1
+expand_to_text_length = true
+flat = true
+caret_blink = true
+caret_blink_interval = 0.38
