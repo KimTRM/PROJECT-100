@@ -1,3 +1,4 @@
+using Game.Globals;
 using Godot;
 using GodotUtilities;
 using System;

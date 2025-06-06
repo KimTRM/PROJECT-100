@@ -62,7 +62,7 @@ public partial class SignupPanel : PanelContainer
 
         var data = new Dictionary
             {
-                { "UserID", HTTPManager.Instance.GenarateId()},
+                { "UserID", HTTPManager.Instance.GenerateId() },
                 { "FirstName", Firstname.Text },
                 { "LastName", Lastname.Text },
                 { "UserName", Username.Text },
@@ -74,7 +74,7 @@ public partial class SignupPanel : PanelContainer
         var LoginMenu = (LoginMenu)GetTree().Root.GetNode("LoginMenu");
         HTTPManager.Instance.QueueRequest(HTTPManager.Instance.Commands["ADD_USER_ACCOUNT"], data);
         HTTPManager.Instance.RequestCompleted += LoginMenu.OnAccountReceived;
-		HTTPManager.Instance.QueueRequest(HTTPManager.Instance.Commands["GET_USER_ACCOUNT"]);
+        HTTPManager.Instance.QueueRequest(HTTPManager.Instance.Commands["GET_USER_ACCOUNT"]);
         Hide();
     }
 

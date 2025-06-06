@@ -1,18 +1,21 @@
 using DialogueManagerRuntime;
-using Godot;
+using GodotUtilities.Logic;
 using GodotUtilities;
+using Godot;
 
 [Scene, Icon("res://Assets/Icons/Player.png")]
 public partial class Player : CharacterBody2D
 {
-	[Node] private AnimationPlayer animationPlayer;
-	[Node] private Sprite2D sprite2D;
-	[Node] private PlayerController playerController;
-	[Node] private InputController inputController;
+	[Node] private AnimationPlayer _animationPlayer;
+	[Node] private Sprite2D _sprite2D;
+	[Node] private InputController _inputController;
+	[Node] private VelocityComponent _velocityComponent;
 
-	[Export] private Area2D InteractableFinder;
+	[Export, Node("Sprite2D/Direction/InteractableFinder")]
+	private Area2D _interactableFinder;
 
-	private bool cutsceneActive = false;
+	private DelegateStateMachine _stateMachine;
+	private string _animDirection = "down";
 
 	public override void _Notification(int what)
 	{
@@ -22,86 +25,65 @@ public partial class Player : CharacterBody2D
 		}
 	}
 
-	public override void _Ready()
-	{
-		PlayerManager.Instance.player = this;
-		playerController.Initialize(this);
-	}
-
 	public override void _PhysicsProcess(double delta)
 	{
-		if (inputController.InteractPressed() && inputController.IsInteracting == false)
+		Velocity = _velocityComponent.GetVelocity(_inputController.GetMovementInput());
+		_velocityComponent.AccelerateToVelocity(Velocity, (float)delta);
+		_velocityComponent.Move(this);
+
+		UpdateAnimation();
+		InteractWithObject();
+	}
+
+	private void InteractWithObject()
+	{
+		if (_inputController.InteractPressed() && _inputController.IsInteracting == false)
 		{
-			var interactables = InteractableFinder.GetOverlappingAreas();
+			var interactables = _interactableFinder.GetOverlappingAreas();
 			if (interactables.Count > 0)
 			{
 				(interactables[0] as Interactable)?.Interact();
-				inputController.SetInteracting(true); // Disable movement
+				_inputController.SetInteracting(true); // Disable movement
 				return;
 			}
 		}
 
 		if (GetParent().GetNodeOrNull<ExampleBalloon>("ExampleBalloon") != null)
 		{
-			StartCutscene();
-			inputController.SetInteracting(true);
+			_inputController.SetInteracting(true);
 		}
 		else
 		{
-			inputController.SetInteracting(false);
-			EndCutscene();
+			_inputController.SetInteracting(false);
+		}
+	}
+
+	private void UpdateAnimation()
+	{
+		Vector2 movementInput = _inputController.GetMovementInput();
+
+		if (movementInput == Vector2.Up)
+		{
+			_animDirection = "up";
+		}
+		else if (movementInput == Vector2.Down)
+		{
+			_animDirection = "down";
+		}
+		else if (movementInput == Vector2.Left || movementInput == Vector2.Right)
+		{
+			_animDirection = "side";
 		}
 
-		// Resume movement if not interacting
-		if (!inputController.IsInteracting)
+
+		if (movementInput != Vector2.Zero)
 		{
-			playerController.HandleMovement(delta, inputController.GetMovementInput(), inputController.JumpPressed(), inputController.JumpReleased());
-		}
-
-		UpdateAnimation();
-	}
-
-	public void StartCutscene()
-	{
-		cutsceneActive = true;
-		Velocity = Vector2.Zero;
-	}
-
-	public void EndCutscene()
-	{
-		cutsceneActive = false;
-	}
-
-	public void ForceMove(Vector2 direction)
-	{
-		playerController.ForceMove(direction);
-		MoveAndSlide();
-	}
-
-	public void ForceJump()
-	{
-		playerController.ForceJump();
-		MoveAndSlide();
-	}
-
-	public void UpdateAnimation()
-	{
-		if (Velocity.X != 0)
-		{
-			sprite2D.FlipH = Velocity.X < 0;
-		}
-
-		if (IsOnFloor())
-		{
-			animationPlayer?.Play(Velocity.X != 0 ? "walk_side" : "idle_side");
-		}
-		else if (Velocity.Y < 0)
-		{
-			// animationPlayer?.Play("jump");
+			_animationPlayer.Play($"walk_{_animDirection}");
+			_sprite2D.FlipH = _inputController.GetMovementInput().X < 0;
 		}
 		else
 		{
-			// animationPlayer?.Play("fall");
+			_animationPlayer.Play($"idle_{_animDirection}");
 		}
 	}
 }

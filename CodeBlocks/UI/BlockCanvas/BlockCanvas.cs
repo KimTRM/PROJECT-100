@@ -12,24 +12,22 @@ public partial class BlockCanvas : MarginContainer
     [Node("WindowContainer/Window")]
     public Control Window;
 
-    [Export]
-    private NodePath DragManagerPath;
-    private DragManager dragManager;
+    [Export] private DragManager dragManager;
 
     [Export]
     private NodePath ConsolePath;
     public Console console;
 
-    private float zoomFactor = 1.0f;
-    private float zoomStep = 0.1f;
-    private float minZoom = 0.5f;
-    private float maxZoom = 2.0f;
+    private float _zoomFactor = 1.0f;
+    private float _zoomStep = 0.1f;
+    private float _minZoom = 0.5f;
+    private float _maxZoom = 2.0f;
 
-    private bool isDragging = false;
-    private Vector2 dragStartPos;
-    private Vector2 controlStartPos;
+    private bool _isDragging = false;
+    private Vector2 _dragStartPos;
+    private Vector2 _controlStartPos;
 
-    private List<CodeBlock> _codeBlocks = new List<CodeBlock>();
+    private List<CodeBlock> _codeBlocks = [];
 
     public override void _Notification(int what)
     {
@@ -41,7 +39,6 @@ public partial class BlockCanvas : MarginContainer
 
     public override void _Ready()
     {
-        dragManager = GetNode<DragManager>(DragManagerPath);
         console = GetNode<Console>(ConsolePath);
 
         foreach (Control child in Window.GetChildren())
@@ -49,12 +46,18 @@ public partial class BlockCanvas : MarginContainer
             if (child is CodeBlock block)
             {
                 block.dragManager = dragManager;
-                block.console = console;
+                // block.console = console;
             }
         }
     }
 
     public override void _GuiInput(InputEvent @event)
+    {
+        ZoomCanvas(@event);
+        DragCanvas(@event);
+    }
+
+    private void ZoomCanvas(InputEvent @event)
     {
         if (@event is InputEventMouseButton mouseEvent)
         {
@@ -63,52 +66,55 @@ public partial class BlockCanvas : MarginContainer
             {
                 if (mouseEvent.ButtonIndex == MouseButton.WheelUp)
                 {
-                    Zoom(zoomFactor + zoomStep);
+                    AdjustZoom(_zoomFactor + _zoomStep);
                 }
                 else if (mouseEvent.ButtonIndex == MouseButton.WheelDown)
                 {
-                    Zoom(zoomFactor - zoomStep);
+                    AdjustZoom(_zoomFactor - _zoomStep);
                 }
                 // Start dragging
                 else if (mouseEvent.ButtonIndex == MouseButton.Middle)
                 {
-                    isDragging = true;
-                    dragStartPos = GetViewport().GetMousePosition();
-                    controlStartPos = Window.Position;
+                    _isDragging = true;
+                    _dragStartPos = GetViewport().GetMousePosition();
+                    _controlStartPos = Window.Position;
                 }
             }
             else if (!mouseEvent.Pressed && mouseEvent.ButtonIndex == MouseButton.Middle)
             {
-                isDragging = false;
+                _isDragging = false;
             }
         }
+    }
 
-        // Handle dragging
-        if (@event is InputEventMouseMotion motionEvent && isDragging)
+    private void DragCanvas(InputEvent @event)
+    {
+        if (@event is InputEventMouseMotion motionEvent && _isDragging)
         {
-            Vector2 mouseDelta = GetViewport().GetMousePosition() - dragStartPos;
-            Window.Position = controlStartPos + mouseDelta;
+            Vector2 mouseDelta = GetViewport().GetMousePosition() - _dragStartPos;
+            Window.Position = Window.Position.Lerp(_controlStartPos + mouseDelta, 25.0f * (float)GetProcessDeltaTime());
         }
     }
-    private void Zoom(float newZoom)
-    {
-        zoomFactor = Mathf.Clamp(newZoom, minZoom, maxZoom);
-        Window.Scale = new Vector2(zoomFactor, zoomFactor);
 
-        ZoomButton.Text = $"{zoomFactor:F1}x";
+    private void AdjustZoom(float newZoom)
+    {
+        _zoomFactor = Mathf.Clamp(newZoom, _minZoom, _maxZoom);
+        Window.Scale = new Vector2(_zoomFactor, _zoomFactor);
+
+        ZoomButton.Text = $"{_zoomFactor:F1}x";
     }
 
     private void _on_zoom_in_button_pressed()
     {
-        Zoom(zoomFactor + zoomStep);
+        AdjustZoom(_zoomFactor + _zoomStep);
     }
     private void _on_zoom_button_pressed()
     {
-        Zoom(1.0f);
+        AdjustZoom(1.0f);
     }
     private void _on_zoom_out_button_pressed()
     {
-        Zoom(zoomFactor - zoomStep);
+        AdjustZoom(_zoomFactor - _zoomStep);
     }
 
     private async void _on_execute_pressed()
@@ -138,7 +144,7 @@ public partial class BlockCanvas : MarginContainer
 
     public void AddBlock(CodeBlock block)
     {
-        Window.AddChild(block);
+        block.Reparent(Window, true);
         _codeBlocks.Add(block);
     }
 

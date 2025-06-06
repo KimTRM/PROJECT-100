@@ -6,19 +6,8 @@ public partial class DragManager : Control
     [Signal] public delegate void BlockDroppedEventHandler();
     [Signal] public delegate void BlockModifiedEventHandler();
 
-    private BlockCanvas _blockCanvas;
-
-    private BlockPicker _picker;
-    private DragBlock dragBlock;
-
-    [Export] private NodePath pickerPath;
-    [Export] private NodePath blockCanvasPath;
-
-    public override void _Ready()
-    {
-        _picker = GetNode<BlockPicker>(pickerPath);
-        _blockCanvas = GetNode<BlockCanvas>(blockCanvasPath);
-    }
+    [Export] private BlockCanvas _blockCanvas;
+    [Export] private BlockPicker _blockPicker;
 
     private Node _originalParent;
     private Control _draggedObject;
@@ -28,106 +17,83 @@ public partial class DragManager : Control
 
     public bool dragging = false;
 
+    public override void _Ready()
+    {
+        _blockCanvas.MouseEntered += OnBlockCanvasMouseEntered;
+        _blockPicker.MouseEntered += OnBlockPickerMouseEntered;
+    }
+
     public override void _Process(double delta)
     {
         if (dragging)
         {
-            _draggedObject.GlobalPosition = GetGlobalMousePosition() - _offset;
+            _draggedObject.GlobalPosition = _draggedObject.GlobalPosition.Lerp(
+                GetGlobalMousePosition() - _offset,
+                (float)delta * 18.0f
+            );
         }
     }
 
-    public void StartDrag(Control draggable, InputEvent @event)
+    public override void _Input(InputEvent @event)
     {
-        if (draggable == null) return;
-
-        // dragging = true;
-
         if (@event is InputEventMouseButton mouseEvent)
         {
-            if (dragging && !mouseEvent.Pressed && mouseEvent.ButtonIndex != MouseButton.Left)
+            if (mouseEvent.ButtonIndex == MouseButton.Left && mouseEvent.IsReleased())
             {
-                EndDrag();
+                if (dragging)
+                {
+                    EndDrag();
+                }
             }
         }
+    }
+
+    public void StartDrag(CodeBlock draggable)
+    {
+        dragging = true;
 
         _originalParent = draggable.GetParent();
         _draggedObject = draggable;
+        _draggedObject.Reparent(this);
         _offset = GetGlobalMousePosition() - _draggedObject.GlobalPosition;
-        _originalParent.RemoveChild(_draggedObject);
-        AddChild(_draggedObject); // Temporarily parent to DragManager
     }
 
     public void EndDrag()
     {
-        if (_draggedObject == null) return;
+        dragging = false;
 
-        // dragging = false;
+        Node newParent = GetDropTarget() ?? _originalParent;
 
-        // if (_dropTarget == _blockCanvas)
-        // {
-        //     _draggedObject.QueueFree();
-        //     _draggedObject = null;
-        //     return;
-        // }
-
-        Node newParent = GetDropTarget() ?? _originalParent; // Fallback if no valid target
-
-        RemoveChild(_draggedObject);
-        newParent.AddChild(_draggedObject);
+        _draggedObject.Reparent(newParent);
         _draggedObject.GlobalPosition = GetGlobalMousePosition() - _offset;
         _draggedObject = null;
     }
 
+    bool canvasEntered;
+    bool pickerEntered;
+
     private Node GetDropTarget()
     {
-        Vector2 mousePos = GetGlobalMousePosition();
-
-        if (_on_block_canvas_mouse_entered())
+        if (canvasEntered)
         {
-            GD.Print("Mouse entered BlockCanvas");
             return _blockCanvas.Window;
         }
 
-        if (_on_block_picker_mouse_entered())
+        if (pickerEntered)
         {
-            GD.Print("Mouse entered BlockPicker");
-            return _picker.codeBlockContainer;
+            return _blockPicker.codeBlockContainer;
         }
 
-        return null; // No valid target found
+        return null;
     }
 
-    private bool _on_block_canvas_mouse_entered()
+    private void OnBlockCanvasMouseEntered()
     {
-        return true;
+        canvasEntered = true;
     }
 
-    private bool _on_block_picker_mouse_entered()
+    private void OnBlockPickerMouseEntered()
     {
-        return true;
+        pickerEntered = true;
     }
-    // public void StartDrag(CodeBlock block, Vector2 offset)
-    // {
-    //     if (block.GetParent() != null)
-    //     {
-    //         block.GetParent().RemoveChild(block);
-    //     }
-
-    //     dragBlock = new DragBlock(block, offset, _blockCanvas);
-    //     AddChild(dragBlock);
-    // }
-
-    // public void EndDrag()
-    // {
-    //     if (dragBlock == null) return;
-
-    //     CodeBlock placedBlock = dragBlock.ApplyDrag();
-    //     if (placedBlock != null)
-    //     {
-    //         EmitSignal(SignalName.BlockDropped);
-    //     }
-
-    //     dragBlock.QueueFree();
-    //     dragBlock = null;
-    // }
 }

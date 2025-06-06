@@ -1,3 +1,4 @@
+using Game.Globals;
 using Godot;
 using GodotUtilities;
 using System;
@@ -16,7 +17,6 @@ public partial class GameScene : Node2D
 
 	public override void _Ready()
 	{
-		
 		AudioManager.Instance.PlayMusic((AudioStream)GD.Load("res://Assets/AudioFiles/Ludum Dare 28 01.ogg"));
 	}
 

@@ -20,13 +20,13 @@ boot_splash/minimum_display_time=7
 
 [autoload]
 
-HttpManager="*res://Globals/HTTPManager.cs"
-GameManager="*res://Globals/GameManager.cs"
-PlayerManager="*res://Globals/PlayerManager.cs"
+HttpManager="*res://Scripts/01_Globals/HTTPManager.cs"
+GameManager="*res://Scripts/01_Globals/GameManager.cs"
+PlayerManager="*res://Scripts/01_Globals/PlayerManager.cs"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
-UiManager="*res://Scenes/Globals/UiManager.tscn"
-AudioManager="*res://Globals/AudioManager.cs"
-CutSceneManager="*res://Globals/CutSceneManager.cs"
+UiManager="*res://Scenes/01_Globals/UiManager.tscn"
+AudioManager="*res://Scripts/01_Globals/AudioManager.cs"
+CutSceneManager="*res://Scripts/01_Globals/CutSceneManager.cs"
 
 [debug]
 
@@ -57,29 +57,29 @@ naming/scene_name_casing=1
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/AsepriteWizard/plugin.cfg", "res://addons/dialogue_manager/plugin.cfg", "res://addons/script-ide/plugin.cfg")
+enabled=PackedStringArray("res://addons/AsepriteWizard/plugin.cfg", "res://addons/dialogue_manager/plugin.cfg")
 
 [file_customization]
 
 folder_colors={
 "res://Assets/": "yellow",
-"res://Code/Conditionals/": "orange",
-"res://Code/Loops/": "purple",
-"res://Code/Symbols/": "blue",
-"res://Code/Variables/": "red",
+"res://CodeBlocks/Blocks/Conditionals/": "orange",
+"res://CodeBlocks/Blocks/Variables/": "red",
 "res://CodeBlocks/UI/Blocks/Condition/": "purple",
 "res://CodeBlocks/UI/Blocks/Experssion/": "green",
 "res://CodeBlocks/UI/Blocks/Print/": "blue",
 "res://CodeBlocks/UI/Blocks/Variable/": "red",
 "res://Dialouge/": "purple",
-"res://Globals/": "red",
 "res://Resource/": "blue",
-"res://Resources/": "green",
 "res://Scenes/": "teal",
 "res://Scripts/": "orange",
 "res://addons/": "blue",
 "res://build/": "pink"
 }
+
+[global_group]
+
+Player=""
 
 [gui]
 

@@ -92,12 +92,12 @@ public partial class QuizMenu : CanvasLayer
 
 		var QuizResults = (QuizResults)ResourceLoader.Load<PackedScene>("res://Scenes/UI/QuizMenu/QuizResults.tscn").Instantiate();
 
-		HTTPManager.Instance.QueueRequest(HTTPManager.Instance.Commands["ADD_SCORE"], new Dictionary 
-		{ 
-			{ "ScoreID", HTTPManager.Instance.GenarateId() }, 
-			{ "PlayerID", GameManager.Instance.PlayerID }, 
+		HTTPManager.Instance.QueueRequest(HTTPManager.Instance.Commands["ADD_SCORE"], new Dictionary
+		{
+			{ "ScoreID", HTTPManager.Instance.GenerateId() },
+			{ "PlayerID", GameManager.Instance.PlayerID },
 			{ "ChapterID", Datas[0]["QuizCategory"].ToString() },
-			{ "Score" , correctCount } 
+			{ "Score" , correctCount }
 		});
 
 		QuizResults.SetQuizResults(GameManager.Instance.PlayerUsername, GameManager.Instance.PlayerID, correctCount, Datas.Count - correctCount);

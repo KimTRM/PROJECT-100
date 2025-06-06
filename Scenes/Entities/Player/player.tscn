@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://2oihglsyravb" path="res://Scripts/Entities/Player/Player.cs" id="1_oihhe"]
 [ext_resource type="Script" uid="uid://dw6qm7dtwnpy7" path="res://Scripts/Entities/Player/InputController.cs" id="2_fcpig"]
 [ext_resource type="Script" uid="uid://b0hy23vvuav4u" path="res://Scripts/Entities/Player/PlayerCamera.cs" id="3_djuet"]
-[ext_resource type="Script" uid="uid://dyxkclgunmupk" path="res://Scripts/Entities/Player/PlayerController.cs" id="3_y6hyn"]
+[ext_resource type="Script" uid="uid://b5ko2hydh251o" path="res://Scripts/Components/VelocityComponent.cs" id="4_y6hyn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nmvpq"]
 radius = 28.5549
@@ -189,21 +189,14 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dckff"]
 size = Vector2(21, 44)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("InteractableFinder")]
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
 collision_layer = 2
 collision_mask = 48
 script = ExtResource("1_oihhe")
-InteractableFinder = NodePath("Sprite2D/Direction/InteractableFinder")
-
-[node name="InputController" type="Node" parent="."]
-script = ExtResource("2_fcpig")
-
-[node name="PlayerController" type="Node" parent="."]
-script = ExtResource("3_y6hyn")
-MaxFallSpeed = 700.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
+position = Vector2(0, -8)
 texture = ExtResource("1_0wmuu")
 hframes = 6
 vframes = 5
@@ -232,8 +225,7 @@ metadata/_aseprite_wizard_source_file_hash_ = "ce117a974f5f951e7c76016bfc7c042b"
 
 [node name="InteractableFinder" type="Area2D" parent="Sprite2D/Direction"]
 disable_mode = 2
-collision_layer = 3
-collision_mask = 17
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Direction/InteractableFinder"]
 scale = Vector2(1.3, 1.3)
@@ -246,17 +238,27 @@ libraries = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, 9)
+position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_dckff")
 
+[node name="InputController" type="Node" parent="."]
+script = ExtResource("2_fcpig")
+
+[node name="VelocityComponent" type="Node" parent="."]
+script = ExtResource("4_y6hyn")
+maxSpeed = 200.0
+acceleration = 14.0
+metadata/_custom_type_script = "uid://b5ko2hydh251o"
+
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(2.5, 2.5)
+zoom = Vector2(2, 2)
+position_smoothing_speed = 10.0
 rotation_smoothing_enabled = true
-rotation_smoothing_speed = 8.0
+rotation_smoothing_speed = 0.8
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
-drag_left_margin = 0.05
-drag_top_margin = 0.05
-drag_right_margin = 0.05
-drag_bottom_margin = 0.05
+drag_left_margin = 0.02
+drag_top_margin = 0.02
+drag_right_margin = 0.02
+drag_bottom_margin = 0.02
 script = ExtResource("3_djuet")

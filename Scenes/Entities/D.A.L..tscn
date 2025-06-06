@@ -1,12 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://d37ct8qy5o2ym"]
+[gd_scene load_steps=12 format=3 uid="uid://d37ct8qy5o2ym"]
 
 [ext_resource type="Texture2D" uid="uid://bcbt0kycumkfp" path="res://Assets/SpriteSheets/D.A.L..png" id="1_20exx"]
-[ext_resource type="Script" uid="uid://6spoqsp3bslc" path="res://Scripts/Entities/DAL/dal.gd" id="1_xdmxv"]
-[ext_resource type="Script" uid="uid://ypl60xq0fdsw" path="res://Scripts/Entities/DAL/State Machine/state_machine.gd" id="3_lgt54"]
-[ext_resource type="Script" uid="uid://77ekcyxh3200" path="res://Scripts/Entities/DAL/State Machine/States/idle.gd" id="4_c73x2"]
-[ext_resource type="Script" uid="uid://drv5jt0ifiv07" path="res://Scripts/Entities/DAL/State Machine/States/walk.gd" id="5_ohkiw"]
-[ext_resource type="PackedScene" uid="uid://cb2boj8kymtpp" path="res://Scenes/Components/Dialouge/Interactable.tscn" id="6_a3w74"]
-[ext_resource type="Resource" uid="uid://63gyqnh1ri02" path="res://Dialouge/Introduce.dialogue" id="7_1ibrw"]
+[ext_resource type="Script" uid="uid://dqglcxokaxwsn" path="res://Scripts/Entities/DAL/Dal.cs" id="1_hnc21"]
+[ext_resource type="Script" uid="uid://ch25q0x50nv60" path="res://Scripts/Components/PathFindComponent.cs" id="3_56fao"]
+[ext_resource type="Script" uid="uid://b5ko2hydh251o" path="res://Scripts/Components/VelocityComponent.cs" id="3_rirfu"]
+[ext_resource type="Script" uid="uid://dw6qm7dtwnpy7" path="res://Scripts/Entities/Player/InputController.cs" id="4_56fao"]
 
 [sub_resource type="Animation" id="Animation_isrq6"]
 length = 0.72
@@ -131,15 +129,13 @@ _data = {
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_chly2"]
 height = 26.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_n2jko"]
-
 [node name="D-A-L" type="CharacterBody2D"]
 z_index = 1
 y_sort_enabled = true
 collision_layer = 4
 collision_mask = 16
 platform_floor_layers = 4294967040
-script = ExtResource("1_xdmxv")
+script = ExtResource("1_hnc21")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -177,20 +173,21 @@ libraries = {
 position = Vector2(0, 2)
 shape = SubResource("CapsuleShape2D_chly2")
 
-[node name="StateMachine" type="Node" parent="."]
-script = ExtResource("3_lgt54")
+[node name="PathFindComponent" type="Node2D" parent="." node_paths=PackedStringArray("_velocityComponent")]
+script = ExtResource("3_56fao")
+_velocityComponent = NodePath("../VelocityComponent")
+_debugDrawEnable = true
+metadata/_custom_type_script = "uid://ch25q0x50nv60"
 
-[node name="Idle" type="Node" parent="StateMachine"]
-script = ExtResource("4_c73x2")
+[node name="VelocityComponent" type="Node" parent="."]
+script = ExtResource("3_rirfu")
+metadata/_custom_type_script = "uid://b5ko2hydh251o"
 
-[node name="Walk" type="Node" parent="StateMachine"]
-script = ExtResource("5_ohkiw")
-
-[node name="Interactable" parent="." instance=ExtResource("6_a3w74")]
-dialogue_resource = ExtResource("7_1ibrw")
-interact_on_enter = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable"]
-position = Vector2(0, 6)
-shape = SubResource("CircleShape2D_n2jko")
-debug_color = Color(0.0711944, 0.993485, 0.155312, 0.42)
+[node name="InputController" type="Node" parent="."]
+script = ExtResource("4_56fao")
+inputActions = Dictionary[String, String]({
+"Down": "ui_down",
+"Left": "ui_left",
+"Right": "ui_right",
+"Up": "ui_up"
+})

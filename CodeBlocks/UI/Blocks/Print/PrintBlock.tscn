@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://dbkjr5boxysai"]
+[gd_scene load_steps=4 format=3 uid="uid://dbkjr5boxysai"]
 
 [ext_resource type="Script" uid="uid://cmvsyuosmvn5u" path="res://CodeBlocks/UI/Blocks/Print/PrintBlock.cs" id="1_jnpc6"]
-[ext_resource type="PackedScene" uid="uid://dotwg7dqn1q6p" path="res://CodeBlocks/Drag&Drop/DragDropArea/DragDropArea.tscn" id="2_plb6o"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_km4t6"]
 bg_color = Color(0.0889552, 0.511334, 0.785124, 1)
@@ -20,9 +19,6 @@ anti_aliasing = false
 
 [node name="PrintBlock" type="MarginContainer"]
 script = ExtResource("1_jnpc6")
-
-[node name="DragDropArea" parent="." instance=ExtResource("2_plb6o")]
-layout_mode = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 2

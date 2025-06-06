@@ -24,7 +24,7 @@ public partial class InteractableArea : Area2D
 
 	[Signal] public delegate void InteractedEventHandler(InteractableArea interactable);
 
-	private void _on_body_entered(Node body)
+	private void _on_area_entered(Area2D area)
 	{
 		if (CanAutoInteract)
 		{
@@ -33,7 +33,7 @@ public partial class InteractableArea : Area2D
 		}
 	}
 
-	void _on_body_exited(Node body)
+	void _on_area_exited(Area2D area)
 	{
 		if (ShowCodeBlock)
 		{

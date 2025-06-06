@@ -11,27 +11,27 @@ public partial class PrintBlock : CodeBlock
 	[Node("PanelContainer/MarginContainer/HBoxContainer/ValueContainer/Value")]
 	private LineEdit value;
 
-    public override void _Notification(int what)
-    {
+	public override void _Notification(int what)
+	{
 		if (what == NotificationSceneInstantiated)
 		{
-			WireNodes();	
+			WireNodes();
 		}
-    }
+	}
 
-    public override async Task Execute()
-    {
-		foreach (Control child in valueContainer.GetChildren())	
+	public override async Task Execute()
+	{
+		foreach (Control child in valueContainer.GetChildren())
 		{
 			if (child is CodeBlock block)
 			{
 				await block.Execute();
-				console.OnCommandEntered(block.BlockValue.ToString());
+				// console.OnCommandEntered(block.BlockValue.ToString());
 			}
-			
+
 			else if (valueContainer.GetChildren().Count == 1 && child is LineEdit lineEdit)
 			{
-				console.OnCommandEntered(value.Text);
+				// console.OnCommandEntered(value.Text);
 			}
 		}
 		await Task.CompletedTask;

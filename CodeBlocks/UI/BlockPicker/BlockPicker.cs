@@ -5,25 +5,22 @@ using System;
 [Scene]
 public partial class BlockPicker : MarginContainer
 {
-	[Export]
-	private NodePath DragManagerPath;
-	private DragManager dragManager;
-
 	[Node("ScrollContainer/MarginContainer/CodeBlockContainer")]
 	public VBoxContainer codeBlockContainer;
 
-    public override void _Notification(int what)
-    {
-        if (what == NotificationSceneInstantiated)
+	[Export] private DragManager dragManager;
+
+	public override void _Notification(int what)
+	{
+		if (what == NotificationSceneInstantiated)
 		{
 			WireNodes();
 		}
-    }
+	}
 
-    public override void _Ready()
+	public override void _Ready()
 	{
 		codeBlockContainer = GetNode<VBoxContainer>("ScrollContainer/MarginContainer/CodeBlockContainer");
-		dragManager = GetNode<DragManager>(DragManagerPath);
 
 		foreach (Control child in codeBlockContainer.GetChildren())
 		{
@@ -32,5 +29,5 @@ public partial class BlockPicker : MarginContainer
 				block.dragManager = dragManager;
 			}
 		}
-	}	
+	}
 }
