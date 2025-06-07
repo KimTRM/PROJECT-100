@@ -32,25 +32,18 @@ grow_vertical = 2
 mouse_filter = 1
 
 [node name="VariableBlock" parent="WindowContainer/Window" instance=ExtResource("2_gjct8")]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 149.0
-offset_top = 84.0
-offset_right = 345.0
-offset_bottom = 132.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 0
+offset_left = 337.0
+offset_top = 346.0
+offset_right = 497.0
+offset_bottom = 396.0
 
 [node name="VariableBlock2" parent="WindowContainer/Window" instance=ExtResource("2_gjct8")]
 layout_mode = 0
 offset_left = 218.0
 offset_top = 199.0
-offset_right = 414.0
-offset_bottom = 247.0
+offset_right = 378.0
+offset_bottom = 249.0
 
 [node name="PrintBlock" parent="WindowContainer/Window" instance=ExtResource("3_x56fl")]
 layout_mode = 0

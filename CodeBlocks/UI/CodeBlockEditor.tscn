@@ -1,24 +1,23 @@
-[gd_scene load_steps=8 format=3 uid="uid://4280cgrri3yh"]
+[gd_scene load_steps=7 format=3 uid="uid://4280cgrri3yh"]
 
-[ext_resource type="PackedScene" uid="uid://bp0aevc7dehng" path="res://CodeBlocks/UI/BlockCanvas/BlockCanvas.tscn" id="1_4yxsc"]
-[ext_resource type="PackedScene" uid="uid://dl1yi3e2oqj0k" path="res://CodeBlocks/UI/BlockPicker/BlockPicker.tscn" id="1_54hmq"]
-[ext_resource type="Texture2D" uid="uid://bhqtwt6ahm2b1" path="res://Assets/UI/DialougeBox/DialougeBox.png" id="1_mdfro"]
-[ext_resource type="Script" uid="uid://b2h0ktgys47cl" path="res://CodeBlocks/UI/BlockPicker/BlockPicker.cs" id="2_8au1s"]
-[ext_resource type="PackedScene" uid="uid://cirmbhtex875r" path="res://CodeBlocks/UI/Console/Console.tscn" id="3_n7jqw"]
-[ext_resource type="Script" uid="uid://rue4kargso4m" path="res://CodeBlocks/Drag&Drop/DragManager.cs" id="7_mdfro"]
+[ext_resource type="Texture2D" uid="uid://bhqtwt6ahm2b1" path="res://Assets/UI/DialougeBox/DialougeBox.png" id="1_ttbcd"]
+[ext_resource type="PackedScene" uid="uid://dl1yi3e2oqj0k" path="res://CodeBlocks/UI/BlockPicker/BlockPicker.tscn" id="2_fpt7u"]
+[ext_resource type="PackedScene" uid="uid://bp0aevc7dehng" path="res://CodeBlocks/UI/BlockCanvas/BlockCanvas.tscn" id="3_75k5f"]
+[ext_resource type="PackedScene" uid="uid://cirmbhtex875r" path="res://CodeBlocks/UI/Console/Console.tscn" id="4_viaos"]
+[ext_resource type="Script" uid="uid://rue4kargso4m" path="res://CodeBlocks/UI/DragManager.cs" id="5_w0mth"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ijaqk"]
 content_margin_left = 30.0
 content_margin_top = 30.0
 content_margin_right = 30.0
 content_margin_bottom = 30.0
-texture = ExtResource("1_mdfro")
+texture = ExtResource("1_ttbcd")
 texture_margin_left = 32.0
 texture_margin_top = 32.0
 texture_margin_right = 32.0
 texture_margin_bottom = 32.0
 
-[node name="MainPanel" type="CanvasLayer"]
+[node name="CodeBlockEditor" type="CanvasLayer"]
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 texture_filter = 1
@@ -35,9 +34,8 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_ijaqk")
 layout_mode = 2
 theme_override_constants/separation = 4
 
-[node name="BlockPicker" parent="PanelContainer/HBoxContainer" node_paths=PackedStringArray("dragManager") instance=ExtResource("1_54hmq")]
+[node name="BlockPicker" parent="PanelContainer/HBoxContainer" node_paths=PackedStringArray("dragManager") instance=ExtResource("2_fpt7u")]
 layout_mode = 2
-script = ExtResource("2_8au1s")
 dragManager = NodePath("../../DragManager")
 
 [node name="VSplitContainer" type="VSplitContainer" parent="PanelContainer/HBoxContainer"]
@@ -45,18 +43,18 @@ layout_mode = 2
 theme_override_constants/separation = 4
 split_offset = 504
 
-[node name="BlockCanvas" parent="PanelContainer/HBoxContainer/VSplitContainer" node_paths=PackedStringArray("dragManager") instance=ExtResource("1_4yxsc")]
+[node name="BlockCanvas" parent="PanelContainer/HBoxContainer/VSplitContainer" node_paths=PackedStringArray("dragManager") instance=ExtResource("3_75k5f")]
 custom_minimum_size = Vector2(600, 200)
 layout_mode = 2
 dragManager = NodePath("../../../DragManager")
 ConsolePath = NodePath("../Console")
 
-[node name="Console" parent="PanelContainer/HBoxContainer/VSplitContainer" instance=ExtResource("3_n7jqw")]
+[node name="Console" parent="PanelContainer/HBoxContainer/VSplitContainer" instance=ExtResource("4_viaos")]
 layout_mode = 2
 
 [node name="DragManager" type="Control" parent="PanelContainer" node_paths=PackedStringArray("_blockCanvas", "_blockPicker")]
 layout_mode = 2
 mouse_filter = 2
-script = ExtResource("7_mdfro")
+script = ExtResource("5_w0mth")
 _blockCanvas = NodePath("../HBoxContainer/VSplitContainer/BlockCanvas")
 _blockPicker = NodePath("../HBoxContainer/BlockPicker")

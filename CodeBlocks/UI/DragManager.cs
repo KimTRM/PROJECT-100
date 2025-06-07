@@ -5,6 +5,7 @@ public partial class DragManager : Control
 {
     [Signal] public delegate void BlockDroppedEventHandler();
     [Signal] public delegate void BlockModifiedEventHandler();
+    [Signal] public delegate void DragManagerReadyEventHandler(DragManager dragManager);
 
     [Export] private BlockCanvas _blockCanvas;
     [Export] private BlockPicker _blockPicker;
@@ -21,6 +22,7 @@ public partial class DragManager : Control
     {
         _blockCanvas.MouseEntered += OnBlockCanvasMouseEntered;
         _blockPicker.MouseEntered += OnBlockPickerMouseEntered;
+        EmitSignal(SignalName.DragManagerReady, this);
     }
 
     public override void _Process(double delta)

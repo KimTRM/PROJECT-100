@@ -4,29 +4,29 @@ using System.Threading.Tasks;
 
 [Scene]
 public partial class VariableBlock : CodeBlock
-{	
-	[Node ("MarginContainer/HBoxContainer/VariableLabel")]
+{
+	[Node("MarginContainer/HBoxContainer/VariableLabel")]
 	public Label varType;
 
-	[Node ("MarginContainer/HBoxContainer/VariableContainer/VarName")]
+	[Node("MarginContainer/HBoxContainer/VariableContainer/VarName")]
 	private LineEdit varName;
 
-	[Node ("MarginContainer/HBoxContainer/VariableContainer")]
+	[Node("MarginContainer/HBoxContainer/VariableContainer")]
 	private PanelContainer varContainer;
 
 	[Export] public string varNameStr;
 
-    public override void _Notification(int what)
-    {
+	public override void _Notification(int what)
+	{
 		if (what == NotificationSceneInstantiated)
 		{
 			WireNodes();
 		}
-    }
+	}
 
-    public override async Task Execute()
-    {
-		foreach (Control child in varContainer.GetChildren())	
+	public override async Task Execute()
+	{
+		foreach (Control child in varContainer.GetChildren())
 		{
 			if (child is ExpressionBlock block)
 			{
@@ -41,5 +41,5 @@ public partial class VariableBlock : CodeBlock
 		}
 
 		await Task.CompletedTask;
-    }
+	}
 }

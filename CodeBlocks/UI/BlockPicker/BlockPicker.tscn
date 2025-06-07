@@ -1,14 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://dl1yi3e2oqj0k"]
+[gd_scene load_steps=4 format=3 uid="uid://dl1yi3e2oqj0k"]
 
 [ext_resource type="PackedScene" uid="uid://drcorwafubvtf" path="res://CodeBlocks/UI/Blocks/Variable/VariableBlock.tscn" id="1_1h783"]
-[ext_resource type="PackedScene" uid="uid://cxeco0k7s7brh" path="res://CodeBlocks/UI/Blocks/Experssion/Setvalue/ExpressionBlock.tscn" id="2_qsbpy"]
+[ext_resource type="Script" uid="uid://b2h0ktgys47cl" path="res://CodeBlocks/UI/BlockPicker/BlockPicker.cs" id="1_nafb2"]
+[ext_resource type="PackedScene" uid="uid://lwl73yb5asfc" path="res://CodeBlocks/UI/BlockPicker/BlockContainer/BlockCategoryContainer.tscn" id="3_wbj7l"]
 
-[node name="BlockPicker" type="MarginContainer"]
-offset_right = 223.0
-offset_bottom = 253.0
-
-[node name="Panel" type="Panel" parent="."]
-layout_mode = 2
+[node name="BlockPicker" type="PanelContainer"]
+custom_minimum_size = Vector2(200, 200)
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 209.0
+grow_vertical = 2
+script = ExtResource("1_nafb2")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 2
@@ -16,19 +18,23 @@ horizontal_scroll_mode = 0
 
 [node name="MarginContainer" type="MarginContainer" parent="ScrollContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
-theme_override_constants/margin_left = 24
-theme_override_constants/margin_top = 24
-theme_override_constants/margin_right = 24
-theme_override_constants/margin_bottom = 24
+size_flags_horizontal = 6
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_top = 14
+theme_override_constants/margin_right = 14
+theme_override_constants/margin_bottom = 14
 
 [node name="CodeBlockContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 24
 alignment = 1
 
-[node name="VariableBlock" parent="ScrollContainer/MarginContainer/CodeBlockContainer" instance=ExtResource("1_1h783")]
+[node name="BlockCategoryContainer" parent="ScrollContainer/MarginContainer/CodeBlockContainer" instance=ExtResource("3_wbj7l")]
+layout_mode = 2
+BlockDefinitions = Array[PackedScene]([ExtResource("1_1h783"), null])
+
+[node name="BlockCategoryContainer2" parent="ScrollContainer/MarginContainer/CodeBlockContainer" instance=ExtResource("3_wbj7l")]
 layout_mode = 2
 
-[node name="ExpressionBlock" parent="ScrollContainer/MarginContainer/CodeBlockContainer" instance=ExtResource("2_qsbpy")]
+[node name="BlockCategoryContainer3" parent="ScrollContainer/MarginContainer/CodeBlockContainer" instance=ExtResource("3_wbj7l")]
 layout_mode = 2
