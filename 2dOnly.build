@@ -1,0 +1,11 @@
+{
+	"disabled_build_options": {
+		"disable_3d": true,
+		"disable_3d_physics": true
+	},
+	"disabled_classes": [
+		"NavigationAgent3D",
+		"Node3D"
+	],
+	"type": "build_profile"
+}
