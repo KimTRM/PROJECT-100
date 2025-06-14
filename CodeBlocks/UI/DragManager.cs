@@ -1,14 +1,10 @@
 using Godot;
-using System.Collections.Generic;
 
 public partial class DragManager : Control
 {
     [Signal] public delegate void BlockDroppedEventHandler();
     [Signal] public delegate void BlockModifiedEventHandler();
     [Signal] public delegate void DragManagerReadyEventHandler(DragManager dragManager);
-
-    [Export] private BlockCanvas _blockCanvas;
-    [Export] private BlockPicker _blockPicker;
 
     private Node _originalParent;
     private Control _draggedObject;
@@ -20,8 +16,6 @@ public partial class DragManager : Control
 
     public override void _Ready()
     {
-        _blockCanvas.MouseEntered += OnBlockCanvasMouseEntered;
-        _blockPicker.MouseEntered += OnBlockPickerMouseEntered;
         EmitSignal(SignalName.DragManagerReady, this);
     }
 
@@ -40,14 +34,16 @@ public partial class DragManager : Control
     {
         if (@event is InputEventMouseButton mouseEvent)
         {
-            if (mouseEvent.ButtonIndex == MouseButton.Left && mouseEvent.IsReleased())
+            if (mouseEvent.IsReleased() && dragging)
             {
-                if (dragging)
-                {
-                    EndDrag();
-                }
+                EndDrag();
             }
         }
+    }
+
+    public void SetDroppableTarget(Node target)
+    {
+        _dropTarget = target;
     }
 
     public void StartDrag(CodeBlock draggable)
@@ -56,46 +52,20 @@ public partial class DragManager : Control
 
         _originalParent = draggable.GetParent();
         _draggedObject = draggable;
+        _draggedObject.MouseFilter = MouseFilterEnum.Ignore;
         _draggedObject.Reparent(this);
         _offset = GetGlobalMousePosition() - _draggedObject.GlobalPosition;
     }
 
-    public void EndDrag()
+    private void EndDrag()
     {
         dragging = false;
 
-        Node newParent = GetDropTarget() ?? _originalParent;
+        Node newParent = _dropTarget ?? _originalParent;
 
+        _draggedObject.MouseFilter = MouseFilterEnum.Pass;
         _draggedObject.Reparent(newParent);
         _draggedObject.GlobalPosition = GetGlobalMousePosition() - _offset;
         _draggedObject = null;
-    }
-
-    bool canvasEntered;
-    bool pickerEntered;
-
-    private Node GetDropTarget()
-    {
-        if (canvasEntered)
-        {
-            return _blockCanvas.Window;
-        }
-
-        if (pickerEntered)
-        {
-            return _blockPicker.codeBlockContainer;
-        }
-
-        return null;
-    }
-
-    private void OnBlockCanvasMouseEntered()
-    {
-        canvasEntered = true;
-    }
-
-    private void OnBlockPickerMouseEntered()
-    {
-        pickerEntered = true;
     }
 }

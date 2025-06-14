@@ -20,6 +20,8 @@ public partial class BlockPicker : PanelContainer
 
 	public override void _Ready()
 	{
+		MouseEntered += OnMouseEntered;
+
 		foreach (Control child in codeBlockContainer.GetChildren())
 		{
 			if (child is BlockCategoryContainer blockCategoryContainer)
@@ -27,5 +29,10 @@ public partial class BlockPicker : PanelContainer
 				dragManager.DragManagerReady += blockCategoryContainer.OnDragManagerReady;
 			}
 		}
+	}
+
+	private void OnMouseEntered()
+	{
+		dragManager.SetDroppableTarget(codeBlockContainer);
 	}
 }

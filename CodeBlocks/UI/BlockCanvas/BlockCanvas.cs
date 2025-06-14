@@ -40,6 +40,7 @@ public partial class BlockCanvas : MarginContainer
     public override void _Ready()
     {
         console = GetNode<Console>(ConsolePath);
+        MouseEntered += OnMouseEntered;
 
         foreach (Control child in Window.GetChildren())
         {
@@ -104,6 +105,11 @@ public partial class BlockCanvas : MarginContainer
         ZoomButton.Text = $"{_zoomFactor:F1}x";
     }
 
+    private void OnMouseEntered()
+    {
+        dragManager.SetDroppableTarget(Window);
+    }
+
     private void _on_zoom_in_button_pressed()
     {
         AdjustZoom(_zoomFactor + _zoomStep);
@@ -126,48 +132,5 @@ public partial class BlockCanvas : MarginContainer
                 await block.Execute();
             }
         }
-    }
-
-    public CodeBlock[] GetBlocks()
-    {
-        foreach (Control child in Window.GetChildren())
-        {
-            if (child is CodeBlock block)
-            {
-                _codeBlocks.Add(block);
-                return _codeBlocks.ToArray();
-            }
-        }
-
-        return null;
-    }
-
-    public void AddBlock(CodeBlock block)
-    {
-        block.Reparent(Window, true);
-        _codeBlocks.Add(block);
-    }
-
-    public void RemoveBlock(CodeBlock block)
-    {
-        _codeBlocks.Remove(block);
-        block.QueueFree();
-    }
-
-    public CodeBlock GetClosestBlock(Vector2 position, float snapThreshold = 50f)
-    {
-        return _codeBlocks
-            .Where(block => block != null && block.Visible)
-            .OrderBy(block => block.Position.DistanceTo(position))
-            .FirstOrDefault(block => block.Position.DistanceTo(position) < snapThreshold);
-    }
-
-    public void AttachBlock(CodeBlock block, CodeBlock targetBlock)
-    {
-        if (targetBlock == null) return;
-
-        block.Position = targetBlock.Position + new Vector2(0, targetBlock.Size.Y + 10); // Snap below target
-        _codeBlocks.Remove(block);
-        _codeBlocks.Insert(_codeBlocks.IndexOf(targetBlock) + 1, block);
     }
 }

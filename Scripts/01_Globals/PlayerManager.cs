@@ -13,7 +13,7 @@ public partial class PlayerManager : Node
     {
         Instance = this;
 
-        // AddPlayerInstance();
+        AddPlayerInstance();
     }
 
     private void AddPlayerInstance()
