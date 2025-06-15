@@ -1,5 +1,4 @@
 using Godot;
-using System;
 using System.Threading.Tasks;
 
 public partial class CodeBlock : Control
@@ -9,15 +8,9 @@ public partial class CodeBlock : Control
     public string BlockType;
     public Variant BlockValue;
 
-    public virtual async Task Execute() { await Task.CompletedTask; }
-
     public DragManager dragManager;
 
-    [Export] public bool Dragging = false;
-    public CodeBlock NextBlock = null;
-
-    private Vector2 _offset = Vector2.Zero;
-    private CodeBlock _snapTarget = null;
+    public virtual async Task Execute() { await Task.CompletedTask; }
 
     public override void _GuiInput(InputEvent @event)
     {

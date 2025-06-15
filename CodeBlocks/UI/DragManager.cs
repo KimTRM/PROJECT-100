@@ -43,6 +43,8 @@ public partial class DragManager : Control
 
     public void SetDroppableTarget(Node target)
     {
+        if (IsAncestorOf(target)) return;
+
         _dropTarget = target;
     }
 

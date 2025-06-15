@@ -19,6 +19,11 @@ public partial class PrintBlock : CodeBlock
 		}
 	}
 
+	public override void _Ready()
+	{
+		value.MouseEntered += OnMouseEntered;
+	}
+
 	public override async Task Execute()
 	{
 		foreach (Control child in valueContainer.GetChildren())
@@ -26,14 +31,28 @@ public partial class PrintBlock : CodeBlock
 			if (child is CodeBlock block)
 			{
 				await block.Execute();
+				GD.Print("Print Block Value: ", block.BlockValue);
 				// console.OnCommandEntered(block.BlockValue.ToString());
 			}
 
 			else if (valueContainer.GetChildren().Count == 1 && child is LineEdit lineEdit)
 			{
+				GD.Print("Print Block Value: ", lineEdit.Text);
 				// console.OnCommandEntered(value.Text);
 			}
 		}
 		await Task.CompletedTask;
+	}
+
+	private void OnMouseEntered()
+	{
+		foreach (Control block in valueContainer.GetChildren())
+		{
+			if (block is CodeBlock codeBlock)
+			{
+				codeBlock.dragManager = dragManager;
+			}
+		}
+		dragManager.SetDroppableTarget(valueContainer);
 	}
 }
