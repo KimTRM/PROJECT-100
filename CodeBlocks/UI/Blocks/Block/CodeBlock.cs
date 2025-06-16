@@ -6,7 +6,7 @@ public partial class CodeBlock : Control
     [Export] Resource BlockDefinition = null;
 
     public string BlockType;
-    public Variant BlockValue;
+    private Variant BlockValue;
 
     public DragManager dragManager;
 
@@ -21,5 +21,15 @@ public partial class CodeBlock : Control
                 dragManager.StartDrag(this);
             }
         }
+    }
+
+    public Variant GetBlockValue()
+    {
+        return BlockValue;
+    }
+
+    public void SetBlockValue(Variant value)
+    {
+        BlockValue = value;
     }
 }

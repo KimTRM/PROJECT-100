@@ -52,9 +52,7 @@ ConsolePath = NodePath("../Console")
 [node name="Console" parent="PanelContainer/HBoxContainer/VSplitContainer" instance=ExtResource("4_viaos")]
 layout_mode = 2
 
-[node name="DragManager" type="Control" parent="PanelContainer" node_paths=PackedStringArray("_blockCanvas", "_blockPicker")]
+[node name="DragManager" type="Control" parent="PanelContainer"]
 layout_mode = 2
 mouse_filter = 2
 script = ExtResource("5_w0mth")
-_blockCanvas = NodePath("../HBoxContainer/VSplitContainer/BlockCanvas")
-_blockPicker = NodePath("../HBoxContainer/BlockPicker")

@@ -32,7 +32,7 @@ public partial class VariableBlock : CodeBlock
 			{
 				await block.Execute();
 				varNameStr = block.Value1;
-				BlockValue = block.Value2;
+				SetBlockValue(block.Value2);
 			}
 			else
 			{

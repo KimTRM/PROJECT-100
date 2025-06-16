@@ -31,7 +31,7 @@ public partial class PrintBlock : CodeBlock
 			if (child is CodeBlock block)
 			{
 				await block.Execute();
-				GD.Print("Print Block Value: ", block.BlockValue);
+				GD.Print("Print Block Value: ", block.GetBlockValue());
 				// console.OnCommandEntered(block.BlockValue.ToString());
 			}
 
