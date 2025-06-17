@@ -60,7 +60,6 @@ public partial class AudioManager : Node
 
     public float GetVolume()
     {
-        // Convert current dB volume back to linear scale (0-1)
         return Mathf.InverseLerp(MinDb, MaxDb, musicPlayer.VolumeDb);
     }
 

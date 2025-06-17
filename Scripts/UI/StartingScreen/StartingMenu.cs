@@ -6,11 +6,11 @@ public partial class StartingMenu : CanvasLayer
 	[Export]
 	private Array<Dictionary> Data = new();
 
-    public override void _Ready()
-    {
-        HTTPManager.Instance.RequestCompleted += OnLogin;
+	public override void _Ready()
+	{
+		HTTPManager.Instance.RequestCompleted += OnLogin;
 		HTTPManager.Instance.QueueRequest(HTTPManager.Instance.Commands["GET_PLAYER_DATA"]);
-    }
+	}
 
 	public void OnLogin(Array<Dictionary> response)
 	{
@@ -18,15 +18,15 @@ public partial class StartingMenu : CanvasLayer
 		HTTPManager.Instance.RequestCompleted -= OnLogin;
 	}
 
-    void _on_start_button_pressed()
+	void _on_start_button_pressed()
 	{
 		// GameManager.Instance.LoadScene("res://Scenes/Worlds/world.tscn");
 	}
 
 	void _on_continue_button_pressed()
 	{
-		GameManager.Instance.LoadScene("res://Scenes/Worlds/GameScene.tscn");
-		
+		GameManager.Instance.LoadScene("uid://joynp6brwwbo");
+
 	}
 
 	void _on_select_scene_button_pressed()
@@ -43,7 +43,7 @@ public partial class StartingMenu : CanvasLayer
 
 	void _on_about_button_pressed()
 	{
-	
+
 	}
 
 	void _on_exit_button_pressed()

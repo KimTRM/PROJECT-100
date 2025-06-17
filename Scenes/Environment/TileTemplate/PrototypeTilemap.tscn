@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://cbim2qw3563y2"]
 
-[ext_resource type="Texture2D" uid="uid://c6wnb8t2farny" path="res://Assets/TileSets/PrototyeTileset.png" id="1_5m36e"]
+[ext_resource type="Texture2D" uid="uid://c6wnb8t2farny" path="res://Assets/TileSets/PrototyeTileset.png" id="1_7e564"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_djrvu"]
 polygon = PackedVector2Array(16, -14.05, -12.8762, -14.05, -12.9122, 16, 16, 16)
@@ -36,7 +36,7 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(-16, -16, 16, -16, 16, 
 agent_radius = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_t2rdo"]
-texture = ExtResource("1_5m36e")
+texture = ExtResource("1_7e564")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 0:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_djrvu")
