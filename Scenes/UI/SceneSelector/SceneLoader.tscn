@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cbunacwidtbhj" path="res://Assets/UI/ScenePreview/Screenshot 2025-03-16 094612.png" id="2_bufaa"]
 [ext_resource type="PackedScene" uid="uid://bahqfay47fdok" path="res://Scenes/UI/StartingScreen/StartingMenu.tscn" id="4_v7mum"]
 [ext_resource type="Texture2D" uid="uid://c4yoh484wtl26" path="res://Assets/UI/Ellipse 10.png" id="6_tsmqb"]
-[ext_resource type="PackedScene" uid="uid://joynp6brwwbo" path="res://Scenes/Worlds/GameScene.tscn" id="6_vkcyw"]
+[ext_resource type="PackedScene" uid="uid://joynp6brwwbo" path="res://Scenes/Environment/GameScene.tscn" id="6_vkcyw"]
 [ext_resource type="Texture2D" uid="uid://diirllfyehafa" path="res://Assets/UI/Group 65.png" id="7_vkcyw"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_30ano"]

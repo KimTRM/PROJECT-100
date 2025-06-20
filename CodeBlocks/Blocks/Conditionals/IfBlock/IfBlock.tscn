@@ -1,37 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://bbf3rvoybpd"]
+[gd_scene load_steps=5 format=3 uid="uid://bbf3rvoybpd"]
 
 [ext_resource type="Texture2D" uid="uid://deipopqkpup6c" path="res://CodeBlocks/Blocks/Conditionals/IfBlock/Art/Dark.png" id="1_5i5jk"]
 [ext_resource type="Texture2D" uid="uid://cjsc4w3rjtrth" path="res://CodeBlocks/Blocks/Conditionals/IfBlock/Art/Bottom.png" id="2_amxhv"]
-[ext_resource type="PackedScene" uid="uid://rkxkm6m8ey64" path="res://CodeBlocks/Blocks/Variables/IntBlock/IntBlock.tscn" id="4_h534h"]
-[ext_resource type="PackedScene" uid="uid://cojfo4sy7un6u" path="res://CodeBlocks/Blocks/Variables/FloatBlock/FloatBlock.tscn" id="5_ppu25"]
-[ext_resource type="PackedScene" uid="uid://ghfmwfgjo781" path="res://CodeBlocks/Blocks/Variables/StringBlock/StringBlock.tscn" id="6_a7fan"]
-[ext_resource type="PackedScene" uid="uid://c4pumpxm1xsoq" path="res://CodeBlocks/Blocks/Variables/BooleanBlock/BooleanBlock.tscn" id="7_q14m3"]
-
-[sub_resource type="GDScript" id="GDScript_y5u6e"]
-script/source = "@icon(\"res://Code/Conditionals/IfBlock/Art/If.png\")
-class_name IfBlock extends CodeBlock
-
-@onready var body_container = $VBoxContainer/Body/MarginContainer/BodyContainer
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	body_container.Initialize()
-	pass
-
-func _gui_input(event):
-	if event.is_action_pressed(\"ui_cancel\"):
-		ReadCode()
-
-func ReadCode():
-	var index = 0
-	for i in body_container.code_blocks:
-		i.SetValue()
-		if i.VarName != \"\":
-			print(str(index) + \": \" + i.VarName + \" = \" + str(i.VarValue))
-		else:
-			print(str(index) + \": \" + str(i.VarType) + \" is not defined\")
-		index += 1
-"
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_erd3p"]
 bg_color = Color(0.611765, 0.419608, 1, 1)
@@ -49,38 +19,17 @@ border_width_left = 5
 border_color = Color(0.403922, 0.419608, 0.788235, 1)
 anti_aliasing = false
 
-[sub_resource type="GDScript" id="GDScript_5at8h"]
-script/source = "class_name BodyContainer extends VBoxContainer
-
-var code_blocks: Array [CodeBlock]
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass
-
-func Initialize() -> void:
-	code_blocks = []
-	
-	for c in get_children():
-		if c is CodeBlock:
-			code_blocks.append(c)
-
-func _can_drop_data(at_position, data):
-	return true
-
-func _drop_data(at_position, data):
-	pass"
-
 [node name="IfBlock" type="Control"]
 custom_minimum_size = Vector2(470, 405)
 layout_mode = 3
 anchors_preset = 0
-script = SubResource("GDScript_y5u6e")
+offset_right = 470.0
+offset_bottom = 405.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 471.0
+offset_bottom = 319.0
 theme_override_constants/separation = -8
 
 [node name="Top" type="PanelContainer" parent="VBoxContainer"]
@@ -120,15 +69,18 @@ expand_mode = 1
 
 [node name="Body" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
 
 [node name="BodyFill" type="PanelContainer" parent="VBoxContainer/Body"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
-size_flags_horizontal = 0
+size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_3vhmo")
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Body"]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 7.67
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_bottom = 12
 
@@ -137,19 +89,6 @@ custom_minimum_size = Vector2(350, 78)
 layout_mode = 2
 
 [node name="BodyContainer" type="VBoxContainer" parent="VBoxContainer/Body/MarginContainer"]
-layout_mode = 2
-script = SubResource("GDScript_5at8h")
-
-[node name="BooleanBlock" parent="VBoxContainer/Body/MarginContainer/BodyContainer" instance=ExtResource("7_q14m3")]
-layout_mode = 2
-
-[node name="IntBlock" parent="VBoxContainer/Body/MarginContainer/BodyContainer" instance=ExtResource("4_h534h")]
-layout_mode = 2
-
-[node name="FloatBlock" parent="VBoxContainer/Body/MarginContainer/BodyContainer" instance=ExtResource("5_ppu25")]
-layout_mode = 2
-
-[node name="StringBlock" parent="VBoxContainer/Body/MarginContainer/BodyContainer" instance=ExtResource("6_a7fan")]
 layout_mode = 2
 
 [node name="Bottom" type="TextureRect" parent="VBoxContainer"]

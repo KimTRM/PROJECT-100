@@ -37,7 +37,7 @@ public partial class MathCalculationBlock : CodeBlock
 			if (child is CodeBlock block)
 			{
 				await block.Execute();
-				BlockValue = block.BlockValue;
+				SetBlockValue(block.GetBlockValue());
 			}
 			else if (!string.IsNullOrWhiteSpace(value1.Text) && !string.IsNullOrWhiteSpace(value2.Text))
 			{
@@ -47,7 +47,7 @@ public partial class MathCalculationBlock : CodeBlock
 				int v1, v2;
 				if (int.TryParse(Value1, out v1) && int.TryParse(Value2, out v2))
 				{
-					BlockValue = Calculate(v1, v2, mathSymbol.Text);
+					SetBlockValue(Calculate(v1, v2, mathSymbol.Text));
 				}
 				else
 				{
@@ -55,7 +55,7 @@ public partial class MathCalculationBlock : CodeBlock
 					value1.Text = string.Empty;
 					value2.Text = string.Empty;
 					ShowErrorMessage("Please enter valid integers for Value1 and Value2.");
-					BlockValue = 0; // Reset BlockValue
+					SetBlockValue(0); // Reset BlockValue
 				}
 			}
 		}

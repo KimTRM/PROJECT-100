@@ -3,7 +3,7 @@ using GodotUtilities;
 using System;
 
 [Scene]
-public partial class BlockPicker : MarginContainer
+public partial class BlockPicker : PanelContainer
 {
 	[Node("ScrollContainer/MarginContainer/CodeBlockContainer")]
 	public VBoxContainer codeBlockContainer;
@@ -20,14 +20,19 @@ public partial class BlockPicker : MarginContainer
 
 	public override void _Ready()
 	{
-		codeBlockContainer = GetNode<VBoxContainer>("ScrollContainer/MarginContainer/CodeBlockContainer");
+		MouseEntered += OnMouseEntered;
 
 		foreach (Control child in codeBlockContainer.GetChildren())
 		{
-			if (child is CodeBlock block)
+			if (child is BlockCategoryContainer blockCategoryContainer)
 			{
-				block.dragManager = dragManager;
+				dragManager.DragManagerReady += blockCategoryContainer.OnDragManagerReady;
 			}
 		}
+	}
+
+	private void OnMouseEntered()
+	{
+		dragManager.SetDroppableTarget(codeBlockContainer);
 	}
 }

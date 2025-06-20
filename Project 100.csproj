@@ -7,13 +7,4 @@
   <ItemGroup>
     <PackageReference Include="Firebelley.GodotUtilities" Version="5.0.0" />
   </ItemGroup>
-    <ItemGroup>
-    <Compile Remove="Scenes\**" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Remove="Scenes\**" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Common\" />
-  </ItemGroup>
 </Project>

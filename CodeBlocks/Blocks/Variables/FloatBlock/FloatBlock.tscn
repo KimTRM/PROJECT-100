@@ -1,7 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cojfo4sy7un6u"]
-
-[ext_resource type="Script" uid="uid://dgw4rqjogk85w" path="res://CodeBlocks/Blocks/Variables/FloatBlock/Scripts/float_block.gd" id="1_r1nf7"]
-[ext_resource type="Resource" uid="uid://cbt5qv67g5lef" path="res://CodeBlocks/Blocks/Variables/FloatBlock/Scripts/FloatBlock.tres" id="2_w3bk6"]
+[gd_scene load_steps=3 format=3 uid="uid://cojfo4sy7un6u"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mrdtd"]
 bg_color = Color(0.847059, 0.384314, 0.384314, 1)
@@ -24,8 +21,6 @@ offset_right = 232.0
 offset_bottom = 38.0
 size_flags_horizontal = 8
 theme_override_styles/panel = SubResource("StyleBoxFlat_mrdtd")
-script = ExtResource("1_r1nf7")
-code = ExtResource("2_w3bk6")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2

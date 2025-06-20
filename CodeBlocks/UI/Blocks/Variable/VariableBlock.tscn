@@ -22,8 +22,11 @@ corner_radius_bottom_left = 18
 anti_aliasing = false
 
 [node name="VariableBlock" type="MarginContainer"]
-offset_right = 159.0
-offset_bottom = 38.0
+custom_minimum_size = Vector2(160, 50)
+offset_right = 160.0
+offset_bottom = 50.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
 script = ExtResource("1_yup04")
 
 [node name="Panel" type="Panel" parent="."]
@@ -61,6 +64,7 @@ caret_blink = true
 caret_blink_interval = 0.38
 
 [node name="ExressionBlock" parent="MarginContainer/HBoxContainer/VariableContainer" instance=ExtResource("3_dsqkf")]
+visible = false
 layout_mode = 2
 
 [node name="Label2" type="Label" parent="MarginContainer/HBoxContainer"]
