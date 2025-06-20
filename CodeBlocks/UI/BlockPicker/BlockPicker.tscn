@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://dl1yi3e2oqj0k"]
+[gd_scene load_steps=7 format=3 uid="uid://dl1yi3e2oqj0k"]
 
 [ext_resource type="PackedScene" uid="uid://drcorwafubvtf" path="res://CodeBlocks/UI/Blocks/Variable/VariableBlock.tscn" id="1_1h783"]
 [ext_resource type="Script" uid="uid://b2h0ktgys47cl" path="res://CodeBlocks/UI/BlockPicker/BlockPicker.cs" id="1_nafb2"]
 [ext_resource type="PackedScene" uid="uid://lwl73yb5asfc" path="res://CodeBlocks/UI/BlockPicker/BlockContainer/BlockCategoryContainer.tscn" id="3_wbj7l"]
+[ext_resource type="PackedScene" uid="uid://dbkjr5boxysai" path="res://CodeBlocks/UI/Blocks/Print/PrintBlock.tscn" id="4_lpvpy"]
+[ext_resource type="PackedScene" uid="uid://d2brrh2xkbn6x" path="res://CodeBlocks/UI/Blocks/Experssion/Math/MathCalculationBlock.tscn" id="5_qjdmr"]
+[ext_resource type="PackedScene" uid="uid://bm8qnm1lt3fgb" path="res://CodeBlocks/UI/Blocks/Condition/ConditionBlock.tscn" id="6_4ydnw"]
 
 [node name="BlockPicker" type="PanelContainer"]
 texture_filter = 1
@@ -38,5 +41,66 @@ BlockDefinitions = Array[PackedScene]([ExtResource("1_1h783")])
 [node name="BlockCategoryContainer2" parent="ScrollContainer/MarginContainer/CodeBlockContainer" instance=ExtResource("3_wbj7l")]
 layout_mode = 2
 
+[node name="VariableBlock" parent="ScrollContainer/MarginContainer/CodeBlockContainer/BlockCategoryContainer2/VBoxContainer/CodeBlockContainer" index="0"]
+visible = false
+
+[node name="VariableBlock2" parent="ScrollContainer/MarginContainer/CodeBlockContainer/BlockCategoryContainer2/VBoxContainer/CodeBlockContainer" index="1"]
+visible = false
+
+[node name="VariableBlock3" parent="ScrollContainer/MarginContainer/CodeBlockContainer/BlockCategoryContainer2/VBoxContainer/CodeBlockContainer" index="2"]
+visible = false
+
+[node name="PrintBlock" parent="ScrollContainer/MarginContainer/CodeBlockContainer/BlockCategoryContainer2/VBoxContainer/CodeBlockContainer" index="3" instance=ExtResource("4_lpvpy")]
+layout_mode = 2
+
+[node name="PrintBlock2" parent="ScrollContainer/MarginContainer/CodeBlockContainer/BlockCategoryContainer2/VBoxContainer/CodeBlockContainer" index="4" instance=ExtResource("4_lpvpy")]
+layout_mode = 2
+
+[node name="PrintBlock3" parent="ScrollContainer/MarginContainer/CodeBlockContainer/BlockCategoryContainer2/VBoxContainer/CodeBlockContainer" index="5" instance=ExtResource("4_lpvpy")]
+layout_mode = 2
+
 [node name="BlockCategoryContainer3" parent="ScrollContainer/MarginContainer/CodeBlockContainer" instance=ExtResource("3_wbj7l")]
 layout_mode = 2
+
+[node name="VariableBlock" parent="ScrollContainer/MarginContainer/CodeBlockContainer/BlockCategoryContainer3/VBoxContainer/CodeBlockContainer" index="0"]
+visible = false
+
+[node name="VariableBlock2" parent="ScrollContainer/MarginContainer/CodeBlockContainer/BlockCategoryContainer3/VBoxContainer/CodeBlockContainer" index="1"]
+visible = false
+
+[node name="VariableBlock3" parent="ScrollContainer/MarginContainer/CodeBlockContainer/BlockCategoryContainer3/VBoxContainer/CodeBlockContainer" index="2"]
+visible = false
+
+[node name="MathCalculationBlock" parent="ScrollContainer/MarginContainer/CodeBlockContainer/BlockCategoryContainer3/VBoxContainer/CodeBlockContainer" index="3" instance=ExtResource("5_qjdmr")]
+layout_mode = 2
+
+[node name="MathCalculationBlock2" parent="ScrollContainer/MarginContainer/CodeBlockContainer/BlockCategoryContainer3/VBoxContainer/CodeBlockContainer" index="4" instance=ExtResource("5_qjdmr")]
+layout_mode = 2
+
+[node name="MathCalculationBlock3" parent="ScrollContainer/MarginContainer/CodeBlockContainer/BlockCategoryContainer3/VBoxContainer/CodeBlockContainer" index="5" instance=ExtResource("5_qjdmr")]
+layout_mode = 2
+
+[node name="BlockCategoryContainer4" parent="ScrollContainer/MarginContainer/CodeBlockContainer" instance=ExtResource("3_wbj7l")]
+layout_mode = 2
+
+[node name="VariableBlock" parent="ScrollContainer/MarginContainer/CodeBlockContainer/BlockCategoryContainer4/VBoxContainer/CodeBlockContainer" index="0"]
+visible = false
+
+[node name="VariableBlock2" parent="ScrollContainer/MarginContainer/CodeBlockContainer/BlockCategoryContainer4/VBoxContainer/CodeBlockContainer" index="1"]
+visible = false
+
+[node name="VariableBlock3" parent="ScrollContainer/MarginContainer/CodeBlockContainer/BlockCategoryContainer4/VBoxContainer/CodeBlockContainer" index="2"]
+visible = false
+
+[node name="ConditionBlock" parent="ScrollContainer/MarginContainer/CodeBlockContainer/BlockCategoryContainer4/VBoxContainer/CodeBlockContainer" index="3" instance=ExtResource("6_4ydnw")]
+layout_mode = 2
+
+[node name="ConditionBlock2" parent="ScrollContainer/MarginContainer/CodeBlockContainer/BlockCategoryContainer4/VBoxContainer/CodeBlockContainer" index="4" instance=ExtResource("6_4ydnw")]
+layout_mode = 2
+
+[node name="ConditionBlock3" parent="ScrollContainer/MarginContainer/CodeBlockContainer/BlockCategoryContainer4/VBoxContainer/CodeBlockContainer" index="5" instance=ExtResource("6_4ydnw")]
+layout_mode = 2
+
+[editable path="ScrollContainer/MarginContainer/CodeBlockContainer/BlockCategoryContainer2"]
+[editable path="ScrollContainer/MarginContainer/CodeBlockContainer/BlockCategoryContainer3"]
+[editable path="ScrollContainer/MarginContainer/CodeBlockContainer/BlockCategoryContainer4"]
