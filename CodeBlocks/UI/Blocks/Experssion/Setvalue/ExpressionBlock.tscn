@@ -1,6 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cxeco0k7s7brh"]
+[gd_scene load_steps=6 format=3 uid="uid://cxeco0k7s7brh"]
 
 [ext_resource type="Script" uid="uid://bgdcababppa4h" path="res://CodeBlocks/UI/Blocks/Experssion/Setvalue/ExpressionBlock.cs" id="1_eerog"]
+[ext_resource type="Script" uid="uid://beavoq4vmtdhe" path="res://CodeBlocks/Drag&Drop/DragAreaComponent.cs" id="2_ggirj"]
+[ext_resource type="Script" uid="uid://xc2s0k7u57hr" path="res://CodeBlocks/Drag&Drop/DropAreaComponent.cs" id="2_r534e"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lgf25"]
 bg_color = Color(0.6, 1, 0.521569, 1)
@@ -38,10 +40,13 @@ theme_override_constants/margin_bottom = 4
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 
-[node name="ValueContainer1" type="PanelContainer" parent="MarginContainer/HBoxContainer"]
+[node name="ValueContainer1" type="PanelContainer" parent="MarginContainer/HBoxContainer" node_paths=PackedStringArray("droppableArea")]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_22g5j")
+script = ExtResource("2_r534e")
+droppableArea = NodePath("Value1")
+metadata/_custom_type_script = "uid://xc2s0k7u57hr"
 
 [node name="Value1" type="LineEdit" parent="MarginContainer/HBoxContainer/ValueContainer1"]
 layout_mode = 2
@@ -55,10 +60,13 @@ caret_blink_interval = 0.38
 layout_mode = 2
 text = "="
 
-[node name="ValueContainer2" type="PanelContainer" parent="MarginContainer/HBoxContainer"]
+[node name="ValueContainer2" type="PanelContainer" parent="MarginContainer/HBoxContainer" node_paths=PackedStringArray("droppableArea")]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_22g5j")
+script = ExtResource("2_r534e")
+droppableArea = NodePath("Value2")
+metadata/_custom_type_script = "uid://xc2s0k7u57hr"
 
 [node name="Value2" type="LineEdit" parent="MarginContainer/HBoxContainer/ValueContainer2"]
 layout_mode = 2
@@ -67,3 +75,8 @@ expand_to_text_length = true
 flat = true
 caret_blink = true
 caret_blink_interval = 0.38
+
+[node name="DragAreaComponent" type="Node" parent="." node_paths=PackedStringArray("draggableArea")]
+script = ExtResource("2_ggirj")
+draggableArea = NodePath("..")
+metadata/_custom_type_script = "uid://beavoq4vmtdhe"

@@ -41,15 +41,6 @@ public partial class BlockCanvas : MarginContainer
     {
         console = GetNode<Console>(ConsolePath);
         MouseEntered += OnMouseEntered;
-
-        foreach (Control child in Window.GetChildren())
-        {
-            if (child is CodeBlock block)
-            {
-                block.dragManager = dragManager;
-                // block.console = console;
-            }
-        }
     }
 
     public override void _GuiInput(InputEvent @event)

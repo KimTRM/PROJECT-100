@@ -1,4 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://bm8qnm1lt3fgb"]
+[gd_scene load_steps=8 format=3 uid="uid://bm8qnm1lt3fgb"]
+
+[ext_resource type="Script" uid="uid://dnccex6n1khy8" path="res://CodeBlocks/UI/Blocks/Condition/ConditionBlock.cs" id="1_rbybd"]
+[ext_resource type="Script" uid="uid://beavoq4vmtdhe" path="res://CodeBlocks/Drag&Drop/DragAreaComponent.cs" id="2_58g58"]
+[ext_resource type="Script" uid="uid://xc2s0k7u57hr" path="res://CodeBlocks/Drag&Drop/DropAreaComponent.cs" id="2_xq6ck"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_58g58"]
 content_margin_left = 12.0
@@ -9,6 +13,13 @@ bg_color = Color(0.611765, 0.419608, 1, 1)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0u11h"]
+bg_color = Color(0.0156863, 0.0156863, 0.0156863, 0.4)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iabyi"]
 content_margin_left = 16.0
@@ -24,10 +35,13 @@ content_margin_right = 16.0
 content_margin_bottom = 16.0
 bg_color = Color(0.611765, 0.419608, 1, 1)
 corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
 
 [node name="ConditionBlock" type="MarginContainer"]
+offset_right = 109.0
+offset_bottom = 121.0
+script = ExtResource("1_rbybd")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -45,9 +59,14 @@ layout_mode = 2
 layout_mode = 2
 text = "IF"
 
-[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/PanelContainer/HBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/PanelContainer/HBoxContainer" node_paths=PackedStringArray("droppableArea")]
+clip_contents = true
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_0u11h")
+script = ExtResource("2_xq6ck")
+droppableArea = NodePath("OptionButton")
+metadata/_custom_type_script = "uid://xc2s0k7u57hr"
 
 [node name="OptionButton" type="OptionButton" parent="VBoxContainer/PanelContainer/HBoxContainer/PanelContainer"]
 layout_mode = 2
@@ -65,7 +84,7 @@ layout_mode = 2
 theme_override_constants/separation = -1
 
 [node name="PanelContainer2" type="PanelContainer" parent="VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(40, 20)
+custom_minimum_size = Vector2(32, 20)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_iabyi")
 
@@ -80,3 +99,12 @@ theme_override_constants/separation = 0
 custom_minimum_size = Vector2(100, 25)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_4lg8h")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="DragAreaComponent" type="Node" parent="." node_paths=PackedStringArray("draggableArea")]
+physics_interpolation_mode = 2
+script = ExtResource("2_58g58")
+draggableArea = NodePath("../VBoxContainer/PanelContainer")
+metadata/_custom_type_script = "uid://beavoq4vmtdhe"

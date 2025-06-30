@@ -79,10 +79,6 @@ public partial class MathCalculationBlock : CodeBlock
 		}
 	}
 
-	public override void _Ready()
-	{
-	}
-
 	private void ShowErrorMessage(string message)
 	{
 		// Example: Display a popup or label with the error message

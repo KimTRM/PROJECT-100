@@ -26,16 +26,4 @@ public partial class BlockCategoryContainer : PanelContainer
 	public override void _Ready()
 	{
 	}
-
-	public void OnDragManagerReady(DragManager dragManager)
-	{
-		this.dragManager = dragManager;
-		foreach (Control child in codeBlockContainer.GetChildren())
-		{
-			if (child is CodeBlock block)
-			{
-				block.dragManager = dragManager;
-			}
-		}
-	}
 }

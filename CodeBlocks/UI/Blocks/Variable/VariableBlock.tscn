@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://drcorwafubvtf"]
+[gd_scene load_steps=7 format=3 uid="uid://drcorwafubvtf"]
 
 [ext_resource type="Script" uid="uid://cyod5r2p4kyj6" path="res://CodeBlocks/UI/Blocks/Variable/VariableBlock.cs" id="1_yup04"]
+[ext_resource type="Script" uid="uid://xc2s0k7u57hr" path="res://CodeBlocks/Drag&Drop/DropAreaComponent.cs" id="2_cx4aw"]
 [ext_resource type="PackedScene" uid="uid://cxeco0k7s7brh" path="res://CodeBlocks/UI/Blocks/Experssion/Setvalue/ExpressionBlock.tscn" id="3_dsqkf"]
+[ext_resource type="Script" uid="uid://beavoq4vmtdhe" path="res://CodeBlocks/Drag&Drop/DragAreaComponent.cs" id="4_eke8f"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7f2a0"]
 bg_color = Color(0.847059, 0.384314, 0.384314, 1)
@@ -49,10 +51,13 @@ text = "Int"
 vertical_alignment = 1
 uppercase = true
 
-[node name="VariableContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer"]
+[node name="VariableContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer" node_paths=PackedStringArray("droppableArea")]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_p7kf4")
+script = ExtResource("2_cx4aw")
+droppableArea = NodePath("VarName")
+metadata/_custom_type_script = "uid://xc2s0k7u57hr"
 
 [node name="VarName" type="LineEdit" parent="MarginContainer/HBoxContainer/VariableContainer"]
 layout_mode = 2
@@ -64,7 +69,6 @@ caret_blink = true
 caret_blink_interval = 0.38
 
 [node name="ExressionBlock" parent="MarginContainer/HBoxContainer/VariableContainer" instance=ExtResource("3_dsqkf")]
-visible = false
 layout_mode = 2
 
 [node name="Label2" type="Label" parent="MarginContainer/HBoxContainer"]
@@ -86,3 +90,8 @@ expand_to_text_length = true
 flat = true
 caret_blink = true
 caret_blink_interval = 0.38
+
+[node name="DragAreaComponent" type="Node" parent="." node_paths=PackedStringArray("draggableArea")]
+script = ExtResource("4_eke8f")
+draggableArea = NodePath("..")
+metadata/_custom_type_script = "uid://beavoq4vmtdhe"

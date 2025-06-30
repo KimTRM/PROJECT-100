@@ -6,11 +6,10 @@ using System;
 [Scene]
 public partial class UiManager : CanvasLayer
 {
-	public static UiManager Instance { get; private set; }
+    public static UiManager Instance { get; private set; }
     [Node] private CanvasLayer PauseMenu;
     [Node] private CanvasLayer SettingsMenu;
     [Node] private CanvasLayer CutSceneLoader;
-    [Node("MainPanel")] private CanvasLayer MainPanel;
     [Node] private CanvasLayer PopupWindow;
     [Node] private CanvasLayer SceneTransition;
 
@@ -27,7 +26,7 @@ public partial class UiManager : CanvasLayer
 
     public override void _Ready()
     {
-		Instance = this;
+        Instance = this;
         InitializeUIElements();
     }
 
@@ -35,7 +34,6 @@ public partial class UiManager : CanvasLayer
     {
         uiElements = new Dictionary<string, CanvasLayer>
         {
-            { "MainPanel", MainPanel },
             { "PauseMenu", PauseMenu },
             { "SettingsMenu", SettingsMenu },
             { "CutSceneLoader", CutSceneLoader },
@@ -51,10 +49,10 @@ public partial class UiManager : CanvasLayer
         foreach (var uiElement in uiElements.Values)
         {
             if (uiElement != null)
-			{
-				uiElement.Visible = false;
-				uiElement.Layer = 0;
-			}
+            {
+                uiElement.Visible = false;
+                uiElement.Layer = 0;
+            }
         }
     }
 
@@ -80,6 +78,6 @@ public partial class UiManager : CanvasLayer
 
         HideAllUI();
         uiElements[newUI.Name].Visible = true;
-		uiElements[newUI.Name].Layer = Layer;
+        uiElements[newUI.Name].Layer = Layer;
     }
 }

@@ -1,6 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://d2brrh2xkbn6x"]
+[gd_scene load_steps=6 format=3 uid="uid://d2brrh2xkbn6x"]
 
 [ext_resource type="Script" uid="uid://djdfd67hdvkb1" path="res://CodeBlocks/UI/Blocks/Experssion/Math/MathCalculationBlock.cs" id="1_2ryak"]
+[ext_resource type="Script" uid="uid://xc2s0k7u57hr" path="res://CodeBlocks/Drag&Drop/DropAreaComponent.cs" id="2_lkm8c"]
+[ext_resource type="Script" uid="uid://beavoq4vmtdhe" path="res://CodeBlocks/Drag&Drop/DragAreaComponent.cs" id="3_tgxqs"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lkm8c"]
 bg_color = Color(0.969775, 0.64295, 0, 1)
@@ -37,10 +39,13 @@ theme_override_constants/margin_bottom = 4
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="ValueContainer1" type="PanelContainer" parent="PanelContainer/MarginContainer/HBoxContainer"]
+[node name="ValueContainer1" type="PanelContainer" parent="PanelContainer/MarginContainer/HBoxContainer" node_paths=PackedStringArray("droppableArea")]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_hb57r")
+script = ExtResource("2_lkm8c")
+droppableArea = NodePath("Value1")
+metadata/_custom_type_script = "uid://xc2s0k7u57hr"
 
 [node name="Value1" type="LineEdit" parent="PanelContainer/MarginContainer/HBoxContainer/ValueContainer1"]
 layout_mode = 2
@@ -66,10 +71,13 @@ popup/item_2/id = 2
 popup/item_3/text = "*"
 popup/item_3/id = 3
 
-[node name="ValueContainer2" type="PanelContainer" parent="PanelContainer/MarginContainer/HBoxContainer"]
+[node name="ValueContainer2" type="PanelContainer" parent="PanelContainer/MarginContainer/HBoxContainer" node_paths=PackedStringArray("droppableArea")]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_hb57r")
+script = ExtResource("2_lkm8c")
+droppableArea = NodePath("Value2")
+metadata/_custom_type_script = "uid://xc2s0k7u57hr"
 
 [node name="Value2" type="LineEdit" parent="PanelContainer/MarginContainer/HBoxContainer/ValueContainer2"]
 layout_mode = 2
@@ -78,3 +86,8 @@ expand_to_text_length = true
 flat = true
 caret_blink = true
 caret_blink_interval = 0.38
+
+[node name="DragAreaComponent" type="Node" parent="." node_paths=PackedStringArray("draggableArea")]
+script = ExtResource("3_tgxqs")
+draggableArea = NodePath("..")
+metadata/_custom_type_script = "uid://beavoq4vmtdhe"

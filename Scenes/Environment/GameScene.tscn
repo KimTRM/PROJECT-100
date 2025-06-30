@@ -96,10 +96,9 @@ shape = SubResource("RectangleShape2D_7fssw")
 position = Vector2(-1964, -1208)
 
 [node name="D-A-L" parent="." instance=ExtResource("3_7qkkk")]
-position = Vector2(-1137, -595)
+position = Vector2(-1174, -609)
 
 [node name="InteractableArea" parent="D-A-L" instance=ExtResource("9_lt366")]
-visible = false
 DialogueResource = ExtResource("6_sl5mp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="D-A-L/InteractableArea"]
