@@ -40,12 +40,12 @@ theme_override_constants/margin_bottom = 4
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 
-[node name="ValueContainer1" type="PanelContainer" parent="MarginContainer/HBoxContainer" node_paths=PackedStringArray("droppableArea")]
+[node name="ValueContainer1" type="PanelContainer" parent="MarginContainer/HBoxContainer" node_paths=PackedStringArray("dropZone")]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_22g5j")
 script = ExtResource("2_r534e")
-droppableArea = NodePath("Value1")
+dropZone = NodePath("Value1")
 metadata/_custom_type_script = "uid://xc2s0k7u57hr"
 
 [node name="Value1" type="LineEdit" parent="MarginContainer/HBoxContainer/ValueContainer1"]
@@ -60,12 +60,12 @@ caret_blink_interval = 0.38
 layout_mode = 2
 text = "="
 
-[node name="ValueContainer2" type="PanelContainer" parent="MarginContainer/HBoxContainer" node_paths=PackedStringArray("droppableArea")]
+[node name="ValueContainer2" type="PanelContainer" parent="MarginContainer/HBoxContainer" node_paths=PackedStringArray("dropZone")]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_22g5j")
 script = ExtResource("2_r534e")
-droppableArea = NodePath("Value2")
+dropZone = NodePath("Value2")
 metadata/_custom_type_script = "uid://xc2s0k7u57hr"
 
 [node name="Value2" type="LineEdit" parent="MarginContainer/HBoxContainer/ValueContainer2"]

@@ -41,12 +41,12 @@ layout_mode = 2
 layout_mode = 2
 text = "Print"
 
-[node name="ValueContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/HBoxContainer" node_paths=PackedStringArray("droppableArea")]
+[node name="ValueContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/HBoxContainer" node_paths=PackedStringArray("dropZone")]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_jnpc6")
 script = ExtResource("2_plb6o")
-droppableArea = NodePath("Value")
+dropZone = NodePath("Value")
 metadata/_custom_type_script = "uid://xc2s0k7u57hr"
 
 [node name="Value" type="LineEdit" parent="PanelContainer/MarginContainer/HBoxContainer/ValueContainer"]

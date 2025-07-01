@@ -8,22 +8,26 @@ public partial class DropAreaComponent : PanelContainer
 	private bool isDroppable = true;
 
 	[Export]
-	private Array<string> allowedBlockTypes = new Array<string>();
+	private Control dropContainer;
 
 	[Export]
-	private Control droppableArea;
+	private Control dropZone;
+
+	[Export]
+	private Array<string> allowedBlockTypes = new Array<string>();
+
 	public DragManager DragManager;
 
 	public override void _Ready()
 	{
-		if (droppableArea == null)
+		if (dropZone == null)
 		{
 			GD.PrintErr("Droppable area is not set for DropAreaComponent." + GetParent().Name);
 			return;
 		}
 
 		CodeBlockManager.Instance.DragManagerReady += DragManagerReady;
-		droppableArea.MouseEntered += OnMouseEntered;
+		dropZone.MouseEntered += OnMouseEntered;
 	}
 
 	private void DragManagerReady(DragManager dragManager)
@@ -33,6 +37,9 @@ public partial class DropAreaComponent : PanelContainer
 
 	private void OnMouseEntered()
 	{
-		DragManager.SetDroppableTarget(this);
+		if (dropContainer == null)
+			dropContainer = this;
+
+		DragManager.SetDroppableTarget(dropContainer);
 	}
 }

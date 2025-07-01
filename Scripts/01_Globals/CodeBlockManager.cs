@@ -15,6 +15,11 @@ public partial class CodeBlockManager : Node
 		DragManagerReady += OnDragManagerReady;
 	}
 
+	public void EmitDragManagerReady(DragManager dragManager)
+	{
+		Instance.EmitSignalDragManagerReady(dragManager);
+	}
+
 	private void OnDragManagerReady(DragManager dragManager)
 	{
 		this.dragManager = dragManager;

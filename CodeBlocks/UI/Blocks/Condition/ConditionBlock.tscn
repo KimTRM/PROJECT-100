@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bm8qnm1lt3fgb"]
+[gd_scene load_steps=9 format=3 uid="uid://bm8qnm1lt3fgb"]
 
 [ext_resource type="Script" uid="uid://dnccex6n1khy8" path="res://CodeBlocks/UI/Blocks/Condition/ConditionBlock.cs" id="1_rbybd"]
 [ext_resource type="Script" uid="uid://beavoq4vmtdhe" path="res://CodeBlocks/Drag&Drop/DragAreaComponent.cs" id="2_58g58"]
@@ -27,6 +27,8 @@ content_margin_top = 16.0
 content_margin_right = 16.0
 content_margin_bottom = 16.0
 bg_color = Color(0.611765, 0.419608, 1, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xq6ck"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4lg8h"]
 content_margin_left = 16.0
@@ -59,13 +61,13 @@ layout_mode = 2
 layout_mode = 2
 text = "IF"
 
-[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/PanelContainer/HBoxContainer" node_paths=PackedStringArray("droppableArea")]
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/PanelContainer/HBoxContainer" node_paths=PackedStringArray("dropZone")]
 clip_contents = true
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_0u11h")
 script = ExtResource("2_xq6ck")
-droppableArea = NodePath("OptionButton")
+dropZone = NodePath("OptionButton")
 metadata/_custom_type_script = "uid://xc2s0k7u57hr"
 
 [node name="OptionButton" type="OptionButton" parent="VBoxContainer/PanelContainer/HBoxContainer/PanelContainer"]
@@ -86,10 +88,17 @@ theme_override_constants/separation = -1
 [node name="PanelContainer2" type="PanelContainer" parent="VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(32, 20)
 layout_mode = 2
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_iabyi")
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer"]
+[node name="MarginContainer" type="PanelContainer" parent="VBoxContainer/HBoxContainer" node_paths=PackedStringArray("dropContainer", "dropZone")]
 layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_xq6ck")
+script = ExtResource("2_xq6ck")
+dropContainer = NodePath(".")
+dropZone = NodePath("VBoxContainer")
+metadata/_custom_type_script = "uid://xc2s0k7u57hr"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/MarginContainer"]
 layout_mode = 2
@@ -98,6 +107,7 @@ theme_override_constants/separation = 0
 [node name="PanelContainer3" type="PanelContainer" parent="VBoxContainer"]
 custom_minimum_size = Vector2(100, 25)
 layout_mode = 2
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_4lg8h")
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]

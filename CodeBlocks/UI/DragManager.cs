@@ -15,10 +15,7 @@ public partial class DragManager : Control
 
     public override void _Ready()
     {
-        CodeBlockManager.Instance.EmitSignal(
-            nameof(CodeBlockManager.DragManagerReady),
-            this
-        );
+        CodeBlockManager.Instance.EmitDragManagerReady(this);
     }
 
     public override void _Process(double delta)
@@ -58,7 +55,9 @@ public partial class DragManager : Control
         _draggedObject = draggable;
         _draggedObject.MouseFilter = MouseFilterEnum.Ignore;
         _draggedObject.Reparent(this);
-        _offset = GetGlobalMousePosition() - _draggedObject.GlobalPosition;
+        // Offest bellow the object to align with mouse
+        _offset = GetGlobalMousePosition() - _draggedObject.GlobalPosition + new Vector2(0, 18);
+
     }
 
     private void EndDrag()
