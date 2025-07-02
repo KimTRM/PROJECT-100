@@ -3,7 +3,7 @@ using Godot;
 using GodotUtilities;
 
 [Scene]
-public partial class BlockCanvas : MarginContainer
+public partial class BlockCanvas : DropAreaComponent
 {
     [Node("WindowContainer/Overlay/MarginContainer/ZoomButtons/ZoomButton")]
     private Button ZoomButton;
@@ -22,6 +22,7 @@ public partial class BlockCanvas : MarginContainer
     private float _maxZoom = 5.0f;
 
     private bool _isDragging = false;
+    private bool _canInteract;
     private Vector2 _dragStartPos;
     private Vector2 _controlStartPos;
 
@@ -35,16 +36,13 @@ public partial class BlockCanvas : MarginContainer
         }
     }
 
-    public override void _Ready()
+    public override void _Input(InputEvent @event)
     {
-        console = GetNode<Console>(ConsolePath);
-        MouseEntered += OnMouseEntered;
-    }
-
-    public override void _GuiInput(InputEvent @event)
-    {
-        ZoomCanvas(@event);
-        DragCanvas(@event);
+        if (_canInteract)
+        {
+            ZoomCanvas(@event);
+            DragCanvas(@event);
+        }
     }
 
     private void ZoomCanvas(InputEvent @event)
@@ -100,11 +98,14 @@ public partial class BlockCanvas : MarginContainer
         ZoomButton.Text = $"{_zoomFactor:F1}x";
     }
 
-    private void OnMouseEntered()
+    private void _on_mouse_entered()
     {
-        dragManager.SetDroppableTarget(Window);
+        _canInteract = true;
     }
-
+    private void _on_mouse_exited()
+    {
+        _canInteract = false;
+    }
     private void _on_zoom_in_button_pressed()
     {
         AdjustZoom(_zoomFactor + _zoomStep);

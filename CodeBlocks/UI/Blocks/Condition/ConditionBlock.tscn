@@ -96,7 +96,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_xq6ck")
 script = ExtResource("2_xq6ck")
-dropContainer = NodePath(".")
+dropContainer = NodePath("VBoxContainer")
 dropZone = NodePath("VBoxContainer")
 metadata/_custom_type_script = "uid://xc2s0k7u57hr"
 

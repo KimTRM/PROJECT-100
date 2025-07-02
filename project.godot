@@ -64,14 +64,13 @@ enabled=PackedStringArray("res://addons/AsepriteWizard/plugin.cfg", "res://addon
 
 folder_colors={
 "res://Assets/": "yellow",
-"res://CodeBlocks/Blocks/Conditionals/": "orange",
-"res://CodeBlocks/Blocks/Variables/": "red",
 "res://CodeBlocks/UI/Blocks/Condition/": "purple",
 "res://CodeBlocks/UI/Blocks/Experssion/": "green",
 "res://CodeBlocks/UI/Blocks/Print/": "blue",
 "res://CodeBlocks/UI/Blocks/Variable/": "red",
 "res://Dialouge/": "purple",
 "res://Resource/": "blue",
+"res://Resources/": "green",
 "res://Scenes/": "teal",
 "res://Scripts/": "orange",
 "res://addons/": "blue",
