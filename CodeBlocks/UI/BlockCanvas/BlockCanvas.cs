@@ -1,11 +1,9 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using Godot;
 using GodotUtilities;
 
 [Scene]
-public partial class BlockCanvas : MarginContainer
+public partial class BlockCanvas : DropAreaComponent
 {
     [Node("WindowContainer/Overlay/MarginContainer/ZoomButtons/ZoomButton")]
     private Button ZoomButton;
@@ -20,10 +18,11 @@ public partial class BlockCanvas : MarginContainer
 
     private float _zoomFactor = 1.0f;
     private float _zoomStep = 0.1f;
-    private float _minZoom = 0.5f;
-    private float _maxZoom = 2.0f;
+    private float _minZoom = 0.1f;
+    private float _maxZoom = 5.0f;
 
     private bool _isDragging = false;
+    private bool _canInteract;
     private Vector2 _dragStartPos;
     private Vector2 _controlStartPos;
 
@@ -37,25 +36,13 @@ public partial class BlockCanvas : MarginContainer
         }
     }
 
-    public override void _Ready()
+    public override void _Input(InputEvent @event)
     {
-        console = GetNode<Console>(ConsolePath);
-        MouseEntered += OnMouseEntered;
-
-        foreach (Control child in Window.GetChildren())
+        if (_canInteract)
         {
-            if (child is CodeBlock block)
-            {
-                block.dragManager = dragManager;
-                // block.console = console;
-            }
+            ZoomCanvas(@event);
+            DragCanvas(@event);
         }
-    }
-
-    public override void _GuiInput(InputEvent @event)
-    {
-        ZoomCanvas(@event);
-        DragCanvas(@event);
     }
 
     private void ZoomCanvas(InputEvent @event)
@@ -102,14 +89,23 @@ public partial class BlockCanvas : MarginContainer
         _zoomFactor = Mathf.Clamp(newZoom, _minZoom, _maxZoom);
         Window.Scale = new Vector2(_zoomFactor, _zoomFactor);
 
+        // Adjust the size of the window towards the mouse position when resizing
+        Vector2 mousePos = GetViewport().GetMousePosition();
+        Vector2 newSize = Window.Size * _zoomFactor;
+        Vector2 offset = mousePos - Window.GlobalPosition;
+        Window.GlobalPosition = mousePos - offset * _zoomFactor / _zoomFactor;
+
         ZoomButton.Text = $"{_zoomFactor:F1}x";
     }
 
-    private void OnMouseEntered()
+    private void _on_mouse_entered()
     {
-        dragManager.SetDroppableTarget(Window);
+        _canInteract = true;
     }
-
+    private void _on_mouse_exited()
+    {
+        _canInteract = false;
+    }
     private void _on_zoom_in_button_pressed()
     {
         AdjustZoom(_zoomFactor + _zoomStep);

@@ -19,10 +19,10 @@ public partial class PrintBlock : CodeBlock
 		}
 	}
 
-	public override void _Ready()
-	{
-		value.MouseEntered += OnMouseEntered;
-	}
+	// public override void _Ready()
+	// {
+	// 	// value.MouseEntered += OnMouseEntered;
+	// }
 
 	public override async Task Execute()
 	{
@@ -44,15 +44,15 @@ public partial class PrintBlock : CodeBlock
 		await Task.CompletedTask;
 	}
 
-	private void OnMouseEntered()
-	{
-		foreach (Control block in valueContainer.GetChildren())
-		{
-			if (block is CodeBlock codeBlock)
-			{
-				codeBlock.dragManager = dragManager;
-			}
-		}
-		dragManager.SetDroppableTarget(valueContainer);
-	}
+	// private void OnMouseEntered()
+	// {
+	// 	foreach (Control block in valueContainer.GetChildren())
+	// 	{
+	// 		if (block is CodeBlock codeBlock)
+	// 		{
+	// 			codeBlock.dragManager = dragManager;
+	// 		}
+	// 	}
+	// 	dragManager.SetDroppableTarget(valueContainer);
+	// }
 }

@@ -2,18 +2,18 @@
 
 [ext_resource type="Script" uid="uid://rnrlcufl0xql" path="res://CodeBlocks/UI/BlockCanvas/BlockCanvas.cs" id="1_084tk"]
 
-[node name="BlockCanvas" type="MarginContainer"]
+[node name="BlockCanvas" type="PanelContainer" node_paths=PackedStringArray("dropContainer", "dropZone")]
 clip_contents = true
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_084tk")
-
-[node name="Panel" type="Panel" parent="."]
-layout_mode = 2
 mouse_filter = 1
+script = ExtResource("1_084tk")
+dropContainer = NodePath("WindowContainer/Window")
+dropZone = NodePath("WindowContainer/Window")
+metadata/_custom_type_script = "uid://xc2s0k7u57hr"
 
 [node name="WindowContainer" type="Control" parent="."]
 layout_mode = 2
@@ -102,6 +102,8 @@ theme_override_font_sizes/font_size = 24
 text = "+"
 flat = true
 
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
 [connection signal="pressed" from="WindowContainer/Overlay/MarginContainer2/Execute" to="." method="_on_execute_pressed"]
 [connection signal="pressed" from="WindowContainer/Overlay/MarginContainer/ZoomButtons/ZoomOutButton" to="." method="_on_zoom_out_button_pressed"]
 [connection signal="pressed" from="WindowContainer/Overlay/MarginContainer/ZoomButtons/ZoomButton" to="." method="_on_zoom_button_pressed"]

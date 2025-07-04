@@ -73,7 +73,8 @@ public partial class InteractableArea : Area2D
 		if (ShowCodeBlock)
 		{
 			GD.Print("Showing code block");
-			UiManager.Instance.ChangeCurrentUI(UiManager.Instance.uiElements["MainPanel"]);
+			GameManager.Instance.LoadScene("uid://4280cgrri3yh");
+			// UiManager.Instance.ChangeCurrentUI(UiManager.Instance.uiElements["MainPanel"]);
 			EmitSignal(SignalName.Interacted, this);
 		}
 
