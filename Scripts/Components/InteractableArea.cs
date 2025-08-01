@@ -50,6 +50,7 @@ public partial class InteractableArea : Area2D
 			GD.Print($"Starting dialogue at: {DialogueStart}");
 			DialogueManager.ShowDialogueBalloon(DialogueResource, DialogueStart);
 			EmitSignal(SignalName.Interacted, this);
+
 			return;
 		}
 

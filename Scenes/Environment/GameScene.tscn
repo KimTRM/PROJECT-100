@@ -24,7 +24,7 @@ size = Vector2(29, 45)
 size = Vector2(137, 135.5)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3g4f5"]
-radius = 19.0263
+radius = 27.8927
 
 [node name="GameScene" type="Node2D"]
 script = ExtResource("1_44ihx")
@@ -102,6 +102,6 @@ position = Vector2(-1174, -609)
 DialogueResource = ExtResource("6_sl5mp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="D-A-L/InteractableArea"]
-position = Vector2(0, 4)
+position = Vector2(0, -1)
 shape = SubResource("CircleShape2D_3g4f5")
 debug_color = Color(0.0711944, 0.993485, 0.155312, 0.42)
