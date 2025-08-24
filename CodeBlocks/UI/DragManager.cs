@@ -55,7 +55,7 @@ public partial class DragManager : Control
         _draggedObject = draggable;
         _draggedObject.MouseFilter = MouseFilterEnum.Ignore;
         _draggedObject.Reparent(this);
-        // Offest bellow the object to align with mouse
+        // Offset bellow the object to align with mouse
         _offset = GetGlobalMousePosition() - _draggedObject.GlobalPosition + new Vector2(0, 18);
 
     }
