@@ -62,6 +62,7 @@ editable = true
 
 [node name="SnapPoint" parent="VBoxContainer" instance=ExtResource("4_yj206")]
 layout_mode = 2
+block_type = 1
 
 [connection signal="drag_started" from="VBoxContainer/DragDropArea" to="." method="_on_drag_drop_area_drag_started"]
 [connection signal="drag_started" from="VBoxContainer/TopMarginContainer/DragDropArea" to="." method="_on_drag_drop_area_drag_started"]

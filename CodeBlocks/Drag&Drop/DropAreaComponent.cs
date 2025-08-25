@@ -17,7 +17,7 @@ public partial class DropAreaComponent : PanelContainer
 	private Array<string> allowedBlockTypes = new Array<string>();
 
 	public DragManager DragManager;
-	
+
 	public override void _Ready()
 	{
 		if (dropZone == null)
