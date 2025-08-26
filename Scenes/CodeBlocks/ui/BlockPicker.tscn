@@ -1,11 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://dl1yi3e2oqj0k"]
+[gd_scene load_steps=6 format=3 uid="uid://dl1yi3e2oqj0k"]
 
-[ext_resource type="PackedScene" uid="uid://drcorwafubvtf" path="res://CodeBlocks/UI/Blocks/Variable/VariableBlock.tscn" id="1_1h783"]
-[ext_resource type="Script" uid="uid://b2h0ktgys47cl" path="res://CodeBlocks/UI/BlockPicker/BlockPicker.cs" id="1_nafb2"]
-[ext_resource type="PackedScene" uid="uid://lwl73yb5asfc" path="res://CodeBlocks/UI/BlockPicker/BlockContainer/BlockCategoryContainer.tscn" id="3_wbj7l"]
-[ext_resource type="PackedScene" uid="uid://dbkjr5boxysai" path="res://CodeBlocks/UI/Blocks/Print/PrintBlock.tscn" id="4_lpvpy"]
-[ext_resource type="PackedScene" uid="uid://d2brrh2xkbn6x" path="res://CodeBlocks/UI/Blocks/Experssion/Math/MathCalculationBlock.tscn" id="5_qjdmr"]
-[ext_resource type="PackedScene" uid="uid://bm8qnm1lt3fgb" path="res://CodeBlocks/UI/Blocks/Condition/ConditionBlock.tscn" id="6_4ydnw"]
+[ext_resource type="Script" uid="uid://dx5x5yebcdaus" path="res://Scripts/CodeBlocks/ui/BlockPicker.cs" id="1_5nmmw"]
+[ext_resource type="PackedScene" uid="uid://lwl73yb5asfc" path="res://Scenes/CodeBlocks/ui/BlockCategoryContainer.tscn" id="3_wbj7l"]
+[ext_resource type="PackedScene" uid="uid://dbkjr5boxysai" path="res://Scenes/CodeBlocks/Blocks/PrintBlock.tscn" id="4_lpvpy"]
+[ext_resource type="PackedScene" uid="uid://d2brrh2xkbn6x" path="res://Scenes/CodeBlocks/Blocks/MathCalculationBlock.tscn" id="5_qjdmr"]
+[ext_resource type="PackedScene" uid="uid://bm8qnm1lt3fgb" path="res://Scenes/CodeBlocks/Blocks/ConditionBlock.tscn" id="6_4ydnw"]
 
 [node name="BlockPicker" type="PanelContainer"]
 texture_filter = 1
@@ -14,7 +13,7 @@ anchors_preset = 9
 anchor_bottom = 1.0
 offset_right = 209.0
 grow_vertical = 2
-script = ExtResource("1_nafb2")
+script = ExtResource("1_5nmmw")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 2
@@ -36,7 +35,6 @@ alignment = 1
 
 [node name="BlockCategoryContainer" parent="ScrollContainer/MarginContainer/CodeBlockContainer" instance=ExtResource("3_wbj7l")]
 layout_mode = 2
-BlockDefinitions = Array[PackedScene]([ExtResource("1_1h783")])
 
 [node name="BlockCategoryContainer2" parent="ScrollContainer/MarginContainer/CodeBlockContainer" instance=ExtResource("3_wbj7l")]
 layout_mode = 2
