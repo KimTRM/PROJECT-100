@@ -10,7 +10,7 @@ public partial class AudioManager : Node
     private AudioStreamPlayer musicPlayer;
     private const string VolumeKey = "user://volume_setting.save"; // File for saving volume
 
-    private const float MinDb = -30.0f; // Soft limit for volume (mute is -80)
+    private const float MinDb = -50.0f; // Soft limit for volume (mute is -80)
     private const float MaxDb = 0.0f; // Full volume
 
     public override void _Ready()

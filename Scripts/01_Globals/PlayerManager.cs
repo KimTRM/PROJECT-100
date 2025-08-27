@@ -5,7 +5,7 @@ public partial class PlayerManager : Node
 {
     public static PlayerManager Instance { get; private set; }
 
-    private PackedScene PLAYER = (PackedScene)GD.Load("res://Scenes/Entities/Player/player.tscn");
+    private PackedScene PLAYER = (PackedScene)GD.Load("uid://b65nxfrri78o0");
     public Player player;
     public bool playerSpawned = false;
 
