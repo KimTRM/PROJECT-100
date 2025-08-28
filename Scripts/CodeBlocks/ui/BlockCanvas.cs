@@ -10,19 +10,12 @@ public partial class BlockCanvas : DropAreaComponent
     [Node("WindowContainer/Window")]
     public Control Window;
 
-    [Export] private DragManager dragManager;
-
-    [Export]
-    private NodePath ConsolePath;
-    public Console console;
-
     private float _zoomFactor = 1.0f;
     private float _zoomStep = 0.1f;
     private float _minZoom = 0.1f;
     private float _maxZoom = 5.0f;
 
     private bool _isDragging = false;
-    private bool _canInteract;
     private Vector2 _dragStartPos;
     private Vector2 _controlStartPos;
 
@@ -38,46 +31,52 @@ public partial class BlockCanvas : DropAreaComponent
 
     public override void _Input(InputEvent @event)
     {
-        if (_canInteract)
-        {
-            ZoomCanvas(@event);
-            DragCanvas(@event);
-        }
+        DragCanvas(@event);
+        ZoomCanvas(@event);
+    }
+
+    public bool IsMouseOver()
+    {
+        return GetGlobalRect().HasPoint(GetGlobalMousePosition());
+    }
+
+    public float GetZoomFactor()
+    {
+        return _zoomFactor;
     }
 
     private void ZoomCanvas(InputEvent @event)
     {
-        if (@event is InputEventMouseButton mouseEvent)
+        if (@event is InputEventMouseButton mouseEvent && IsMouseOver())
         {
-            // Zoom in/out
-            if (mouseEvent.Pressed)
+            if (mouseEvent.ButtonIndex == MouseButton.WheelUp)
             {
-                if (mouseEvent.ButtonIndex == MouseButton.WheelUp)
-                {
-                    AdjustZoom(_zoomFactor + _zoomStep);
-                }
-                else if (mouseEvent.ButtonIndex == MouseButton.WheelDown)
-                {
-                    AdjustZoom(_zoomFactor - _zoomStep);
-                }
-                // Start dragging
-                else if (mouseEvent.ButtonIndex == MouseButton.Middle)
-                {
-                    _isDragging = true;
-                    _dragStartPos = GetViewport().GetMousePosition();
-                    _controlStartPos = Window.Position;
-                }
+                AdjustZoom(_zoomFactor + _zoomStep);
             }
-            else if (!mouseEvent.Pressed && mouseEvent.ButtonIndex == MouseButton.Middle)
+            else if (mouseEvent.ButtonIndex == MouseButton.WheelDown)
             {
-                _isDragging = false;
+                AdjustZoom(_zoomFactor - _zoomStep);
             }
         }
     }
 
     private void DragCanvas(InputEvent @event)
     {
-        if (@event is InputEventMouseMotion motionEvent && _isDragging)
+        if (@event is InputEventMouseButton mouseEvent)
+        {
+            if (mouseEvent.Pressed && mouseEvent.ButtonIndex == MouseButton.Middle)
+            {
+                _isDragging = true;
+                _dragStartPos = GetViewport().GetMousePosition();
+                _controlStartPos = Window.Position;
+            }
+            else if (!mouseEvent.Pressed && mouseEvent.ButtonIndex == MouseButton.Middle)
+            {
+                _isDragging = false;
+            }
+        }
+
+        if (@event is InputEventMouseMotion && _isDragging)
         {
             Vector2 mouseDelta = GetViewport().GetMousePosition() - _dragStartPos;
             Window.Position = Window.Position.Lerp(_controlStartPos + mouseDelta, 25.0f * (float)GetProcessDeltaTime());
@@ -90,22 +89,13 @@ public partial class BlockCanvas : DropAreaComponent
         Window.Scale = new Vector2(_zoomFactor, _zoomFactor);
 
         // Adjust the size of the window towards the mouse position when resizing
-        Vector2 mousePos = GetViewport().GetMousePosition();
-        Vector2 newSize = Window.Size * _zoomFactor;
+        Vector2 mousePos = GetGlobalMousePosition() - GetGlobalRect().Position;
         Vector2 offset = mousePos - Window.GlobalPosition;
         Window.GlobalPosition = mousePos - offset * _zoomFactor / _zoomFactor;
 
         ZoomButton.Text = $"{_zoomFactor:F1}x";
     }
 
-    private void _on_mouse_entered()
-    {
-        _canInteract = true;
-    }
-    private void _on_mouse_exited()
-    {
-        _canInteract = false;
-    }
     private void _on_zoom_in_button_pressed()
     {
         AdjustZoom(_zoomFactor + _zoomStep);
