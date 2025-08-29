@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cirmbhtex875r"]
 
-[ext_resource type="Script" uid="uid://dp2r7tc5m121q" path="res://CodeBlocks/UI/Console/Console.cs" id="1_tq6uj"]
+[ext_resource type="Script" uid="uid://dp2r7tc5m121q" path="res://Scripts/CodeBlocks/ui/Console.cs" id="1_tq6uj"]
 
 [node name="Console" type="MarginContainer"]
 clip_contents = true

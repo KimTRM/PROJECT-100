@@ -15,8 +15,8 @@ public partial class HTTPManager : Node
 	[Export] public bool CheckError = false;
 
 	// private const string SERVER_URL = "https://kltldev.com/project100/dbmediator.php";
-	// private string SERVER_URL = "http://127.0.0.1/project100/dbmediator.php";
-	private string SERVER_URL = "http://192.168.101.71/project100/dbmediator.php";
+	private string SERVER_URL = "http://127.0.0.1/project100/dbmediator.php";
+	// private string SERVER_URL = "http://192.168.101.71/project100/dbmediator.php";
 	private string[] SERVER_HEADERS = { "Content-Type: application/x-www-form-urlencoded" };
 
 	public readonly Godot.Collections.Dictionary<string, string> Commands = new()

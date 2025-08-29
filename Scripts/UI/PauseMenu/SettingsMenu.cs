@@ -23,7 +23,7 @@ public partial class SettingsMenu : CanvasLayer
     {
         Hide();
 
-        VolumeSlider.MaxValue = 30.0f;
+        VolumeSlider.MaxValue = 1.0f;
         VolumeSlider.MinValue = 0.0f;
 
         // Sync slider with actual volume

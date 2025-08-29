@@ -55,6 +55,9 @@ text = "Volume"
 
 [node name="VolumeSlider" type="HSlider" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 0.5
 
 [node name="Label2" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
