@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://b1oge52xhjqnu" path="res://addons/block_code/ui/blocks/utilities/snap_point/snap_point.tscn" id="4_yj206"]
 
 [node name="EntryBlock" type="MarginContainer" node_paths=PackedStringArray("child_snap", "template_editor")]
+offset_right = 80.0
+offset_bottom = 46.0
 size_flags_horizontal = 0
 focus_mode = 2
 mouse_filter = 2
