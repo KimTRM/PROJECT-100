@@ -1,9 +1,15 @@
 using Godot;
+using Godot.Collections;
 
 public partial class DragManager : Control
 {
     [Signal] public delegate void BlockDroppedEventHandler();
     [Signal] public delegate void BlockModifiedEventHandler();
+
+    [Export] private BlockPicker _blockPicker;
+    [Export] private BlockCanvas _blockCanvas;
+
+    [Export] private Array _dropAreas;
 
     private Node _originalParent;
     private Control _draggedObject;
@@ -37,6 +43,18 @@ public partial class DragManager : Control
             {
                 EndDrag();
             }
+
+            // if (mouseEvent.IsPressed() && mouseEvent.ButtonIndex == MouseButton.Right)
+            // {
+            //     // _dropAreas?.Clear();
+
+            //     for (int i = 0; i < GetTree().GetNodesInGroup("drop_areas").Count; i++)
+            //     {
+            //         var dropArea = GetTree().GetNodesInGroup("drop_areas")[i] as DropAreaComponent;
+            //         _dropAreas.Add(dropArea);
+            //         GD.Print(dropArea);
+            //     }
+            // }
         }
     }
 
