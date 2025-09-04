@@ -4,6 +4,8 @@ using Godot.Collections;
 [GlobalClass]
 public partial class DropAreaComponent : PanelContainer
 {
+	[Signal] public delegate void DragStartedEventHandler();
+
 	[Export]
 	private bool isDroppable = true;
 
@@ -25,6 +27,8 @@ public partial class DropAreaComponent : PanelContainer
 			GD.PrintErr("Droppable area is not set for DropAreaComponent." + GetParent().Name);
 			return;
 		}
+
+		AddToGroup("drop_areas");
 
 		CodeBlockManager.Instance.DragManagerReady += DragManagerReady;
 		dropZone.MouseEntered += OnMouseEntered;

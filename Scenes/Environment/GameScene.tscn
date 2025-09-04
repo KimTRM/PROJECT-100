@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://v44f4qcx5kcp" path="res://Scenes/Environment/world.tscn" id="1_3bkll"]
 [ext_resource type="Script" uid="uid://by27v3phwtvyx" path="res://Scripts/GameScene.cs" id="1_44ihx"]
-[ext_resource type="PackedScene" uid="uid://d37ct8qy5o2ym" path="res://Scenes/Entities/D.A.L..tscn" id="3_7qkkk"]
+[ext_resource type="PackedScene" uid="uid://d37ct8qy5o2ym" path="res://Scenes/Entities/NPC/D.A.L..tscn" id="3_7qkkk"]
 [ext_resource type="Texture2D" uid="uid://cqkhyl27cuv01" path="res://Assets/CutScenes/Scene 1 PROJECT 100.png" id="6_pw1wf"]
 [ext_resource type="Resource" uid="uid://63gyqnh1ri02" path="res://Dialouge/Introduce.dialogue" id="6_sl5mp"]
 [ext_resource type="Texture2D" uid="uid://cwwqfq6lq5wrl" path="res://Assets/CutScenes/Scene 2.png" id="7_7fssw"]

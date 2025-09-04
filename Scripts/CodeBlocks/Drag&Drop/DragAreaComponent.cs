@@ -3,6 +3,8 @@ using Godot;
 [GlobalClass]
 public partial class DragAreaComponent : Node
 {
+	[Signal] public delegate void DragStartedEventHandler();
+
 	[Export]
 	private Control draggableArea;
 	private DragManager dragManager;
