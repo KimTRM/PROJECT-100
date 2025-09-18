@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://depv5e7gi147f"]
 
-[ext_resource type="Texture2D" uid="uid://b8v544pw40ynf" path="res://Assets/SpriteSheets/Character-Male.png" id="1_op15y"]
-[ext_resource type="Script" uid="uid://j3lqlh5ee8dt" path="res://Scripts/Components/PlayerSpwaner.cs" id="1_xkffv"]
+[ext_resource type="Texture2D" uid="uid://b8v544pw40ynf" path="res://assets/SpriteSheets/Character-Male.png" id="1_op15y"]
+[ext_resource type="Script" uid="uid://j3lqlh5ee8dt" path="res://scripts/Components/PlayerSpwaner.cs" id="1_xkffv"]
 
 [node name="PlayerSpwaner" type="Node2D"]
 script = ExtResource("1_xkffv")

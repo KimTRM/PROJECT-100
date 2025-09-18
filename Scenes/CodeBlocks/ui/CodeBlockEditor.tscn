@@ -1,10 +1,10 @@
 [gd_scene load_steps=7 format=3 uid="uid://4280cgrri3yh"]
 
-[ext_resource type="Texture2D" uid="uid://bhqtwt6ahm2b1" path="res://Assets/UI/DialougeBox/DialougeBox.png" id="1_5pjcd"]
-[ext_resource type="PackedScene" uid="uid://dl1yi3e2oqj0k" path="res://Scenes/CodeBlocks/ui/BlockPicker.tscn" id="2_wua68"]
-[ext_resource type="PackedScene" uid="uid://bp0aevc7dehng" path="res://Scenes/CodeBlocks/ui/BlockCanvas.tscn" id="3_ju8dt"]
-[ext_resource type="PackedScene" uid="uid://cirmbhtex875r" path="res://Scenes/CodeBlocks/ui/Console.tscn" id="4_h4y0m"]
-[ext_resource type="Script" uid="uid://rue4kargso4m" path="res://Scripts/CodeBlocks/Drag&Drop/DragManager.cs" id="5_21meb"]
+[ext_resource type="Texture2D" uid="uid://bhqtwt6ahm2b1" path="res://assets/UI/DialougeBox/DialougeBox.png" id="1_5pjcd"]
+[ext_resource type="PackedScene" uid="uid://dl1yi3e2oqj0k" path="res://scenes/CodeBlocks/ui/BlockPicker.tscn" id="2_wua68"]
+[ext_resource type="PackedScene" uid="uid://bp0aevc7dehng" path="res://scenes/CodeBlocks/ui/BlockCanvas.tscn" id="3_ju8dt"]
+[ext_resource type="PackedScene" uid="uid://cirmbhtex875r" path="res://scenes/CodeBlocks/ui/Console.tscn" id="4_h4y0m"]
+[ext_resource type="Script" uid="uid://rue4kargso4m" path="res://scripts/CodeBlocks/Drag&Drop/DragManager.cs" id="5_21meb"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ijaqk"]
 content_margin_left = 30.0
@@ -35,6 +35,7 @@ layout_mode = 2
 theme_override_constants/separation = 4
 
 [node name="BlockPicker" parent="PanelContainer/HBoxContainer" node_paths=PackedStringArray("dragManager") instance=ExtResource("2_wua68")]
+custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 dragManager = NodePath("../../DragManager")
 
@@ -44,10 +45,10 @@ theme_override_constants/separation = 4
 split_offset = 504
 
 [node name="BlockCanvas" parent="PanelContainer/HBoxContainer/VSplitContainer" instance=ExtResource("3_ju8dt")]
-custom_minimum_size = Vector2(600, 200)
 layout_mode = 2
 
 [node name="Console" parent="PanelContainer/HBoxContainer/VSplitContainer" instance=ExtResource("4_h4y0m")]
+visible = false
 layout_mode = 2
 
 [node name="DragManager" type="Control" parent="PanelContainer" node_paths=PackedStringArray("_blockPicker", "_blockCanvas")]

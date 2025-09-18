@@ -6,13 +6,11 @@
 
 [sub_resource type="Resource" id="Resource_ai5in"]
 script = ExtResource("1_d8i05")
-selected = 0
 items = ["pressed", "just_pressed", "just_released"]
 
 [resource]
 script = ExtResource("1_rprh7")
 name = &"is_input_actioned"
-target_node_class = ""
 description = "True if the specified input action has been pressed or released."
 category = "Input"
 type = 3
@@ -22,6 +20,4 @@ code_template = "Input.is_action_{{action}}('{{action_name}}')"
 defaults = {
 "action": SubResource("Resource_ai5in")
 }
-signal_name = ""
-is_advanced = false
 extension_script = ExtResource("2_h11b7")

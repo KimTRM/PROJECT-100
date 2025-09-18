@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://qy8to7ynf8ie"]
 
-[ext_resource type="FontFile" uid="uid://bl1j7o7dgjs1e" path="res://Assets/ProjectFiles/x12y16pxMaruMonica.ttf" id="1_hghb2"]
-[ext_resource type="Script" uid="uid://cepfq4nhgjgrn" path="res://Scripts/UI/AdminControl/AddElement/AddElement.cs" id="1_hwwqv"]
+[ext_resource type="FontFile" uid="uid://bl1j7o7dgjs1e" path="res://assets/ProjectFiles/x12y16pxMaruMonica.ttf" id="1_hghb2"]
+[ext_resource type="Script" uid="uid://cepfq4nhgjgrn" path="res://scripts/UI/AdminControl/AddElement/AddElement.cs" id="1_hwwqv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_faxwe"]
 content_margin_left = 28.0

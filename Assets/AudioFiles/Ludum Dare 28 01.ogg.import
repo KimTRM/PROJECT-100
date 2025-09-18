@@ -3,12 +3,12 @@
 importer="oggvorbisstr"
 type="AudioStreamOggVorbis"
 uid="uid://clpn4ee3kwjja"
-path="res://.godot/imported/Ludum Dare 28 01.ogg-fcf9c6eb32c0a47b40684cbb9b047b31.oggvorbisstr"
+path="res://.godot/imported/Ludum Dare 28 01.ogg-de63a55fc87a1a02e9adb703007f13a2.oggvorbisstr"
 
 [deps]
 
-source_file="res://Assets/AudioFiles/Ludum Dare 28 01.ogg"
-dest_files=["res://.godot/imported/Ludum Dare 28 01.ogg-fcf9c6eb32c0a47b40684cbb9b047b31.oggvorbisstr"]
+source_file="res://assets/AudioFiles/Ludum Dare 28 01.ogg"
+dest_files=["res://.godot/imported/Ludum Dare 28 01.ogg-de63a55fc87a1a02e9adb703007f13a2.oggvorbisstr"]
 
 [params]
 

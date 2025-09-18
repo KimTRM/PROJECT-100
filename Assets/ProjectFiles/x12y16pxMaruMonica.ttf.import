@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://bl1j7o7dgjs1e"
-path="res://.godot/imported/x12y16pxMaruMonica.ttf-9102b6ed526dd6c9118c2a780537df59.fontdata"
+path="res://.godot/imported/x12y16pxMaruMonica.ttf-0c81b394a89d1dee9aef179327c2ff27.fontdata"
 
 [deps]
 
-source_file="res://Assets/ProjectFiles/x12y16pxMaruMonica.ttf"
-dest_files=["res://.godot/imported/x12y16pxMaruMonica.ttf-9102b6ed526dd6c9118c2a780537df59.fontdata"]
+source_file="res://assets/ProjectFiles/x12y16pxMaruMonica.ttf"
+dest_files=["res://.godot/imported/x12y16pxMaruMonica.ttf-0c81b394a89d1dee9aef179327c2ff27.fontdata"]
 
 [params]
 
@@ -21,6 +21,7 @@ msdf_pixel_range=8
 msdf_size=48
 allow_system_fallback=true
 force_autohinter=false
+modulate_color_glyphs=false
 hinting=1
 subpixel_positioning=1
 keep_rounding_remainders=true

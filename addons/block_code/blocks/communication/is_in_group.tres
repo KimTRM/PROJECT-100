@@ -6,13 +6,10 @@
 
 [sub_resource type="Resource" id="Resource_d0v0d"]
 script = ExtResource("1_cla3i")
-selected = 0
-items = []
 
 [resource]
 script = ExtResource("1_tjyq5")
 name = &"is_in_group"
-target_node_class = ""
 description = "Is this node in the group"
 category = "Communication | Groups"
 type = 3
@@ -22,6 +19,4 @@ code_template = "is_in_group({group})"
 defaults = {
 "group": SubResource("Resource_d0v0d")
 }
-signal_name = ""
-is_advanced = false
 extension_script = ExtResource("2_o165d")

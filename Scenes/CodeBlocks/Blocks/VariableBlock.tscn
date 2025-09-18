@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://drcorwafubvtf"]
 
-[ext_resource type="Script" uid="uid://cyod5r2p4kyj6" path="res://Scripts/CodeBlocks/Blocks/VariableBlock.cs" id="1_yup04"]
-[ext_resource type="Script" uid="uid://xc2s0k7u57hr" path="res://Scripts/CodeBlocks/Drag&Drop/DropAreaComponent.cs" id="2_cx4aw"]
-[ext_resource type="Script" uid="uid://beavoq4vmtdhe" path="res://Scripts/CodeBlocks/Drag&Drop/DragAreaComponent.cs" id="4_eke8f"]
+[ext_resource type="Script" uid="uid://cyod5r2p4kyj6" path="res://scripts/CodeBlocks/Blocks/VariableBlock.cs" id="1_nxi04"]
+[ext_resource type="Script" uid="uid://xc2s0k7u57hr" path="res://scripts/CodeBlocks/Drag&Drop/DropAreaComponent.cs" id="2_6kgea"]
+[ext_resource type="Script" uid="uid://beavoq4vmtdhe" path="res://scripts/CodeBlocks/Drag&Drop/DragAreaComponent.cs" id="3_uta86"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7f2a0"]
 bg_color = Color(0.847059, 0.384314, 0.384314, 1)
@@ -23,12 +23,11 @@ corner_radius_bottom_left = 18
 anti_aliasing = false
 
 [node name="VariableBlock" type="MarginContainer"]
-custom_minimum_size = Vector2(160, 50)
 offset_right = 160.0
 offset_bottom = 50.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
-script = ExtResource("1_yup04")
+script = ExtResource("1_nxi04")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 2
@@ -54,7 +53,7 @@ uppercase = true
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_p7kf4")
-script = ExtResource("2_cx4aw")
+script = ExtResource("2_6kgea")
 dropContainer = NodePath(".")
 dropZone = NodePath("VarName")
 metadata/_custom_type_script = "uid://xc2s0k7u57hr"
@@ -93,6 +92,6 @@ caret_blink = true
 caret_blink_interval = 0.38
 
 [node name="DragAreaComponent" type="Node" parent="." node_paths=PackedStringArray("draggableArea")]
-script = ExtResource("4_eke8f")
+script = ExtResource("3_uta86")
 draggableArea = NodePath("..")
 metadata/_custom_type_script = "uid://beavoq4vmtdhe"

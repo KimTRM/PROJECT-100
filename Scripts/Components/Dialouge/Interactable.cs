@@ -1,5 +1,4 @@
 using Godot;
-using DialogueManagerRuntime;
 using System;
 
 public partial class Interactable : Area2D
@@ -11,7 +10,7 @@ public partial class Interactable : Area2D
 
 	public void Interact()
 	{
-		DialogueManager.ShowDialogueBalloon(dialogue_resource, dialogue_start);
+
 	}
 
 	public void _on_body_entered(Node body)

@@ -3,12 +3,12 @@
 importer="aseprite_wizard.plugin.noop"
 type="PackedDataContainer"
 uid="uid://bwdssq8pamfkh"
-path="res://.godot/imported/Tilesets.aseprite-61f46a5477329c2dcecb6a40db82b865.res"
+path="res://.godot/imported/Tilesets.aseprite-0c905bf72d5e2e984ef7de6b3c603497.res"
 
 [deps]
 
-source_file="res://Assets/AsepriteFiles/Tilesets.aseprite"
-dest_files=["res://.godot/imported/Tilesets.aseprite-61f46a5477329c2dcecb6a40db82b865.res"]
+source_file="res://assets/AsepriteFiles/Tilesets.aseprite"
+dest_files=["res://.godot/imported/Tilesets.aseprite-0c905bf72d5e2e984ef7de6b3c603497.res"]
 
 [params]
 

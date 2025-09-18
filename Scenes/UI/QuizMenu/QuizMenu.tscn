@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://4x8eqec6lvd2"]
 
-[ext_resource type="Script" uid="uid://o1qutuamc73i" path="res://Scripts/UI/QuizMenu/QuizMenu.cs" id="1_4cmwl"]
+[ext_resource type="Script" uid="uid://o1qutuamc73i" path="res://scripts/UI/QuizMenu/QuizMenu.cs" id="1_4cmwl"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0mdl8"]
 bg_color = Color(0.132659, 0.449237, 0.662928, 1)

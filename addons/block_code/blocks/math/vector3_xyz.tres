@@ -5,13 +5,11 @@
 
 [sub_resource type="Resource" id="Resource_ie4sg"]
 script = ExtResource("1_0wc0o")
-selected = 0
 items = ["x", "y", "z"]
 
 [resource]
 script = ExtResource("2_e6ohf")
 name = &"vector3_xyz"
-target_node_class = ""
 description = "Gives the x, y, or z of a [b]Vector3[/b]"
 category = "Math"
 type = 3
@@ -21,5 +19,3 @@ code_template = "{vector3}.{{xyz}}"
 defaults = {
 "xyz": SubResource("Resource_ie4sg")
 }
-signal_name = ""
-is_advanced = false

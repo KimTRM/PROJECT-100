@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://b7olgo4xh10gm"]
 
-[ext_resource type="Script" uid="uid://c2f6unkpd3bng" path="res://Scripts/UI/LoginMenu/SignupPanel.cs" id="1_gkpfx"]
+[ext_resource type="Script" uid="uid://c2f6unkpd3bng" path="res://scripts/UI/LoginMenu/SignupPanel.cs" id="1_gkpfx"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jo6mb"]
 bg_color = Color(0.2, 0.223529, 0.254902, 1)

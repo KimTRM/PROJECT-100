@@ -1,4 +1,3 @@
-using DialogueManagerRuntime;
 using GodotUtilities.Logic;
 using GodotUtilities;
 using Godot;
@@ -46,15 +45,6 @@ public partial class Player : CharacterBody2D
 				_inputController.SetInteracting(true); // Disable movement
 				return;
 			}
-		}
-
-		if (GetParent().GetNodeOrNull<ExampleBalloon>("ExampleBalloon") != null)
-		{
-			_inputController.SetInteracting(true);
-		}
-		else
-		{
-			_inputController.SetInteracting(false);
 		}
 	}
 

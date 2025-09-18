@@ -1,11 +1,11 @@
 [gd_scene load_steps=10 format=3 uid="uid://bahqfay47fdok"]
 
-[ext_resource type="Script" uid="uid://bbdkjllcbw3xs" path="res://Scripts/UI/StartingScreen/StartingMenu.cs" id="1_jfvfq"]
-[ext_resource type="Texture2D" uid="uid://c4yoh484wtl26" path="res://Assets/UI/Ellipse 10.png" id="2_agdox"]
-[ext_resource type="Texture2D" uid="uid://ce6gw4qeiar5q" path="res://Assets/UI/Title.png" id="3_agdox"]
-[ext_resource type="Texture2D" uid="uid://5nevt7vnyvu" path="res://Assets/UI/Rectangle 101.png" id="4_1vdme"]
-[ext_resource type="Texture2D" uid="uid://diirllfyehafa" path="res://Assets/UI/Group 65.png" id="4_egl5x"]
-[ext_resource type="Texture2D" uid="uid://bhqtwt6ahm2b1" path="res://Assets/UI/DialougeBox/DialougeBox.png" id="6_1vdme"]
+[ext_resource type="Script" uid="uid://bbdkjllcbw3xs" path="res://scripts/UI/StartingScreen/StartingMenu.cs" id="1_jfvfq"]
+[ext_resource type="Texture2D" uid="uid://c4yoh484wtl26" path="res://assets/UI/Ellipse 10.png" id="2_agdox"]
+[ext_resource type="Texture2D" uid="uid://ce6gw4qeiar5q" path="res://assets/UI/Title.png" id="3_agdox"]
+[ext_resource type="Texture2D" uid="uid://5nevt7vnyvu" path="res://assets/UI/Rectangle 101.png" id="4_1vdme"]
+[ext_resource type="Texture2D" uid="uid://diirllfyehafa" path="res://assets/UI/Group 65.png" id="4_egl5x"]
+[ext_resource type="Texture2D" uid="uid://bhqtwt6ahm2b1" path="res://assets/UI/DialougeBox/DialougeBox.png" id="6_1vdme"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l5ogm"]
 bg_color = Color(0, 0.619771, 0.828571, 1)

@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://lwl73yb5asfc"]
 
-[ext_resource type="Script" uid="uid://bisptjjwl4ryk" path="res://Scripts/CodeBlocks/ui/BlockCategoryContainer.cs" id="1_7d7yb"]
-[ext_resource type="PackedScene" uid="uid://drcorwafubvtf" path="res://Scenes/CodeBlocks/Blocks/VariableBlock.tscn" id="1_efcjw"]
+[ext_resource type="Script" uid="uid://bisptjjwl4ryk" path="res://scripts/CodeBlocks/ui/BlockCategoryContainer.cs" id="1_7d7yb"]
+[ext_resource type="PackedScene" uid="uid://drcorwafubvtf" path="res://scenes/CodeBlocks/Blocks/VariableBlock.tscn" id="1_efcjw"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1g8y4"]
 content_margin_left = 14.0
@@ -42,14 +42,3 @@ layout_mode = 2
 
 [node name="VariableBlock3" parent="VBoxContainer/CodeBlockContainer" instance=ExtResource("1_efcjw")]
 layout_mode = 2
-
-[node name="Control" type="Control" parent="."]
-visible = false
-layout_mode = 2
-
-[node name="VariableBlock" parent="Control" instance=ExtResource("1_efcjw")]
-layout_mode = 0
-offset_left = -7.0
-offset_top = 157.0
-offset_right = 152.0
-offset_bottom = 195.0

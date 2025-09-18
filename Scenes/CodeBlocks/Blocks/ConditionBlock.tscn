@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://bm8qnm1lt3fgb"]
 
-[ext_resource type="Script" uid="uid://dnccex6n1khy8" path="res://Scripts/CodeBlocks/Blocks/ConditionBlock.cs" id="1_rbybd"]
-[ext_resource type="Script" uid="uid://beavoq4vmtdhe" path="res://Scripts/CodeBlocks/Drag&Drop/DragAreaComponent.cs" id="2_58g58"]
-[ext_resource type="Script" uid="uid://xc2s0k7u57hr" path="res://Scripts/CodeBlocks/Drag&Drop/DropAreaComponent.cs" id="2_xq6ck"]
+[ext_resource type="Script" uid="uid://dnccex6n1khy8" path="res://scripts/CodeBlocks/Blocks/ConditionBlock.cs" id="1_rbybd"]
+[ext_resource type="Script" uid="uid://beavoq4vmtdhe" path="res://scripts/CodeBlocks/Drag&Drop/DragAreaComponent.cs" id="2_58g58"]
+[ext_resource type="Script" uid="uid://xc2s0k7u57hr" path="res://scripts/CodeBlocks/Drag&Drop/DropAreaComponent.cs" id="2_xq6ck"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_58g58"]
 content_margin_left = 12.0

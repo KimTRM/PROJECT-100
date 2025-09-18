@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dlabt3bgmpna2"]
 
-[ext_resource type="Script" path="res://addons/block_code/ui/picker/picker.gd" id="1_tkt44"]
+[ext_resource type="Script" uid="uid://c50fjmix3y4h6" path="res://addons/block_code/ui/picker/picker.gd" id="1_tkt44"]
 
 [node name="Picker" type="MarginContainer"]
 offset_right = 251.0

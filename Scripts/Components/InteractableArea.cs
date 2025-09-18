@@ -1,7 +1,6 @@
 using Godot;
 using System;
 using Godot.Collections;
-using DialogueManagerRuntime;
 
 public partial class InteractableArea : Area2D
 {
@@ -48,7 +47,6 @@ public partial class InteractableArea : Area2D
 		if (DialogueResource != null)
 		{
 			GD.Print($"Starting dialogue at: {DialogueStart}");
-			DialogueManager.ShowDialogueBalloon(DialogueResource, DialogueStart);
 			EmitSignal(SignalName.Interacted, this);
 
 			return;

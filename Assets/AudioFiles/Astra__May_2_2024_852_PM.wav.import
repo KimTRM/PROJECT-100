@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://gohwkuk2phya"
-path="res://.godot/imported/Astra__May_2_2024_852_PM.wav-013a1c4eab1b4dac5e18ea5a7e310322.sample"
+path="res://.godot/imported/Astra__May_2_2024_852_PM.wav-45e1bf9e7453baa48b905ded257cfd4a.sample"
 
 [deps]
 
-source_file="res://Assets/AudioFiles/Astra__May_2_2024_852_PM.wav"
-dest_files=["res://.godot/imported/Astra__May_2_2024_852_PM.wav-013a1c4eab1b4dac5e18ea5a7e310322.sample"]
+source_file="res://assets/AudioFiles/Astra__May_2_2024_852_PM.wav"
+dest_files=["res://.godot/imported/Astra__May_2_2024_852_PM.wav-45e1bf9e7453baa48b905ded257cfd4a.sample"]
 
 [params]
 

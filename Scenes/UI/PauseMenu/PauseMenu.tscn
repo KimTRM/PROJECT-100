@@ -1,25 +1,25 @@
 [gd_scene load_steps=7 format=3 uid="uid://dts17v6y3krqi"]
 
-[ext_resource type="Script" uid="uid://cylv6qk3akkh6" path="res://Scripts/UI/PauseMenu/PauseMenu.cs" id="1_2o5dk"]
-[ext_resource type="Texture2D" uid="uid://ssjljnpjclik" path="res://Assets/UI/Rectangle 172.png" id="2_7g5nr"]
-[ext_resource type="Texture2D" uid="uid://cpyalppreguvg" path="res://Assets/UI/Group 96.png" id="3_0nva5"]
-[ext_resource type="Texture2D" uid="uid://5nevt7vnyvu" path="res://Assets/UI/Rectangle 101.png" id="4_0nva5"]
-[ext_resource type="Texture2D" uid="uid://bedfdbx4dhou5" path="res://Assets/UI/PAUSED.png" id="4_cshyb"]
+[ext_resource type="Script" uid="uid://cylv6qk3akkh6" path="res://scripts/UI/PauseMenu/PauseMenu.cs" id="1_g8u6w"]
+[ext_resource type="Texture2D" uid="uid://ssjljnpjclik" path="res://assets/UI/Rectangle 172.png" id="2_022hl"]
+[ext_resource type="Texture2D" uid="uid://cpyalppreguvg" path="res://assets/UI/Group 96.png" id="3_ifpja"]
+[ext_resource type="Texture2D" uid="uid://bedfdbx4dhou5" path="res://assets/UI/PAUSED.png" id="4_wymsx"]
+[ext_resource type="Texture2D" uid="uid://5nevt7vnyvu" path="res://assets/UI/Rectangle 101.png" id="5_rrm1r"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7jjt0"]
-texture = ExtResource("4_0nva5")
+texture = ExtResource("5_rrm1r")
 
 [node name="PauseMenu" type="CanvasLayer"]
 process_mode = 3
 layer = 101
-script = ExtResource("1_2o5dk")
+script = ExtResource("1_g8u6w")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 anchors_preset = 9
 anchor_bottom = 1.0
 offset_right = 857.0
 grow_vertical = 2
-texture = ExtResource("2_7g5nr")
+texture = ExtResource("2_022hl")
 expand_mode = 1
 
 [node name="TextureRect2" type="TextureRect" parent="."]
@@ -33,7 +33,7 @@ offset_right = -1.0
 offset_bottom = 107.0
 grow_horizontal = 0
 grow_vertical = 2
-texture = ExtResource("3_0nva5")
+texture = ExtResource("3_ifpja")
 expand_mode = 1
 
 [node name="MarginContainer2" type="MarginContainer" parent="."]
@@ -52,13 +52,13 @@ layout_mode = 2
 [node name="TextureRect" type="TextureRect" parent="MarginContainer2/HBoxContainer"]
 texture_filter = 2
 layout_mode = 2
-texture = ExtResource("4_cshyb")
+texture = ExtResource("4_wymsx")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 9
 anchor_bottom = 1.0
-offset_right = 512.0
-offset_bottom = 516.0
+offset_right = 428.0
+offset_bottom = 196.0
 grow_vertical = 2
 theme_override_constants/margin_top = 264
 

@@ -14,20 +14,19 @@ config/name="PROJECT 100"
 run/main_scene="uid://bahqfay47fdok"
 config/features=PackedStringArray("4.5", "C#", "Mobile")
 boot_splash/bg_color=Color(0.0470588, 0.0470588, 0.0470588, 1)
-boot_splash/image="res://Assets/ProjectFiles/KLTL.png"
-config/icon="res://Assets/ProjectFiles/Title.png"
+boot_splash/image="res://assets/ProjectFiles/KLTL.png"
+config/icon="res://assets/ProjectFiles/Title.png"
 boot_splash/minimum_display_time=7
 
 [autoload]
 
-HttpManager="res://Scripts/01_Globals/HTTPManager.cs"
-CodeBlockManager="*res://Scripts/01_Globals/CodeBlockManager.cs"
-GameManager="*res://Scripts/01_Globals/GameManager.cs"
-PlayerManager="*res://Scripts/01_Globals/PlayerManager.cs"
-UiManager="*res://Scenes/01_Globals/UiManager.tscn"
-AudioManager="*res://Scripts/01_Globals/AudioManager.cs"
-CutSceneManager="*res://Scripts/01_Globals/CutSceneManager.cs"
-DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
+HttpManager="res://scripts/01_Globals/HTTPManager.cs"
+CodeBlockManager="*res://scripts/01_Globals/CodeBlockManager.cs"
+GameManager="*res://scripts/01_Globals/GameManager.cs"
+PlayerManager="*res://scripts/01_Globals/PlayerManager.cs"
+UiManager="*res://scenes/01_Globals/UiManager.tscn"
+AudioManager="*res://scripts/01_Globals/AudioManager.cs"
+CutSceneManager="*res://scripts/01_Globals/CutSceneManager.cs"
 
 [debug]
 
@@ -41,11 +40,13 @@ runtime/balloon_path="res://Dialouge/DialougeBalloon/Balloon.tscn"
 
 [display]
 
-window/size/viewport_width=1280
-window/size/viewport_height=720
+window/size/viewport_width=640
+window/size/viewport_height=360
+window/size/window_width_override=1280
+window/size/window_height_override=720
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
-window/vsync/vsync_mode=2
+window/vsync/vsync_mode=0
 
 [dotnet]
 
@@ -58,19 +59,18 @@ naming/scene_name_casing=1
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/AsepriteWizard/plugin.cfg", "res://addons/block_code/plugin.cfg", "res://addons/dialogue_manager/plugin.cfg", "res://addons/script-ide/plugin.cfg")
+enabled=PackedStringArray("res://addons/AsepriteWizard/plugin.cfg", "res://addons/block_code/plugin.cfg", "res://addons/script-ide/plugin.cfg")
 
 [file_customization]
 
 folder_colors={
-"res://Assets/": "yellow",
-"res://Dialouge/": "purple",
 "res://Resource/": "blue",
-"res://Resources/": "green",
-"res://Scenes/": "teal",
-"res://Scripts/": "orange",
 "res://addons/": "blue",
-"res://build/": "pink"
+"res://assets/": "yellow",
+"res://build/": "pink",
+"res://resources/": "green",
+"res://scenes/": "teal",
+"res://scripts/": "orange"
 }
 
 [global_group]
@@ -82,7 +82,7 @@ Player=""
 theme/default_font_hinting=2
 theme/default_font_subpixel_positioning=0
 theme/default_font_generate_mipmaps=true
-theme/custom_font="res://Assets/ProjectFiles/Jaro-Regular.ttf"
+theme/custom_font="res://assets/ProjectFiles/Jaro-Regular.ttf"
 
 [importer_defaults]
 
@@ -154,10 +154,6 @@ Jump={
 [input_devices]
 
 pointing/emulate_touch_from_mouse=true
-
-[internationalization]
-
-locale/translations_pot_files=PackedStringArray("res://Dialouge/Hi.dialogue", "res://Dialouge/Introduce.dialogue")
 
 [layer_names]
 

@@ -1,11 +1,11 @@
 [gd_scene load_steps=7 format=3 uid="uid://dsbum6i5rt15g"]
 
-[ext_resource type="Script" uid="uid://dve3f1jbqkhsv" path="res://Scripts/Components/UiManager.cs" id="1_5vqe7"]
-[ext_resource type="PackedScene" uid="uid://b2fvkh5s5ofkq" path="res://Scenes/Components/SceneTransition.tscn" id="1_6gb0i"]
-[ext_resource type="PackedScene" uid="uid://dts17v6y3krqi" path="res://Scenes/UI/PauseMenu/PauseMenu.tscn" id="2_t1epi"]
-[ext_resource type="PackedScene" uid="uid://blltr5uuaom2o" path="res://Scenes/UI/PauseMenu/SettingsMenu.tscn" id="3_5vqe7"]
-[ext_resource type="PackedScene" uid="uid://ba4corkvep561" path="res://Scenes/UI/CutSceneLoader/CutSceneLoader.tscn" id="3_t1epi"]
-[ext_resource type="PackedScene" uid="uid://64xx67gu0v5f" path="res://Scenes/UI/PopupWindow/PopupWindow.tscn" id="4_u2ed4"]
+[ext_resource type="Script" uid="uid://dve3f1jbqkhsv" path="res://scripts/Components/UiManager.cs" id="1_5vqe7"]
+[ext_resource type="PackedScene" uid="uid://b2fvkh5s5ofkq" path="res://scenes/Components/SceneTransition.tscn" id="1_6gb0i"]
+[ext_resource type="PackedScene" uid="uid://dts17v6y3krqi" path="res://scenes/UI/PauseMenu/PauseMenu.tscn" id="2_t1epi"]
+[ext_resource type="PackedScene" uid="uid://blltr5uuaom2o" path="res://scenes/UI/PauseMenu/SettingsMenu.tscn" id="3_5vqe7"]
+[ext_resource type="PackedScene" uid="uid://ba4corkvep561" path="res://scenes/UI/CutSceneLoader/CutSceneLoader.tscn" id="3_t1epi"]
+[ext_resource type="PackedScene" uid="uid://64xx67gu0v5f" path="res://scenes/UI/PopupWindow/PopupWindow.tscn" id="4_u2ed4"]
 
 [node name="UIManager" type="CanvasLayer" node_paths=PackedStringArray("uiElements")]
 layer = 128

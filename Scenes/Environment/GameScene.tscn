@@ -1,15 +1,13 @@
 [gd_scene load_steps=16 format=3 uid="uid://joynp6brwwbo"]
 
-[ext_resource type="PackedScene" uid="uid://v44f4qcx5kcp" path="res://Scenes/Environment/world.tscn" id="1_3bkll"]
-[ext_resource type="Script" uid="uid://by27v3phwtvyx" path="res://Scripts/GameScene.cs" id="1_44ihx"]
-[ext_resource type="PackedScene" uid="uid://d37ct8qy5o2ym" path="res://Scenes/Entities/NPC/D.A.L..tscn" id="3_7qkkk"]
-[ext_resource type="Texture2D" uid="uid://cqkhyl27cuv01" path="res://Assets/CutScenes/Scene 1 PROJECT 100.png" id="6_pw1wf"]
-[ext_resource type="Resource" uid="uid://63gyqnh1ri02" path="res://Dialouge/Introduce.dialogue" id="6_sl5mp"]
-[ext_resource type="Texture2D" uid="uid://cwwqfq6lq5wrl" path="res://Assets/CutScenes/Scene 2.png" id="7_7fssw"]
-[ext_resource type="PackedScene" uid="uid://depv5e7gi147f" path="res://Scenes/Components/PlayerSpwaner.tscn" id="8_44ihx"]
-[ext_resource type="Texture2D" uid="uid://itqlfbpvg0cg" path="res://Assets/CutScenes/scene 3.png" id="8_sl5mp"]
-[ext_resource type="PackedScene" uid="uid://de8bu02wfiwp" path="res://Scenes/Components/InteractableArea.tscn" id="9_lt366"]
-[ext_resource type="Resource" uid="uid://b32emc6hkhtth" path="res://Dialouge/Hi.dialogue" id="10_pw1wf"]
+[ext_resource type="PackedScene" uid="uid://v44f4qcx5kcp" path="res://scenes/Environment/world.tscn" id="1_3bkll"]
+[ext_resource type="Script" uid="uid://by27v3phwtvyx" path="res://scripts/GameScene.cs" id="1_44ihx"]
+[ext_resource type="PackedScene" uid="uid://d37ct8qy5o2ym" path="res://scenes/Entities/NPC/D.A.L..tscn" id="3_7qkkk"]
+[ext_resource type="Texture2D" uid="uid://cqkhyl27cuv01" path="res://assets/CutScenes/Scene 1 PROJECT 100.png" id="6_pw1wf"]
+[ext_resource type="Texture2D" uid="uid://cwwqfq6lq5wrl" path="res://assets/CutScenes/Scene 2.png" id="7_7fssw"]
+[ext_resource type="PackedScene" uid="uid://depv5e7gi147f" path="res://scenes/Components/PlayerSpwaner.tscn" id="8_44ihx"]
+[ext_resource type="Texture2D" uid="uid://itqlfbpvg0cg" path="res://assets/CutScenes/scene 3.png" id="8_sl5mp"]
+[ext_resource type="PackedScene" uid="uid://de8bu02wfiwp" path="res://scenes/Components/InteractableArea.tscn" id="9_lt366"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pw1wf"]
 size = Vector2(67, 111)
@@ -22,6 +20,246 @@ size = Vector2(29, 45)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sl5mp"]
 size = Vector2(137, 135.5)
+
+[sub_resource type="GDScript" id="GDScript_c68gn"]
+script/source = "@tool
+@icon(\"./assets/icon.svg\")
+
+## A collection of dialogue lines for use with [code]DialogueManager[/code].
+class_name DialogueResource extends Resource
+
+
+const DialogueLine = preload(\"./dialogue_line.gd\")
+
+## A list of state shortcuts
+@export var using_states: PackedStringArray = []
+
+## A map of titles and the lines they point to.
+@export var titles: Dictionary = {}
+
+## A list of character names.
+@export var character_names: PackedStringArray = []
+
+## The first title in the file.
+@export var first_title: String = \"\"
+
+## A map of the encoded lines of dialogue.
+@export var lines: Dictionary = {}
+
+## raw version of the text
+@export var raw_text: String
+
+
+## Get the next printable line of dialogue, starting from a referenced line ([code]title[/code] can
+## be a title string or a stringified line number). Runs any mutations along the way and then returns
+## the first dialogue line encountered.
+func get_next_dialogue_line(title: String = \"\", extra_game_states: Array = [], mutation_behaviour: DMConstants.MutationBehaviour = DMConstants.MutationBehaviour.Wait) -> DialogueLine:
+	return await Engine.get_singleton(\"DialogueManager\").get_next_dialogue_line(self, title, extra_game_states, mutation_behaviour)
+
+
+## Get the list of any titles found in the file.
+func get_titles() -> PackedStringArray:
+	return titles.keys()
+
+
+func _to_string() -> String:
+	return \"<DialogueResource titles=\\\"%s\\\">\" % [\",\".join(titles.keys())]
+"
+
+[sub_resource type="Resource" id="Resource_pom8o"]
+script = SubResource("GDScript_c68gn")
+using_states = PackedStringArray()
+titles = {
+"start": "1"
+}
+character_names = PackedStringArray("DAL", "kim")
+first_title = "0"
+lines = {
+"0": {
+&"id": "0",
+&"next_id": "1",
+&"type": "title"
+},
+"1": {
+&"character": "DAL",
+&"id": "1",
+&"next_id": "3",
+&"text": "Hello master, my name is  DAL, how may i help you?",
+&"type": "dialogue"
+},
+"10": {
+&"id": "10",
+&"next_id": "11",
+&"type": ""
+},
+"11": {
+&"character": "DAL",
+&"id": "11",
+&"next_id": "13",
+&"text": "Your update corrupts the entire dimension system causing it to distort the artificial world and the real world, i think.",
+&"type": "dialogue"
+},
+"12": {
+&"id": "12",
+&"next_id": "13",
+&"type": ""
+},
+"13": {
+&"character": "kim",
+&"id": "13",
+&"next_id": "15",
+&"text": "YOU THINK??!",
+&"type": "dialogue"
+},
+"14": {
+&"id": "14",
+&"next_id": "15",
+&"type": ""
+},
+"15": {
+&"character": "DAL",
+&"id": "15",
+&"next_id": "17",
+&"text": "Yes master, i am also not sure why you are here since it should be not possible to transport any lifeform in the metaverse.",
+&"type": "dialogue"
+},
+"16": {
+&"id": "16",
+&"next_id": "17",
+&"type": ""
+},
+"17": {
+&"character": "kim",
+&"id": "17",
+&"next_id": "19",
+&"text": "Well, yeah i can't think of any solutions here since even my programming knowledge is wiped out.",
+&"type": "dialogue"
+},
+"18": {
+&"id": "18",
+&"next_id": "19",
+&"type": ""
+},
+"19": {
+&"character": "DAL",
+&"id": "19",
+&"next_id": "21",
+&"text": "Let me help you master, i will teach you the fundamentals of programming to refresh your  memory.",
+&"type": "dialogue"
+},
+"2": {
+&"id": "2",
+&"next_id": "3",
+&"type": ""
+},
+"20": {
+&"id": "20",
+&"next_id": "21",
+&"type": ""
+},
+"21": {
+&"character": "DAL",
+&"id": "21",
+&"next_id": "23",
+&"text": "But first can you fix me? my variables on my system is mixed up since its been a while since you fixed me",
+&"type": "dialogue"
+},
+"22": {
+&"id": "22",
+&"next_id": "23",
+&"type": ""
+},
+"23": {
+&"character": "DAL",
+&"id": "23",
+&"next_id": "24",
+&"text": "Open my block codes and drag and arrange the block codes into the right place.",
+&"type": "dialogue"
+},
+"24": {
+&"id": "24",
+&"is_snippet": false,
+&"next_id": "end",
+&"next_id_after": "",
+&"type": "goto"
+},
+"25": {
+&"id": "25",
+&"is_snippet": false,
+&"next_id": "end",
+&"next_id_after": "",
+&"type": "goto"
+},
+"3": {
+&"character": "kim",
+&"id": "3",
+&"next_id": "5",
+&"text": "DAL? master?",
+&"type": "dialogue"
+},
+"4": {
+&"id": "4",
+&"next_id": "5",
+&"type": ""
+},
+"5": {
+&"character": "DAL",
+&"id": "5",
+&"next_id": "7",
+&"text": "Yes, DAL stands for Dynamic Autonomous Lifeform, and yes you are my master because you created me on 12-05-23",
+&"type": "dialogue"
+},
+"6": {
+&"id": "6",
+&"next_id": "7",
+&"type": ""
+},
+"7": {
+&"character": "kim",
+&"id": "7",
+&"next_id": "9",
+&"text": "Well that's why your name sounds familiar, its been a while since i saw you.",
+&"type": "dialogue"
+},
+"8": {
+&"id": "8",
+&"next_id": "9",
+&"type": ""
+},
+"9": {
+&"character": "kim",
+&"id": "9",
+&"next_id": "11",
+&"text": "But anyway, how did i end up in this world? Im just a student in ADTI",
+&"type": "dialogue"
+}
+}
+raw_text = "~ start
+DAL: Hello master, my name is  DAL, how may i help you?
+
+kim: DAL? master?
+
+DAL: Yes, DAL stands for Dynamic Autonomous Lifeform, and yes you are my master because you created me on 12-05-23
+
+kim: Well that's why your name sounds familiar, its been a while since i saw you.
+
+kim: But anyway, how did i end up in this world? Im just a student in ADTI
+
+DAL: Your update corrupts the entire dimension system causing it to distort the artificial world and the real world, i think.
+
+kim: YOU THINK??!
+
+DAL: Yes master, i am also not sure why you are here since it should be not possible to transport any lifeform in the metaverse.
+
+kim: Well, yeah i can't think of any solutions here since even my programming knowledge is wiped out.
+
+DAL: Let me help you master, i will teach you the fundamentals of programming to refresh your  memory.
+
+DAL: But first can you fix me? my variables on my system is mixed up since its been a while since you fixed me
+
+DAL: Open my block codes and drag and arrange the block codes into the right place. 
+=> END"
+metadata/dialogue_manager_version = "3.4.0"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3g4f5"]
 radius = 27.8927
@@ -45,7 +283,6 @@ shape = SubResource("RectangleShape2D_pw1wf")
 [node name="InteractableArea2" parent="Interactables" instance=ExtResource("9_lt366")]
 position = Vector2(-1923, -665)
 CanAutoInteract = true
-DialogueResource = ExtResource("10_pw1wf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/InteractableArea2"]
 position = Vector2(-12, 25.75)
@@ -99,7 +336,7 @@ position = Vector2(-1964, -1208)
 position = Vector2(-1174, -609)
 
 [node name="InteractableArea" parent="D-A-L" instance=ExtResource("9_lt366")]
-DialogueResource = ExtResource("6_sl5mp")
+DialogueResource = SubResource("Resource_pom8o")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="D-A-L/InteractableArea"]
 position = Vector2(0, -1)

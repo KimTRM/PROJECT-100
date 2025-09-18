@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://bkpe57g2wdqc6"]
 
-[ext_resource type="Script" uid="uid://bkyfhykatvyjh" path="res://Scripts/UI/SceneSelector/ButtonScene.cs" id="1_7ktqt"]
-[ext_resource type="Texture2D" uid="uid://5nevt7vnyvu" path="res://Assets/UI/Rectangle 101.png" id="1_ecco5"]
-[ext_resource type="Texture2D" uid="uid://snpidhwo38ox" path="res://Assets/ProjectFiles/KLTL.png" id="3_lsyqi"]
+[ext_resource type="Script" uid="uid://bkyfhykatvyjh" path="res://scripts/UI/SceneSelector/ButtonScene.cs" id="1_7ktqt"]
+[ext_resource type="Texture2D" uid="uid://5nevt7vnyvu" path="res://assets/UI/Rectangle 101.png" id="1_ecco5"]
+[ext_resource type="Texture2D" uid="uid://snpidhwo38ox" path="res://assets/ProjectFiles/KLTL.png" id="3_lsyqi"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_oqwos"]
 texture = ExtResource("1_ecco5")

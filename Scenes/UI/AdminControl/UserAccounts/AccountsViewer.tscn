@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dxw73qfwdm0ag"]
 
-[ext_resource type="Script" uid="uid://dvd68q0ui8i4q" path="res://Scripts/UI/AdminControl/UserAccounts/AccountsViewer.cs" id="1_cbaon"]
-[ext_resource type="PackedScene" uid="uid://b3ervjk56j0ea" path="res://Scenes/UI/AdminControl/UserAccounts/StatusIndicator.tscn" id="2_b7qw6"]
+[ext_resource type="Script" uid="uid://dvd68q0ui8i4q" path="res://scripts/UI/AdminControl/UserAccounts/AccountsViewer.cs" id="1_cbaon"]
+[ext_resource type="PackedScene" uid="uid://b3ervjk56j0ea" path="res://scenes/UI/AdminControl/UserAccounts/StatusIndicator.tscn" id="2_b7qw6"]
 
 [node name="AccountsViewer" type="MarginContainer"]
 custom_minimum_size = Vector2(1055, 500)

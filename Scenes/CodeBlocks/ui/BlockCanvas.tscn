@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bp0aevc7dehng"]
 
-[ext_resource type="Script" uid="uid://0jr3qh6x7x8w" path="res://Scripts/CodeBlocks/ui/BlockCanvas.cs" id="1_084tk"]
+[ext_resource type="Script" uid="uid://0jr3qh6x7x8w" path="res://scripts/CodeBlocks/ui/BlockCanvas.cs" id="1_084tk"]
 
 [node name="BlockCanvas" type="PanelContainer" node_paths=PackedStringArray("dropContainer", "dropZone")]
 clip_contents = true

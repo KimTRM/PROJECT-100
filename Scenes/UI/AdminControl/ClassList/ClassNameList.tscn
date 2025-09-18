@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://c3amqm8k0f0jc"]
 
-[ext_resource type="Script" uid="uid://b4y6yc5xrhe7u" path="res://Scripts/UI/AdminControl/ClassList/ClassNameList.cs" id="1_75prs"]
+[ext_resource type="Script" uid="uid://b4y6yc5xrhe7u" path="res://scripts/UI/AdminControl/ClassList/ClassNameList.cs" id="1_75prs"]
 
 [node name="ClassNameList" type="MarginContainer"]
 anchors_preset = 15

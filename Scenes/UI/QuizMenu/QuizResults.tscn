@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://rbmq3hg00ydj"]
 
-[ext_resource type="Script" uid="uid://dx88p27i3qotc" path="res://Scripts/UI/QuizMenu/QuizResults.cs" id="1_coj3m"]
+[ext_resource type="Script" uid="uid://dx88p27i3qotc" path="res://scripts/UI/QuizMenu/QuizResults.cs" id="1_coj3m"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_criqm"]
 content_margin_left = 64.0

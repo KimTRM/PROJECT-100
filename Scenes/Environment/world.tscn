@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=4 uid="uid://v44f4qcx5kcp"]
 
-[ext_resource type="Script" uid="uid://4gnr01n5i227" path="res://Scripts/Components/MapContainerComponent.cs" id="1_u2ijb"]
-[ext_resource type="PackedScene" uid="uid://cbim2qw3563y2" path="res://Scenes/Environment/TileTemplate/PrototypeTilemap.tscn" id="3_6yupe"]
+[ext_resource type="Script" uid="uid://4gnr01n5i227" path="res://scripts/Components/MapContainerComponent.cs" id="1_u2ijb"]
+[ext_resource type="PackedScene" uid="uid://cbim2qw3563y2" path="res://scenes/Environment/TileTemplate/PrototypeTilemap.tscn" id="3_6yupe"]
 
 [node name="World" type="Node2D"]
 
