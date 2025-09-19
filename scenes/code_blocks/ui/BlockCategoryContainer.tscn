@@ -1,0 +1,44 @@
+[gd_scene load_steps=4 format=3 uid="uid://lwl73yb5asfc"]
+
+[ext_resource type="Script" uid="uid://bisptjjwl4ryk" path="res://scripts/code_blocks/ui/BlockCategoryContainer.cs" id="1_7d7yb"]
+[ext_resource type="PackedScene" uid="uid://drcorwafubvtf" path="res://scenes/code_blocks/blocks/VariableBlock.tscn" id="1_efcjw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1g8y4"]
+content_margin_left = 14.0
+content_margin_top = 8.0
+content_margin_right = 14.0
+content_margin_bottom = 14.0
+bg_color = Color(0.2, 0.2, 0.2, 0.305882)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="BlockCategoryContainer" type="PanelContainer"]
+offset_right = 173.0
+offset_bottom = 166.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_1g8y4")
+script = ExtResource("1_7d7yb")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="CategoryTitle" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Block Category"
+horizontal_alignment = 1
+
+[node name="CodeBlockContainer" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="VariableBlock" parent="VBoxContainer/CodeBlockContainer" instance=ExtResource("1_efcjw")]
+layout_mode = 2
+
+[node name="VariableBlock2" parent="VBoxContainer/CodeBlockContainer" instance=ExtResource("1_efcjw")]
+layout_mode = 2
+
+[node name="VariableBlock3" parent="VBoxContainer/CodeBlockContainer" instance=ExtResource("1_efcjw")]
+layout_mode = 2

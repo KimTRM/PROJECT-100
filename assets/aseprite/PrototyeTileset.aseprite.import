@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://md8n71ja7grr"
+path="res://.godot/imported/PrototyeTileset.aseprite-2d33071794d67b3beaba173d055b4cf3.res"
+
+[deps]
+
+source_file="res://assets/aseprite/PrototyeTileset.aseprite"
+dest_files=["res://.godot/imported/PrototyeTileset.aseprite-2d33071794d67b3beaba173d055b4cf3.res"]
+
+[params]
+

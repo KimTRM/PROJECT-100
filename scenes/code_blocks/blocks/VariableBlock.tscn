@@ -1,0 +1,97 @@
+[gd_scene load_steps=6 format=3 uid="uid://drcorwafubvtf"]
+
+[ext_resource type="Script" uid="uid://cyod5r2p4kyj6" path="res://scripts/code_blocks/blocks/VariableBlock.cs" id="1_nxi04"]
+[ext_resource type="Script" uid="uid://xc2s0k7u57hr" path="res://scripts/code_blocks/drag&drop/DropAreaComponent.cs" id="2_6kgea"]
+[ext_resource type="Script" uid="uid://beavoq4vmtdhe" path="res://scripts/code_blocks/drag&drop/DragAreaComponent.cs" id="3_uta86"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7f2a0"]
+bg_color = Color(0.847059, 0.384314, 0.384314, 1)
+corner_radius_top_left = 28
+corner_radius_top_right = 28
+corner_radius_bottom_right = 28
+corner_radius_bottom_left = 28
+corner_detail = 20
+anti_aliasing = false
+anti_aliasing_size = 0.5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p7kf4"]
+bg_color = Color(0, 0, 0, 0.262745)
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_radius_bottom_left = 18
+anti_aliasing = false
+
+[node name="VariableBlock" type="MarginContainer"]
+offset_right = 160.0
+offset_bottom = 50.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_nxi04")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_7f2a0")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="VariableLabel" type="Label" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "Int"
+vertical_alignment = 1
+uppercase = true
+
+[node name="VariableContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer" node_paths=PackedStringArray("dropContainer", "dropZone")]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_p7kf4")
+script = ExtResource("2_6kgea")
+dropContainer = NodePath(".")
+dropZone = NodePath("VarName")
+metadata/_custom_type_script = "uid://xc2s0k7u57hr"
+
+[node name="VarName" type="LineEdit" parent="MarginContainer/HBoxContainer/VariableContainer"]
+layout_mode = 2
+placeholder_text = "variable name"
+alignment = 1
+expand_to_text_length = true
+flat = true
+caret_blink = true
+caret_blink_interval = 0.38
+
+[node name="Control" type="Control" parent="MarginContainer/HBoxContainer/VariableContainer"]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="Label2" type="Label" parent="MarginContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+text = "="
+
+[node name="PanelContainer3" type="PanelContainer" parent="MarginContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_p7kf4")
+
+[node name="Value" type="LineEdit" parent="MarginContainer/HBoxContainer/PanelContainer3"]
+layout_mode = 2
+placeholder_text = "value"
+alignment = 1
+expand_to_text_length = true
+flat = true
+caret_blink = true
+caret_blink_interval = 0.38
+
+[node name="DragAreaComponent" type="Node" parent="." node_paths=PackedStringArray("draggableArea")]
+script = ExtResource("3_uta86")
+draggableArea = NodePath("..")
+metadata/_custom_type_script = "uid://beavoq4vmtdhe"

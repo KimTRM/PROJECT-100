@@ -12,16 +12,43 @@ config_version=5
 
 config/name="Project 100"
 config/features=PackedStringArray("4.5", "C#", "Mobile")
+boot_splash/show_image=false
 config/icon="res://icon.svg"
+
+[autoload]
+
+CodeBlockManager="*res://scripts/01_globals/CodeBlockManager.cs"
 
 [display]
 
 window/size/viewport_width=640
 window/size/viewport_height=360
+window/size/window_width_override=1280
+window/size/window_height_override=720
 
 [dotnet]
 
 project/assembly_name="Project 100"
+
+[editor]
+
+naming/scene_name_casing=1
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/AsepriteWizard/plugin.cfg")
+
+[file_customization]
+
+folder_colors={
+"res://addons/": "blue",
+"res://assets/": "yellow",
+"res://build/": "pink",
+"res://resources/": "green",
+"res://scenes/": "teal",
+"res://scripts/": "orange",
+"res://test/": "purple"
+}
 
 [rendering]
 
