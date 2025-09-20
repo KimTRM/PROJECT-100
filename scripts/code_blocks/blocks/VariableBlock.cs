@@ -27,11 +27,7 @@ public partial class VariableBlock : CodeBlock
 
 	public override void _Ready()
 	{
-		dragAreaComponent.DragStarted += () =>
-		{
-			EmitSignalDragStarted(this);
-			GD.Print("Drag started from VariableBlock");
-		};
+		dragAreaComponent.DragStarted += () => { EmitSignalDragStarted(this); };
 	}
 
 	public override async Task Execute()

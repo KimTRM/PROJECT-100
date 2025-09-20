@@ -50,7 +50,8 @@ func load_settings():
 	var err = config.load(EditorInterface.get_editor_paths().get_config_dir()+"/InspectorTabsPluginSettings.cfg")
 	# If the file didn't load, ignore it.
 	if err != OK:
-		print("ERROR LOADING SETTINGS FILE")
+		pass
+		#print("ERROR LOADING SETTINGS FILE")
 
 	
 	settings.set("inspector_tabs/tab_layout", config.get_value("Settings", "tab layout",1))

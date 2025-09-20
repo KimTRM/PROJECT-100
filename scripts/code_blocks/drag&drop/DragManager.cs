@@ -6,32 +6,27 @@ public partial class DragManager : Control
     [Signal] public delegate void BlockDroppedEventHandler();
     [Signal] public delegate void BlockModifiedEventHandler();
 
-    [Export] private BlockPicker _blockPicker;
-    [Export] private BlockCanvas _blockCanvas;
+    [Export] private BlockPicker blockPicker;
+    [Export] private BlockCanvas blockCanvas;
 
-    [Export] private Array _dropAreas = new();
+    private Array<Node> blocks = new();
+    // private Array<Node> dropArea = new();
 
-    private Node _originalParent;
-    private Control _draggedObject;
-    private Vector2 _offset;
-
-    private Node _dropTarget;
-
-    [Export] private Array<Node> blocks;
+    private Node originalParent;
+    private Control draggedObject;
+    private Vector2 offset;
+    private Node dropTarget;
 
     public bool dragging = false;
 
     public override void _Ready()
     {
         blocks = GetTree().GetNodesInGroup("CodeBlock");
+        // dropArea = GetTree().GetNodesInGroup("DropArea");
 
         foreach (CodeBlock block in blocks)
         {
-            block.DragStarted += (CodeBlock block) =>
-            {
-                GD.Print(block.Name);
-                StartDrag(block);
-            };
+            block.DragStarted += StartDrag;
         }
     }
 
@@ -39,8 +34,8 @@ public partial class DragManager : Control
     {
         if (dragging)
         {
-            _draggedObject.GlobalPosition = _draggedObject.GlobalPosition.Lerp(
-                GetGlobalMousePosition() - _offset,
+            draggedObject.GlobalPosition = draggedObject.GlobalPosition.Lerp(
+                GetGlobalMousePosition() - offset,
                 (float)delta * 18.0f
             );
         }
@@ -48,65 +43,48 @@ public partial class DragManager : Control
 
     public override void _Input(InputEvent @event)
     {
-        if (@event is InputEventMouseButton mouseEvent)
-        {
-            if (mouseEvent.IsReleased() && dragging)
-            {
-                EndDrag();
-            }
-
-            if (mouseEvent.IsPressed() && mouseEvent.ButtonIndex == MouseButton.Right)
-            {
-                _dropAreas?.Clear();
-
-                for (int i = 0; i < GetTree().GetNodesInGroup("DropArea").Count; i++)
-                {
-                    var dropArea = GetTree().GetNodesInGroup("DropArea")[i];
-                    _dropAreas.Add(dropArea);
-                }
-            }
-        }
+        if (@event is InputEventMouseButton mouseEvent && mouseEvent.IsReleased() && dragging)
+            EndDrag();
     }
 
     public void SetDroppableTarget(Node target)
     {
         if (target.IsAncestorOf(target)) return;
 
-        _dropTarget = target;
+        dropTarget = target;
     }
 
     public void StartDrag(CodeBlock draggable)
     {
         dragging = true;
 
-        _originalParent = draggable.GetParent();
-        _draggedObject = draggable;
-        _draggedObject.MouseFilter = MouseFilterEnum.Ignore;
-        _draggedObject.Reparent(this);
-        // Offset bellow the object to align with mouse
-        _offset = GetGlobalMousePosition() - _draggedObject.GlobalPosition;
+        originalParent = draggable.GetParent();
+        draggedObject = draggable;
+        offset = GetGlobalMousePosition() - draggedObject.GlobalPosition;
 
+        draggedObject.MouseFilter = MouseFilterEnum.Ignore;
+        draggedObject.Reparent(this);
     }
 
     private void EndDrag()
     {
         dragging = false;
 
-        Node newParent = _dropTarget ?? _originalParent;
+        Node newParent = dropTarget ?? originalParent;
 
-        if (_draggedObject != null && newParent != null && newParent.IsInsideTree())
+        if (draggedObject != null && newParent != null && newParent.IsInsideTree())
         {
-            if (!_draggedObject.IsAncestorOf(newParent))
+            if (!draggedObject.IsAncestorOf(newParent))
             {
-                _draggedObject.Reparent(newParent);
-                _draggedObject.GlobalPosition = GetGlobalMousePosition() - _offset;
+                draggedObject.Reparent(newParent);
+                draggedObject.GlobalPosition = GetGlobalMousePosition() - offset;
             }
             else
             {
-                _draggedObject.Reparent(_originalParent);
-                _draggedObject.GlobalPosition = GetGlobalMousePosition() - _offset;
+                draggedObject.Reparent(originalParent);
+                draggedObject.GlobalPosition = GetGlobalMousePosition() - offset;
             }
         }
-        _draggedObject = null;
+        draggedObject = null;
     }
 }

@@ -50,10 +50,9 @@ dragManager = NodePath("../../../DragManager")
 visible = false
 layout_mode = 2
 
-[node name="DragManager" type="Control" parent="PanelContainer" node_paths=PackedStringArray("_blockPicker", "_blockCanvas", "blocks")]
+[node name="DragManager" type="Control" parent="PanelContainer" node_paths=PackedStringArray("blockPicker", "blockCanvas")]
 layout_mode = 2
 mouse_filter = 2
 script = ExtResource("5_21meb")
-_blockPicker = NodePath("../HBoxContainer/BlockPicker")
-_blockCanvas = NodePath("../HBoxContainer/VSplitContainer/BlockCanvas")
-blocks = []
+blockPicker = NodePath("../HBoxContainer/BlockPicker")
+blockCanvas = NodePath("../HBoxContainer/VSplitContainer/BlockCanvas")

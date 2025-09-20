@@ -1,5 +1,4 @@
 using Godot;
-using Godot.Collections;
 
 public partial class DropAreaComponent : MarginContainer
 {
@@ -8,6 +7,7 @@ public partial class DropAreaComponent : MarginContainer
 	[Signal] public delegate void BlockRemovedEventHandler(CodeBlock block);
 
 	[Export] private Types.BlockType allowedBlockTypes = Types.BlockType.STATEMENT;
+	[Export] private Variant variantType;
 
 	[Export]
 	private CodeBlock droppedBlock
@@ -23,19 +23,6 @@ public partial class DropAreaComponent : MarginContainer
 				EmitSignalBlockRemoved(droppedBlock);
 			}
 		}
-	}
-
-	[Export] private Variant variantType;
-
-	public override void _Ready()
-	{
-		// if (dropZone == null)
-		// {
-		// 	GD.PrintErr("Droppable area is not set for DropAreaComponent." + GetParent().Name);
-		// 	return;
-		// }
-
-		// dropZone.MouseEntered += OnMouseEntered;
 	}
 
 	public CodeBlock GetDroppedBlock()
@@ -60,13 +47,5 @@ public partial class DropAreaComponent : MarginContainer
 
 		droppedBlock = newBlock;
 		AddChild(droppedBlock);
-	}
-
-	private void OnMouseEntered()
-	{
-		// if (dropContainer == null)
-		// 	dropContainer = this;
-
-		// DragManager.SetDroppableTarget(dropContainer);
 	}
 }
