@@ -3,12 +3,14 @@ using Godot;
 using GodotUtilities;
 
 [Scene]
-public partial class BlockCanvas : DropAreaComponent
+public partial class BlockCanvas : PanelContainer
 {
     [Node("WindowContainer/Overlay/MarginContainer/ZoomButtons/ZoomButton")]
     private Button ZoomButton;
     [Node("WindowContainer/Window")]
     public Control Window;
+
+    [Export] DragManager dragManager;
 
     private float _zoomFactor = 1.0f;
     private float _zoomStep = 0.1f;
@@ -33,6 +35,14 @@ public partial class BlockCanvas : DropAreaComponent
     {
         DragCanvas(@event);
         ZoomCanvas(@event);
+
+        if (@event is InputEventMouseMotion mouseMotion)
+        {
+            if (GetGlobalRect().HasPoint(mouseMotion.GlobalPosition))
+            {
+                dragManager.SetDroppableTarget(Window);
+            }
+        }
     }
 
     public bool IsMouseOver()

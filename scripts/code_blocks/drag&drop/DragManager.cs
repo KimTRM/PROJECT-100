@@ -17,11 +17,22 @@ public partial class DragManager : Control
 
     private Node _dropTarget;
 
+    [Export] private Array<Node> blocks;
+
     public bool dragging = false;
 
     public override void _Ready()
     {
-        CodeBlockManager.Instance.EmitDragManagerReady(this);
+        blocks = GetTree().GetNodesInGroup("CodeBlock");
+
+        foreach (CodeBlock block in blocks)
+        {
+            block.DragStarted += (CodeBlock block) =>
+            {
+                GD.Print(block.Name);
+                StartDrag(block);
+            };
+        }
     }
 
     public override void _Process(double delta)
@@ -48,9 +59,9 @@ public partial class DragManager : Control
             {
                 _dropAreas?.Clear();
 
-                for (int i = 0; i < GetTree().GetNodesInGroup("drop_areas").Count; i++)
+                for (int i = 0; i < GetTree().GetNodesInGroup("DropArea").Count; i++)
                 {
-                    var dropArea = GetTree().GetNodesInGroup("drop_areas")[i];
+                    var dropArea = GetTree().GetNodesInGroup("DropArea")[i];
                     _dropAreas.Add(dropArea);
                 }
             }
@@ -73,7 +84,7 @@ public partial class DragManager : Control
         _draggedObject.MouseFilter = MouseFilterEnum.Ignore;
         _draggedObject.Reparent(this);
         // Offset bellow the object to align with mouse
-        _offset = GetGlobalMousePosition() - _draggedObject.GlobalPosition + new Vector2(0, 18);
+        _offset = GetGlobalMousePosition() - _draggedObject.GlobalPosition;
 
     }
 
@@ -87,14 +98,11 @@ public partial class DragManager : Control
         {
             if (!_draggedObject.IsAncestorOf(newParent))
             {
-                _draggedObject.MouseFilter = MouseFilterEnum.Pass;
                 _draggedObject.Reparent(newParent);
                 _draggedObject.GlobalPosition = GetGlobalMousePosition() - _offset;
             }
             else
             {
-                // GD.PrintErr("Cannot reparent: would cause cyclic dependency.");
-                _draggedObject.MouseFilter = MouseFilterEnum.Pass;
                 _draggedObject.Reparent(_originalParent);
                 _draggedObject.GlobalPosition = GetGlobalMousePosition() - _offset;
             }

@@ -1,49 +1,72 @@
 using Godot;
 using Godot.Collections;
 
-[GlobalClass]
-public partial class DropAreaComponent : PanelContainer
+public partial class DropAreaComponent : MarginContainer
 {
-	[Signal] public delegate void DragStartedEventHandler();
+	[Signal] public delegate void DragStartedEventHandler(CodeBlock block);
+	[Signal] public delegate void DroppedBlockChangedEventHandler(CodeBlock block);
+	[Signal] public delegate void BlockRemovedEventHandler(CodeBlock block);
+
+	[Export] private Types.BlockType allowedBlockTypes = Types.BlockType.STATEMENT;
 
 	[Export]
-	private bool isDroppable = true;
+	private CodeBlock droppedBlock
+	{
+		get => droppedBlock;
+		set
+		{
+			droppedBlock = value;
+			EmitSignalDroppedBlockChanged(droppedBlock);
 
-	[Export]
-	private Control dropContainer;
+			if (value == null)
+			{
+				EmitSignalBlockRemoved(droppedBlock);
+			}
+		}
+	}
 
-	[Export]
-	private Control dropZone;
-
-	[Export]
-	private Array<string> allowedBlockTypes = new Array<string>();
-
-	public DragManager DragManager;
+	[Export] private Variant variantType;
 
 	public override void _Ready()
 	{
-		if (dropZone == null)
-		{
-			GD.PrintErr("Droppable area is not set for DropAreaComponent." + GetParent().Name);
-			return;
-		}
+		// if (dropZone == null)
+		// {
+		// 	GD.PrintErr("Droppable area is not set for DropAreaComponent." + GetParent().Name);
+		// 	return;
+		// }
 
-		AddToGroup("drop_areas");
-
-		CodeBlockManager.Instance.DragManagerReady += DragManagerReady;
-		dropZone.MouseEntered += OnMouseEntered;
+		// dropZone.MouseEntered += OnMouseEntered;
 	}
 
-	private void DragManagerReady(DragManager dragManager)
+	public CodeBlock GetDroppedBlock()
 	{
-		DragManager = dragManager;
+		return droppedBlock;
+	}
+
+	public bool HasBlock()
+	{
+		return droppedBlock != null;
+	}
+
+	public void ReplaceBlock(CodeBlock newBlock)
+	{
+		var oldBlock = droppedBlock;
+
+		if (oldBlock != null)
+		{
+			oldBlock.GetParent().RemoveChild(oldBlock);
+			EmitSignalBlockRemoved(oldBlock);
+		}
+
+		droppedBlock = newBlock;
+		AddChild(droppedBlock);
 	}
 
 	private void OnMouseEntered()
 	{
-		if (dropContainer == null)
-			dropContainer = this;
+		// if (dropContainer == null)
+		// 	dropContainer = this;
 
-		DragManager.SetDroppableTarget(dropContainer);
+		// DragManager.SetDroppableTarget(dropContainer);
 	}
 }

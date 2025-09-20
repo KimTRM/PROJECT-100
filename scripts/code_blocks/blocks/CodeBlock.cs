@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 public partial class CodeBlock : Control
 {
-    [Signal] public delegate void DragStartedEventHandler();
+    [Signal] public delegate void DragStartedEventHandler(CodeBlock codeBlock);
     [Export] private Resource BlockDefinition = null;
 
     public string BlockType;

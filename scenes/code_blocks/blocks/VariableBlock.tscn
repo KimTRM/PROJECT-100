@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://drcorwafubvtf"]
 
 [ext_resource type="Script" uid="uid://cyod5r2p4kyj6" path="res://scripts/code_blocks/blocks/VariableBlock.cs" id="1_nxi04"]
-[ext_resource type="Script" uid="uid://xc2s0k7u57hr" path="res://scripts/code_blocks/drag&drop/DropAreaComponent.cs" id="2_6kgea"]
-[ext_resource type="Script" uid="uid://beavoq4vmtdhe" path="res://scripts/code_blocks/drag&drop/DragAreaComponent.cs" id="3_uta86"]
+[ext_resource type="PackedScene" uid="uid://cwwyah4ofmis8" path="res://scenes/code_blocks/drag&drop/DragAreaComponent.tscn" id="2_2o31x"]
+[ext_resource type="PackedScene" uid="uid://brctb1gyubyc7" path="res://scenes/code_blocks/drag&drop/DropAreaComponent.tscn" id="4_ugaih"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7f2a0"]
 bg_color = Color(0.847059, 0.384314, 0.384314, 1)
@@ -22,7 +22,7 @@ corner_radius_bottom_right = 18
 corner_radius_bottom_left = 18
 anti_aliasing = false
 
-[node name="VariableBlock" type="MarginContainer"]
+[node name="VariableBlock" type="MarginContainer" groups=["CodeBlock"]]
 offset_right = 160.0
 offset_bottom = 50.0
 size_flags_horizontal = 4
@@ -31,10 +31,16 @@ script = ExtResource("1_nxi04")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 2
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_7f2a0")
+
+[node name="DragAreaComponent" parent="." instance=ExtResource("2_2o31x")]
+unique_name_in_owner = true
+layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 6
@@ -42,6 +48,7 @@ theme_override_constants/margin_bottom = 4
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="VariableLabel" type="Label" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
@@ -49,17 +56,14 @@ text = "Int"
 vertical_alignment = 1
 uppercase = true
 
-[node name="VariableContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer" node_paths=PackedStringArray("dropContainer", "dropZone")]
+[node name="VariableContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_p7kf4")
-script = ExtResource("2_6kgea")
-dropContainer = NodePath(".")
-dropZone = NodePath("VarName")
-metadata/_custom_type_script = "uid://xc2s0k7u57hr"
 
 [node name="VarName" type="LineEdit" parent="MarginContainer/HBoxContainer/VariableContainer"]
+unique_name_in_owner = true
 layout_mode = 2
+mouse_filter = 1
 placeholder_text = "variable name"
 alignment = 1
 expand_to_text_length = true
@@ -67,31 +71,5 @@ flat = true
 caret_blink = true
 caret_blink_interval = 0.38
 
-[node name="Control" type="Control" parent="MarginContainer/HBoxContainer/VariableContainer"]
+[node name="DropAreaComponent" parent="MarginContainer/HBoxContainer/VariableContainer" instance=ExtResource("4_ugaih")]
 layout_mode = 2
-mouse_filter = 1
-
-[node name="Label2" type="Label" parent="MarginContainer/HBoxContainer"]
-visible = false
-layout_mode = 2
-text = "="
-
-[node name="PanelContainer3" type="PanelContainer" parent="MarginContainer/HBoxContainer"]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_p7kf4")
-
-[node name="Value" type="LineEdit" parent="MarginContainer/HBoxContainer/PanelContainer3"]
-layout_mode = 2
-placeholder_text = "value"
-alignment = 1
-expand_to_text_length = true
-flat = true
-caret_blink = true
-caret_blink_interval = 0.38
-
-[node name="DragAreaComponent" type="Node" parent="." node_paths=PackedStringArray("draggableArea")]
-script = ExtResource("3_uta86")
-draggableArea = NodePath("..")
-metadata/_custom_type_script = "uid://beavoq4vmtdhe"

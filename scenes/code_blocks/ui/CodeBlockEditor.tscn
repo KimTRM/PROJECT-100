@@ -42,16 +42,18 @@ layout_mode = 2
 theme_override_constants/separation = 4
 split_offset = 504
 
-[node name="BlockCanvas" parent="PanelContainer/HBoxContainer/VSplitContainer" instance=ExtResource("3_ju8dt")]
+[node name="BlockCanvas" parent="PanelContainer/HBoxContainer/VSplitContainer" node_paths=PackedStringArray("dragManager") instance=ExtResource("3_ju8dt")]
 layout_mode = 2
+dragManager = NodePath("../../../DragManager")
 
 [node name="Console" parent="PanelContainer/HBoxContainer/VSplitContainer" instance=ExtResource("4_h4y0m")]
 visible = false
 layout_mode = 2
 
-[node name="DragManager" type="Control" parent="PanelContainer" node_paths=PackedStringArray("_blockPicker", "_blockCanvas")]
+[node name="DragManager" type="Control" parent="PanelContainer" node_paths=PackedStringArray("_blockPicker", "_blockCanvas", "blocks")]
 layout_mode = 2
 mouse_filter = 2
 script = ExtResource("5_21meb")
 _blockPicker = NodePath("../HBoxContainer/BlockPicker")
 _blockCanvas = NodePath("../HBoxContainer/VSplitContainer/BlockCanvas")
+blocks = []
