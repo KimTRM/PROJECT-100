@@ -31,18 +31,20 @@ public partial class BlockCanvas : PanelContainer
         }
     }
 
+    public override void _Ready()
+    {
+        MouseEntered += () => dragManager.SetDroppableTarget(Window);
+    }
+
     public override void _Input(InputEvent @event)
     {
         DragCanvas(@event);
         ZoomCanvas(@event);
 
-        if (@event is InputEventMouseMotion mouseMotion)
-        {
-            if (GetGlobalRect().HasPoint(mouseMotion.GlobalPosition))
-            {
-                dragManager.SetDroppableTarget(Window);
-            }
-        }
+        // if (GetGlobalRect().HasPoint(GetGlobalMousePosition()))
+        // {
+        //     dragManager.SetDroppableTarget(Window);
+        // }
     }
 
     public bool IsMouseOver()

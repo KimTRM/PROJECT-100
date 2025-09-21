@@ -23,8 +23,8 @@ corner_radius_bottom_left = 18
 anti_aliasing = false
 
 [node name="VariableBlock" type="MarginContainer" groups=["CodeBlock"]]
-offset_right = 160.0
-offset_bottom = 50.0
+offset_right = 165.0
+offset_bottom = 39.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("1_nxi04")
@@ -58,12 +58,12 @@ uppercase = true
 
 [node name="VariableContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_p7kf4")
 
 [node name="VarName" type="LineEdit" parent="MarginContainer/HBoxContainer/VariableContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-mouse_filter = 1
 placeholder_text = "variable name"
 alignment = 1
 expand_to_text_length = true
