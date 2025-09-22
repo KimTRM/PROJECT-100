@@ -8,11 +8,12 @@ public partial class VariableBlock : CodeBlock
 	[Node("MarginContainer/HBoxContainer/VariableLabel")]
 	public Label varType;
 
-	[Node("MarginContainer/HBoxContainer/VariableContainer/VarName")]
-	private LineEdit varName;
+	[Node] private LineEdit varName;
 
 	[Node("MarginContainer/HBoxContainer/VariableContainer")]
 	private PanelContainer varContainer;
+
+	[Node] private DragAreaComponent dragAreaComponent;
 
 	[Export] public string varNameStr;
 
@@ -22,6 +23,11 @@ public partial class VariableBlock : CodeBlock
 		{
 			WireNodes();
 		}
+	}
+
+	public override void _Ready()
+	{
+		dragAreaComponent.DragStarted += () => { EmitSignalDragStarted(this); };
 	}
 
 	public override async Task Execute()

@@ -1,49 +1,41 @@
 using Godot;
-using Godot.Collections;
 
-[GlobalClass]
-public partial class DropAreaComponent : PanelContainer
+public partial class DropAreaComponent : MarginContainer
 {
-	[Signal] public delegate void DragStartedEventHandler();
+	[Signal] public delegate void DroppedBlockChangedEventHandler(CodeBlock block);
+	[Signal] public delegate void BlockRemovedEventHandler(CodeBlock block);
 
 	[Export]
-	private bool isDroppable = true;
+	public Types.BlockType allowedBlockTypes = Types.BlockType.NONE;
 
 	[Export]
-	private Control dropContainer;
-
-	[Export]
-	private Control dropZone;
-
-	[Export]
-	private Array<string> allowedBlockTypes = new Array<string>();
-
-	public DragManager DragManager;
-
-	public override void _Ready()
+	public CodeBlock DroppedBlock
 	{
-		if (dropZone == null)
-		{
-			GD.PrintErr("Droppable area is not set for DropAreaComponent." + GetParent().Name);
+		get => _droppedBlock;
+		set => SetDroppedBlock(value);
+	}
+
+	public CodeBlock GetDroppedBlock() => _droppedBlock;
+	public bool HasBlock() => GetChildren().Count > 0;
+
+	private CodeBlock _droppedBlock;
+	private bool _setting;
+
+	private void SetDroppedBlock(CodeBlock value)
+	{
+		if (_setting || _droppedBlock == value)
 			return;
-		}
 
-		AddToGroup("drop_areas");
+		_setting = true;
 
-		CodeBlockManager.Instance.DragManagerReady += DragManagerReady;
-		dropZone.MouseEntered += OnMouseEntered;
-	}
+		var old = _droppedBlock;
+		_droppedBlock = value;
 
-	private void DragManagerReady(DragManager dragManager)
-	{
-		DragManager = dragManager;
-	}
+		EmitSignal(SignalName.DroppedBlockChanged, _droppedBlock);
 
-	private void OnMouseEntered()
-	{
-		if (dropContainer == null)
-			dropContainer = this;
+		if (old != null && _droppedBlock == null)
+			EmitSignal(SignalName.BlockRemoved, old);
 
-		DragManager.SetDroppableTarget(dropContainer);
+		_setting = false;
 	}
 }

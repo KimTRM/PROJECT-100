@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://brctb1gyubyc7"]
+
+[ext_resource type="Script" uid="uid://xc2s0k7u57hr" path="res://scripts/code_blocks/drag&drop/DropAreaComponent.cs" id="1_lp6dp"]
+
+[node name="DropAreaComponent" type="MarginContainer" groups=["DropArea"]]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_lp6dp")

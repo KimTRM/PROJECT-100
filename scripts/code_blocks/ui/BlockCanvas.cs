@@ -3,12 +3,10 @@ using Godot;
 using GodotUtilities;
 
 [Scene]
-public partial class BlockCanvas : DropAreaComponent
+public partial class BlockCanvas : PanelContainer
 {
-    [Node("WindowContainer/Overlay/MarginContainer/ZoomButtons/ZoomButton")]
-    private Button ZoomButton;
-    [Node("WindowContainer/Window")]
-    public Control Window;
+    [Node] private Button ZoomButton;
+    [Node] public Control Window;
 
     private float _zoomFactor = 1.0f;
     private float _zoomStep = 0.1f;

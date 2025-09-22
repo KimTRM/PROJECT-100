@@ -6,30 +6,36 @@ public partial class DragManager : Control
     [Signal] public delegate void BlockDroppedEventHandler();
     [Signal] public delegate void BlockModifiedEventHandler();
 
-    [Export] private BlockPicker _blockPicker;
-    [Export] private BlockCanvas _blockCanvas;
+    [Export] private BlockPicker blockPicker;
+    [Export] private BlockCanvas blockCanvas;
 
-    [Export] private Array _dropAreas = new();
+    private Array<Node> blocks = new();
+    private Array<Node> dropAreas = new();
 
-    private Node _originalParent;
-    private Control _draggedObject;
-    private Vector2 _offset;
-
-    private Node _dropTarget;
+    private CodeBlock draggedObject;
+    private Node originalParent;
+    private Node dropTarget;
+    private Vector2 offset;
 
     public bool dragging = false;
 
     public override void _Ready()
     {
-        CodeBlockManager.Instance.EmitDragManagerReady(this);
+        blocks = GetTree().GetNodesInGroup("CodeBlock");
+        dropAreas = GetTree().GetNodesInGroup("DropArea");
+
+        foreach (CodeBlock block in blocks) block.DragStarted += StartDrag;
+
+        blockPicker.MouseEntered += () => SetDroppableTarget(blockPicker);
+        blockCanvas.MouseEntered += () => SetDroppableTarget(blockCanvas.Window);
     }
 
     public override void _Process(double delta)
     {
-        if (dragging)
+        if (dragging && draggedObject != null)
         {
-            _draggedObject.GlobalPosition = _draggedObject.GlobalPosition.Lerp(
-                GetGlobalMousePosition() - _offset,
+            draggedObject.GlobalPosition = draggedObject.GlobalPosition.Lerp(
+                GetGlobalMousePosition() - offset,
                 (float)delta * 18.0f
             );
         }
@@ -37,68 +43,83 @@ public partial class DragManager : Control
 
     public override void _Input(InputEvent @event)
     {
-        if (@event is InputEventMouseButton mouseEvent)
+        if (@event is InputEventMouseButton mouseEvent && mouseEvent.IsReleased() && dragging)
         {
-            if (mouseEvent.IsReleased() && dragging)
-            {
-                EndDrag();
-            }
-
-            if (mouseEvent.IsPressed() && mouseEvent.ButtonIndex == MouseButton.Right)
-            {
-                _dropAreas?.Clear();
-
-                for (int i = 0; i < GetTree().GetNodesInGroup("drop_areas").Count; i++)
-                {
-                    var dropArea = GetTree().GetNodesInGroup("drop_areas")[i];
-                    _dropAreas.Add(dropArea);
-                }
-            }
+            SetClosestDroppableTargets();
+            EndDrag();
         }
     }
 
-    public void SetDroppableTarget(Node target)
+    private void StartDrag(CodeBlock draggable)
     {
-        if (target.IsAncestorOf(target)) return;
+        if (dragging) return;
 
-        _dropTarget = target;
-    }
-
-    public void StartDrag(CodeBlock draggable)
-    {
         dragging = true;
 
-        _originalParent = draggable.GetParent();
-        _draggedObject = draggable;
-        _draggedObject.MouseFilter = MouseFilterEnum.Ignore;
-        _draggedObject.Reparent(this);
-        // Offset bellow the object to align with mouse
-        _offset = GetGlobalMousePosition() - _draggedObject.GlobalPosition + new Vector2(0, 18);
+        originalParent = draggable.GetParent();
+        draggedObject = draggable;
+        offset = GetGlobalMousePosition() - draggedObject.GlobalPosition;
 
+        draggedObject.MouseFilter = MouseFilterEnum.Ignore;
+        draggedObject.Reparent(this);
     }
 
     private void EndDrag()
     {
-        dragging = false;
+        Node newParent = dropTarget ?? originalParent;
 
-        Node newParent = _dropTarget ?? _originalParent;
-
-        if (_draggedObject != null && newParent != null && newParent.IsInsideTree())
+        if (draggedObject != null && newParent != null && newParent.IsInsideTree())
         {
-            if (!_draggedObject.IsAncestorOf(newParent))
-            {
-                _draggedObject.MouseFilter = MouseFilterEnum.Pass;
-                _draggedObject.Reparent(newParent);
-                _draggedObject.GlobalPosition = GetGlobalMousePosition() - _offset;
-            }
+            if (!draggedObject.IsAncestorOf(newParent))
+                draggedObject.Reparent(newParent);
             else
+                draggedObject.Reparent(originalParent);
+        }
+
+        draggedObject = null;
+        dropTarget = null;
+        dragging = false;
+    }
+
+    private void SetDroppableTarget(Node target)
+    {
+        if (target.IsAncestorOf(target)) return;
+
+        dropTarget = target;
+    }
+
+    private void SetClosestDroppableTargets()
+    {
+        if (draggedObject == null)
+            return;
+
+        DropAreaComponent closestDropArea = null;
+        float bestDist = float.MaxValue;
+        var mousePos = GetGlobalMousePosition();
+
+        foreach (DropAreaComponent dropArea in dropAreas)
+        {
+            if (dropArea.HasBlock())
+                continue;
+
+            if (!dropArea.GetGlobalRect().HasPoint(mousePos))
+                continue;
+
+            if (draggedObject.BlockType != dropArea.allowedBlockTypes)
+                continue;
+
+            float distance = draggedObject.GlobalPosition.DistanceTo(dropArea.GlobalPosition);
+            if (distance < bestDist)
             {
-                // GD.PrintErr("Cannot reparent: would cause cyclic dependency.");
-                _draggedObject.MouseFilter = MouseFilterEnum.Pass;
-                _draggedObject.Reparent(_originalParent);
-                _draggedObject.GlobalPosition = GetGlobalMousePosition() - _offset;
+                bestDist = distance;
+                closestDropArea = dropArea;
             }
         }
-        _draggedObject = null;
+
+        if (closestDropArea != null)
+        {
+            SetDroppableTarget(closestDropArea);
+            EmitSignal(SignalName.BlockDropped);
+        }
     }
 }
