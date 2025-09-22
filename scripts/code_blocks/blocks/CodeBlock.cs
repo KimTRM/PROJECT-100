@@ -6,7 +6,8 @@ public partial class CodeBlock : Control
     [Signal] public delegate void DragStartedEventHandler(CodeBlock codeBlock);
     [Export] private Resource BlockDefinition = null;
 
-    public string BlockType;
+    [Export] public Types.BlockType BlockType = Types.BlockType.NONE;
+
     private Variant BlockValue;
 
     public virtual async Task Execute() { await Task.CompletedTask; }

@@ -12,7 +12,7 @@ public partial class DragManager : Control
     private Array<Node> blocks = new();
     private Array<Node> dropAreas = new();
 
-    private Control draggedObject;
+    private CodeBlock draggedObject;
     private Node originalParent;
     private Node dropTarget;
     private Vector2 offset;
@@ -24,10 +24,10 @@ public partial class DragManager : Control
         blocks = GetTree().GetNodesInGroup("CodeBlock");
         dropAreas = GetTree().GetNodesInGroup("DropArea");
 
-        foreach (CodeBlock block in blocks)
-        {
-            block.DragStarted += StartDrag;
-        }
+        foreach (CodeBlock block in blocks) block.DragStarted += StartDrag;
+
+        blockPicker.MouseEntered += () => SetDroppableTarget(blockPicker);
+        blockCanvas.MouseEntered += () => SetDroppableTarget(blockCanvas.Window);
     }
 
     public override void _Process(double delta)
@@ -44,29 +44,16 @@ public partial class DragManager : Control
     public override void _Input(InputEvent @event)
     {
         if (@event is InputEventMouseButton mouseEvent && mouseEvent.IsReleased() && dragging)
-            EndDrag();
-
-        if (@event is InputEventMouseMotion mouseMotion)
         {
-            if (draggedObject == null) return;
-
-            var closestDropDistance = 100;
-            foreach (DropAreaComponent dropArea in dropAreas)
-            {
-                var distance = draggedObject.GlobalPosition.DistanceTo(dropArea.GlobalPosition);
-                GD.Print(distance);
-
-                if (distance <= closestDropDistance && dropArea.GetGlobalRect().HasPoint(GetGlobalMousePosition()))
-                {
-                    GD.Print(dropArea.Name);
-                    SetDroppableTarget(dropArea);
-                }
-            }
+            SetClosestDroppableTargets();
+            EndDrag();
         }
     }
 
-    public void StartDrag(CodeBlock draggable)
+    private void StartDrag(CodeBlock draggable)
     {
+        if (dragging) return;
+
         dragging = true;
 
         originalParent = draggable.GetParent();
@@ -84,24 +71,56 @@ public partial class DragManager : Control
         if (draggedObject != null && newParent != null && newParent.IsInsideTree())
         {
             if (!draggedObject.IsAncestorOf(newParent))
-            {
                 draggedObject.Reparent(newParent);
-                draggedObject.GlobalPosition = GetGlobalMousePosition() - offset;
-            }
             else
-            {
                 draggedObject.Reparent(originalParent);
-                draggedObject.GlobalPosition = GetGlobalMousePosition() - offset;
-            }
         }
+
         draggedObject = null;
+        dropTarget = null;
+        dragging = false;
     }
 
-    public void SetDroppableTarget(Node target)
+    private void SetDroppableTarget(Node target)
     {
         if (target.IsAncestorOf(target)) return;
 
         dropTarget = target;
-        GD.Print("Set drop target to " + dropTarget.Name);
+    }
+
+    private void SetClosestDroppableTargets()
+    {
+        if (draggedObject == null)
+            return;
+
+        DropAreaComponent best = null;
+        float bestDist = float.MaxValue;
+        var mousePos = GetGlobalMousePosition();
+
+        foreach (DropAreaComponent dropArea in dropAreas)
+        {
+            if (dropArea.HasBlock())
+                continue;
+
+            if (!dropArea.GetGlobalRect().HasPoint(mousePos))
+                continue;
+
+            if (draggedObject.BlockType != dropArea.allowedBlockTypes)
+                continue;
+
+            float distance = draggedObject.GlobalPosition.DistanceTo(dropArea.GlobalPosition);
+            if (distance < bestDist)
+            {
+                bestDist = distance;
+                best = dropArea;
+            }
+        }
+
+        if (best != null)
+        {
+            SetDroppableTarget(best);
+            best.ReplaceBlock((CodeBlock)draggedObject);
+            EmitSignal(SignalName.BlockDropped);
+        }
     }
 }

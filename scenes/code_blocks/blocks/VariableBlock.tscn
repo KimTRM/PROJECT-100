@@ -28,6 +28,7 @@ offset_bottom = 39.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("1_nxi04")
+BlockType = 3
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 2
@@ -73,3 +74,4 @@ caret_blink_interval = 0.38
 
 [node name="DropAreaComponent" parent="MarginContainer/HBoxContainer/VariableContainer" instance=ExtResource("4_ugaih")]
 layout_mode = 2
+allowedBlockTypes = 3

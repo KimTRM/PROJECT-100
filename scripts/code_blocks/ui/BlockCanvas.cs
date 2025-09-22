@@ -5,12 +5,8 @@ using GodotUtilities;
 [Scene]
 public partial class BlockCanvas : PanelContainer
 {
-    [Node("WindowContainer/Overlay/MarginContainer/ZoomButtons/ZoomButton")]
-    private Button ZoomButton;
-    [Node("WindowContainer/Window")]
-    public Control Window;
-
-    [Export] DragManager dragManager;
+    [Node] private Button ZoomButton;
+    [Node] public Control Window;
 
     private float _zoomFactor = 1.0f;
     private float _zoomStep = 0.1f;
@@ -31,20 +27,10 @@ public partial class BlockCanvas : PanelContainer
         }
     }
 
-    public override void _Ready()
-    {
-        MouseEntered += () => dragManager.SetDroppableTarget(Window);
-    }
-
     public override void _Input(InputEvent @event)
     {
         DragCanvas(@event);
         ZoomCanvas(@event);
-
-        // if (GetGlobalRect().HasPoint(GetGlobalMousePosition()))
-        // {
-        //     dragManager.SetDroppableTarget(Window);
-        // }
     }
 
     public bool IsMouseOver()

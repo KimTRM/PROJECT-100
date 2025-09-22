@@ -2,50 +2,53 @@ using Godot;
 
 public partial class DropAreaComponent : MarginContainer
 {
-	[Signal] public delegate void DragStartedEventHandler(CodeBlock block);
 	[Signal] public delegate void DroppedBlockChangedEventHandler(CodeBlock block);
 	[Signal] public delegate void BlockRemovedEventHandler(CodeBlock block);
 
-	[Export] private Types.BlockType allowedBlockTypes = Types.BlockType.STATEMENT;
-	[Export] private Variant variantType;
+	[Export]
+	public Types.BlockType allowedBlockTypes = Types.BlockType.NONE;
 
 	[Export]
-	private CodeBlock droppedBlock
+	public CodeBlock DroppedBlock
 	{
-		get => droppedBlock;
-		set
-		{
-			droppedBlock = value;
-			EmitSignalDroppedBlockChanged(droppedBlock);
-
-			if (value == null)
-			{
-				EmitSignalBlockRemoved(droppedBlock);
-			}
-		}
+		get => _droppedBlock;
+		set => SetDroppedBlock(value);
 	}
 
-	public CodeBlock GetDroppedBlock()
-	{
-		return droppedBlock;
-	}
+	public CodeBlock GetDroppedBlock() => _droppedBlock;
+	public bool HasBlock() => _droppedBlock != null;
 
-	public bool HasBlock()
+	private CodeBlock _droppedBlock;
+	private bool _setting;
+
+	private void SetDroppedBlock(CodeBlock value)
 	{
-		return droppedBlock != null;
+		if (_setting || _droppedBlock == value)
+			return;
+
+		_setting = true;
+
+		var old = _droppedBlock;
+		_droppedBlock = value;
+
+		EmitSignal(SignalName.DroppedBlockChanged, _droppedBlock);
+
+		if (old != null && _droppedBlock == null)
+			EmitSignal(SignalName.BlockRemoved, old);
+
+		_setting = false;
 	}
 
 	public void ReplaceBlock(CodeBlock newBlock)
 	{
-		var oldBlock = droppedBlock;
-
-		if (oldBlock != null)
+		if (_droppedBlock != null)
 		{
-			oldBlock.GetParent().RemoveChild(oldBlock);
-			EmitSignalBlockRemoved(oldBlock);
+			_droppedBlock.GetParent()?.RemoveChild(_droppedBlock);
+			EmitSignal(SignalName.BlockRemoved, _droppedBlock);
 		}
 
-		droppedBlock = newBlock;
-		AddChild(droppedBlock);
+		_droppedBlock = newBlock;
+
+		EmitSignal(SignalName.DroppedBlockChanged, _droppedBlock);
 	}
 }
