@@ -16,7 +16,7 @@ public partial class DropAreaComponent : MarginContainer
 	}
 
 	public CodeBlock GetDroppedBlock() => _droppedBlock;
-	public bool HasBlock() => _droppedBlock != null;
+	public bool HasBlock() => GetChildren().Count > 0;
 
 	private CodeBlock _droppedBlock;
 	private bool _setting;
@@ -37,18 +37,5 @@ public partial class DropAreaComponent : MarginContainer
 			EmitSignal(SignalName.BlockRemoved, old);
 
 		_setting = false;
-	}
-
-	public void ReplaceBlock(CodeBlock newBlock)
-	{
-		if (_droppedBlock != null)
-		{
-			_droppedBlock.GetParent()?.RemoveChild(_droppedBlock);
-			EmitSignal(SignalName.BlockRemoved, _droppedBlock);
-		}
-
-		_droppedBlock = newBlock;
-
-		EmitSignal(SignalName.DroppedBlockChanged, _droppedBlock);
 	}
 }

@@ -93,7 +93,7 @@ public partial class DragManager : Control
         if (draggedObject == null)
             return;
 
-        DropAreaComponent best = null;
+        DropAreaComponent closestDropArea = null;
         float bestDist = float.MaxValue;
         var mousePos = GetGlobalMousePosition();
 
@@ -112,14 +112,13 @@ public partial class DragManager : Control
             if (distance < bestDist)
             {
                 bestDist = distance;
-                best = dropArea;
+                closestDropArea = dropArea;
             }
         }
 
-        if (best != null)
+        if (closestDropArea != null)
         {
-            SetDroppableTarget(best);
-            best.ReplaceBlock((CodeBlock)draggedObject);
+            SetDroppableTarget(closestDropArea);
             EmitSignal(SignalName.BlockDropped);
         }
     }
