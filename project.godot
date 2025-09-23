@@ -47,6 +47,11 @@ folder_colors={
 "res://test/": "purple"
 }
 
+[gui]
+
+theme/custom_font="uid://bgddmmru3gpvg"
+
 [rendering]
 
 renderer/rendering_method="mobile"
+anti_aliasing/screen_space_roughness_limiter/enabled=false

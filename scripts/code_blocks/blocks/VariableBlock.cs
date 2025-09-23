@@ -9,10 +9,6 @@ public partial class VariableBlock : CodeBlock
 	public Label varType;
 
 	[Node] private LineEdit varName;
-
-	[Node("MarginContainer/HBoxContainer/VariableContainer")]
-	private PanelContainer varContainer;
-
 	[Node] private DragAreaComponent dragAreaComponent;
 
 	[Export] public string varNameStr;
@@ -32,7 +28,7 @@ public partial class VariableBlock : CodeBlock
 
 	public override async Task Execute()
 	{
-		foreach (Control child in varContainer.GetChildren())
+		foreach (Control child in dragAreaComponent.GetChildren())
 		{
 			if (child is ExpressionBlock block)
 			{

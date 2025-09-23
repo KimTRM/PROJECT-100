@@ -5,8 +5,7 @@ using System;
 [Scene]
 public partial class BlockPicker : PanelContainer
 {
-	[Node("ScrollContainer/MarginContainer/CodeBlockContainer")]
-	public VBoxContainer codeBlockContainer;
+	[Node] public VBoxContainer CodeBlockContainer;
 
 	public override void _Notification(int what)
 	{

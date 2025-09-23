@@ -1,14 +1,26 @@
-[gd_scene load_steps=3 format=3 uid="uid://dl1yi3e2oqj0k"]
+[gd_scene load_steps=5 format=3 uid="uid://dl1yi3e2oqj0k"]
 
 [ext_resource type="Script" uid="uid://dx5x5yebcdaus" path="res://scripts/code_blocks/ui/BlockPicker.cs" id="1_5nmmw"]
 [ext_resource type="PackedScene" uid="uid://lwl73yb5asfc" path="res://scenes/code_blocks/ui/BlockCategoryContainer.tscn" id="3_wbj7l"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vmgb6"]
+load_path = "res://.godot/imported/Variable.png-bb43b7559e317a3c7becf45aba511812.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_adc05"]
+texture = SubResource("CompressedTexture2D_vmgb6")
+texture_margin_left = 32.0
+texture_margin_top = 32.0
+texture_margin_right = 32.0
+texture_margin_bottom = 32.0
+modulate_color = Color(0.10980392, 0.10980392, 0.10980392, 0.8)
 
 [node name="BlockPicker" type="PanelContainer"]
 texture_filter = 1
 anchors_preset = 9
 anchor_bottom = 1.0
-offset_right = 244.0
+offset_right = 260.0
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_adc05")
 script = ExtResource("1_5nmmw")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
@@ -16,18 +28,11 @@ layout_mode = 2
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer"]
-layout_mode = 2
-size_flags_horizontal = 6
-theme_override_constants/margin_left = 14
-theme_override_constants/margin_top = 14
-theme_override_constants/margin_right = 14
-theme_override_constants/margin_bottom = 14
-
-[node name="CodeBlockContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer"]
+[node name="CodeBlockContainer" type="VBoxContainer" parent="ScrollContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 24
 alignment = 1
 
-[node name="BlockCategoryContainer" parent="ScrollContainer/MarginContainer/CodeBlockContainer" instance=ExtResource("3_wbj7l")]
+[node name="BlockCategoryContainer" parent="ScrollContainer/CodeBlockContainer" instance=ExtResource("3_wbj7l")]
 layout_mode = 2

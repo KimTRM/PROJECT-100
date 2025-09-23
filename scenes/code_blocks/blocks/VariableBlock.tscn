@@ -1,39 +1,40 @@
-[gd_scene load_steps=6 format=3 uid="uid://drcorwafubvtf"]
+[gd_scene load_steps=7 format=3 uid="uid://drcorwafubvtf"]
 
 [ext_resource type="Script" uid="uid://cyod5r2p4kyj6" path="res://scripts/code_blocks/blocks/VariableBlock.cs" id="1_nxi04"]
 [ext_resource type="PackedScene" uid="uid://cwwyah4ofmis8" path="res://scenes/code_blocks/drag&drop/DragAreaComponent.tscn" id="2_2o31x"]
+[ext_resource type="Texture2D" uid="uid://uf168g7jnhwb" path="res://assets/textures/Variable.png" id="2_ugaih"]
 [ext_resource type="PackedScene" uid="uid://brctb1gyubyc7" path="res://scenes/code_blocks/drag&drop/DropAreaComponent.tscn" id="4_ugaih"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7f2a0"]
-bg_color = Color(0.847059, 0.384314, 0.384314, 1)
-corner_radius_top_left = 28
-corner_radius_top_right = 28
-corner_radius_bottom_right = 28
-corner_radius_bottom_left = 28
-corner_detail = 20
-anti_aliasing = false
-anti_aliasing_size = 0.5
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4boqc"]
+texture = ExtResource("2_ugaih")
+texture_margin_left = 32.0
+texture_margin_top = 32.0
+texture_margin_right = 16.0
+texture_margin_bottom = 16.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p7kf4"]
-bg_color = Color(0, 0, 0, 0.262745)
-corner_radius_top_left = 18
-corner_radius_top_right = 18
-corner_radius_bottom_right = 18
-corner_radius_bottom_left = 18
-anti_aliasing = false
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ugaih"]
+texture = ExtResource("2_ugaih")
+texture_margin_left = 32.0
+texture_margin_top = 32.0
+texture_margin_right = 32.0
+texture_margin_bottom = 32.0
+modulate_color = Color(0, 0, 0, 0.3372549)
 
 [node name="VariableBlock" type="MarginContainer" groups=["CodeBlock"]]
-offset_right = 165.0
-offset_bottom = 39.0
+custom_minimum_size = Vector2(160, 60)
+offset_right = 160.0
+offset_bottom = 60.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("1_nxi04")
 BlockType = 3
 
 [node name="Panel" type="Panel" parent="."]
+modulate = Color(0.9290433, 0.45963377, 0.45963377, 1)
+texture_filter = 1
 layout_mode = 2
 mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_7f2a0")
+theme_override_styles/panel = SubResource("StyleBoxTexture_4boqc")
 
 [node name="DragAreaComponent" parent="." instance=ExtResource("2_2o31x")]
 unique_name_in_owner = true
@@ -43,9 +44,9 @@ layout_mode = 2
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 6
-theme_override_constants/margin_bottom = 4
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 8
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
@@ -57,12 +58,18 @@ text = "Int"
 vertical_alignment = 1
 uppercase = true
 
-[node name="VariableContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
+clip_contents = true
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_p7kf4")
 
-[node name="VarName" type="LineEdit" parent="MarginContainer/HBoxContainer/VariableContainer"]
+[node name="VariableContainer" type="Panel" parent="MarginContainer/HBoxContainer/MarginContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_ugaih")
+
+[node name="VarName" type="LineEdit" parent="MarginContainer/HBoxContainer/MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 placeholder_text = "variable name"
@@ -72,6 +79,6 @@ flat = true
 caret_blink = true
 caret_blink_interval = 0.38
 
-[node name="DropAreaComponent" parent="MarginContainer/HBoxContainer/VariableContainer" instance=ExtResource("4_ugaih")]
+[node name="DropAreaComponent" parent="MarginContainer/HBoxContainer/MarginContainer" instance=ExtResource("4_ugaih")]
 layout_mode = 2
 allowedBlockTypes = 3

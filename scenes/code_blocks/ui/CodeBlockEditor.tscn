@@ -16,6 +16,7 @@ texture_margin_right = 32.0
 texture_margin_bottom = 32.0
 
 [node name="CodeBlockEditor" type="CanvasLayer"]
+follow_viewport_enabled = true
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 texture_filter = 1
@@ -32,19 +33,17 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_ijaqk")
 layout_mode = 2
 theme_override_constants/separation = 4
 
-[node name="BlockPicker" parent="PanelContainer/HBoxContainer" node_paths=PackedStringArray("dragManager") instance=ExtResource("2_wua68")]
+[node name="BlockPicker" parent="PanelContainer/HBoxContainer" instance=ExtResource("2_wua68")]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
-dragManager = NodePath("../../DragManager")
 
 [node name="VSplitContainer" type="VSplitContainer" parent="PanelContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 4
 split_offset = 504
 
-[node name="BlockCanvas" parent="PanelContainer/HBoxContainer/VSplitContainer" node_paths=PackedStringArray("dragManager") instance=ExtResource("3_ju8dt")]
+[node name="BlockCanvas" parent="PanelContainer/HBoxContainer/VSplitContainer" instance=ExtResource("3_ju8dt")]
 layout_mode = 2
-dragManager = NodePath("../../../DragManager")
 
 [node name="Console" parent="PanelContainer/HBoxContainer/VSplitContainer" instance=ExtResource("4_h4y0m")]
 visible = false

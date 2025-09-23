@@ -26,7 +26,7 @@ public partial class DragManager : Control
 
         foreach (CodeBlock block in blocks) block.DragStarted += StartDrag;
 
-        blockPicker.MouseEntered += () => SetDroppableTarget(blockPicker);
+        blockPicker.MouseEntered += () => SetDroppableTarget(blockPicker.CodeBlockContainer);
         blockCanvas.MouseEntered += () => SetDroppableTarget(blockCanvas.Window);
     }
 
