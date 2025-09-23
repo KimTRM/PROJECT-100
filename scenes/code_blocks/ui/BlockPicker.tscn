@@ -1,38 +1,72 @@
-[gd_scene load_steps=5 format=3 uid="uid://dl1yi3e2oqj0k"]
+[gd_scene load_steps=6 format=3 uid="uid://dl1yi3e2oqj0k"]
 
 [ext_resource type="Script" uid="uid://dx5x5yebcdaus" path="res://scripts/code_blocks/ui/BlockPicker.cs" id="1_5nmmw"]
+[ext_resource type="PackedScene" uid="uid://drcorwafubvtf" path="res://scenes/code_blocks/blocks/VariableBlock.tscn" id="3_adc05"]
 [ext_resource type="PackedScene" uid="uid://lwl73yb5asfc" path="res://scenes/code_blocks/ui/BlockCategoryContainer.tscn" id="3_wbj7l"]
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vmgb6"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_adc05"]
 load_path = "res://.godot/imported/Variable.png-bb43b7559e317a3c7becf45aba511812.ctex"
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_adc05"]
-texture = SubResource("CompressedTexture2D_vmgb6")
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_k4ts7"]
+texture = SubResource("CompressedTexture2D_adc05")
 texture_margin_left = 32.0
 texture_margin_top = 32.0
 texture_margin_right = 32.0
 texture_margin_bottom = 32.0
-modulate_color = Color(0.10980392, 0.10980392, 0.10980392, 0.8)
+modulate_color = Color(0.16, 0.16, 0.16, 0.8666667)
 
-[node name="BlockPicker" type="PanelContainer"]
+[node name="BlockPicker" type="MarginContainer"]
 texture_filter = 1
+custom_minimum_size = Vector2(200, 0)
 anchors_preset = 9
 anchor_bottom = 1.0
-offset_right = 260.0
+offset_right = 200.0
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_adc05")
+size_flags_horizontal = 4
+size_flags_vertical = 3
 script = ExtResource("1_5nmmw")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="."]
+[node name="Panel" type="Panel" parent="."]
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_k4ts7")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 3
 
-[node name="CodeBlockContainer" type="VBoxContainer" parent="ScrollContainer"]
+[node name="CodeBlockContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 24
 alignment = 1
 
-[node name="BlockCategoryContainer" parent="ScrollContainer/CodeBlockContainer" instance=ExtResource("3_wbj7l")]
+[node name="BlockCategoryContainer" parent="MarginContainer/ScrollContainer/CodeBlockContainer" instance=ExtResource("3_wbj7l")]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/CodeBlockContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="CategoryTitle" type="Label" parent="MarginContainer/ScrollContainer/CodeBlockContainer/VBoxContainer"]
+layout_mode = 2
+text = "Block Category"
+horizontal_alignment = 1
+
+[node name="CodeBlockContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/CodeBlockContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="VariableBlock" parent="MarginContainer/ScrollContainer/CodeBlockContainer/VBoxContainer/CodeBlockContainer" instance=ExtResource("3_adc05")]
+layout_mode = 2
+
+[node name="VariableBlock2" parent="MarginContainer/ScrollContainer/CodeBlockContainer/VBoxContainer/CodeBlockContainer" instance=ExtResource("3_adc05")]
+layout_mode = 2
+
+[node name="VariableBlock3" parent="MarginContainer/ScrollContainer/CodeBlockContainer/VBoxContainer/CodeBlockContainer" instance=ExtResource("3_adc05")]
 layout_mode = 2

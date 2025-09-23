@@ -3,7 +3,7 @@ using Godot;
 using GodotUtilities;
 
 [Scene]
-public partial class BlockCanvas : PanelContainer
+public partial class BlockCanvas : MarginContainer
 {
     [Node] private Button ZoomButton;
     [Node] public Control Window;

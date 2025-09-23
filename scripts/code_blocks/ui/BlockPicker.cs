@@ -3,7 +3,7 @@ using GodotUtilities;
 using System;
 
 [Scene]
-public partial class BlockPicker : PanelContainer
+public partial class BlockPicker : MarginContainer
 {
 	[Node] public VBoxContainer CodeBlockContainer;
 

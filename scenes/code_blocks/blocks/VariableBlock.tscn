@@ -53,6 +53,7 @@ layout_mode = 2
 mouse_filter = 2
 
 [node name="VariableLabel" type="Label" parent="MarginContainer/HBoxContainer"]
+texture_filter = 1
 layout_mode = 2
 text = "Int"
 vertical_alignment = 1
@@ -71,6 +72,7 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_ugaih")
 
 [node name="VarName" type="LineEdit" parent="MarginContainer/HBoxContainer/MarginContainer"]
 unique_name_in_owner = true
+texture_filter = 1
 layout_mode = 2
 placeholder_text = "variable name"
 alignment = 1
