@@ -1,7 +1,7 @@
 using Godot;
 using System.Threading.Tasks;
 
-public partial class CodeBlock : Control
+public partial class CodeBlock : MarginContainer
 {
     [Signal] public delegate void DragStartedEventHandler(CodeBlock codeBlock);
     [Export] private Resource BlockDefinition = null;
