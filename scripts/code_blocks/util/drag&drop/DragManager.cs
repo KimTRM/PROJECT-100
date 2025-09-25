@@ -9,6 +9,7 @@ public partial class DragManager : Control
     [Export] private BlockPicker blockPicker;
     [Export] private BlockCanvas blockCanvas;
 
+    [Export]
     private Array<Node> blocks = new();
     private Array<Node> dropAreas = new();
 
@@ -21,10 +22,7 @@ public partial class DragManager : Control
 
     public override void _Ready()
     {
-        blocks = GetTree().GetNodesInGroup("CodeBlock");
-        dropAreas = GetTree().GetNodesInGroup("DropArea");
-
-        foreach (CodeBlock block in blocks) block.DragStarted += StartDrag;
+        GetCodeBlocks();
 
         // blockPicker.MouseEntered += () => SetDroppableTarget(blockPicker.CodeBlockContainer);
         blockCanvas.MouseEntered += () => SetDroppableTarget(blockCanvas.Window);
@@ -45,6 +43,7 @@ public partial class DragManager : Control
     {
         if (@event is InputEventMouseButton mouseEvent && mouseEvent.IsReleased() && dragging)
         {
+            GetCodeBlocks();
             SetClosestDroppableTargets();
             EndDrag();
         }
@@ -69,14 +68,14 @@ public partial class DragManager : Control
         Node newParent = dropTarget ?? originalParent;
 
         if (blockPicker.GetRect().HasPoint(GetLocalMousePosition()))
-        {
             draggedObject.QueueFree();
-        }
 
-        if (draggedObject != null && newParent != null && newParent.IsInsideTree())
+        if (draggedObject != null && newParent != null)
         {
             if (!draggedObject.IsAncestorOf(newParent))
                 draggedObject.Reparent(newParent);
+            else if (blockCanvas.GetRect().HasPoint(GetLocalMousePosition()))
+                draggedObject.Reparent(blockCanvas.Window);
             else
                 draggedObject.Reparent(originalParent);
         }
@@ -84,6 +83,12 @@ public partial class DragManager : Control
         draggedObject = null;
         dropTarget = null;
         dragging = false;
+    }
+
+    private void GetCodeBlocks()
+    {
+        blocks = GetTree().GetNodesInGroup("CodeBlock");
+        foreach (CodeBlock block in blocks) block.DragStarted += StartDrag;
     }
 
     private void SetDroppableTarget(Node target)
@@ -97,6 +102,8 @@ public partial class DragManager : Control
     {
         if (draggedObject == null)
             return;
+
+        dropAreas = GetTree().GetNodesInGroup("DropArea");
 
         DropAreaComponent closestDropArea = null;
         float bestDist = float.MaxValue;

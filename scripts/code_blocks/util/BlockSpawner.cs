@@ -1,24 +1,11 @@
 using Godot;
 using System;
 
-public partial class BlockSpawner : VBoxContainer
+public partial class BlockSpawner : MarginContainer
 {
 	[Export] public CodeBlock BlockToSpawn;
 
 	public override void _Ready()
-	{
-		StartupInitialize();
-	}
-
-	public override void _Process(double delta)
-	{
-		if (GetChildOrNull<CodeBlock>(1) != null && GetChildCount() > 1)
-		{
-			GetChildOrNull<CodeBlock>(1).QueueFree();
-		}
-	}
-
-	private void StartupInitialize()
 	{
 		BlockToSpawn ??= GetChildOrNull<CodeBlock>(0);
 
@@ -27,19 +14,30 @@ public partial class BlockSpawner : VBoxContainer
 			GD.PushWarning($"{Name}: No template CodeBlock found.");
 			return;
 		}
-
-		BlockToSpawn.DragStarted += SpawnBlock;
 	}
 
-	public void SpawnBlock(CodeBlock dragged)
+	public override void _Input(InputEvent @event)
 	{
+		if (@event is InputEventMouseButton mouseEvent)
+		{
+			bool nowInside = GetGlobalRect().HasPoint(mouseEvent.GlobalPosition);
+			if (nowInside && mouseEvent.ButtonIndex == MouseButton.Left && mouseEvent.IsPressed())
+			{
+				if (GetChildren().Count == 0)
+					SpawnBlock();
+			}
+
+			GD.Print(GetTree().GetNodesInGroup("CodeBlock").Count);
+		}
+	}
+
+	public void SpawnBlock()
+	{
+		BlockToSpawn.StartDrag();
+
 		var newBlock = BlockToSpawn.Duplicate() as CodeBlock;
 
-		var oldBlock = BlockToSpawn;
-		oldBlock.DragStarted -= SpawnBlock;
-
 		BlockToSpawn = newBlock;
-		newBlock.DragStarted += SpawnBlock;
 
 		AddChild(newBlock);
 	}

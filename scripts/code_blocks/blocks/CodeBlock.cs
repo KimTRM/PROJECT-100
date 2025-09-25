@@ -10,6 +10,11 @@ public partial class CodeBlock : MarginContainer
 
     private Variant BlockValue;
 
+    public void StartDrag()
+    {
+        EmitSignal(SignalName.DragStarted, this);
+    }
+
     public virtual async Task Execute() { await Task.CompletedTask; }
 
     public Variant GetBlockValue()
