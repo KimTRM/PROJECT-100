@@ -9,9 +9,8 @@ public partial class DragManager : Control
     [Export] private BlockPicker blockPicker;
     [Export] private BlockCanvas blockCanvas;
 
-    [Export]
-    private Array<Node> blocks = new();
-    private Array<Node> dropAreas = new();
+    [Export] private Array<Node> blocks = new();
+    [Export] private Array<Node> dropAreas = new();
 
     private CodeBlock draggedObject;
     private Node originalParent;
@@ -23,6 +22,7 @@ public partial class DragManager : Control
     public override void _Ready()
     {
         GetCodeBlocks();
+        SetClosestDroppableTargets();
 
         blockCanvas.ZoomAdjusted += AdjustZoom;
         blockCanvas.MouseEntered += () => SetDroppableTarget(blockCanvas.Window);
@@ -59,31 +59,52 @@ public partial class DragManager : Control
         draggedObject = draggable;
         offset = GetGlobalMousePosition() - draggedObject.GlobalPosition + new Vector2(0, 8);
 
-        draggedObject.MouseFilter = MouseFilterEnum.Ignore;
         draggedObject.Reparent(this);
     }
 
     private void EndDrag()
     {
+        if (draggedObject == null) return;
+
         Node newParent = dropTarget ?? originalParent;
 
-        if (blockPicker.GetRect().HasPoint(draggedObject.GetGlobalPosition()))
-            draggedObject.QueueFree();
+        if (blockPicker.GetRect().HasPoint(GetGlobalMousePosition()) && draggedObject != null)
+        {
+            draggedObject.Reparent(this);
+            RemoveBlock(draggedObject);
+        }
 
         if (blockCanvas.GetRect().HasPoint(draggedObject.GetGlobalPosition()))
             draggedObject.Reparent(blockCanvas.Window);
 
-        if (draggedObject != null && newParent != null)
-        {
-            if (!draggedObject.IsAncestorOf(newParent))
-                draggedObject.Reparent(newParent);
-            else
-                draggedObject.Reparent(originalParent);
-        }
+        if (!draggedObject.IsAncestorOf(newParent))
+            draggedObject.Reparent(newParent);
+        else
+            draggedObject.Reparent(originalParent);
 
         draggedObject = null;
         dropTarget = null;
         dragging = false;
+    }
+
+    private async void RemoveBlock(CodeBlock block)
+    {
+        if (block == null) return;
+
+        draggedObject.ZIndex = 1000;
+        block.Position = GetGlobalMousePosition();
+
+        if (block is Control ctrl)
+        {
+            ctrl.PivotOffset = ctrl.GetRect().Size / 2.0f;
+        }
+
+        var tween = GetTree().CreateTween();
+        tween.TweenProperty(block, "scale", new Vector2(0, 0), 0.15f);
+
+        await ToSignal(tween, "finished");
+
+        block.QueueFree();
     }
 
     private void GetCodeBlocks()
@@ -112,6 +133,9 @@ public partial class DragManager : Control
 
         foreach (DropAreaComponent dropArea in dropAreas)
         {
+            if (!blockCanvas.IsAncestorOf(dropArea))
+                continue;
+
             if (dropArea == null)
                 continue;
 
@@ -135,6 +159,7 @@ public partial class DragManager : Control
         if (closestDropArea != null)
         {
             SetDroppableTarget(closestDropArea);
+            closestDropArea.DroppedBlock = draggedObject;
             EmitSignal(SignalName.BlockDropped);
         }
     }

@@ -5,11 +5,7 @@ using System.Threading.Tasks;
 [Scene]
 public partial class VariableBlock : CodeBlock
 {
-	[Node("MarginContainer/HBoxContainer/VariableLabel")]
-	public Label varType;
-
 	[Node] private LineEdit varName;
-	[Node] private DragAreaComponent dragAreaComponent;
 
 	[Export] public string varNameStr;
 
@@ -21,25 +17,19 @@ public partial class VariableBlock : CodeBlock
 		}
 	}
 
-	public override void _Ready()
-	{
-		dragAreaComponent.DragStarted += StartDrag;
-	}
-
 	public override async Task Execute()
 	{
-		foreach (Control child in dragAreaComponent.GetChildren())
+		var block = dropAreaComponent.DroppedBlock;
+		if (dropAreaComponent.HasBlock())
 		{
-			if (child is ExpressionBlock block)
-			{
-				await block.Execute();
-				varNameStr = block.Value1;
-				SetBlockValue(block.Value2);
-			}
-			else
-			{
-				varNameStr = varName.Text;
-			}
+			await block.Execute();
+			// varNameStr = block.Value1;
+			// SetBlockValue(block.Value2);
+		}
+		else
+		{
+			varNameStr = varName.Text;
+			SetBlockValue(varNameStr);
 		}
 
 		await Task.CompletedTask;

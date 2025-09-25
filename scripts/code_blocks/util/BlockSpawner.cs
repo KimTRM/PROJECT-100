@@ -23,7 +23,7 @@ public partial class BlockSpawner : MarginContainer
 			bool nowInside = GetGlobalRect().HasPoint(mouseEvent.GlobalPosition);
 			if (nowInside && mouseEvent.ButtonIndex == MouseButton.Left && mouseEvent.IsPressed())
 			{
-				if (GetChildren().Count == 0)
+				if (GetChildren().Count <= 1)
 					SpawnBlock();
 			}
 		}

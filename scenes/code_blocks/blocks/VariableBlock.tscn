@@ -21,7 +21,7 @@ texture_margin_bottom = 32.0
 modulate_color = Color(0, 0, 0, 0.3372549)
 
 [node name="VariableBlock" type="MarginContainer" groups=["CodeBlock"]]
-custom_minimum_size = Vector2(100, 60)
+custom_minimum_size = Vector2(130, 60)
 offset_right = 127.0
 offset_bottom = 60.0
 size_flags_horizontal = 4
@@ -82,5 +82,6 @@ caret_blink = true
 caret_blink_interval = 0.38
 
 [node name="DropAreaComponent" parent="MarginContainer/HBoxContainer/MarginContainer" instance=ExtResource("4_ugaih")]
+unique_name_in_owner = true
 layout_mode = 2
 allowedBlockTypes = 3
