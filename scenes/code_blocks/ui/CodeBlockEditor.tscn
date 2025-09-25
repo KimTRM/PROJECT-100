@@ -42,7 +42,7 @@ theme_override_constants/separation = 4
 split_offset = 504
 
 [node name="BlockCanvas" parent="PanelContainer/HBoxContainer/VSplitContainer" instance=ExtResource("3_ju8dt")]
-custom_minimum_size = Vector2(300, 0)
+custom_minimum_size = Vector2(320, 0)
 layout_mode = 2
 
 [node name="Console" parent="PanelContainer/HBoxContainer/VSplitContainer" instance=ExtResource("4_h4y0m")]

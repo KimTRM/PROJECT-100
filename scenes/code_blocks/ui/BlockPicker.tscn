@@ -17,10 +17,10 @@ modulate_color = Color(0.16, 0.16, 0.16, 0.8666667)
 
 [node name="BlockPicker" type="MarginContainer"]
 texture_filter = 1
-custom_minimum_size = Vector2(200, 0)
+custom_minimum_size = Vector2(155, 0)
 anchors_preset = 9
 anchor_bottom = 1.0
-offset_right = 200.0
+offset_right = 155.0
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
@@ -44,7 +44,7 @@ vertical_scroll_mode = 3
 [node name="CodeBlockContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_constants/separation = 24
+theme_override_constants/separation = 8
 alignment = 1
 
 [node name="CategoryTitle" type="Label" parent="MarginContainer/ScrollContainer/CodeBlockContainer"]
@@ -57,4 +57,10 @@ horizontal_alignment = 1
 layout_mode = 2
 
 [node name="VariableBlock" parent="MarginContainer/ScrollContainer/CodeBlockContainer/BlockSpawner" instance=ExtResource("3_adc05")]
+layout_mode = 2
+
+[node name="BlockSpawner2" parent="MarginContainer/ScrollContainer/CodeBlockContainer" instance=ExtResource("3_k4ts7")]
+layout_mode = 2
+
+[node name="VariableBlock" parent="MarginContainer/ScrollContainer/CodeBlockContainer/BlockSpawner2" instance=ExtResource("3_adc05")]
 layout_mode = 2

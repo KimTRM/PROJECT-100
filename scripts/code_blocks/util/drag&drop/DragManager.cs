@@ -24,7 +24,7 @@ public partial class DragManager : Control
     {
         GetCodeBlocks();
 
-        // blockPicker.MouseEntered += () => SetDroppableTarget(blockPicker.CodeBlockContainer);
+        blockCanvas.ZoomAdjusted += AdjustZoom;
         blockCanvas.MouseEntered += () => SetDroppableTarget(blockCanvas.Window);
     }
 
@@ -57,7 +57,7 @@ public partial class DragManager : Control
 
         originalParent = draggable.GetParent();
         draggedObject = draggable;
-        offset = GetGlobalMousePosition() - draggedObject.GlobalPosition;
+        offset = GetGlobalMousePosition() - draggedObject.GlobalPosition + new Vector2(0, 8);
 
         draggedObject.MouseFilter = MouseFilterEnum.Ignore;
         draggedObject.Reparent(this);
@@ -67,15 +67,16 @@ public partial class DragManager : Control
     {
         Node newParent = dropTarget ?? originalParent;
 
-        if (blockPicker.GetRect().HasPoint(GetLocalMousePosition()))
+        if (blockPicker.GetRect().HasPoint(draggedObject.GetGlobalPosition()))
             draggedObject.QueueFree();
+
+        if (blockCanvas.GetRect().HasPoint(draggedObject.GetGlobalPosition()))
+            draggedObject.Reparent(blockCanvas.Window);
 
         if (draggedObject != null && newParent != null)
         {
             if (!draggedObject.IsAncestorOf(newParent))
                 draggedObject.Reparent(newParent);
-            else if (blockCanvas.GetRect().HasPoint(GetLocalMousePosition()))
-                draggedObject.Reparent(blockCanvas.Window);
             else
                 draggedObject.Reparent(originalParent);
         }
@@ -136,5 +137,13 @@ public partial class DragManager : Control
             SetDroppableTarget(closestDropArea);
             EmitSignal(SignalName.BlockDropped);
         }
+    }
+
+    private void AdjustZoom(float newZoom)
+    {
+        var _minZoom = 0.1f;
+        var _maxZoom = 5.0f;
+        var _zoomFactor = Mathf.Clamp(newZoom, _minZoom, _maxZoom);
+        Scale = new Vector2(_zoomFactor, _zoomFactor);
     }
 }

@@ -21,8 +21,8 @@ texture_margin_bottom = 32.0
 modulate_color = Color(0, 0, 0, 0.3372549)
 
 [node name="VariableBlock" type="MarginContainer" groups=["CodeBlock"]]
-custom_minimum_size = Vector2(160, 60)
-offset_right = 160.0
+custom_minimum_size = Vector2(100, 60)
+offset_right = 127.0
 offset_bottom = 60.0
 size_flags_horizontal = 4
 size_flags_vertical = 4

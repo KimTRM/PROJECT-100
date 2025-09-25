@@ -26,8 +26,6 @@ public partial class BlockSpawner : MarginContainer
 				if (GetChildren().Count == 0)
 					SpawnBlock();
 			}
-
-			GD.Print(GetTree().GetNodesInGroup("CodeBlock").Count);
 		}
 	}
 
