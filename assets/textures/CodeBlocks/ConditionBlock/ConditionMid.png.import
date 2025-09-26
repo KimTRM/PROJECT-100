@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://uf168g7jnhwb"
-path="res://.godot/imported/Variable.png-d44440751eb8f0028a68a73cd446602e.ctex"
+uid="uid://cfr8t1h0riqwv"
+path="res://.godot/imported/ConditionMid.png-61dda6d9213ff6b41b979a57f390c797.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/Variable.png"
-dest_files=["res://.godot/imported/Variable.png-d44440751eb8f0028a68a73cd446602e.ctex"]
+source_file="res://assets/textures/CodeBlocks/ConditionBlock/ConditionMid.png"
+dest_files=["res://.godot/imported/ConditionMid.png-61dda6d9213ff6b41b979a57f390c797.ctex"]
 
 [params]
 

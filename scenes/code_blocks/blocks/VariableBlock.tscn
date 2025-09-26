@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cyod5r2p4kyj6" path="res://scripts/code_blocks/blocks/VariableBlock.cs" id="1_nxi04"]
 [ext_resource type="PackedScene" uid="uid://cwwyah4ofmis8" path="res://scenes/code_blocks/util/drag&drop/DragAreaComponent.tscn" id="2_2o31x"]
-[ext_resource type="Texture2D" uid="uid://uf168g7jnhwb" path="res://assets/textures/Variable.png" id="2_ugaih"]
+[ext_resource type="Texture2D" uid="uid://uf168g7jnhwb" path="res://assets/textures/CodeBlocks/VariableBlock/Variable.png" id="2_ugaih"]
 [ext_resource type="PackedScene" uid="uid://brctb1gyubyc7" path="res://scenes/code_blocks/util/drag&drop/DropAreaComponent.tscn" id="4_ugaih"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4boqc"]
@@ -22,7 +22,7 @@ modulate_color = Color(0, 0, 0, 0.3372549)
 
 [node name="VariableBlock" type="MarginContainer" groups=["CodeBlock"]]
 custom_minimum_size = Vector2(130, 60)
-offset_right = 127.0
+offset_right = 130.0
 offset_bottom = 60.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
