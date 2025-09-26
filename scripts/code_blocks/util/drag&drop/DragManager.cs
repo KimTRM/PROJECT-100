@@ -1,4 +1,5 @@
 using Godot;
+using System.Linq;
 using Godot.Collections;
 
 public partial class DragManager : Control
@@ -9,15 +10,15 @@ public partial class DragManager : Control
     [Export] private BlockPicker blockPicker;
     [Export] private BlockCanvas blockCanvas;
 
-    [Export] private Array<Node> blocks = new();
-    [Export] private Array<Node> dropAreas = new();
+    private Array<Node> blocks = [];
+    private Array<Node> dropAreas = [];
 
     private CodeBlock draggedObject;
     private Node originalParent;
     private Node dropTarget;
     private Vector2 offset;
 
-    public bool dragging = false;
+    private bool dragging = false;
 
     public override void _Ready()
     {
@@ -30,13 +31,12 @@ public partial class DragManager : Control
 
     public override void _Process(double delta)
     {
-        if (dragging && draggedObject != null)
-        {
-            draggedObject.GlobalPosition = draggedObject.GlobalPosition.Lerp(
-                GetGlobalMousePosition() - offset,
-                (float)delta * 18.0f
-            );
-        }
+        if (!dragging || draggedObject == null || !IsInstanceValid(draggedObject)) return;
+
+        draggedObject.GlobalPosition = draggedObject.GlobalPosition.Lerp(
+            GetGlobalMousePosition() - offset,
+            (float)delta * 18.0f
+        );
     }
 
     public override void _Input(InputEvent @event)
@@ -64,53 +64,54 @@ public partial class DragManager : Control
 
     private void EndDrag()
     {
-        if (draggedObject == null) return;
+        dragging = false;
+
+        if (draggedObject == null || !IsInstanceValid(draggedObject)) return;
 
         Node newParent = dropTarget ?? originalParent;
 
-        if (blockPicker.GetRect().HasPoint(GetGlobalMousePosition()) && draggedObject != null)
+        bool removeBecauseInvalidParent = draggedObject.IsAncestorOf(newParent);
+        bool removeBecausePicker = blockPicker.GetRect().HasPoint(GetGlobalMousePosition());
+
+        if (removeBecauseInvalidParent || removeBecausePicker || originalParent == null)
         {
-            draggedObject.Reparent(this);
             RemoveBlock(draggedObject);
         }
-
-        if (blockCanvas.GetRect().HasPoint(draggedObject.GetGlobalPosition()))
+        else if (blockCanvas.GetRect().HasPoint(draggedObject.GetGlobalPosition()))
+        {
             draggedObject.Reparent(blockCanvas.Window);
-
-        if (!draggedObject.IsAncestorOf(newParent))
-            draggedObject.Reparent(newParent);
+        }
         else
-            draggedObject.Reparent(originalParent);
+        {
+            draggedObject.Reparent(newParent);
+        }
 
         draggedObject = null;
         dropTarget = null;
-        dragging = false;
     }
 
     private async void RemoveBlock(CodeBlock block)
     {
-        if (block == null) return;
+        if (block == null || !IsInstanceValid(block)) return;
 
-        draggedObject.ZIndex = 1000;
-        block.Position = GetGlobalMousePosition();
-
-        if (block is Control ctrl)
-        {
-            ctrl.PivotOffset = ctrl.GetRect().Size / 2.0f;
-        }
+        block.Reparent(this);
+        block.ZIndex = 1000;
+        block.PivotOffset = block.GetRect().Size / 2.0f;
+        block.GlobalPosition = GetGlobalMousePosition() - offset;
 
         var tween = GetTree().CreateTween();
         tween.TweenProperty(block, "scale", new Vector2(0, 0), 0.15f);
 
         await ToSignal(tween, "finished");
 
-        block.QueueFree();
+        if (IsInstanceValid(block))
+            block?.QueueFree();
     }
 
     private void GetCodeBlocks()
     {
         blocks = GetTree().GetNodesInGroup("CodeBlock");
-        foreach (CodeBlock block in blocks) block.DragStarted += StartDrag;
+        foreach (CodeBlock block in blocks.Cast<CodeBlock>()) block.DragStarted += StartDrag;
     }
 
     private void SetDroppableTarget(Node target)
@@ -131,7 +132,7 @@ public partial class DragManager : Control
         float bestDist = float.MaxValue;
         var mousePos = GetGlobalMousePosition();
 
-        foreach (DropAreaComponent dropArea in dropAreas)
+        foreach (DropAreaComponent dropArea in dropAreas.Cast<DropAreaComponent>())
         {
             if (!blockCanvas.IsAncestorOf(dropArea))
                 continue;

@@ -51,9 +51,9 @@ layout_mode = 2
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 4
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 8
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
@@ -70,6 +70,7 @@ size_flags_horizontal = 3
 mouse_filter = 2
 
 [node name="Panel" type="Panel" parent="MarginContainer/HBoxContainer/MarginContainer"]
+texture_filter = 1
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_xaam0")
 

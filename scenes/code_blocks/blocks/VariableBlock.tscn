@@ -55,9 +55,8 @@ mouse_filter = 2
 [node name="VariableLabel" type="Label" parent="MarginContainer/HBoxContainer"]
 texture_filter = 1
 layout_mode = 2
-text = "Int"
+text = "Var"
 vertical_alignment = 1
-uppercase = true
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
 clip_contents = true

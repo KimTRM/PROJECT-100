@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://rue4kargso4m" path="res://scripts/code_blocks/util/drag&drop/DragManager.cs" id="5_21meb"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ijaqk"]
+content_margin_left = 8.0
 content_margin_top = 8.0
 content_margin_right = 8.0
 content_margin_bottom = 8.0
@@ -24,8 +25,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 6
-size_flags_vertical = 6
 theme_override_styles/panel = SubResource("StyleBoxTexture_ijaqk")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer"]
