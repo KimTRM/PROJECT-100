@@ -3,10 +3,9 @@ using GodotUtilities;
 using System;
 
 [Scene]
-public partial class BlockPicker : PanelContainer
+public partial class BlockPicker : MarginContainer
 {
-	[Node("ScrollContainer/MarginContainer/CodeBlockContainer")]
-	public VBoxContainer codeBlockContainer;
+	[Node] public VBoxContainer CodeBlockContainer;
 
 	public override void _Notification(int what)
 	{

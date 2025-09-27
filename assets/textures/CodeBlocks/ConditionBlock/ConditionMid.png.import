@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cjobtgeb2eg6k"
-path="res://.godot/imported/DialougeBox.png-0b95b98f7509ee82e7b613c4a90c2877.ctex"
+uid="uid://cfr8t1h0riqwv"
+path="res://.godot/imported/ConditionMid.png-61dda6d9213ff6b41b979a57f390c797.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/DialougeBox.png"
-dest_files=["res://.godot/imported/DialougeBox.png-0b95b98f7509ee82e7b613c4a90c2877.ctex"]
+source_file="res://assets/textures/CodeBlocks/ConditionBlock/ConditionMid.png"
+dest_files=["res://.godot/imported/ConditionMid.png-61dda6d9213ff6b41b979a57f390c797.ctex"]
 
 [params]
 

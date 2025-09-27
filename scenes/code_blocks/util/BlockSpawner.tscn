@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://b37is6wayt2yf"]
+
+[ext_resource type="Script" uid="uid://8eg45p37lymp" path="res://scripts/code_blocks/util/BlockSpawner.cs" id="1_f5j8k"]
+
+[node name="BlockSpawner" type="MarginContainer"]
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_f5j8k")

@@ -1,63 +1,122 @@
-[gd_scene load_steps=6 format=3 uid="uid://dbkjr5boxysai"]
+[gd_scene load_steps=11 format=3 uid="uid://dbkjr5boxysai"]
 
 [ext_resource type="Script" uid="uid://cmvsyuosmvn5u" path="res://scripts/code_blocks/blocks/PrintBlock.cs" id="1_jnpc6"]
-[ext_resource type="Script" uid="uid://xc2s0k7u57hr" path="res://scripts/code_blocks/drag&drop/DropAreaComponent.cs" id="2_plb6o"]
-[ext_resource type="Script" uid="uid://beavoq4vmtdhe" path="res://scripts/code_blocks/drag&drop/DragAreaComponent.cs" id="3_fgyxu"]
+[ext_resource type="PackedScene" uid="uid://cwwyah4ofmis8" path="res://scenes/code_blocks/util/drag&drop/DragAreaComponent.tscn" id="2_6u53f"]
+[ext_resource type="Texture2D" uid="uid://bx4c1fd75lxas" path="res://assets/textures/CodeBlocks/ExpressionBlock/Expresion.png" id="2_m62al"]
+[ext_resource type="PackedScene" uid="uid://brctb1gyubyc7" path="res://scenes/code_blocks/util/drag&drop/DropAreaComponent.tscn" id="3_m62al"]
+[ext_resource type="Texture2D" uid="uid://fi1jade8mdoe" path="res://assets/textures/CodeBlocks/ExpressionBlock/ExpresionOutline.png" id="3_xaam0"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_km4t6"]
-bg_color = Color(0.0889552, 0.511334, 0.785124, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m62al"]
+texture = ExtResource("2_m62al")
+texture_margin_left = 32.0
+texture_margin_top = 32.0
+texture_margin_right = 16.0
+texture_margin_bottom = 32.0
+expand_margin_bottom = 9.0
+modulate_color = Color(0.09019608, 0.50980395, 0.78431374, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jnpc6"]
-bg_color = Color(0, 0, 0, 0.556863)
-corner_radius_top_left = 28
-corner_radius_top_right = 28
-corner_radius_bottom_right = 28
-corner_radius_bottom_left = 28
-anti_aliasing = false
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bpdkj"]
+texture = ExtResource("3_xaam0")
+texture_margin_left = 32.0
+texture_margin_top = 32.0
+texture_margin_right = 16.0
+texture_margin_bottom = 32.0
+expand_margin_bottom = 9.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_xaam0"]
+load_path = "res://.godot/imported/Variable.png-d44440751eb8f0028a68a73cd446602e.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xaam0"]
+texture = SubResource("CompressedTexture2D_xaam0")
+texture_margin_left = 32.0
+texture_margin_top = 32.0
+texture_margin_right = 32.0
+texture_margin_bottom = 32.0
+modulate_color = Color(0, 0, 0, 0.3372549)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6u53f"]
 
 [node name="PrintBlock" type="MarginContainer"]
+custom_minimum_size = Vector2(130, 60)
+offset_right = 130.0
+offset_bottom = 89.0
+size_flags_horizontal = 0
 script = ExtResource("1_jnpc6")
+BlockType = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
-mouse_filter = 1
-theme_override_styles/panel = SubResource("StyleBoxFlat_km4t6")
+mouse_filter = 2
+theme_override_constants/separation = -1
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+[node name="block" type="MarginContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(130, 60)
 layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+mouse_filter = 2
+
+[node name="PanelContainer" type="Panel" parent="VBoxContainer/block"]
+texture_filter = 1
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_m62al")
+
+[node name="Highlight" type="Panel" parent="VBoxContainer/block"]
+visible = false
+texture_filter = 1
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_bpdkj")
+
+[node name="DragAreaComponent" parent="VBoxContainer/block" instance=ExtResource("2_6u53f")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/block"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
 theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 4
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 8
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/block/MarginContainer"]
 layout_mode = 2
+mouse_filter = 2
 
-[node name="Label2" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer"]
+[node name="Label2" type="Label" parent="VBoxContainer/block/MarginContainer/HBoxContainer"]
+texture_filter = 1
 layout_mode = 2
 text = "Print"
 
-[node name="ValueContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/HBoxContainer" node_paths=PackedStringArray("dropZone")]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/block/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_jnpc6")
-script = ExtResource("2_plb6o")
-dropZone = NodePath("Value")
-metadata/_custom_type_script = "uid://xc2s0k7u57hr"
+mouse_filter = 2
 
-[node name="Value" type="LineEdit" parent="PanelContainer/MarginContainer/HBoxContainer/ValueContainer"]
+[node name="Panel" type="Panel" parent="VBoxContainer/block/MarginContainer/HBoxContainer/MarginContainer"]
+texture_filter = 1
 layout_mode = 2
-alignment = 1
-expand_to_text_length = true
-flat = true
-caret_blink = true
-caret_blink_interval = 0.38
+theme_override_styles/panel = SubResource("StyleBoxTexture_xaam0")
 
-[node name="DragAreaComponent" type="Node" parent="." node_paths=PackedStringArray("draggableArea")]
-script = ExtResource("3_fgyxu")
-draggableArea = NodePath("..")
-metadata/_custom_type_script = "uid://beavoq4vmtdhe"
+[node name="Value" type="LineEdit" parent="VBoxContainer/block/MarginContainer/HBoxContainer/MarginContainer"]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_6u53f")
+placeholder_text = "\"\""
+alignment = 1
+
+[node name="DropAreaComponent" parent="VBoxContainer/block/MarginContainer/HBoxContainer/MarginContainer" instance=ExtResource("3_m62al")]
+unique_name_in_owner = true
+layout_mode = 2
+allowedBlockTypes = 3
+
+[node name="DropAreaComponent" parent="VBoxContainer" instance=ExtResource("3_m62al")]
+custom_minimum_size = Vector2(130, 34)
+layout_mode = 2
+size_flags_vertical = 4
+allowedBlockTypes = 2

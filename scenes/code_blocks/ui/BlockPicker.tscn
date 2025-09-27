@@ -1,33 +1,75 @@
-[gd_scene load_steps=3 format=3 uid="uid://dl1yi3e2oqj0k"]
+[gd_scene load_steps=8 format=3 uid="uid://dl1yi3e2oqj0k"]
 
 [ext_resource type="Script" uid="uid://dx5x5yebcdaus" path="res://scripts/code_blocks/ui/BlockPicker.cs" id="1_5nmmw"]
-[ext_resource type="PackedScene" uid="uid://lwl73yb5asfc" path="res://scenes/code_blocks/ui/BlockCategoryContainer.tscn" id="3_wbj7l"]
+[ext_resource type="PackedScene" uid="uid://drcorwafubvtf" path="res://scenes/code_blocks/blocks/VariableBlock.tscn" id="3_adc05"]
+[ext_resource type="PackedScene" uid="uid://b37is6wayt2yf" path="res://scenes/code_blocks/util/BlockSpawner.tscn" id="3_k4ts7"]
+[ext_resource type="PackedScene" uid="uid://dbkjr5boxysai" path="res://scenes/code_blocks/blocks/PrintBlock.tscn" id="4_k4ts7"]
+[ext_resource type="PackedScene" uid="uid://bm8qnm1lt3fgb" path="res://scenes/code_blocks/blocks/ConditionBlock.tscn" id="5_4sua0"]
 
-[node name="BlockPicker" type="PanelContainer"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_adc05"]
+load_path = "res://.godot/imported/Variable.png-bb43b7559e317a3c7becf45aba511812.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_k4ts7"]
+texture = SubResource("CompressedTexture2D_adc05")
+texture_margin_left = 32.0
+texture_margin_top = 32.0
+texture_margin_right = 32.0
+texture_margin_bottom = 32.0
+modulate_color = Color(0.16, 0.16, 0.16, 0.8666667)
+
+[node name="BlockPicker" type="MarginContainer"]
 texture_filter = 1
+custom_minimum_size = Vector2(155, 0)
 anchors_preset = 9
 anchor_bottom = 1.0
-offset_right = 244.0
+offset_right = 155.0
 grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
 script = ExtResource("1_5nmmw")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="."]
+[node name="Panel" type="Panel" parent="."]
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_k4ts7")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer"]
+[node name="CodeBlockContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer"]
+unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 6
-theme_override_constants/margin_left = 14
-theme_override_constants/margin_top = 14
-theme_override_constants/margin_right = 14
-theme_override_constants/margin_bottom = 14
-
-[node name="CodeBlockContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer"]
-layout_mode = 2
-theme_override_constants/separation = 24
+theme_override_constants/separation = 8
 alignment = 1
 
-[node name="BlockCategoryContainer" parent="ScrollContainer/MarginContainer/CodeBlockContainer" instance=ExtResource("3_wbj7l")]
+[node name="CategoryTitle" type="Label" parent="MarginContainer/ScrollContainer/CodeBlockContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Block Category"
+horizontal_alignment = 1
+
+[node name="BlockSpawner" parent="MarginContainer/ScrollContainer/CodeBlockContainer" instance=ExtResource("3_k4ts7")]
+layout_mode = 2
+mouse_filter = 0
+
+[node name="VariableBlock" parent="MarginContainer/ScrollContainer/CodeBlockContainer/BlockSpawner" instance=ExtResource("3_adc05")]
+layout_mode = 2
+
+[node name="BlockSpawner2" parent="MarginContainer/ScrollContainer/CodeBlockContainer" instance=ExtResource("3_k4ts7")]
+layout_mode = 2
+
+[node name="PrintBlock" parent="MarginContainer/ScrollContainer/CodeBlockContainer/BlockSpawner2" instance=ExtResource("4_k4ts7")]
+layout_mode = 2
+
+[node name="BlockSpawner3" parent="MarginContainer/ScrollContainer/CodeBlockContainer" instance=ExtResource("3_k4ts7")]
+layout_mode = 2
+
+[node name="ConditionBlock" parent="MarginContainer/ScrollContainer/CodeBlockContainer/BlockSpawner3" instance=ExtResource("5_4sua0")]
 layout_mode = 2

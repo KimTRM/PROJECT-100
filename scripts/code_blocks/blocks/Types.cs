@@ -8,7 +8,7 @@ public partial class Types : Node
 		NONE,
 		ENTRY,
 		STATEMENT,
-		VALUE,
+		VARIABLE,
 		CONTROL,
 	}
 }

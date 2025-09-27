@@ -31,11 +31,16 @@ public partial class DropAreaComponent : MarginContainer
 		var old = _droppedBlock;
 		_droppedBlock = value;
 
-		EmitSignal(SignalName.DroppedBlockChanged, _droppedBlock);
-
-		if (old != null && _droppedBlock == null)
-			EmitSignal(SignalName.BlockRemoved, old);
+		EmitSignalDroppedBlockChanged(_droppedBlock);
+		_droppedBlock.DragStarted += RemoveBlock;
 
 		_setting = false;
+	}
+
+	private void RemoveBlock(CodeBlock codeBlock)
+	{
+		EmitSignalBlockRemoved(codeBlock);
+		_droppedBlock = null;
+		codeBlock.DragStarted -= RemoveBlock;
 	}
 }

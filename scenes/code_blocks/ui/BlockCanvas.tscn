@@ -1,25 +1,32 @@
-[gd_scene load_steps=3 format=3 uid="uid://bp0aevc7dehng"]
+[gd_scene load_steps=4 format=3 uid="uid://bp0aevc7dehng"]
 
 [ext_resource type="Script" uid="uid://0jr3qh6x7x8w" path="res://scripts/code_blocks/ui/BlockCanvas.cs" id="1_084tk"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k8hvt"]
-bg_color = Color(0.11, 0.11, 0.11, 0.8)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_k8hvt"]
+load_path = "res://.godot/imported/Variable.png-d44440751eb8f0028a68a73cd446602e.ctex"
 
-[node name="BlockCanvas" type="PanelContainer"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_acomh"]
+texture = SubResource("CompressedTexture2D_k8hvt")
+texture_margin_left = 32.0
+texture_margin_top = 32.0
+texture_margin_right = 32.0
+texture_margin_bottom = 32.0
+modulate_color = Color(0.10980392, 0.10980392, 0.10980392, 0.8)
+
+[node name="BlockCanvas" type="MarginContainer"]
+texture_filter = 1
 clip_contents = true
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 1
-theme_override_styles/panel = SubResource("StyleBoxFlat_k8hvt")
 script = ExtResource("1_084tk")
 metadata/_custom_type_script = "uid://xc2s0k7u57hr"
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_acomh")
 
 [node name="WindowContainer" type="Control" parent="."]
 layout_mode = 2

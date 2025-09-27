@@ -3,8 +3,10 @@ using Godot;
 using GodotUtilities;
 
 [Scene]
-public partial class BlockCanvas : PanelContainer
+public partial class BlockCanvas : MarginContainer
 {
+    [Signal] public delegate void ZoomAdjustedEventHandler(float newZoom);
+
     [Node] private Button ZoomButton;
     [Node] public Control Window;
 
@@ -50,10 +52,12 @@ public partial class BlockCanvas : PanelContainer
             if (mouseEvent.ButtonIndex == MouseButton.WheelUp)
             {
                 AdjustZoom(_zoomFactor + _zoomStep);
+                EmitSignalZoomAdjusted(_zoomFactor + _zoomStep);
             }
             else if (mouseEvent.ButtonIndex == MouseButton.WheelDown)
             {
                 AdjustZoom(_zoomFactor - _zoomStep);
+                EmitSignalZoomAdjusted(_zoomFactor - _zoomStep);
             }
         }
     }
@@ -84,12 +88,14 @@ public partial class BlockCanvas : PanelContainer
     private void AdjustZoom(float newZoom)
     {
         _zoomFactor = Mathf.Clamp(newZoom, _minZoom, _maxZoom);
-        Window.Scale = new Vector2(_zoomFactor, _zoomFactor);
 
-        // Adjust the size of the window towards the mouse position when resizing
-        Vector2 mousePos = GetGlobalMousePosition() - GetGlobalRect().Position;
+        // -- Adjust the size of the window towards the mouse position when resizing --
+        Vector2 mousePos = GetGlobalMousePosition();
         Vector2 offset = mousePos - Window.GlobalPosition;
-        Window.GlobalPosition = mousePos - offset * _zoomFactor / _zoomFactor;
+        float prevZoom = Window.Scale.X != 0 ? Window.Scale.X : 1.0f;
+        Window.GlobalPosition = mousePos - offset * (_zoomFactor / prevZoom);
+
+        Window.Scale = new Vector2(_zoomFactor, _zoomFactor);
 
         ZoomButton.Text = $"{_zoomFactor:F1}x";
     }
@@ -97,14 +103,17 @@ public partial class BlockCanvas : PanelContainer
     private void _on_zoom_in_button_pressed()
     {
         AdjustZoom(_zoomFactor + _zoomStep);
+        EmitSignalZoomAdjusted(_zoomFactor + _zoomStep);
     }
     private void _on_zoom_button_pressed()
     {
         AdjustZoom(1.0f);
+        EmitSignalZoomAdjusted(1.0f);
     }
     private void _on_zoom_out_button_pressed()
     {
         AdjustZoom(_zoomFactor - _zoomStep);
+        EmitSignalZoomAdjusted(_zoomFactor - _zoomStep);
     }
 
     private async void _on_execute_pressed()
