@@ -10,6 +10,8 @@ public partial class DragManager : Control
     [Export] private BlockPicker blockPicker;
     [Export] private BlockCanvas blockCanvas;
 
+    [Export] float blockSmoothing = 0.15f;
+
     private Array<Node> blocks = [];
     private Array<Node> dropAreas = [];
 
@@ -25,18 +27,18 @@ public partial class DragManager : Control
         GetCodeBlocks();
         SetClosestDroppableTargets();
 
-        blockCanvas.ZoomAdjusted += AdjustZoom;
         blockCanvas.MouseEntered += () => SetDroppableTarget(blockCanvas.Window);
     }
 
     public override void _Process(double delta)
     {
-        if (!dragging || draggedObject == null || !IsInstanceValid(draggedObject)) return;
-
-        draggedObject.GlobalPosition = draggedObject.GlobalPosition.Lerp(
+        if (dragging && draggedObject != null && IsInstanceValid(draggedObject))
+            draggedObject.GlobalPosition = draggedObject.GlobalPosition.Lerp(
             GetGlobalMousePosition() - offset,
-            (float)delta * 18.0f
+            (float)delta * blockSmoothing
         );
+
+        AdjustZoom();
     }
 
     public override void _Input(InputEvent @event)
@@ -57,8 +59,9 @@ public partial class DragManager : Control
 
         originalParent = draggable.GetParent();
         draggedObject = draggable;
-        offset = GetGlobalMousePosition() - draggedObject.GlobalPosition + new Vector2(0, 8);
+        offset = GetGlobalMousePosition() - draggedObject.GlobalPosition + new Vector2(0, 2);
 
+        draggedObject.Resize();
         draggedObject.Reparent(this);
     }
 
@@ -165,11 +168,33 @@ public partial class DragManager : Control
         }
     }
 
-    private void AdjustZoom(float newZoom)
+    private void AdjustZoom()
     {
-        var _minZoom = 0.1f;
-        var _maxZoom = 5.0f;
-        var _zoomFactor = Mathf.Clamp(newZoom, _minZoom, _maxZoom);
-        Scale = new Vector2(_zoomFactor, _zoomFactor);
+        if (blockCanvas == null) return;
+
+        float scaleLerpSpeed = 0.116f;
+
+        var minZoom = 0.1f;
+        var maxZoom = 5.0f;
+        var mousePos = GetGlobalMousePosition();
+        var zoomFactor = Mathf.Clamp(blockCanvas.GetZoomFactor(), minZoom, maxZoom);
+
+        bool overCanvas = blockCanvas.GetGlobalRect().HasPoint(mousePos);
+        bool overPicker = blockPicker.GetGlobalRect().HasPoint(mousePos);
+
+        Vector2 targetScale = overCanvas
+            ? new Vector2(zoomFactor, zoomFactor)
+            : Vector2.One;
+
+        if (draggedObject != null)
+            draggedObject.Modulate = draggedObject.Modulate.Lerp(
+                overPicker
+                    ? new Color(0.45f, 0.45f, 0.45f, 0.792f)
+                    : new Color(1.0f, 1.0f, 1.0f),
+                0.15f
+            );
+
+        Scale = Scale.Lerp(targetScale, scaleLerpSpeed);
+        GlobalPosition = GlobalPosition.Lerp(mousePos - offset, scaleLerpSpeed);
     }
 }

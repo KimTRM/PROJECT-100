@@ -40,8 +40,7 @@ modulate_color = Color(0, 0, 0, 0.3372549)
 custom_minimum_size = Vector2(130, 60)
 offset_right = 130.0
 offset_bottom = 89.0
-size_flags_horizontal = 2
-size_flags_vertical = 4
+size_flags_horizontal = 0
 script = ExtResource("1_jnpc6")
 BlockType = 2
 
@@ -51,8 +50,10 @@ mouse_filter = 2
 theme_override_constants/separation = -1
 
 [node name="block" type="MarginContainer" parent="VBoxContainer"]
-custom_minimum_size = Vector2(0, 60)
+custom_minimum_size = Vector2(130, 60)
 layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
 mouse_filter = 2
 
 [node name="PanelContainer" type="Panel" parent="VBoxContainer/block"]

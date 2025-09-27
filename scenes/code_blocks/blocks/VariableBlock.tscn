@@ -24,7 +24,6 @@ modulate_color = Color(0, 0, 0, 0.3372549)
 custom_minimum_size = Vector2(130, 60)
 offset_right = 130.0
 offset_bottom = 60.0
-size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("1_nxi04")
 BlockType = 3

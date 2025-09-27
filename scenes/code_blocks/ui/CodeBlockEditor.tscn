@@ -54,3 +54,4 @@ mouse_filter = 2
 script = ExtResource("5_21meb")
 blockPicker = NodePath("../HBoxContainer/BlockPicker")
 blockCanvas = NodePath("../HBoxContainer/VSplitContainer/BlockCanvas")
+metadata/_edit_use_anchors_ = true
