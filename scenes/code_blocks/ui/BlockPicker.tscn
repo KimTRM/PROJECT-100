@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://dx5x5yebcdaus" path="res://scripts/code_blocks/ui/BlockPicker.cs" id="1_5nmmw"]
 [ext_resource type="PackedScene" uid="uid://drcorwafubvtf" path="res://scenes/code_blocks/blocks/VariableBlock.tscn" id="3_adc05"]
-[ext_resource type="PackedScene" uid="uid://b37is6wayt2yf" path="res://scenes/code_blocks/util/BlockSpawner.tscn" id="3_k4ts7"]
+[ext_resource type="PackedScene" uid="uid://b37is6wayt2yf" path="res://scenes/code_blocks/blocks/utilities/BlockSpawner.tscn" id="3_k4ts7"]
 [ext_resource type="PackedScene" uid="uid://dbkjr5boxysai" path="res://scenes/code_blocks/blocks/PrintBlock.tscn" id="4_k4ts7"]
-[ext_resource type="PackedScene" uid="uid://bm8qnm1lt3fgb" path="res://scenes/code_blocks/blocks/ConditionBlock.tscn" id="5_4sua0"]
+[ext_resource type="PackedScene" uid="uid://bm8qnm1lt3fgb" path="res://scenes/code_blocks/blocks/ControlBlock.tscn" id="5_4sua0"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_adc05"]
 load_path = "res://.godot/imported/Variable.png-bb43b7559e317a3c7becf45aba511812.ctex"

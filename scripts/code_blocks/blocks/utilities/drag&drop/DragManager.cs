@@ -10,8 +10,6 @@ public partial class DragManager : Control
     [Export] private BlockPicker blockPicker;
     [Export] private BlockCanvas blockCanvas;
 
-    [Export] float blockSmoothing = 0.15f;
-
     private Array<Node> blocks = [];
     private Array<Node> dropAreas = [];
 
@@ -35,7 +33,7 @@ public partial class DragManager : Control
         if (dragging && draggedObject != null && IsInstanceValid(draggedObject))
             draggedObject.GlobalPosition = draggedObject.GlobalPosition.Lerp(
             GetGlobalMousePosition() - offset,
-            (float)delta * blockSmoothing
+            (float)delta * 0.15f
         );
 
         AdjustZoom();
@@ -56,7 +54,6 @@ public partial class DragManager : Control
         if (dragging) return;
 
         dragging = true;
-
         originalParent = draggable.GetParent();
         draggedObject = draggable;
         offset = GetGlobalMousePosition() - draggedObject.GlobalPosition + new Vector2(0, 2);
@@ -73,21 +70,18 @@ public partial class DragManager : Control
 
         Node newParent = dropTarget ?? originalParent;
 
-        bool removeBecauseInvalidParent = draggedObject.IsAncestorOf(newParent);
-        bool removeBecausePicker = blockPicker.GetRect().HasPoint(GetGlobalMousePosition());
+        bool invalidParent = draggedObject.IsAncestorOf(newParent);
+        bool insidePicker = blockPicker.GetGlobalRect().HasPoint(GetGlobalMousePosition());
+        bool insideCanvas = blockCanvas.GetGlobalRect().HasPoint(GetGlobalMousePosition());
 
-        if (removeBecauseInvalidParent || removeBecausePicker || originalParent == null)
-        {
+        if (invalidParent || insidePicker || newParent == null)
             RemoveBlock(draggedObject);
-        }
-        else if (blockCanvas.GetRect().HasPoint(draggedObject.GetGlobalPosition()))
-        {
-            draggedObject.Reparent(blockCanvas.Window);
-        }
-        else
-        {
-            draggedObject.Reparent(newParent);
-        }
+
+        if (insideCanvas)
+            if (newParent is DropAreaComponent)
+                draggedObject.Reparent(newParent);
+            else
+                draggedObject.Reparent(blockCanvas.Window);
 
         draggedObject = null;
         dropTarget = null;

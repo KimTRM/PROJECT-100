@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://cxeco0k7s7brh"]
 
 [ext_resource type="Script" uid="uid://bgdcababppa4h" path="res://scripts/code_blocks/blocks/ExpressionBlock.cs" id="1_eerog"]
-[ext_resource type="Script" uid="uid://beavoq4vmtdhe" path="res://scripts/code_blocks/util/drag&drop/DragAreaComponent.cs" id="2_ggirj"]
-[ext_resource type="Script" uid="uid://xc2s0k7u57hr" path="res://scripts/code_blocks/util/drag&drop/DropAreaComponent.cs" id="2_r534e"]
+[ext_resource type="Script" uid="uid://beavoq4vmtdhe" path="res://scripts/code_blocks/blocks/utilities/drag&drop/DragAreaComponent.cs" id="2_ggirj"]
+[ext_resource type="Script" uid="uid://xc2s0k7u57hr" path="res://scripts/code_blocks/blocks/utilities/drag&drop/DropAreaComponent.cs" id="2_r534e"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lgf25"]
 bg_color = Color(0.6, 1, 0.521569, 1)

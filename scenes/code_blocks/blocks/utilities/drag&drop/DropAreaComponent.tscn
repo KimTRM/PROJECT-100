@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://brctb1gyubyc7"]
 
-[ext_resource type="Script" uid="uid://xc2s0k7u57hr" path="res://scripts/code_blocks/util/drag&drop/DropAreaComponent.cs" id="1_lp6dp"]
+[ext_resource type="Script" uid="uid://xc2s0k7u57hr" path="res://scripts/code_blocks/blocks/utilities/drag&drop/DropAreaComponent.cs" id="1_lp6dp"]
 
 [node name="DropAreaComponent" type="MarginContainer" groups=["DropArea"]]
 anchors_preset = 15

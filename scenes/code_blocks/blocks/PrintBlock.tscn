@@ -1,9 +1,9 @@
 [gd_scene load_steps=11 format=3 uid="uid://dbkjr5boxysai"]
 
 [ext_resource type="Script" uid="uid://cmvsyuosmvn5u" path="res://scripts/code_blocks/blocks/PrintBlock.cs" id="1_jnpc6"]
-[ext_resource type="PackedScene" uid="uid://cwwyah4ofmis8" path="res://scenes/code_blocks/util/drag&drop/DragAreaComponent.tscn" id="2_6u53f"]
+[ext_resource type="PackedScene" uid="uid://cwwyah4ofmis8" path="res://scenes/code_blocks/blocks/utilities/drag&drop/DragAreaComponent.tscn" id="2_6u53f"]
 [ext_resource type="Texture2D" uid="uid://bx4c1fd75lxas" path="res://assets/textures/CodeBlocks/ExpressionBlock/Expresion.png" id="2_m62al"]
-[ext_resource type="PackedScene" uid="uid://brctb1gyubyc7" path="res://scenes/code_blocks/util/drag&drop/DropAreaComponent.tscn" id="3_m62al"]
+[ext_resource type="PackedScene" uid="uid://brctb1gyubyc7" path="res://scenes/code_blocks/blocks/utilities/drag&drop/DropAreaComponent.tscn" id="3_m62al"]
 [ext_resource type="Texture2D" uid="uid://fi1jade8mdoe" path="res://assets/textures/CodeBlocks/ExpressionBlock/ExpresionOutline.png" id="3_xaam0"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m62al"]
@@ -36,12 +36,14 @@ modulate_color = Color(0, 0, 0, 0.3372549)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6u53f"]
 
-[node name="PrintBlock" type="MarginContainer"]
+[node name="PrintBlock" type="MarginContainer" node_paths=PackedStringArray("dragAreaComponent", "dropAreaComponent")]
 custom_minimum_size = Vector2(130, 60)
 offset_right = 130.0
 offset_bottom = 89.0
 size_flags_horizontal = 0
 script = ExtResource("1_jnpc6")
+dragAreaComponent = NodePath("VBoxContainer/block/DragAreaComponent")
+dropAreaComponent = NodePath("VBoxContainer/block/MarginContainer/HBoxContainer/MarginContainer/DropAreaComponent")
 BlockType = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
