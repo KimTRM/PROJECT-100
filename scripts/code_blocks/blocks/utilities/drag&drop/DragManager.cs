@@ -51,15 +51,15 @@ public partial class DragManager : Control
 
     private void StartDrag(CodeBlock draggable)
     {
-        if (dragging || draggedObject != null) return;
+        if (dragging) return;
 
         dragging = true;
         originalParent = draggable.GetParent();
         draggedObject = draggable;
         offset = GetGlobalMousePosition() - draggedObject.GlobalPosition + new Vector2(0, 2);
 
-        draggedObject.Resize();
         draggedObject.Reparent(this);
+        draggedObject.Resize();
     }
 
     private void EndDrag()
@@ -82,6 +82,8 @@ public partial class DragManager : Control
                 draggedObject.Reparent(newParent);
             else
                 draggedObject.Reparent(blockCanvas.Window);
+        else
+            RemoveBlock(draggedObject);
 
         draggedObject = null;
         dropTarget = null;
@@ -96,8 +98,12 @@ public partial class DragManager : Control
         block.PivotOffset = block.GetRect().Size / 2.0f;
         block.GlobalPosition = GetGlobalMousePosition() - offset;
 
-        var tween = GetTree().CreateTween();
-        tween.TweenProperty(block, "scale", new Vector2(0, 0), 0.15f);
+        var tween = GetTree().CreateTween().TweenProperty(
+            block,
+            "scale",
+            Vector2.Zero,
+            0.15f
+        );
 
         await ToSignal(tween, "finished");
 
