@@ -172,7 +172,6 @@ public partial class DragManager : Control
         var zoomFactor = Mathf.Clamp(blockCanvas.GetZoomFactor(), minZoom, maxZoom);
 
         bool overCanvas = blockCanvas.GetGlobalRect().HasPoint(mousePos);
-        bool overPicker = blockPicker.GetGlobalRect().HasPoint(mousePos);
 
         Vector2 targetScale = overCanvas
             ? new Vector2(zoomFactor, zoomFactor)
@@ -180,9 +179,9 @@ public partial class DragManager : Control
 
         if (draggedObject != null)
             draggedObject.Modulate = draggedObject.Modulate.Lerp(
-                overPicker
-                    ? new Color(0.45f, 0.45f, 0.45f, 0.792f)
-                    : new Color(1.0f, 1.0f, 1.0f),
+                overCanvas
+                    ? new Color(1.0f, 1.0f, 1.0f)
+                    : new Color(0.45f, 0.45f, 0.45f, 0.792f),
                 0.15f
             );
 
