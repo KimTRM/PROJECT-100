@@ -51,7 +51,7 @@ public partial class DragManager : Control
 
     private void StartDrag(CodeBlock draggable)
     {
-        if (dragging) return;
+        if (dragging || draggedObject != null) return;
 
         dragging = true;
         originalParent = draggable.GetParent();
@@ -131,19 +131,11 @@ public partial class DragManager : Control
 
         foreach (DropAreaComponent dropArea in dropAreas.Cast<DropAreaComponent>())
         {
-            if (!blockCanvas.IsAncestorOf(dropArea))
-                continue;
-
-            if (dropArea == null)
-                continue;
-
-            if (dropArea.HasBlock())
-                continue;
-
-            if (!dropArea.GetGlobalRect().HasPoint(mousePos))
-                continue;
-
-            if (draggedObject.BlockType != dropArea.allowedBlockTypes)
+            if (dropArea == null
+            || dropArea.HasBlock()
+            || !blockCanvas.IsAncestorOf(dropArea)
+            || !dropArea.GetGlobalRect().HasPoint(mousePos)
+            || draggedObject.BlockType != dropArea.allowedBlockTypes)
                 continue;
 
             float distance = draggedObject.GlobalPosition.DistanceTo(dropArea.GlobalPosition);
