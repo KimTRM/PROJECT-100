@@ -2,13 +2,11 @@
 
 [ext_resource type="Script" uid="uid://cl2cp7ywlb5gm" path="res://scripts/code_blocks/blocks/utilities/template/ParameterInput.cs" id="1_7n1wq"]
 [ext_resource type="PackedScene" uid="uid://brctb1gyubyc7" path="res://scenes/code_blocks/blocks/utilities/drag&drop/DropAreaComponent.tscn" id="2_5b50o"]
+[ext_resource type="Texture2D" uid="uid://uf168g7jnhwb" path="res://assets/textures/CodeBlocks/VariableBlock/Variable.png" id="2_3813p"]
 [ext_resource type="PackedScene" uid="uid://cwwyah4ofmis8" path="res://scenes/code_blocks/blocks/utilities/drag&drop/DragAreaComponent.tscn" id="2_j5sas"]
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_m62al"]
-load_path = "res://.godot/imported/Variable.png-d44440751eb8f0028a68a73cd446602e.ctex"
-
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nftbc"]
-texture = SubResource("CompressedTexture2D_m62al")
+texture = ExtResource("2_3813p")
 texture_margin_left = 32.0
 texture_margin_top = 32.0
 texture_margin_right = 32.0
