@@ -23,8 +23,6 @@ public partial class DragManager : Control
     {
         GetCodeBlocks();
         SetClosestDroppableTargets();
-
-        blockCanvas.MouseEntered += () => SetDroppableTarget(blockCanvas.Window);
     }
 
     public override void _Process(double delta)
