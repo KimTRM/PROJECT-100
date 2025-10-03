@@ -5,8 +5,6 @@ using System.Threading.Tasks;
 [Scene]
 public partial class PrintBlock : CodeBlock
 {
-	[Node] private LineEdit Value;
-
 	public override void _Notification(int what)
 	{
 		if (what == NotificationSceneInstantiated)
@@ -25,7 +23,7 @@ public partial class PrintBlock : CodeBlock
 		}
 		else
 		{
-			GD.Print("Print Block Value: ", Value.Text);
+			GD.Print("Print Block Value: ");
 			// console.OnCommandEntered(value.Text);
 		}
 

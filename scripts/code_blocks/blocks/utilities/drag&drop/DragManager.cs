@@ -23,6 +23,8 @@ public partial class DragManager : Control
     {
         GetCodeBlocks();
         SetClosestDroppableTargets();
+
+        blockCanvas.MouseEntered += () => SetDroppableTarget(blockCanvas.Window);
     }
 
     public override void _Process(double delta)
@@ -31,16 +33,17 @@ public partial class DragManager : Control
 
         var minZoom = 0.1f;
         var maxZoom = 5.0f;
+        var smoothing = 0.15f;
         var mousePos = GetGlobalMousePosition();
-        var zoomFactor = Mathf.Clamp(blockCanvas.GetZoomFactor(), minZoom, maxZoom);
         var overCanvas = blockCanvas.GetGlobalRect().HasPoint(mousePos);
+        var zoomFactor = Mathf.Clamp(blockCanvas.GetZoomFactor(), minZoom, maxZoom);
 
         //  -- Change the color of the dragged object for visual feedback --
         draggedObject.Modulate = draggedObject.Modulate.Lerp(
             overCanvas
                 ? new Color(1.0f, 1.0f, 1.0f)
                 : new Color(0.45f, 0.45f, 0.45f, 0.792f),
-            0.15f
+            smoothing
         );
 
         // -- Smoothly scale and position the DragManager based on mouse position and zoom level --
@@ -48,8 +51,8 @@ public partial class DragManager : Control
             ? new Vector2(zoomFactor, zoomFactor)
             : Vector2.One;
 
-        Scale = Scale.Lerp(targetScale, 0.15f);
-        GlobalPosition = GlobalPosition.Lerp(mousePos, 0.15f);
+        Scale = Scale.Lerp(targetScale, smoothing);
+        GlobalPosition = GlobalPosition.Lerp(mousePos, smoothing);
     }
 
     public override void _Input(InputEvent @event)
