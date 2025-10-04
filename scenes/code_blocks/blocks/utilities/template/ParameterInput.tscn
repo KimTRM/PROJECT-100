@@ -1,0 +1,287 @@
+[gd_scene load_steps=16 format=3 uid="uid://chdl1sp7r2avd"]
+
+[ext_resource type="Script" uid="uid://cl2cp7ywlb5gm" path="res://scripts/code_blocks/blocks/utilities/template/ParameterInput.cs" id="1_7n1wq"]
+[ext_resource type="PackedScene" uid="uid://brctb1gyubyc7" path="res://scenes/code_blocks/blocks/utilities/drag&drop/DropAreaComponent.tscn" id="2_5b50o"]
+[ext_resource type="Texture2D" uid="uid://uf168g7jnhwb" path="res://assets/textures/CodeBlocks/VariableBlock/Variable.png" id="2_3813p"]
+[ext_resource type="PackedScene" uid="uid://cwwyah4ofmis8" path="res://scenes/code_blocks/blocks/utilities/drag&drop/DragAreaComponent.tscn" id="2_j5sas"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nftbc"]
+texture = ExtResource("2_3813p")
+texture_margin_left = 32.0
+texture_margin_top = 32.0
+texture_margin_right = 32.0
+texture_margin_bottom = 32.0
+modulate_color = Color(0, 0, 0, 0.3372549)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_7n1wq"]
+load_path = "res://.godot/imported/Variable.png-d44440751eb8f0028a68a73cd446602e.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5b50o"]
+texture = SubResource("CompressedTexture2D_7n1wq")
+texture_margin_left = 32.0
+texture_margin_top = 32.0
+texture_margin_right = 32.0
+texture_margin_bottom = 32.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_j5sas"]
+load_path = "res://.godot/imported/Variable.png-d44440751eb8f0028a68a73cd446602e.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3813p"]
+texture = SubResource("CompressedTexture2D_j5sas")
+texture_margin_left = 32.0
+texture_margin_top = 32.0
+texture_margin_right = 32.0
+texture_margin_bottom = 32.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4rwiq"]
+load_path = "res://.godot/imported/Variable.png-d44440751eb8f0028a68a73cd446602e.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hcqn6"]
+texture = SubResource("CompressedTexture2D_4rwiq")
+texture_margin_left = 32.0
+texture_margin_top = 32.0
+texture_margin_right = 32.0
+texture_margin_bottom = 32.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_a61kl"]
+load_path = "res://.godot/imported/Variable.png-d44440751eb8f0028a68a73cd446602e.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nsdic"]
+texture = SubResource("CompressedTexture2D_a61kl")
+texture_margin_left = 32.0
+texture_margin_top = 32.0
+texture_margin_right = 32.0
+texture_margin_bottom = 32.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4uimf"]
+load_path = "res://.godot/imported/Variable.png-d44440751eb8f0028a68a73cd446602e.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_syll8"]
+texture = SubResource("CompressedTexture2D_4uimf")
+texture_margin_left = 32.0
+texture_margin_top = 32.0
+texture_margin_right = 32.0
+texture_margin_bottom = 32.0
+
+[node name="ParameterInput" type="MarginContainer"]
+texture_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+script = ExtResource("1_7n1wq")
+
+[node name="Panel" type="Panel" parent="."]
+texture_filter = 1
+custom_minimum_size = Vector2(60, 44)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_nftbc")
+
+[node name="InputSwitcher" type="MarginContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="TextInput" type="LineEdit" parent="InputSwitcher"]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 2
+placeholder_text = "variable name"
+alignment = 1
+expand_to_text_length = true
+flat = true
+caret_blink = true
+caret_blink_interval = 0.38
+
+[node name="DragAreaComponent" parent="InputSwitcher/TextInput" instance=ExtResource("2_j5sas")]
+layout_mode = 1
+
+[node name="BoolInput" type="OptionButton" parent="InputSwitcher"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+flat = true
+alignment = 1
+selected = 0
+item_count = 2
+popup/item_0/text = "false"
+popup/item_0/id = 0
+popup/item_1/text = "true"
+popup/item_1/id = 1
+
+[node name="DragAreaComponent" parent="InputSwitcher/BoolInput" instance=ExtResource("2_j5sas")]
+layout_mode = 1
+
+[node name="OptionInput" type="OptionButton" parent="InputSwitcher"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+flat = true
+alignment = 1
+
+[node name="DragAreaComponent" parent="InputSwitcher/OptionInput" instance=ExtResource("2_j5sas")]
+layout_mode = 1
+
+[node name="ColorPickerInput" type="ColorPickerButton" parent="InputSwitcher"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_5b50o")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_3813p")
+theme_override_styles/hover = SubResource("StyleBoxTexture_hcqn6")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_nsdic")
+theme_override_styles/focus = SubResource("StyleBoxTexture_syll8")
+
+[node name="DragAreaComponent" parent="InputSwitcher/ColorPickerInput" instance=ExtResource("2_j5sas")]
+layout_mode = 1
+
+[node name="Vector2Input" type="MarginContainer" parent="InputSwitcher"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="DragAreaComponent" parent="InputSwitcher/Vector2Input" instance=ExtResource("2_j5sas")]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="InputSwitcher/Vector2Input"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="XInput" type="LineEdit" parent="InputSwitcher/Vector2Input/HBoxContainer"]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 2
+placeholder_text = "X"
+alignment = 1
+expand_to_text_length = true
+flat = true
+caret_blink = true
+caret_blink_interval = 0.38
+
+[node name="DragAreaComponent" parent="InputSwitcher/Vector2Input/HBoxContainer/XInput" instance=ExtResource("2_j5sas")]
+layout_mode = 1
+
+[node name="ColorRect" type="ColorRect" parent="InputSwitcher/Vector2Input/HBoxContainer"]
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+mouse_filter = 2
+color = Color(0.13612777, 0.13612777, 0.13612777, 1)
+
+[node name="DragAreaComponent" parent="InputSwitcher/Vector2Input/HBoxContainer/ColorRect" instance=ExtResource("2_j5sas")]
+layout_mode = 1
+
+[node name="YInput" type="LineEdit" parent="InputSwitcher/Vector2Input/HBoxContainer"]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 2
+placeholder_text = "Y"
+alignment = 1
+expand_to_text_length = true
+flat = true
+caret_blink = true
+caret_blink_interval = 0.38
+
+[node name="DragAreaComponent" parent="InputSwitcher/Vector2Input/HBoxContainer/YInput" instance=ExtResource("2_j5sas")]
+layout_mode = 1
+
+[node name="Vector3Input" type="MarginContainer" parent="InputSwitcher"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="DragAreaComponent" parent="InputSwitcher/Vector3Input" instance=ExtResource("2_j5sas")]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="InputSwitcher/Vector3Input"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="X3Input" type="LineEdit" parent="InputSwitcher/Vector3Input/HBoxContainer"]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 2
+placeholder_text = "X"
+alignment = 1
+expand_to_text_length = true
+flat = true
+caret_blink = true
+caret_blink_interval = 0.38
+
+[node name="DragAreaComponent" parent="InputSwitcher/Vector3Input/HBoxContainer/X3Input" instance=ExtResource("2_j5sas")]
+visible = false
+layout_mode = 1
+
+[node name="ColorRect" type="ColorRect" parent="InputSwitcher/Vector3Input/HBoxContainer"]
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+mouse_filter = 2
+color = Color(0.13612777, 0.13612777, 0.13612777, 1)
+
+[node name="DragAreaComponent" parent="InputSwitcher/Vector3Input/HBoxContainer/ColorRect" instance=ExtResource("2_j5sas")]
+layout_mode = 1
+
+[node name="Y3Input" type="LineEdit" parent="InputSwitcher/Vector3Input/HBoxContainer"]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 2
+placeholder_text = "Y"
+alignment = 1
+expand_to_text_length = true
+flat = true
+caret_blink = true
+caret_blink_interval = 0.38
+
+[node name="DragAreaComponent" parent="InputSwitcher/Vector3Input/HBoxContainer/Y3Input" instance=ExtResource("2_j5sas")]
+layout_mode = 1
+
+[node name="ColorRect2" type="ColorRect" parent="InputSwitcher/Vector3Input/HBoxContainer"]
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+mouse_filter = 2
+color = Color(0.13612777, 0.13612777, 0.13612777, 1)
+
+[node name="DragAreaComponent" parent="InputSwitcher/Vector3Input/HBoxContainer/ColorRect2" instance=ExtResource("2_j5sas")]
+layout_mode = 1
+
+[node name="Z3Input" type="LineEdit" parent="InputSwitcher/Vector3Input/HBoxContainer"]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 2
+placeholder_text = "Z"
+alignment = 1
+expand_to_text_length = true
+flat = true
+caret_blink = true
+caret_blink_interval = 0.38
+
+[node name="DragAreaComponent" parent="InputSwitcher/Vector3Input/HBoxContainer/Z3Input" instance=ExtResource("2_j5sas")]
+layout_mode = 1
+
+[node name="DropAreaComponent" parent="." instance=ExtResource("2_5b50o")]
+layout_mode = 2
+allowedBlockTypes = 3
+
+[connection signal="DragStarted" from="InputSwitcher/TextInput/DragAreaComponent" to="." method="OnDragAreaComponentDragStarted"]
+[connection signal="DragStarted" from="InputSwitcher/BoolInput/DragAreaComponent" to="." method="OnDragAreaComponentDragStarted"]
+[connection signal="DragStarted" from="InputSwitcher/OptionInput/DragAreaComponent" to="." method="OnDragAreaComponentDragStarted"]
+[connection signal="DragStarted" from="InputSwitcher/ColorPickerInput/DragAreaComponent" to="." method="OnDragAreaComponentDragStarted"]
+[connection signal="DragStarted" from="InputSwitcher/Vector2Input/DragAreaComponent" to="." method="OnDragAreaComponentDragStarted"]
+[connection signal="DragStarted" from="InputSwitcher/Vector2Input/HBoxContainer/XInput/DragAreaComponent" to="." method="OnDragAreaComponentDragStarted"]
+[connection signal="DragStarted" from="InputSwitcher/Vector2Input/HBoxContainer/ColorRect/DragAreaComponent" to="." method="OnDragAreaComponentDragStarted"]
+[connection signal="DragStarted" from="InputSwitcher/Vector2Input/HBoxContainer/YInput/DragAreaComponent" to="." method="OnDragAreaComponentDragStarted"]
+[connection signal="DragStarted" from="InputSwitcher/Vector3Input/DragAreaComponent" to="." method="OnDragAreaComponentDragStarted"]
+[connection signal="DragStarted" from="InputSwitcher/Vector3Input/HBoxContainer/X3Input/DragAreaComponent" to="." method="OnDragAreaComponentDragStarted"]
+[connection signal="DragStarted" from="InputSwitcher/Vector3Input/HBoxContainer/ColorRect/DragAreaComponent" to="." method="OnDragAreaComponentDragStarted"]
+[connection signal="DragStarted" from="InputSwitcher/Vector3Input/HBoxContainer/Y3Input/DragAreaComponent" to="." method="OnDragAreaComponentDragStarted"]
+[connection signal="DragStarted" from="InputSwitcher/Vector3Input/HBoxContainer/ColorRect2/DragAreaComponent" to="." method="OnDragAreaComponentDragStarted"]
+[connection signal="DragStarted" from="InputSwitcher/Vector3Input/HBoxContainer/Z3Input/DragAreaComponent" to="." method="OnDragAreaComponentDragStarted"]
+[connection signal="DroppedBlockChanged" from="DropAreaComponent" to="." method="OnDropAreaDroppedBlockChanged"]

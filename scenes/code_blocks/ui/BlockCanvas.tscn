@@ -1,12 +1,10 @@
 [gd_scene load_steps=4 format=3 uid="uid://bp0aevc7dehng"]
 
 [ext_resource type="Script" uid="uid://0jr3qh6x7x8w" path="res://scripts/code_blocks/ui/BlockCanvas.cs" id="1_084tk"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_k8hvt"]
-load_path = "res://.godot/imported/Variable.png-d44440751eb8f0028a68a73cd446602e.ctex"
+[ext_resource type="Texture2D" uid="uid://uf168g7jnhwb" path="res://assets/textures/CodeBlocks/VariableBlock/Variable.png" id="2_acomh"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_acomh"]
-texture = SubResource("CompressedTexture2D_k8hvt")
+texture = ExtResource("2_acomh")
 texture_margin_left = 32.0
 texture_margin_top = 32.0
 texture_margin_right = 32.0

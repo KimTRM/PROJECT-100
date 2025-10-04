@@ -6,7 +6,7 @@ public partial class DropAreaComponent : MarginContainer
 	[Signal] public delegate void BlockRemovedEventHandler(CodeBlock block);
 
 	[Export]
-	public Types.BlockType allowedBlockTypes = Types.BlockType.NONE;
+	public BlockType allowedBlockTypes = BlockType.NONE;
 
 	[Export]
 	public CodeBlock DroppedBlock

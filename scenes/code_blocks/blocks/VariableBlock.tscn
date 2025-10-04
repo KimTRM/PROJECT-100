@@ -1,9 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://drcorwafubvtf"]
+[gd_scene load_steps=6 format=3 uid="uid://drcorwafubvtf"]
 
 [ext_resource type="Script" uid="uid://cyod5r2p4kyj6" path="res://scripts/code_blocks/blocks/VariableBlock.cs" id="1_nxi04"]
-[ext_resource type="PackedScene" uid="uid://cwwyah4ofmis8" path="res://scenes/code_blocks/util/drag&drop/DragAreaComponent.tscn" id="2_2o31x"]
+[ext_resource type="PackedScene" uid="uid://cwwyah4ofmis8" path="res://scenes/code_blocks/blocks/utilities/drag&drop/DragAreaComponent.tscn" id="2_2o31x"]
 [ext_resource type="Texture2D" uid="uid://uf168g7jnhwb" path="res://assets/textures/CodeBlocks/VariableBlock/Variable.png" id="2_ugaih"]
-[ext_resource type="PackedScene" uid="uid://brctb1gyubyc7" path="res://scenes/code_blocks/util/drag&drop/DropAreaComponent.tscn" id="4_ugaih"]
+[ext_resource type="PackedScene" uid="uid://bmsnxpya6hkjw" path="res://scenes/code_blocks/blocks/utilities/template/TemplateEditor.tscn" id="5_4boqc"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4boqc"]
 texture = ExtResource("2_ugaih")
@@ -12,20 +12,13 @@ texture_margin_top = 32.0
 texture_margin_right = 16.0
 texture_margin_bottom = 16.0
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ugaih"]
-texture = ExtResource("2_ugaih")
-texture_margin_left = 32.0
-texture_margin_top = 32.0
-texture_margin_right = 32.0
-texture_margin_bottom = 32.0
-modulate_color = Color(0, 0, 0, 0.3372549)
-
-[node name="VariableBlock" type="MarginContainer" groups=["CodeBlock"]]
+[node name="VariableBlock" type="MarginContainer" node_paths=PackedStringArray("dragAreaComponent") groups=["CodeBlock"]]
 custom_minimum_size = Vector2(130, 60)
 offset_right = 130.0
 offset_bottom = 60.0
 size_flags_vertical = 4
 script = ExtResource("1_nxi04")
+dragAreaComponent = NodePath("DragAreaComponent")
 BlockType = 3
 
 [node name="Panel" type="Panel" parent="."]
@@ -39,47 +32,8 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_4boqc")
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 2
-mouse_filter = 2
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 8
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
-layout_mode = 2
-mouse_filter = 2
-
-[node name="VariableLabel" type="Label" parent="MarginContainer/HBoxContainer"]
-texture_filter = 1
-layout_mode = 2
-text = "Var"
-vertical_alignment = 1
-
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
-clip_contents = true
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="VariableContainer" type="Panel" parent="MarginContainer/HBoxContainer/MarginContainer"]
-texture_filter = 1
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/panel = SubResource("StyleBoxTexture_ugaih")
-
-[node name="VarName" type="LineEdit" parent="MarginContainer/HBoxContainer/MarginContainer"]
-unique_name_in_owner = true
-texture_filter = 1
-layout_mode = 2
-placeholder_text = "variable name"
-alignment = 1
-expand_to_text_length = true
-flat = true
-caret_blink = true
-caret_blink_interval = 0.38
-
-[node name="DropAreaComponent" parent="MarginContainer/HBoxContainer/MarginContainer" instance=ExtResource("4_ugaih")]
+[node name="TemplateEditor" parent="." instance=ExtResource("5_4boqc")]
 unique_name_in_owner = true
 layout_mode = 2
-allowedBlockTypes = 3
+TemplateName = "Var"
+InputType = 2

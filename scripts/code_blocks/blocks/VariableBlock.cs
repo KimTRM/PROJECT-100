@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 [Scene]
 public partial class VariableBlock : CodeBlock
 {
-	[Node] private LineEdit varName;
-
 	[Export] public string varNameStr;
+
+	[Node] private TemplateEditor templateEditor;
 
 	public override void _Notification(int what)
 	{
@@ -17,18 +17,23 @@ public partial class VariableBlock : CodeBlock
 		}
 	}
 
+	public override void _Ready()
+	{
+		base._Ready();
+
+		varNameStr = templateEditor.TemplateName;
+	}
+
 	public override async Task Execute()
 	{
 		var block = dropAreaComponent.DroppedBlock;
 		if (dropAreaComponent.HasBlock())
 		{
 			await block.Execute();
-			// varNameStr = block.Value1;
 			// SetBlockValue(block.Value2);
 		}
 		else
 		{
-			varNameStr = varName.Text;
 			SetBlockValue(varNameStr);
 		}
 

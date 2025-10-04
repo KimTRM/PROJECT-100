@@ -1,0 +1,162 @@
+[gd_scene load_steps=15 format=3 uid="uid://bm8qnm1lt3fgb"]
+
+[ext_resource type="Script" uid="uid://dnccex6n1khy8" path="res://scripts/code_blocks/blocks/ConditionBlock.cs" id="1_5ku5k"]
+[ext_resource type="Texture2D" uid="uid://yg21qbyrje85" path="res://assets/textures/CodeBlocks/ConditionBlock/ConditionTop1.png" id="2_74i3j"]
+[ext_resource type="Texture2D" uid="uid://p5uumc7mkbxa" path="res://assets/textures/CodeBlocks/ConditionBlock/ConditionTop2.png" id="3_hn52u"]
+[ext_resource type="PackedScene" uid="uid://cwwyah4ofmis8" path="res://scenes/code_blocks/blocks/utilities/drag&drop/DragAreaComponent.tscn" id="4_34ycn"]
+[ext_resource type="PackedScene" uid="uid://bmsnxpya6hkjw" path="res://scenes/code_blocks/blocks/utilities/template/TemplateEditor.tscn" id="5_m1fxw"]
+[ext_resource type="Texture2D" uid="uid://cfr8t1h0riqwv" path="res://assets/textures/CodeBlocks/ConditionBlock/ConditionMid.png" id="6_jrlty"]
+[ext_resource type="PackedScene" uid="uid://brctb1gyubyc7" path="res://scenes/code_blocks/blocks/utilities/drag&drop/DropAreaComponent.tscn" id="7_artjp"]
+[ext_resource type="Texture2D" uid="uid://biktph2ling70" path="res://assets/textures/CodeBlocks/ConditionBlock/ConditionBottom1.png" id="8_5hs7n"]
+[ext_resource type="Texture2D" uid="uid://dvj04tlkie1yj" path="res://assets/textures/CodeBlocks/ConditionBlock/ConditionBottom2.png" id="9_p3hge"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_s1yh3"]
+texture = ExtResource("2_74i3j")
+texture_margin_left = 32.0
+texture_margin_top = 32.0
+texture_margin_right = 16.0
+texture_margin_bottom = 32.0
+expand_margin_bottom = 9.0
+modulate_color = Color(0.6117647, 0.41960785, 1, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_eke45"]
+texture = ExtResource("3_hn52u")
+texture_margin_left = 32.0
+texture_margin_top = 32.0
+texture_margin_right = 16.0
+texture_margin_bottom = 32.0
+expand_margin_bottom = 9.0
+modulate_color = Color(0.6117647, 0.41960785, 1, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1w760"]
+texture = ExtResource("6_jrlty")
+texture_margin_left = 32.0
+texture_margin_top = 32.0
+modulate_color = Color(0.6117647, 0.41960785, 1, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0ryhf"]
+texture = ExtResource("8_5hs7n")
+texture_margin_left = 32.0
+texture_margin_top = 32.0
+texture_margin_right = 16.0
+texture_margin_bottom = 32.0
+expand_margin_bottom = 9.0
+modulate_color = Color(0.6117647, 0.41960785, 1, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_h3nm3"]
+texture = ExtResource("9_p3hge")
+texture_margin_left = 32.0
+texture_margin_top = 32.0
+texture_margin_right = 16.0
+texture_margin_bottom = 32.0
+expand_margin_bottom = 9.0
+modulate_color = Color(0.6117647, 0.41960785, 1, 1)
+
+[node name="ControlBlock" type="MarginContainer" node_paths=PackedStringArray("dragAreaComponent", "dropAreaComponent")]
+custom_minimum_size = Vector2(130, 0)
+offset_right = 130.0
+offset_bottom = 167.0
+size_flags_horizontal = 0
+script = ExtResource("1_5ku5k")
+dragAreaComponent = NodePath("VBoxContainer/MarginContainer/DragAreaComponent")
+dropAreaComponent = NodePath("VBoxContainer/HBoxContainer/DropAreaComponent")
+BlockType = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(130, 45)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+mouse_filter = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 0
+
+[node name="Panel" type="Panel" parent="VBoxContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_s1yh3")
+
+[node name="Panel2" type="Panel" parent="VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_eke45")
+
+[node name="DragAreaComponent" parent="VBoxContainer/MarginContainer" instance=ExtResource("4_34ycn")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="TemplateEditor" parent="VBoxContainer/MarginContainer" instance=ExtResource("5_m1fxw")]
+unique_name_in_owner = true
+layout_mode = 2
+TemplateName = "If"
+InputType = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = -1
+
+[node name="PanelContainer2" type="PanelContainer" parent="VBoxContainer/HBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_1w760")
+
+[node name="DropAreaComponent" parent="VBoxContainer/HBoxContainer" instance=ExtResource("7_artjp")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+allowedBlockTypes = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/VBoxContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(130, 45)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_filter = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 0
+
+[node name="Panel" type="Panel" parent="VBoxContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_0ryhf")
+
+[node name="Panel2" type="Panel" parent="VBoxContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_h3nm3")
+
+[node name="TemplateEditor" parent="VBoxContainer/VBoxContainer/MarginContainer" instance=ExtResource("5_m1fxw")]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_top = 16
+TemplateName = "While"
+InputType = 1
+
+[node name="DropAreaComponent" parent="VBoxContainer/VBoxContainer" instance=ExtResource("7_artjp")]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_vertical = 0
+allowedBlockTypes = 2

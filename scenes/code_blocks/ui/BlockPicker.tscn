@@ -1,16 +1,14 @@
 [gd_scene load_steps=8 format=3 uid="uid://dl1yi3e2oqj0k"]
 
 [ext_resource type="Script" uid="uid://dx5x5yebcdaus" path="res://scripts/code_blocks/ui/BlockPicker.cs" id="1_5nmmw"]
+[ext_resource type="Texture2D" uid="uid://uf168g7jnhwb" path="res://assets/textures/CodeBlocks/VariableBlock/Variable.png" id="2_5mdv1"]
 [ext_resource type="PackedScene" uid="uid://drcorwafubvtf" path="res://scenes/code_blocks/blocks/VariableBlock.tscn" id="3_adc05"]
-[ext_resource type="PackedScene" uid="uid://b37is6wayt2yf" path="res://scenes/code_blocks/util/BlockSpawner.tscn" id="3_k4ts7"]
+[ext_resource type="PackedScene" uid="uid://b37is6wayt2yf" path="res://scenes/code_blocks/blocks/utilities/BlockSpawner.tscn" id="3_k4ts7"]
 [ext_resource type="PackedScene" uid="uid://dbkjr5boxysai" path="res://scenes/code_blocks/blocks/PrintBlock.tscn" id="4_k4ts7"]
-[ext_resource type="PackedScene" uid="uid://bm8qnm1lt3fgb" path="res://scenes/code_blocks/blocks/ConditionBlock.tscn" id="5_4sua0"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_adc05"]
-load_path = "res://.godot/imported/Variable.png-bb43b7559e317a3c7becf45aba511812.ctex"
+[ext_resource type="PackedScene" uid="uid://bm8qnm1lt3fgb" path="res://scenes/code_blocks/blocks/ControlBlock.tscn" id="5_4sua0"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_k4ts7"]
-texture = SubResource("CompressedTexture2D_adc05")
+texture = ExtResource("2_5mdv1")
 texture_margin_left = 32.0
 texture_margin_top = 32.0
 texture_margin_right = 32.0

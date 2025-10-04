@@ -10,15 +10,12 @@ public partial class DragManager : Control
     [Export] private BlockPicker blockPicker;
     [Export] private BlockCanvas blockCanvas;
 
-    [Export] float blockSmoothing = 0.15f;
-
     private Array<Node> blocks = [];
     private Array<Node> dropAreas = [];
 
     private CodeBlock draggedObject;
     private Node originalParent;
     private Node dropTarget;
-    private Vector2 offset;
 
     private bool dragging = false;
 
@@ -32,23 +29,36 @@ public partial class DragManager : Control
 
     public override void _Process(double delta)
     {
-        if (dragging && draggedObject != null && IsInstanceValid(draggedObject))
-            draggedObject.GlobalPosition = draggedObject.GlobalPosition.Lerp(
-            GetGlobalMousePosition() - offset,
-            (float)delta * blockSmoothing
+        if (blockCanvas == null || draggedObject == null) return;
+
+        var minZoom = 0.1f;
+        var maxZoom = 5.0f;
+        var smoothing = 0.15f;
+        var mousePos = GetGlobalMousePosition();
+        var overCanvas = blockCanvas.GetGlobalRect().HasPoint(mousePos);
+        var zoomFactor = Mathf.Clamp(blockCanvas.GetZoomFactor(), minZoom, maxZoom);
+
+        //  -- Change the color of the dragged object for visual feedback --
+        draggedObject.Modulate = draggedObject.Modulate.Lerp(
+            overCanvas
+                ? new Color(1.0f, 1.0f, 1.0f)
+                : new Color(0.45f, 0.45f, 0.45f, 0.792f),
+            smoothing
         );
 
-        AdjustZoom();
+        // -- Smoothly scale and position the DragManager based on mouse position and zoom level --
+        Vector2 targetScale = overCanvas
+            ? new Vector2(zoomFactor, zoomFactor)
+            : Vector2.One;
+
+        Scale = Scale.Lerp(targetScale, smoothing);
+        GlobalPosition = GlobalPosition.Lerp(mousePos, smoothing);
     }
 
     public override void _Input(InputEvent @event)
     {
         if (@event is InputEventMouseButton mouseEvent && mouseEvent.IsReleased() && dragging)
-        {
-            GetCodeBlocks();
-            SetClosestDroppableTargets();
             EndDrag();
-        }
     }
 
     private void StartDrag(CodeBlock draggable)
@@ -56,38 +66,40 @@ public partial class DragManager : Control
         if (dragging) return;
 
         dragging = true;
-
         originalParent = draggable.GetParent();
         draggedObject = draggable;
-        offset = GetGlobalMousePosition() - draggedObject.GlobalPosition + new Vector2(0, 2);
 
-        draggedObject.Resize();
+        GlobalPosition = GetGlobalMousePosition();
+
         draggedObject.Reparent(this);
+        draggedObject.Resize();
     }
 
     private void EndDrag()
     {
+        GetCodeBlocks();
+        SetClosestDroppableTargets();
+
         dragging = false;
 
         if (draggedObject == null || !IsInstanceValid(draggedObject)) return;
 
         Node newParent = dropTarget ?? originalParent;
 
-        bool removeBecauseInvalidParent = draggedObject.IsAncestorOf(newParent);
-        bool removeBecausePicker = blockPicker.GetRect().HasPoint(GetGlobalMousePosition());
+        bool invalidParent = draggedObject.IsAncestorOf(newParent);
+        bool insidePicker = blockPicker.GetGlobalRect().HasPoint(GetGlobalMousePosition());
+        bool insideCanvas = blockCanvas.GetGlobalRect().HasPoint(GetGlobalMousePosition());
 
-        if (removeBecauseInvalidParent || removeBecausePicker || originalParent == null)
-        {
+        if (invalidParent || insidePicker || newParent == null)
             RemoveBlock(draggedObject);
-        }
-        else if (blockCanvas.GetRect().HasPoint(draggedObject.GetGlobalPosition()))
-        {
-            draggedObject.Reparent(blockCanvas.Window);
-        }
+
+        if (insideCanvas)
+            if (newParent is DropAreaComponent)
+                draggedObject.Reparent(newParent);
+            else
+                draggedObject.Reparent(blockCanvas.Window);
         else
-        {
-            draggedObject.Reparent(newParent);
-        }
+            RemoveBlock(draggedObject);
 
         draggedObject = null;
         dropTarget = null;
@@ -100,10 +112,14 @@ public partial class DragManager : Control
         block.Reparent(this);
         block.ZIndex = 1000;
         block.PivotOffset = block.GetRect().Size / 2.0f;
-        block.GlobalPosition = GetGlobalMousePosition() - offset;
+        block.GlobalPosition = GetGlobalMousePosition();
 
-        var tween = GetTree().CreateTween();
-        tween.TweenProperty(block, "scale", new Vector2(0, 0), 0.15f);
+        var tween = GetTree().CreateTween().TweenProperty(
+            block,
+            "scale",
+            Vector2.Zero,
+            0.15f
+        );
 
         await ToSignal(tween, "finished");
 
@@ -137,19 +153,11 @@ public partial class DragManager : Control
 
         foreach (DropAreaComponent dropArea in dropAreas.Cast<DropAreaComponent>())
         {
-            if (!blockCanvas.IsAncestorOf(dropArea))
-                continue;
-
-            if (dropArea == null)
-                continue;
-
-            if (dropArea.HasBlock())
-                continue;
-
-            if (!dropArea.GetGlobalRect().HasPoint(mousePos))
-                continue;
-
-            if (draggedObject.BlockType != dropArea.allowedBlockTypes)
+            if (dropArea == null
+            || dropArea.HasBlock()
+            || !blockCanvas.IsAncestorOf(dropArea)
+            || !dropArea.GetGlobalRect().HasPoint(mousePos)
+            || draggedObject.BlockType != dropArea.allowedBlockTypes)
                 continue;
 
             float distance = draggedObject.GlobalPosition.DistanceTo(dropArea.GlobalPosition);
@@ -164,37 +172,7 @@ public partial class DragManager : Control
         {
             SetDroppableTarget(closestDropArea);
             closestDropArea.DroppedBlock = draggedObject;
-            EmitSignal(SignalName.BlockDropped);
+            EmitSignalBlockDropped();
         }
-    }
-
-    private void AdjustZoom()
-    {
-        if (blockCanvas == null) return;
-
-        float scaleLerpSpeed = 0.116f;
-
-        var minZoom = 0.1f;
-        var maxZoom = 5.0f;
-        var mousePos = GetGlobalMousePosition();
-        var zoomFactor = Mathf.Clamp(blockCanvas.GetZoomFactor(), minZoom, maxZoom);
-
-        bool overCanvas = blockCanvas.GetGlobalRect().HasPoint(mousePos);
-        bool overPicker = blockPicker.GetGlobalRect().HasPoint(mousePos);
-
-        Vector2 targetScale = overCanvas
-            ? new Vector2(zoomFactor, zoomFactor)
-            : Vector2.One;
-
-        if (draggedObject != null)
-            draggedObject.Modulate = draggedObject.Modulate.Lerp(
-                overPicker
-                    ? new Color(0.45f, 0.45f, 0.45f, 0.792f)
-                    : new Color(1.0f, 1.0f, 1.0f),
-                0.15f
-            );
-
-        Scale = Scale.Lerp(targetScale, scaleLerpSpeed);
-        GlobalPosition = GlobalPosition.Lerp(mousePos - offset, scaleLerpSpeed);
     }
 }

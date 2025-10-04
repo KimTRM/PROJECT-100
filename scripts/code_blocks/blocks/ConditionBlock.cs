@@ -1,10 +1,20 @@
 using Godot;
+using GodotUtilities;
 using System;
 
+[Scene]
 public partial class ConditionBlock : CodeBlock
 {
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
+	[Node] private TemplateEditor TemplateEditor;
+
+	public override void _Notification(int what)
 	{
+		if (what == NotificationSceneInstantiated)
+		{
+			WireNodes();
+			TemplateEditor.DragStarted += StartDrag;
+		}
 	}
+
+
 }

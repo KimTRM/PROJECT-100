@@ -7,12 +7,12 @@ public partial class CodeBlock : MarginContainer
 {
     [Signal] public delegate void DragStartedEventHandler(CodeBlock codeBlock);
 
-    [Node, Export] public DragAreaComponent dragAreaComponent;
-    [Node, Export] public DropAreaComponent dropAreaComponent;
+    [Export] public DragAreaComponent dragAreaComponent;
+    [Export] public DropAreaComponent dropAreaComponent;
 
     [Export] public Resource BlockDefinition = null;
 
-    [Export] public Types.BlockType BlockType = Types.BlockType.NONE;
+    [Export] public BlockType BlockType = BlockType.NONE;
 
     private Variant BlockValue;
 
@@ -27,10 +27,12 @@ public partial class CodeBlock : MarginContainer
     public override void _Ready()
     {
         AddToGroup("CodeBlock");
-        if (dragAreaComponent == null && dropAreaComponent == null) return;
 
-        dragAreaComponent.DragStarted += StartDrag;
-        dropAreaComponent.BlockRemoved += (CodeBlock) => { Resize(); };
+        if (dragAreaComponent != null)
+            dragAreaComponent.DragStarted += StartDrag;
+
+        if (dropAreaComponent != null)
+            dropAreaComponent.BlockRemoved += (CodeBlock) => { Resize(); };
     }
 
     public virtual async Task Execute() { await Task.CompletedTask; }
