@@ -3,7 +3,7 @@ using Godot.Collections;
 
 public partial class Constants : Node
 {
-	public static Dictionary<BlockType, string> Scene = new()
+	public Dictionary<BlockType, string> ScenePath = new()
 	{
 		{ BlockType.NONE, "" },
 		{ BlockType.ENTRY, "" },

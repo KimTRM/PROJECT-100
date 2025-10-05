@@ -5,6 +5,7 @@ using GodotUtilities;
 public partial class TemplateEditor : MarginContainer
 {
 	[Signal] public delegate void DragStartedEventHandler();
+	[Signal] public delegate void BlockRemovedEventHandler(CodeBlock block);
 
 	[Node] private HBoxContainer container;
 

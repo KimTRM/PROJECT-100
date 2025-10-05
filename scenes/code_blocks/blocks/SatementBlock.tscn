@@ -1,14 +1,14 @@
 [gd_scene load_steps=9 format=3 uid="uid://dbkjr5boxysai"]
 
-[ext_resource type="Script" uid="uid://cmvsyuosmvn5u" path="res://scripts/code_blocks/blocks/PrintBlock.cs" id="1_jnpc6"]
-[ext_resource type="PackedScene" uid="uid://cwwyah4ofmis8" path="res://scenes/code_blocks/blocks/utilities/drag&drop/DragAreaComponent.tscn" id="2_6u53f"]
-[ext_resource type="Texture2D" uid="uid://bx4c1fd75lxas" path="res://assets/textures/CodeBlocks/ExpressionBlock/Expresion.png" id="2_m62al"]
-[ext_resource type="PackedScene" uid="uid://brctb1gyubyc7" path="res://scenes/code_blocks/blocks/utilities/drag&drop/DropAreaComponent.tscn" id="3_m62al"]
-[ext_resource type="Texture2D" uid="uid://fi1jade8mdoe" path="res://assets/textures/CodeBlocks/ExpressionBlock/ExpresionOutline.png" id="3_xaam0"]
-[ext_resource type="PackedScene" uid="uid://bmsnxpya6hkjw" path="res://scenes/code_blocks/blocks/utilities/template/TemplateEditor.tscn" id="7_to5um"]
+[ext_resource type="Script" uid="uid://dupm1y0jr1uad" path="res://scripts/code_blocks/blocks/SatementBlock.cs" id="1_2y51f"]
+[ext_resource type="Texture2D" uid="uid://bx4c1fd75lxas" path="res://assets/textures/CodeBlocks/ExpressionBlock/Expresion.png" id="2_ulq15"]
+[ext_resource type="Texture2D" uid="uid://fi1jade8mdoe" path="res://assets/textures/CodeBlocks/ExpressionBlock/ExpresionOutline.png" id="3_xy5ay"]
+[ext_resource type="PackedScene" uid="uid://cwwyah4ofmis8" path="res://scenes/code_blocks/blocks/utilities/drag&drop/DragAreaComponent.tscn" id="4_4s3y3"]
+[ext_resource type="PackedScene" uid="uid://bmsnxpya6hkjw" path="res://scenes/code_blocks/blocks/utilities/template/TemplateEditor.tscn" id="5_e5dtn"]
+[ext_resource type="PackedScene" uid="uid://brctb1gyubyc7" path="res://scenes/code_blocks/blocks/utilities/drag&drop/DropAreaComponent.tscn" id="6_hwtrq"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m62al"]
-texture = ExtResource("2_m62al")
+texture = ExtResource("2_ulq15")
 texture_margin_left = 32.0
 texture_margin_top = 32.0
 texture_margin_right = 16.0
@@ -17,21 +17,23 @@ expand_margin_bottom = 9.0
 modulate_color = Color(0.09019608, 0.50980395, 0.78431374, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bpdkj"]
-texture = ExtResource("3_xaam0")
+texture = ExtResource("3_xy5ay")
 texture_margin_left = 32.0
 texture_margin_top = 32.0
 texture_margin_right = 16.0
 texture_margin_bottom = 32.0
 expand_margin_bottom = 9.0
 
-[node name="PrintBlock" type="MarginContainer" node_paths=PackedStringArray("dragAreaComponent", "dropAreaComponent")]
+[node name="SatementBlock" type="MarginContainer" node_paths=PackedStringArray("dragAreaComponent", "dropAreaComponent", "templateEditor")]
 custom_minimum_size = Vector2(130, 60)
 offset_right = 130.0
-offset_bottom = 89.0
+offset_bottom = 60.0
 size_flags_horizontal = 0
-script = ExtResource("1_jnpc6")
+size_flags_vertical = 0
+script = ExtResource("1_2y51f")
 dragAreaComponent = NodePath("VBoxContainer/block/DragAreaComponent")
-dropAreaComponent = NodePath("")
+dropAreaComponent = NodePath("VBoxContainer/DropAreaComponent")
+templateEditor = NodePath("VBoxContainer/block/TemplateEditor")
 BlockType = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
@@ -59,15 +61,15 @@ layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_bpdkj")
 
-[node name="DragAreaComponent" parent="VBoxContainer/block" instance=ExtResource("2_6u53f")]
+[node name="DragAreaComponent" parent="VBoxContainer/block" instance=ExtResource("4_4s3y3")]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="TemplateEditor" parent="VBoxContainer/block" instance=ExtResource("7_to5um")]
+[node name="TemplateEditor" parent="VBoxContainer/block" instance=ExtResource("5_e5dtn")]
 layout_mode = 2
 TemplateName = "Print"
 
-[node name="DropAreaComponent" parent="VBoxContainer" instance=ExtResource("3_m62al")]
+[node name="DropAreaComponent" parent="VBoxContainer" instance=ExtResource("6_hwtrq")]
 custom_minimum_size = Vector2(130, 34)
 layout_mode = 2
 size_flags_vertical = 4

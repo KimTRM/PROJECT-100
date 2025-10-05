@@ -7,10 +7,11 @@ public partial class CodeBlock : MarginContainer
 {
     [Signal] public delegate void DragStartedEventHandler(CodeBlock codeBlock);
 
+    [Export] public Resource BlockDefinition = null;
+
     [Export] public DragAreaComponent dragAreaComponent;
     [Export] public DropAreaComponent dropAreaComponent;
-
-    [Export] public Resource BlockDefinition = null;
+    [Export] public TemplateEditor templateEditor;
 
     [Export] public BlockType BlockType = BlockType.NONE;
 

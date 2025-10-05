@@ -3,7 +3,7 @@ using GodotUtilities;
 using System.Threading.Tasks;
 
 [Scene]
-public partial class PrintBlock : CodeBlock
+public partial class SatementBlock : CodeBlock
 {
 	public override void _Notification(int what)
 	{
