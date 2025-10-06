@@ -1,8 +1,8 @@
 using Godot;
-using System;
 
 public partial class BlockSpawner : MarginContainer
 {
+	[Export] private BaseBlock BlockResource;
 	[Export] public CodeBlock BlockToSpawn;
 
 	public override void _Ready()
@@ -19,14 +19,10 @@ public partial class BlockSpawner : MarginContainer
 	public override void _Input(InputEvent @event)
 	{
 		if (@event is InputEventMouseButton mouseEvent)
-		{
-			bool nowInside = GetGlobalRect().HasPoint(mouseEvent.GlobalPosition);
-			if (nowInside && mouseEvent.ButtonIndex == MouseButton.Left && mouseEvent.IsPressed())
-			{
-				if (GetChildren().Count <= 1)
-					SpawnBlock();
-			}
-		}
+			if (GetGlobalRect().HasPoint(mouseEvent.GlobalPosition)
+			&& mouseEvent.ButtonIndex == MouseButton.Left
+			&& mouseEvent.IsPressed() && GetChildren().Count <= 1)
+				SpawnBlock();
 	}
 
 	public void SpawnBlock()

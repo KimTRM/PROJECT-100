@@ -1,5 +1,5 @@
-using System.Linq;
 using Godot;
+using System.Linq;
 using GodotUtilities;
 
 [Scene]
@@ -54,14 +54,14 @@ public partial class ParameterInput : MarginContainer
 
 		switch (InputType)
 		{
-			case Variant.Type.Bool:
-				SwitchInput(BoolInput);
-				break;
 			case Variant.Type.Int:
 			case Variant.Type.Float:
 			case Variant.Type.String:
 				SwitchInput(TextInput);
 				TextInput.PlaceholderText = PlaceholderText;
+				break;
+			case Variant.Type.Bool:
+				SwitchInput(BoolInput);
 				break;
 			case Variant.Type.Color:
 				SwitchInput(ColorPickerInput);
