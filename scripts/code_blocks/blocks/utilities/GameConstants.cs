@@ -1,9 +1,9 @@
 using Godot;
 using Godot.Collections;
 
-public partial class Constants : Node
+public static class GameConstants
 {
-	public Dictionary<BlockType, string> ScenePath = new()
+	public static Dictionary<BlockType, string> BlockScenePath = new()
 	{
 		{ BlockType.NONE, "" },
 		{ BlockType.ENTRY, "" },

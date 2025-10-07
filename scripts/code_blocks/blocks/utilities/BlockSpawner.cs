@@ -18,11 +18,12 @@ public partial class BlockSpawner : MarginContainer
 
 	public override void _Input(InputEvent @event)
 	{
-		if (@event is InputEventMouseButton mouseEvent)
-			if (GetGlobalRect().HasPoint(mouseEvent.GlobalPosition)
-			&& mouseEvent.ButtonIndex == MouseButton.Left
-			&& mouseEvent.IsPressed() && GetChildren().Count <= 1)
-				SpawnBlock();
+		if (@event is InputEventMouseButton mouseEvent
+		&& mouseEvent.IsPressed()
+		&& mouseEvent.ButtonIndex == MouseButton.Left
+		&& GetChildren().Count <= 1
+		&& GetGlobalRect().HasPoint(mouseEvent.GlobalPosition))
+			SpawnBlock();
 	}
 
 	public void SpawnBlock()
