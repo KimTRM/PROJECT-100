@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dl1yi3e2oqj0k" path="res://scenes/code_blocks/ui/BlockPicker.tscn" id="2_wua68"]
 [ext_resource type="PackedScene" uid="uid://bp0aevc7dehng" path="res://scenes/code_blocks/ui/BlockCanvas.tscn" id="3_ju8dt"]
 [ext_resource type="PackedScene" uid="uid://cirmbhtex875r" path="res://scenes/code_blocks/ui/Console.tscn" id="4_h4y0m"]
-[ext_resource type="Script" uid="uid://rue4kargso4m" path="res://scripts/code_blocks/blocks/utilities/drag&drop/DragManager.cs" id="5_21meb"]
+[ext_resource type="Script" uid="uid://rue4kargso4m" path="res://scripts/code_blocks/base_block_types/utilities/drag&drop/DragManager.cs" id="5_21meb"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ijaqk"]
 content_margin_left = 8.0

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://dqujsmdqks07a"]
+
+[ext_resource type="Script" uid="uid://2gpafu0n6wx" path="res://scripts/code_blocks/blocks/IntBlock.cs" id="1_vx31p"]
+
+[resource]
+script = ExtResource("1_vx31p")
+BlockName = "Int"
+Description = "Block for whole numbers"
+BlockType = 3
+ReturnType = 2
+metadata/_custom_type_script = "uid://dkhw0ptsryqoo"

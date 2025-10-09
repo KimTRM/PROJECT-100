@@ -3,11 +3,11 @@ using GodotUtilities;
 using System.Threading.Tasks;
 
 [Scene]
-public partial class CodeBlock : MarginContainer
+public abstract partial class CodeBlock : MarginContainer
 {
     [Signal] public delegate void DragStartedEventHandler(CodeBlock codeBlock);
 
-    [Export] public Resource BlockDefinition = null;
+    [Export] public BlockDefinition BlockDefinition = null;
 
     [Export] public DragAreaComponent dragAreaComponent;
     [Export] public DropAreaComponent dropAreaComponent;

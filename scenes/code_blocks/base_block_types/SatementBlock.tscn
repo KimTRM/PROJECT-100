@@ -1,11 +1,11 @@
 [gd_scene load_steps=9 format=3 uid="uid://dbkjr5boxysai"]
 
-[ext_resource type="Script" uid="uid://dupm1y0jr1uad" path="res://scripts/code_blocks/blocks/SatementBlock.cs" id="1_2y51f"]
+[ext_resource type="Script" uid="uid://dupm1y0jr1uad" path="res://scripts/code_blocks/base_block_types/SatementBlock.cs" id="1_2y51f"]
 [ext_resource type="Texture2D" uid="uid://bx4c1fd75lxas" path="res://assets/textures/CodeBlocks/ExpressionBlock/Expresion.png" id="2_ulq15"]
 [ext_resource type="Texture2D" uid="uid://fi1jade8mdoe" path="res://assets/textures/CodeBlocks/ExpressionBlock/ExpresionOutline.png" id="3_xy5ay"]
-[ext_resource type="PackedScene" uid="uid://cwwyah4ofmis8" path="res://scenes/code_blocks/blocks/utilities/drag&drop/DragAreaComponent.tscn" id="4_4s3y3"]
-[ext_resource type="PackedScene" uid="uid://bmsnxpya6hkjw" path="res://scenes/code_blocks/blocks/utilities/template/TemplateEditor.tscn" id="5_e5dtn"]
-[ext_resource type="PackedScene" uid="uid://brctb1gyubyc7" path="res://scenes/code_blocks/blocks/utilities/drag&drop/DropAreaComponent.tscn" id="6_hwtrq"]
+[ext_resource type="PackedScene" uid="uid://cwwyah4ofmis8" path="res://scenes/code_blocks/base_block_types/utilities/drag&drop/DragAreaComponent.tscn" id="4_4s3y3"]
+[ext_resource type="PackedScene" uid="uid://bmsnxpya6hkjw" path="res://scenes/code_blocks/base_block_types/utilities/template/TemplateEditor.tscn" id="5_e5dtn"]
+[ext_resource type="PackedScene" uid="uid://brctb1gyubyc7" path="res://scenes/code_blocks/base_block_types/utilities/drag&drop/DropAreaComponent.tscn" id="6_hwtrq"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m62al"]
 texture = ExtResource("2_ulq15")

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cwwyah4ofmis8"]
 
-[ext_resource type="Script" uid="uid://beavoq4vmtdhe" path="res://scripts/code_blocks/blocks/utilities/drag&drop/DragAreaComponent.cs" id="1_v1uic"]
+[ext_resource type="Script" uid="uid://beavoq4vmtdhe" path="res://scripts/code_blocks/base_block_types/utilities/drag&drop/DragAreaComponent.cs" id="1_v1uic"]
 
 [node name="DragAreaComponent" type="Control"]
 layout_mode = 3

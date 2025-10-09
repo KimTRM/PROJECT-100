@@ -9,7 +9,21 @@ public partial class TemplateEditor : MarginContainer
 
 	[Node] private HBoxContainer container;
 
-	[Export] public string TemplateName { get; set; } = "NewTemplate";
+	private string _templateName = "NewTemplate";
+	[Export]
+	public string TemplateName
+	{
+		get => _templateName;
+		set
+		{
+			_templateName = value;
+			if (container != null)
+			{
+				UpdateTemplate();
+			}
+		}
+	}
+
 	[Export] public string TemplateCategory { get; set; } = "General";
 	[Export] public Variant.Type InputType = Variant.Type.String;
 	[Export] public BlockType BlockType = BlockType.VARIABLE;
