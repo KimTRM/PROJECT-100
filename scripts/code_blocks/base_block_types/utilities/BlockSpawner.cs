@@ -7,15 +7,7 @@ public partial class BlockSpawner : MarginContainer
 
 	public override void _Ready()
 	{
-		SpawnedBlock ??= GetChildOrNull<CodeBlock>(0);
-
-		if (SpawnedBlock == null)
-		{
-			GD.PushWarning($"{Name}: No template CodeBlock found.");
-			return;
-		}
-
-		// SpawnBlock();
+		SpawnBlock();
 	}
 
 	public override void _Input(InputEvent @event)
@@ -30,15 +22,10 @@ public partial class BlockSpawner : MarginContainer
 
 	public void SpawnBlock()
 	{
-		// CodeBlock newBlock = InitializeBlock(BlockResource.BlockType);
-		// AddChild(newBlock);
-		// SpawnedBlock = newBlock;
-		// SpawnedBlock.templateEditor.TemplateName = BlockResource.BlockName;
-
-
-		var newBlock = SpawnedBlock.Duplicate() as CodeBlock;
-		SpawnedBlock = newBlock;
+		CodeBlock newBlock = InitializeBlock(BlockResource.BlockType);
 		AddChild(newBlock);
+		SpawnedBlock = newBlock;
+		SpawnedBlock.templateEditor.TemplateName = BlockResource.BlockName;
 	}
 
 	private static CodeBlock InitializeBlock(BlockType block)
