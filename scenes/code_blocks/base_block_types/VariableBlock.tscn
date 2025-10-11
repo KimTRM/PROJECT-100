@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://drcorwafubvtf"]
 
-[ext_resource type="Script" uid="uid://cyod5r2p4kyj6" path="res://scripts/code_blocks/blocks/VariableBlock.cs" id="1_nxi04"]
-[ext_resource type="PackedScene" uid="uid://cwwyah4ofmis8" path="res://scenes/code_blocks/blocks/utilities/drag&drop/DragAreaComponent.tscn" id="2_2o31x"]
+[ext_resource type="Script" uid="uid://cyod5r2p4kyj6" path="res://scripts/code_blocks/base_block_types/VariableBlock.cs" id="1_nxi04"]
+[ext_resource type="PackedScene" uid="uid://cwwyah4ofmis8" path="res://scenes/code_blocks/base_block_types/utilities/drag&drop/DragAreaComponent.tscn" id="2_2o31x"]
 [ext_resource type="Texture2D" uid="uid://uf168g7jnhwb" path="res://assets/textures/CodeBlocks/VariableBlock/Variable.png" id="2_ugaih"]
-[ext_resource type="PackedScene" uid="uid://bmsnxpya6hkjw" path="res://scenes/code_blocks/blocks/utilities/template/TemplateEditor.tscn" id="5_4boqc"]
+[ext_resource type="PackedScene" uid="uid://bmsnxpya6hkjw" path="res://scenes/code_blocks/base_block_types/utilities/template/TemplateEditor.tscn" id="5_4boqc"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4boqc"]
 texture = ExtResource("2_ugaih")
@@ -12,13 +12,14 @@ texture_margin_top = 32.0
 texture_margin_right = 16.0
 texture_margin_bottom = 16.0
 
-[node name="VariableBlock" type="MarginContainer" node_paths=PackedStringArray("dragAreaComponent") groups=["CodeBlock"]]
+[node name="VariableBlock" type="MarginContainer" node_paths=PackedStringArray("dragAreaComponent", "templateEditor") groups=["CodeBlock"]]
 custom_minimum_size = Vector2(130, 60)
 offset_right = 130.0
 offset_bottom = 60.0
 size_flags_vertical = 4
 script = ExtResource("1_nxi04")
 dragAreaComponent = NodePath("DragAreaComponent")
+templateEditor = NodePath("TemplateEditor")
 BlockType = 3
 
 [node name="Panel" type="Panel" parent="."]
@@ -35,5 +36,3 @@ layout_mode = 2
 [node name="TemplateEditor" parent="." instance=ExtResource("5_4boqc")]
 unique_name_in_owner = true
 layout_mode = 2
-TemplateName = "Var"
-InputType = 2

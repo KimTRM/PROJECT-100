@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" uid="uid://dx5x5yebcdaus" path="res://scripts/code_blocks/ui/BlockPicker.cs" id="1_5nmmw"]
 [ext_resource type="Texture2D" uid="uid://uf168g7jnhwb" path="res://assets/textures/CodeBlocks/VariableBlock/Variable.png" id="2_5mdv1"]
-[ext_resource type="PackedScene" uid="uid://drcorwafubvtf" path="res://scenes/code_blocks/blocks/VariableBlock.tscn" id="3_adc05"]
-[ext_resource type="PackedScene" uid="uid://b37is6wayt2yf" path="res://scenes/code_blocks/blocks/utilities/BlockSpawner.tscn" id="3_k4ts7"]
-[ext_resource type="PackedScene" uid="uid://dbkjr5boxysai" path="res://scenes/code_blocks/blocks/PrintBlock.tscn" id="4_k4ts7"]
-[ext_resource type="PackedScene" uid="uid://bm8qnm1lt3fgb" path="res://scenes/code_blocks/blocks/ControlBlock.tscn" id="5_4sua0"]
+[ext_resource type="PackedScene" uid="uid://b37is6wayt2yf" path="res://scenes/code_blocks/base_block_types/utilities/BlockSpawner.tscn" id="3_k4ts7"]
+[ext_resource type="Resource" uid="uid://dqujsmdqks07a" path="res://resources/code_blocks/IntBlock.tres" id="4_5mdv1"]
+[ext_resource type="Resource" uid="uid://c1wijvbnqj6pj" path="res://resources/code_blocks/PrintBlock.tres" id="5_5mdv1"]
+[ext_resource type="Resource" uid="uid://dtshg7ntoxqbj" path="res://resources/code_blocks/IfBlock.tres" id="6_5mdv1"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_k4ts7"]
 texture = ExtResource("2_5mdv1")
@@ -56,18 +56,12 @@ horizontal_alignment = 1
 [node name="BlockSpawner" parent="MarginContainer/ScrollContainer/CodeBlockContainer" instance=ExtResource("3_k4ts7")]
 layout_mode = 2
 mouse_filter = 0
-
-[node name="VariableBlock" parent="MarginContainer/ScrollContainer/CodeBlockContainer/BlockSpawner" instance=ExtResource("3_adc05")]
-layout_mode = 2
+BlockResource = ExtResource("4_5mdv1")
 
 [node name="BlockSpawner2" parent="MarginContainer/ScrollContainer/CodeBlockContainer" instance=ExtResource("3_k4ts7")]
 layout_mode = 2
-
-[node name="PrintBlock" parent="MarginContainer/ScrollContainer/CodeBlockContainer/BlockSpawner2" instance=ExtResource("4_k4ts7")]
-layout_mode = 2
+BlockResource = ExtResource("5_5mdv1")
 
 [node name="BlockSpawner3" parent="MarginContainer/ScrollContainer/CodeBlockContainer" instance=ExtResource("3_k4ts7")]
 layout_mode = 2
-
-[node name="ConditionBlock" parent="MarginContainer/ScrollContainer/CodeBlockContainer/BlockSpawner3" instance=ExtResource("5_4sua0")]
-layout_mode = 2
+BlockResource = ExtResource("6_5mdv1")

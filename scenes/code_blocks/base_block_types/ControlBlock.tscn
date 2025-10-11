@@ -1,12 +1,12 @@
 [gd_scene load_steps=15 format=3 uid="uid://bm8qnm1lt3fgb"]
 
-[ext_resource type="Script" uid="uid://dnccex6n1khy8" path="res://scripts/code_blocks/blocks/ConditionBlock.cs" id="1_5ku5k"]
+[ext_resource type="Script" uid="uid://dnccex6n1khy8" path="res://scripts/code_blocks/base_block_types/ConditionBlock.cs" id="1_5ku5k"]
 [ext_resource type="Texture2D" uid="uid://yg21qbyrje85" path="res://assets/textures/CodeBlocks/ConditionBlock/ConditionTop1.png" id="2_74i3j"]
 [ext_resource type="Texture2D" uid="uid://p5uumc7mkbxa" path="res://assets/textures/CodeBlocks/ConditionBlock/ConditionTop2.png" id="3_hn52u"]
-[ext_resource type="PackedScene" uid="uid://cwwyah4ofmis8" path="res://scenes/code_blocks/blocks/utilities/drag&drop/DragAreaComponent.tscn" id="4_34ycn"]
-[ext_resource type="PackedScene" uid="uid://bmsnxpya6hkjw" path="res://scenes/code_blocks/blocks/utilities/template/TemplateEditor.tscn" id="5_m1fxw"]
+[ext_resource type="PackedScene" uid="uid://cwwyah4ofmis8" path="res://scenes/code_blocks/base_block_types/utilities/drag&drop/DragAreaComponent.tscn" id="4_34ycn"]
+[ext_resource type="PackedScene" uid="uid://bmsnxpya6hkjw" path="res://scenes/code_blocks/base_block_types/utilities/template/TemplateEditor.tscn" id="5_m1fxw"]
 [ext_resource type="Texture2D" uid="uid://cfr8t1h0riqwv" path="res://assets/textures/CodeBlocks/ConditionBlock/ConditionMid.png" id="6_jrlty"]
-[ext_resource type="PackedScene" uid="uid://brctb1gyubyc7" path="res://scenes/code_blocks/blocks/utilities/drag&drop/DropAreaComponent.tscn" id="7_artjp"]
+[ext_resource type="PackedScene" uid="uid://brctb1gyubyc7" path="res://scenes/code_blocks/base_block_types/utilities/drag&drop/DropAreaComponent.tscn" id="7_artjp"]
 [ext_resource type="Texture2D" uid="uid://biktph2ling70" path="res://assets/textures/CodeBlocks/ConditionBlock/ConditionBottom1.png" id="8_5hs7n"]
 [ext_resource type="Texture2D" uid="uid://dvj04tlkie1yj" path="res://assets/textures/CodeBlocks/ConditionBlock/ConditionBottom2.png" id="9_p3hge"]
 
@@ -52,7 +52,7 @@ texture_margin_bottom = 32.0
 expand_margin_bottom = 9.0
 modulate_color = Color(0.6117647, 0.41960785, 1, 1)
 
-[node name="ControlBlock" type="MarginContainer" node_paths=PackedStringArray("dragAreaComponent", "dropAreaComponent")]
+[node name="ControlBlock" type="MarginContainer" node_paths=PackedStringArray("dragAreaComponent", "dropAreaComponent", "templateEditor")]
 custom_minimum_size = Vector2(130, 0)
 offset_right = 130.0
 offset_bottom = 167.0
@@ -60,6 +60,7 @@ size_flags_horizontal = 0
 script = ExtResource("1_5ku5k")
 dragAreaComponent = NodePath("VBoxContainer/MarginContainer/DragAreaComponent")
 dropAreaComponent = NodePath("VBoxContainer/HBoxContainer/DropAreaComponent")
+templateEditor = NodePath("VBoxContainer/MarginContainer/TemplateEditor")
 BlockType = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
