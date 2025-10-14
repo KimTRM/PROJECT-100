@@ -74,6 +74,7 @@ public partial class ParameterInput : MarginContainer
 				break;
 			default:
 				SwitchInput(null);
+				GD.PushWarning($"{Name}: Unsupported InputType {InputType}");
 				break;
 		}
 	}
