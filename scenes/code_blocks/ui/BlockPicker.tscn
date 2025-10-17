@@ -1,11 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://dl1yi3e2oqj0k"]
+[gd_scene load_steps=4 format=3 uid="uid://dl1yi3e2oqj0k"]
 
 [ext_resource type="Script" uid="uid://dx5x5yebcdaus" path="res://scripts/code_blocks/ui/BlockPicker.cs" id="1_5nmmw"]
 [ext_resource type="Texture2D" uid="uid://uf168g7jnhwb" path="res://assets/textures/CodeBlocks/VariableBlock/Variable.png" id="2_5mdv1"]
-[ext_resource type="PackedScene" uid="uid://b37is6wayt2yf" path="res://scenes/code_blocks/base_block_types/utilities/BlockSpawner.tscn" id="3_k4ts7"]
-[ext_resource type="Resource" uid="uid://dqujsmdqks07a" path="res://resources/code_blocks/IntBlock.tres" id="4_5mdv1"]
-[ext_resource type="Resource" uid="uid://c1wijvbnqj6pj" path="res://resources/code_blocks/PrintBlock.tres" id="5_5mdv1"]
-[ext_resource type="Resource" uid="uid://dtshg7ntoxqbj" path="res://resources/code_blocks/IfBlock.tres" id="6_5mdv1"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_k4ts7"]
 texture = ExtResource("2_5mdv1")
@@ -52,16 +48,3 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "Block Category"
 horizontal_alignment = 1
-
-[node name="BlockSpawner" parent="MarginContainer/ScrollContainer/CodeBlockContainer" instance=ExtResource("3_k4ts7")]
-layout_mode = 2
-mouse_filter = 0
-BlockResource = ExtResource("4_5mdv1")
-
-[node name="BlockSpawner2" parent="MarginContainer/ScrollContainer/CodeBlockContainer" instance=ExtResource("3_k4ts7")]
-layout_mode = 2
-BlockResource = ExtResource("5_5mdv1")
-
-[node name="BlockSpawner3" parent="MarginContainer/ScrollContainer/CodeBlockContainer" instance=ExtResource("3_k4ts7")]
-layout_mode = 2
-BlockResource = ExtResource("6_5mdv1")

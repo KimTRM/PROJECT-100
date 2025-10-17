@@ -10,6 +10,7 @@ public partial class TemplateEditor : MarginContainer
 	[Node] private HBoxContainer container;
 
 	private string _templateName = "NewTemplate";
+
 	[Export]
 	public string TemplateName
 	{
@@ -23,10 +24,12 @@ public partial class TemplateEditor : MarginContainer
 			}
 		}
 	}
-
-	[Export] public string TemplateCategory { get; set; } = "General";
-	[Export] public Variant.Type InputType = Variant.Type.String;
-	[Export] public BlockType BlockType = BlockType.VARIABLE;
+	[Export]
+	public string TemplateCategory { get; set; } = "General";
+	[Export]
+	public Variant.Type InputType = Variant.Type.String;
+	[Export]
+	public BlockType BlockType = BlockType.VARIABLE;
 
 	public override void _Notification(int what)
 	{
@@ -68,7 +71,7 @@ public partial class TemplateEditor : MarginContainer
 	{
 		var parameterInput = GD.Load<PackedScene>("uid://chdl1sp7r2avd").Instantiate<ParameterInput>();
 		parameterInput.DragStarted += EmitSignalDragStarted;
-		// parameterInput.PlaceholderText = PlaceholderText;
+		parameterInput.PlaceholderText = "Enter " + TemplateName + " Value";
 		parameterInput.BlockType = BlockType;
 		parameterInput.InputType = InputType;
 

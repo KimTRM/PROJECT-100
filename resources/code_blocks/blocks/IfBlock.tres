@@ -1,0 +1,9 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://dtshg7ntoxqbj"]
+
+[ext_resource type="Script" uid="uid://bxsitjguyuwtg" path="res://scripts/code_blocks/blocks/IfBlock.cs" id="1_hwieg"]
+
+[resource]
+script = ExtResource("1_hwieg")
+BlockName = "If"
+BlockType = 4
+ReturnType = 1

@@ -1,9 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://blgmf8sodxndt"]
+[gd_scene load_steps=10 format=3 uid="uid://blgmf8sodxndt"]
 
+[ext_resource type="Script" uid="uid://dkhw0ptsryqoo" path="res://scripts/code_blocks/base_block_types/utilities/BlockDefinition.cs" id="2_ok1fr"]
 [ext_resource type="PackedScene" uid="uid://dl1yi3e2oqj0k" path="res://scenes/code_blocks/ui/BlockPicker.tscn" id="2_wua68"]
+[ext_resource type="Resource" uid="uid://dtshg7ntoxqbj" path="res://resources/code_blocks/blocks/IfBlock.tres" id="3_jbvf2"]
 [ext_resource type="PackedScene" uid="uid://bp0aevc7dehng" path="res://scenes/code_blocks/ui/BlockCanvas.tscn" id="3_ju8dt"]
 [ext_resource type="PackedScene" uid="uid://cirmbhtex875r" path="res://scenes/code_blocks/ui/Console.tscn" id="4_h4y0m"]
+[ext_resource type="Resource" uid="uid://dqujsmdqks07a" path="res://resources/code_blocks/blocks/IntBlock.tres" id="4_n7o18"]
 [ext_resource type="Script" uid="uid://rue4kargso4m" path="res://scripts/code_blocks/base_block_types/utilities/drag&drop/DragManager.cs" id="5_21meb"]
+[ext_resource type="Resource" uid="uid://c1wijvbnqj6pj" path="res://resources/code_blocks/blocks/PrintBlock.tres" id="5_v8pha"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ijaqk"]
 content_margin_left = 8.0
@@ -33,6 +37,7 @@ theme_override_constants/separation = 2
 
 [node name="BlockPicker" parent="PanelContainer/HBoxContainer" instance=ExtResource("2_wua68")]
 layout_mode = 2
+BlockDefinitions = Array[ExtResource("2_ok1fr")]([ExtResource("4_n7o18"), ExtResource("5_v8pha"), ExtResource("3_jbvf2")])
 
 [node name="VSplitContainer" type="VSplitContainer" parent="PanelContainer/HBoxContainer"]
 layout_mode = 2

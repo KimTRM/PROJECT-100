@@ -2,7 +2,7 @@ using Godot;
 
 public partial class BlockSpawner : MarginContainer
 {
-	[Export] private BlockDefinition BlockResource;
+	[Export] public BlockDefinition BlockResource;
 	[Export] public CodeBlock SpawnedBlock;
 
 	public override void _Ready()
@@ -24,7 +24,10 @@ public partial class BlockSpawner : MarginContainer
 	{
 		CodeBlock newBlock = InitializeBlock(BlockResource.BlockType);
 		AddChild(newBlock);
+
 		SpawnedBlock = newBlock;
+
+		SpawnedBlock.BlockDefinition = BlockResource;
 		SpawnedBlock.templateEditor.TemplateName = BlockResource.BlockName;
 	}
 
